@@ -49,7 +49,7 @@ export default function NextInspectionDate() {
 
                         <Grid item xs={6} md={3}>
                             <TextField
-                                name={['inspection_interval']}
+                                name={['risk_based_underwater_inspection_interval']}
                                 label="Inspection Interval"
                             />
                         </Grid>
@@ -67,7 +67,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={3}>
                         <TextField
-                            name={['exposure_category']}
+                            name={['exposure_category_level']}
                             label="Level"
                         />
                     </Grid>
@@ -91,7 +91,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={3}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['exposure_category_level_1']}
                             label="Level I"
                         />
                     </Grid>
@@ -107,7 +107,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={3}>
                         <TextField
-                            name={['date_inspection2']}
+                            name={['exposure_category_level_2']}
                             label="Level II"
                         />
                     </Grid>
@@ -123,7 +123,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={3}>
                         <TextField
-                            name={['date_inspection3']}
+                            name={['exposure_category_level_3']}
                             label="Level III"
                         />
                     </Grid>
@@ -156,14 +156,14 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['Inspection_Interval']}
                             label="Inspection Interval"
                         />
                     </Grid>
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['level_1_inspection_date']}
                             label="Inspection Date"
                         />
                     </Grid>
@@ -187,7 +187,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['level_2_inspection_date']}
                             label="Inspection Date"
                         />
                     </Grid>
@@ -210,7 +210,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['level_3_inspection_date']}
                             label="Inspection Date"
                         />
                     </Grid>

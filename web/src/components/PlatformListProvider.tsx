@@ -239,6 +239,16 @@ export const PlatformSchema = yup
         distance_to_shipping_lane: DecimalLikeSchema,
         api_seismic_zone: yup.string().trim(),
         number_of_bays: IntegerSchema,
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        risk_based_underwater_inspection_interval:IntegerSchema,
+        exposure_category_level:yup.string(),
+        exposure_category_level_1:yup.string(),
+        exposure_category_level_2:yup.string(),
+        exposure_category_level_3:yup.string(),
+        level_1_inspection_date:yup.date(),
+        level_2_inspection_date:yup.date(),
+        level_3_inspection_date:yup.date(),
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         number_of_main_piles: IntegerSchema,
         number_of_skirt_piles: IntegerSchema,
         number_of_decks: IntegerSchema,
