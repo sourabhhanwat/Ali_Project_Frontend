@@ -42,6 +42,15 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
+
+    var ButtonDesign = {
+        
+        backgroundColor: 'yellow',
+        padding:    '15px 32px',
+        margin: '4px 2px',
+
+    };
+
     const [
         platformMannedStatusList,
         setPlatformMannedStatusList,
@@ -215,12 +224,20 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                         </Grid>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
+
+                <br />
+                
                 <ExpansionPanel>
                     <ExpansionPanelSummary>
                         <Typography>Environmental Consequence</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                                <p>
+                                Estimated Fraction of Oil Production Loss Due to Leakage
+                                </p>
+                            </Grid>
                             <Grid item xs={6}>
                                 <TextField
                                     disabled={daily_oil_production === 0}
@@ -231,6 +248,11 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     ]}
                                     unit="%"
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p>
+                                Estimated Fraction of Oil Production Loss Due to LeakageFixed Cost for Spill Clean-up (Includes, mobilization of clean-up personnel, regulatory costs, etc.)
+                                </p>
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
@@ -244,6 +266,12 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     helperText="Includes, mobilization of clean-up personnel, regulatory costs, etc"
                                 />
                             </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Variable Cost for Spill Clean-up (based on the size of spill volume)                                </p>
+                            </Grid>
+
                             <Grid item xs={6}>
                                 <TextField
                                     disabled={daily_oil_production === 0}
@@ -256,6 +284,14 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     helperText="Based on the size of spill volume"
                                 />
                             </Grid>
+
+
+                            <Grid item xs={6}>
+                                <p>
+                                Oil Price
+                                </p>
+                            </Grid>
+
                             <Grid item xs={6}>
                                 <TextField
                                     disabled={daily_oil_production === 0}
@@ -267,20 +303,440 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     unit="$/bbl"
                                 />
                             </Grid>
+
                             <Grid item xs={6}>
-                                <Typography variant="subtitle2">
+                                <p>
+                                Calculated Environmental Consequence 
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Calculated Environmental Consequence"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                    unit="Barrels of Oil Equivalent (BOE)"
+                                />
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                {/* <Typography variant="subtitle2">
                                     Calculated Environmental Consequence
                                 </Typography>
                                 <Typography variant="h5">
                                     {watch(
                                         'calculated_environmental_consequence'
                                     ) ?? 'None'}
+                                </Typography> */}
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Description</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Category</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Environmental Consequence</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                            <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Free Text as per Client Risk Matrix"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                />
+                            </Grid>
+
+                            <Grid item xs={4}>
+                            <Select
+                                    toOption={(option) => option}
+                                    name="platform_manned_status_id"
+                                    subject={platformMannedStatusListSubject}
+                                    label="Category"
+                                />
+                            </Grid>
+
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            
+                <br />
+
+                <ExpansionPanel>
+                    <ExpansionPanelSummary>
+                        <Typography>Economic Impact Consequence</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                                <p>
+                                Gas Price
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Gas Price"
+                                    name={[
+                                        'environmental_consequence',
+                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
+                                    ]}
+                                    unit="$/mscf"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p>
+                                Discount Rate for Interrupted Production                               
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Discount Rate for Interrupted Production"
+                                    name={[
+                                        'environmental_consequence',
+                                        'fixed_cost_for_spill_cleanup',
+                                    ]}
+                                    unit="%"
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Fraction of Remaining Production Loss
+                                </p>
+                         </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Fraction of Remaining Production Loss"
+                                    name={[
+                                        'environmental_consequence',
+                                        'variable_cost_for_spill_cleanup',
+                                    ]}
+                                    unit="%"
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={6}>
+                                <p>
+                                Platform Replacement Cost
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Platform Replacement Cost"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                    unit="$"
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Platform Replacement Time
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Platform Replacement Time"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                    unit="Days"
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Calculated Economic Impact Consequence
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Calculated Economic Impact Consequence"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                    unit="US$ Million"
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Calculated Economic Impact Consequence (Based on Remaining Service Life)
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Calculated Economic Impact Consequence"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                    unit="US$ Million"
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Structure Replacement Decision                                
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Structure Replacement Decision"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                />
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                {/* <Typography variant="subtitle2">
+                                    Calculated Environmental Consequence
                                 </Typography>
+                                <Typography variant="h5">
+                                    {watch(
+                                        'calculated_environmental_consequence'
+                                    ) ?? 'None'}
+                                </Typography> */}
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Description</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Category</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Environmental Consequence</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                            <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Free Text as per Client Risk Matrix"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                />
+                            </Grid>
+
+                            <Grid item xs={4}>
+                            <Select
+                                    toOption={(option) => option}
+                                    name="platform_manned_status_id"
+                                    subject={platformMannedStatusListSubject}
+                                    label="Category"
+                                />
+                            </Grid>
+
+
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+
+                <br />
+
+                <ExpansionPanel>
+                    <ExpansionPanelSummary>
+                        <Typography>Final Consequence Level</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                                <p>
+                                Life-Safety Consequence Category
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Life-Safety Consequence Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
+                                    ]}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p>
+                                Environmental Consequence Category                              
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Environmental Consequence Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'fixed_cost_for_spill_cleanup',
+                                    ]}
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                Economic Consequence Category
+                                </p>
+                         </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Economic Consequence Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'variable_cost_for_spill_cleanup',
+                                    ]}
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={6}>
+                                <p>
+                                Final Consequence Category
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Final Consequence Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'oil_price',
+                                    ]}
+                                />
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                {/* <Typography variant="subtitle2">
+                                    Calculated Environmental Consequence
+                                </Typography>
+                                <Typography variant="h5">
+                                    {watch(
+                                        'calculated_environmental_consequence'
+                                    ) ?? 'None'}
+                                </Typography> */}
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <button style={ButtonDesign} type="submit"><b>SAVE</b></button>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <button style={ButtonDesign} type="submit"><b>Calculate</b></button>
+                            </Grid>
+
+
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+
+                <br />
+
+                <ExpansionPanel>
+                    <ExpansionPanelSummary>
+                        <Typography>Risk Evaluation</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Grid container spacing={3}>
+                        <Grid item xs={4}>
+                                <p>
+                                Likelihood of Failure Category
+                                </p>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Likelihood of Failure Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
+                                    ]}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <p>
+                                </p>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <p>
+                                Final Consequence Category                             
+                                </p>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Final Consequence Category"
+                                    name={[
+                                        'environmental_consequence',
+                                        'fixed_cost_for_spill_cleanup',
+                                    ]}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <p>
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>
+                                Risk Ranking
+                                </p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <TextField
+                                    disabled={daily_oil_production === 0}
+                                    label="Risk Ranking"
+                                    name={[
+                                        'environmental_consequence',
+                                        'variable_cost_for_spill_cleanup',
+                                    ]}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <p>
+                                </p>
                             </Grid>
                         </Grid>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
+
             </Box>
+       
         </Box>
     );
 }
