@@ -308,6 +308,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -462,6 +463,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -479,6 +481,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -496,6 +499,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Structure Replacement Decision"
                                     name={[
                                         'environmental_consequence',
@@ -566,6 +570,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Life-Safety Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -613,6 +618,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Final Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -660,6 +666,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Likelihood of Failure Category"
                                     name={[
                                         'environmental_consequence',
@@ -678,6 +685,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Final Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -698,6 +706,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                                 <TextField
+                                    disabled={daily_oil_production === 0}
                                     label="Risk Ranking"
                                     name={[
                                         'environmental_consequence',
