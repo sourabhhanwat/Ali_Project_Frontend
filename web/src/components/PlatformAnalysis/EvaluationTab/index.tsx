@@ -312,7 +312,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'environmental_consequence',
-                                        '',
+                                        'oil_price',
                                     ]}
                                     unit="Barrels of Oil Equivalent (BOE)"
                                 />
@@ -346,7 +346,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'environmental_consequence',
-                                        '',
+                                        'oil_price',
                                     ]}
                                 />
                             </Grid>
