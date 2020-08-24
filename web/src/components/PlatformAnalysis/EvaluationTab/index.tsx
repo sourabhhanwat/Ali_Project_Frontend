@@ -652,8 +652,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Likelihood of Failure Category"
                                     name={[
-                                        'environmental_consequence',
-                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
+                                        'likelihood_of_failure_category',
                                     ]}
                                 />
                             </Grid>
@@ -671,8 +670,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Final Consequence Category"
                                     name={[
-                                        'environmental_consequence',
-                                        'fixed_cost_for_spill_cleanup',
+                                        'final_consequence_category',
                                     ]}
                                 />
                             </Grid>
@@ -692,8 +690,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Risk Ranking"
                                     name={[
-                                        'environmental_consequence',
-                                        'variable_cost_for_spill_cleanup',
+                                        'risk_ranking',
                                     ]}
                                 />
                             </Grid>
