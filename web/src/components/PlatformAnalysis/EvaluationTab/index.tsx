@@ -311,8 +311,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Calculated Environmental Consequence"
                                     name={[
-                                        'environmental_consequence',
-                                        'oil_price',
+                                        'Calculated_Environmental_Consequence',
+                                        // 'oil_price',
                                     ]}
                                     unit="Barrels of Oil Equivalent (BOE)"
                                 />
@@ -345,8 +345,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
-                                        'environmental_consequence',
-                                        'oil_price',
+                                        'environmental_consequence_description',
+                                        // 'oil_price',
                                     ]}
                                 />
                             </Grid>
@@ -354,7 +354,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <Grid item xs={4}>
                             <Select
                                     toOption={(option) => option}
-                                    name="platform_manned_status_id"
+                                    name="environmental_consequence_category"
                                     subject={platformMannedStatusListSubject}
                                     label="Category"
                                 />
@@ -520,7 +520,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Environmental Consequence</p>
+                                <p>Economic Consequence </p>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -528,7 +528,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         // 'economic_impact_consequence',
-                                        'Free_Text_as_per_Client_Risk_Matrix',
+                                        'economic_consequence_description',
                                     ]}
                                 />
                             </Grid>
@@ -536,7 +536,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <Grid item xs={4}>
                             <Select
                                     toOption={(option) => option}
-                                    name="platform_manned_status_id"
+                                    name="economic_consequence_category"
                                     subject={platformMannedStatusListSubject}
                                     label="Category"
                                 />
@@ -561,14 +561,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField
-                                    disabled
-                                    label="Life-Safety Consequence Category"
-                                    name={[
-                                        'environmental_consequence',
-                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
-                                    ]}
-                                />
+                                <Typography variant="h5">
+                                    {platformMannedStatus?.ranking ?? 'Unknown'}
+                                </Typography>
                             </Grid>
                             <Grid item xs={6}>
                                 <p>
@@ -579,8 +574,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Environmental Consequence Category"
                                     name={[
-                                        'environmental_consequence',
-                                        'fixed_cost_for_spill_cleanup',
+                                        'environmental_consequence_description',
                                     ]}
                                 />
                             </Grid>
@@ -595,8 +589,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Economic Consequence Category"
                                     name={[
-                                        'environmental_consequence',
-                                        'variable_cost_for_spill_cleanup',
+                                        'economic_consequence_description',
                                     ]}
                                 />
                             </Grid>
