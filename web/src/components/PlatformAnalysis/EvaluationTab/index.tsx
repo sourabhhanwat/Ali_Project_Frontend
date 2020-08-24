@@ -240,7 +240,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Estimated Fraction of Oil Production Loss Due to Leakage"
                                     name={[
                                         'environmental_consequence',
@@ -256,7 +255,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Fixed Cost for Spill Clean-up"
                                     name={[
                                         'environmental_consequence',
@@ -274,7 +272,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Variable Cost for Spill Clean-up"
                                     name={[
                                         'environmental_consequence',
@@ -294,7 +291,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Oil Price"
                                     name={[
                                         'environmental_consequence',
@@ -312,7 +308,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -347,7 +342,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                             <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'environmental_consequence',
@@ -384,7 +378,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Gas Price"
                                     name={[
                                         'environmental_consequence',
@@ -400,7 +393,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Discount Rate for Interrupted Production"
                                     name={[
                                         'environmental_consequence',
@@ -418,7 +410,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Fraction of Remaining Production Loss"
                                     name={[
                                         'environmental_consequence',
@@ -437,7 +428,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Platform Replacement Cost"
                                     name={[
                                         'environmental_consequence',
@@ -455,7 +445,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Platform Replacement Time"
                                     name={[
                                         'environmental_consequence',
@@ -473,7 +462,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -491,7 +479,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -509,7 +496,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Structure Replacement Decision"
                                     name={[
                                         'environmental_consequence',
@@ -543,7 +529,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                             <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'environmental_consequence',
@@ -581,7 +566,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Life-Safety Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -596,7 +580,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Environmental Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -613,7 +596,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Economic Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -631,16 +613,15 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Final Consequence Category"
                                     name={[
                                         'environmental_consequence',
-                                        'oil_price',
+                                        'variable_cost_for_spill_cleanup',
                                     ]}
                                 />
                             </Grid>
 
-                            <Grid item xs={4}>
+                            {/* <Grid item xs={4}>
                                 {/* <Typography variant="subtitle2">
                                     Calculated Environmental Consequence
                                 </Typography>
@@ -648,7 +629,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     {watch(
                                         'calculated_environmental_consequence'
                                     ) ?? 'None'}
-                                </Typography> */}
+                                </Typography> 
                             </Grid>
 
                             <Grid item xs={4}>
@@ -657,7 +638,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                                 <button style={ButtonDesign} type="submit"><b>Calculate</b></button>
-                            </Grid>
+                            </Grid> */}
 
 
                         </Grid>
@@ -679,7 +660,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Likelihood of Failure Category"
                                     name={[
                                         'environmental_consequence',
@@ -698,7 +678,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Final Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -719,7 +698,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
                                     label="Risk Ranking"
                                     name={[
                                         'environmental_consequence',
