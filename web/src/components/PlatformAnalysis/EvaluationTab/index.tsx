@@ -312,7 +312,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'environmental_consequence',
-                                        'oil_price',
+                                        '',
                                     ]}
                                     unit="Barrels of Oil Equivalent (BOE)"
                                 />
@@ -346,7 +346,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'environmental_consequence',
-                                        'oil_price',
+                                        '',
                                     ]}
                                 />
                             </Grid>
@@ -381,8 +381,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Gas Price"
                                     name={[
-                                        'environmental_consequence',
-                                        'estimated_fraction_of_oil_production_loss_due_to_leakage',
+                                        'economic_impact_consequence',
+                                        'gas_price',
                                     ]}
                                     unit="$/mscf"
                                 />
@@ -396,8 +396,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Discount Rate for Interrupted Production"
                                     name={[
-                                        'environmental_consequence',
-                                        'fixed_cost_for_spill_cleanup',
+                                        'economic_impact_consequence',
+                                        'discount_date_for_interrupted_production',
                                     ]}
                                     unit="%"
                                 />
@@ -413,8 +413,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Fraction of Remaining Production Loss"
                                     name={[
-                                        'environmental_consequence',
-                                        'variable_cost_for_spill_cleanup',
+                                        'economic_impact_consequence',
+                                        'fraction_of_remaining_production_loss',
                                     ]}
                                     unit="%"
                                 />
@@ -431,8 +431,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Platform Replacement Cost"
                                     name={[
-                                        'environmental_consequence',
-                                        'oil_price',
+                                        'economic_impact_consequence',
+                                        'platform_replacement_cost',
                                     ]}
                                     unit="$"
                                 />
@@ -448,8 +448,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Platform Replacement Time"
                                     name={[
-                                        'environmental_consequence',
-                                        'oil_price',
+                                        'economic_impact_consequence',
+                                        'platform_replacement_time',
                                     ]}
                                     unit="Days"
                                 />
@@ -466,7 +466,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        'environmental_consequence',
+                                        'economic_impact_consequence',
                                         'oil_price',
                                     ]}
                                     unit="US$ Million"
@@ -484,7 +484,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        'environmental_consequence',
+                                        'economic_impact_consequence',
                                         'oil_price',
                                     ]}
                                     unit="US$ Million"
@@ -502,7 +502,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Structure Replacement Decision"
                                     name={[
-                                        'environmental_consequence',
+                                        'economic_impact_consequence',
                                         'oil_price',
                                     ]}
                                 />
@@ -535,7 +535,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
-                                        'environmental_consequence',
+                                        'economic_impact_consequence',
                                         'oil_price',
                                     ]}
                                 />
