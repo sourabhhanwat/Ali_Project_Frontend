@@ -175,42 +175,20 @@ export const PlatformSchema = yup
                     .noUnknown(),
                 platform_type_id: yup.ref('platform_type.id'),
                 daily_oil_production: IntegerSchema,
-                estimated_fraction_of_oil_production_loss_due_to_leakage: yup
-                    .mixed()
-                    .when('daily_oil_production', {
-                        is: 0,
-                        then: yup.mixed().oneOf([null]),
-                        otherwise: DecimalLikeSchema.notOneOf([null]),
-                    }),
-                fixed_cost_for_spill_cleanup: yup
-                    .mixed()
-                    .when('daily_oil_production', {
-                        is: 0,
-                        then: yup.mixed().oneOf([null]),
-                        otherwise: DecimalLikeSchema.notOneOf([null]),
-                    }),
-                variable_cost_for_spill_cleanup: yup
-                    .mixed()
-                    .when('daily_oil_production', {
-                        is: 0,
-                        then: yup.mixed().oneOf([null]),
-                        otherwise: DecimalLikeSchema.notOneOf([null]),
-                    }),
-                oil_price: yup.mixed().when('daily_oil_production', {
-                    is: 0,
-                    then: yup.mixed().oneOf([null]),
-                    otherwise: DecimalLikeSchema.notOneOf([null]),
-                }),
+                estimated_fraction_of_oil_production_loss_due_to_leakage: yup.string(),
+                fixed_cost_for_spill_cleanup: yup.string(),
+                variable_cost_for_spill_cleanup: yup.string(),
+                oil_price: yup.string(),
             })
             .noUnknown(),
         economic_impact_consequence: yup
             .object({
                 id: IntegerSchema,
                 daily_gas_production: DecimalLikeSchema,
-                gas_price: DecimalLikeSchema,
-                discount_date_for_interrupted_production: DecimalLikeSchema,
-                fraction_of_remaining_production_loss: DecimalLikeSchema,
-                platform_replacement_cost: DecimalLikeSchema,
+                gas_price: yup.string(),
+                discount_date_for_interrupted_production: yup.string(),
+                fraction_of_remaining_production_loss: yup.string(),
+                platform_replacement_cost: yup.string(),
                 platform_replacement_time: IntegerSchema,
             })
             .noUnknown(),

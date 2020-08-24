@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import { Accordion } from '@material-ui/core'
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -43,13 +43,13 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
     const platform_manned_status_id = watch('platform_manned_status_id');
 
 
-    var ButtonDesign = {
+    // var ButtonDesign = {
         
-        backgroundColor: 'yellow',
-        padding:    '15px 32px',
-        margin: '4px 2px',
+    //     backgroundColor: 'yellow',
+    //     padding:    '15px 32px',
+    //     margin: '4px 2px',
 
-    };
+    // };
 
     const [
         platformMannedStatusList,
@@ -190,11 +190,11 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
             </Typography>
 
             <Box>
-                <ExpansionPanel defaultExpanded>
-                    <ExpansionPanelSummary>
+                <Accordion defaultExpanded>
+                    <AccordionSummary>
                         <Typography>Life-Safety Consequence</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    </AccordionSummary>
+                    <AccordionDetails>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Select
@@ -222,16 +222,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </Typography>
                             </Grid>
                         </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                    </AccordionDetails>
+                </Accordion>
 
                 <br />
                 
-                <ExpansionPanel>
-                    <ExpansionPanelSummary>
+                <Accordion>
+                    <AccordionSummary>
                         <Typography>Environmental Consequence</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    </AccordionSummary>
+                    <AccordionDetails>
                         <Grid container spacing={2}>
                         <Grid item xs={6}>
                                 <p>
@@ -308,7 +308,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'environmental_consequence',
@@ -361,16 +361,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                         </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                    </AccordionDetails>
+                </Accordion>
             
                 <br />
 
-                <ExpansionPanel>
-                    <ExpansionPanelSummary>
+                <Accordion>
+                    <AccordionSummary>
                         <Typography>Economic Impact Consequence</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    </AccordionSummary>
+                    <AccordionDetails>
                         <Grid container spacing={2}>
                         <Grid item xs={6}>
                                 <p>
@@ -463,11 +463,11 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        'economic_impact_consequence',
-                                        'oil_price',
+                                        // 'economic_impact_consequence',
+                                        'Calculated_Economic_Impact_Consequence',
                                     ]}
                                     unit="US$ Million"
                                 />
@@ -481,11 +481,11 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        'economic_impact_consequence',
-                                        'oil_price',
+                                        // 'economic_impact_consequence',
+                                        'Calculated_Economic_Impact_Consequence',
                                     ]}
                                     unit="US$ Million"
                                 />
@@ -499,24 +499,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Structure Replacement Decision"
                                     name={[
-                                        'economic_impact_consequence',
-                                        'oil_price',
+                                        // 'economic_impact_consequence',
+                                        'Structure_Replacement_Decision',
                                     ]}
                                 />
                             </Grid>
 
                             <Grid item xs={4}>
-                                {/* <Typography variant="subtitle2">
-                                    Calculated Environmental Consequence
-                                </Typography>
-                                <Typography variant="h5">
-                                    {watch(
-                                        'calculated_environmental_consequence'
-                                    ) ?? 'None'}
-                                </Typography> */}
                             </Grid>
 
                             <Grid item xs={4}>
@@ -535,8 +527,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
-                                        'economic_impact_consequence',
-                                        'oil_price',
+                                        // 'economic_impact_consequence',
+                                        'Free_Text_as_per_Client_Risk_Matrix',
                                     ]}
                                 />
                             </Grid>
@@ -552,16 +544,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
 
                         </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                    </AccordionDetails>
+                </Accordion>
 
                 <br />
 
-                <ExpansionPanel>
-                    <ExpansionPanelSummary>
+                <Accordion>
+                    <AccordionSummary>
                         <Typography>Final Consequence Level</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    </AccordionSummary>
+                    <AccordionDetails>
                         <Grid container spacing={2}>
                         <Grid item xs={6}>
                                 <p>
@@ -570,7 +562,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Life-Safety Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -637,27 +629,25 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     ) ?? 'None'}
                                 </Typography> 
                             </Grid>
-
                             <Grid item xs={4}>
                                 <button style={ButtonDesign} type="submit"><b>SAVE</b></button>
                             </Grid>
-
                             <Grid item xs={4}>
                                 <button style={ButtonDesign} type="submit"><b>Calculate</b></button>
                             </Grid> */}
 
 
                         </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                    </AccordionDetails>
+                </Accordion>
 
                 <br />
 
-                <ExpansionPanel>
-                    <ExpansionPanelSummary>
+                <Accordion>
+                    <AccordionSummary>
                         <Typography>Risk Evaluation</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    </AccordionSummary>
+                    <AccordionDetails>
                         <Grid container spacing={3}>
                         <Grid item xs={4}>
                                 <p>
@@ -685,7 +675,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Final Consequence Category"
                                     name={[
                                         'environmental_consequence',
@@ -706,7 +696,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
                             <Grid item xs={4}>
                                 <TextField
-                                    disabled={daily_oil_production === 0}
+                                    disabled
                                     label="Risk Ranking"
                                     name={[
                                         'environmental_consequence',
@@ -719,8 +709,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </p>
                             </Grid>
                         </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                    </AccordionDetails>
+                </Accordion>
 
             </Box>
        

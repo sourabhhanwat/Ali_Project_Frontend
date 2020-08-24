@@ -25,7 +25,7 @@ const SyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.grey['50'],
 }));
 
-export default function PlatformAnalysis({
+export default function PlatformAnalysis(this: any, {
     platformId,
     location,
     navigate,
@@ -45,12 +45,16 @@ export default function PlatformAnalysis({
 
     console.log(errors);
 
+    // console.log(this.state);
+
     const handlePlatform = React.useCallback(
         (state: State<Platform | null>) => {
             if (!state.value) {
                 return;
             }
             reset(state.value);
+            console.log(state);
+            console.log("This Name =>" ,state.value.name);
         },
         [reset]
     );

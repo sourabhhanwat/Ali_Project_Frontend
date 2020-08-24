@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
@@ -63,11 +63,11 @@ export default function InspectionHistory() {
     );
 
     return (
-        <ExpansionPanel defaultExpanded>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Accordion defaultExpanded>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="body1">Inspection History</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>{content}</ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionSummary>
+            <AccordionDetails>{content}</AccordionDetails>
+        </Accordion>
     );
 }

@@ -1,6 +1,6 @@
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
@@ -58,11 +58,11 @@ export default function StructuralDetailsFieldset() {
     );
 
     return (
-        <ExpansionPanel>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="body1">Operational Details</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>{content}</ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionSummary>
+            <AccordionDetails>{content}</AccordionDetails>
+        </Accordion>
     );
 }

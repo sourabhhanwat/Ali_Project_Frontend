@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
@@ -10,13 +10,13 @@ import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 
 export default function ProgramPage() {
-    var ButtonDesign = {
+    // var ButtonDesign = {
 
-        backgroundColor: 'light blue',
-        padding:    '15px 32px',
-        margin: '4px 2px',
+    //     backgroundColor: 'light blue',
+    //     padding:    '15px 32px',
+    //     margin: '4px 2px',
         
-    };
+    // };
     var h3Design = {
         backgroundColor: 'light blue',
 
@@ -752,11 +752,11 @@ export default function ProgramPage() {
     );
 
     return (
-        <ExpansionPanel defaultExpanded>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Accordion defaultExpanded>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="body1">General Details</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>{content}</ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionSummary>
+            <AccordionDetails>{content}</AccordionDetails>
+        </Accordion>
     );
 }
