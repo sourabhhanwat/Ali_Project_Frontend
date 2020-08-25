@@ -80,6 +80,35 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
     const daily_oil_production = watch(
         'environmental_consequence.daily_oil_production'
     );
+    
+    console.log("I am daily => ", daily_oil_production);
+    
+    const environmental_consequence_description = watch(
+        'environmental_consequence_description'
+    );
+
+    const calculated_economic_impact_consequence = watch(
+        'calculated_economic_impact_consequence'
+    );
+
+    const calculate_economic_impact_remaining_life_services = watch(
+        'calculate_economic_impact_remaining_life_services'
+    );
+
+    const structure_replacement_decision = watch(
+            'structure_replacement_decision'
+    );
+
+    let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
+
+
+    let environmental_consequence_description1 = (environmental_consequence_description === 'null') ?  'environmental_consequence_description' : 'Blank';
+
+    console.log("I am evaluation Tab" ,environmental_consequence_description);
+
+
+    console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
+
 
     // const reserve_strength_ratio =
     //     watch('reserve_strength_ratio_score.reserve_strength_ratio') ??
@@ -335,9 +364,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <Grid item xs={4}>
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
-                                    name={[
-                                        'environmental_consequence_description',
-                                    ]}
+                                    name= {['environmental_consequence_description']}
                                 />
                             </Grid>
 
@@ -452,14 +479,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
-                                    disabled
-                                    label="Calculated Economic Impact Consequence"
-                                    name={[
-                                        'calculated_economic_impact_consequence',
-                                    ]}
-                                    unit="US$ Million"
-                                />
+                                <Typography variant="body1">
+                                    { calculated_economic_impact_consequence }
+                                </Typography>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -469,14 +491,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
-                                    disabled
-                                    label="Calculated Economic Impact Consequence"
-                                    name={[
-                                        'calculate_economic_impact_remaining_life_services',
-                                    ]}
-                                    unit="US$ Million"
-                                />
+                                <Typography variant="body1">
+                                    { calculate_economic_impact_remaining_life_services }
+                                </Typography>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -486,13 +503,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
-                                    disabled
-                                    label="Structure Replacement Decision"
-                                    name={[
-                                        'structure_replacement_decision',
-                                    ]}
-                                />
+                             <Typography variant="body1">
+                                    { structure_replacement_decision1 }
+                                </Typography>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -514,8 +527,8 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
-                                        // 'economic_impact_consequence',
                                         'economic_consequence_description',
+                                        // 'economic_consequence_description',
                                     ]}
                                 />
                             </Grid>
