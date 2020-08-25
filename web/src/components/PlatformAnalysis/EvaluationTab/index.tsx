@@ -311,22 +311,13 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Calculated Environmental Consequence"
                                     name={[
-                                        'Calculated_Environmental_Consequence',
-                                        // 'oil_price',
+                                        'calculated_environmental_consequence',
                                     ]}
                                     unit="Barrels of Oil Equivalent (BOE)"
                                 />
                             </Grid>
 
                             <Grid item xs={4}>
-                                {/* <Typography variant="subtitle2">
-                                    Calculated Environmental Consequence
-                                </Typography>
-                                <Typography variant="h5">
-                                    {watch(
-                                        'calculated_environmental_consequence'
-                                    ) ?? 'None'}
-                                </Typography> */}
                             </Grid>
 
                             <Grid item xs={4}>
@@ -346,7 +337,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'environmental_consequence_description',
-                                        // 'oil_price',
                                     ]}
                                 />
                             </Grid>
@@ -466,8 +456,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        // 'economic_impact_consequence',
-                                        'Calculated_Economic_Impact_Consequence',
+                                        'calculated_economic_impact_consequence',
                                     ]}
                                     unit="US$ Million"
                                 />
@@ -484,8 +473,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Calculated Economic Impact Consequence"
                                     name={[
-                                        // 'economic_impact_consequence',
-                                        'Calculated_Economic_Impact_Consequence',
+                                        'calculate_economic_impact_remaining_life_services',
                                     ]}
                                     unit="US$ Million"
                                 />
@@ -502,8 +490,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled
                                     label="Structure Replacement Decision"
                                     name={[
-                                        // 'economic_impact_consequence',
-                                        'Structure_Replacement_Decision',
+                                        'structure_replacement_decision',
                                     ]}
                                 />
                             </Grid>
@@ -574,7 +561,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Environmental Consequence Category"
                                     name={[
-                                        'environmental_consequence_description',
+                                        'environmental_consequence_category',
                                     ]}
                                 />
                             </Grid>
@@ -589,7 +576,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 <TextField
                                     label="Economic Consequence Category"
                                     name={[
-                                        'economic_consequence_description',
+                                        'economic_consequence_category',
                                     ]}
                                 />
                             </Grid>
@@ -606,28 +593,10 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Final Consequence Category"
                                     name={[
-                                        'environmental_consequence',
-                                        'variable_cost_for_spill_cleanup',
+                                        'final_consequence_category',
                                     ]}
                                 />
                             </Grid>
-
-                            {/* <Grid item xs={4}>
-                                {/* <Typography variant="subtitle2">
-                                    Calculated Environmental Consequence
-                                </Typography>
-                                <Typography variant="h5">
-                                    {watch(
-                                        'calculated_environmental_consequence'
-                                    ) ?? 'None'}
-                                </Typography> 
-                            </Grid>
-                            <Grid item xs={4}>
-                                <button style={ButtonDesign} type="submit"><b>SAVE</b></button>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <button style={ButtonDesign} type="submit"><b>Calculate</b></button>
-                            </Grid> */}
 
 
                         </Grid>
@@ -652,7 +621,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     disabled={daily_oil_production === 0}
                                     label="Likelihood of Failure Category"
                                     name={[
-                                        'likelihood_of_failure_category',
+                                        'risk_based_underwater_inspection_interval',
                                     ]}
                                 />
                             </Grid>
