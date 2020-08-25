@@ -98,6 +98,33 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
     const structure_replacement_decision = watch(
             'structure_replacement_decision'
     );
+    
+
+    const final_consequence_category = watch(
+        'final_consequence_category'
+    );
+    const economic_consequence_category = watch(
+        'economic_consequence_category'
+    );
+    const environmental_consequence_category = watch(
+        'environmental_consequence_category'
+    );
+     
+
+    const risk_based_underwater_inspection_interval = watch(
+        'risk_based_underwater_inspection_interval'
+    );
+    const risk_ranking = watch(
+        'risk_ranking'
+    );
+    // calculated_environmental_consequence
+
+    const calculated_environmental_consequence = watch(
+        'calculated_environmental_consequence'
+    );
+
+    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'null' : calculated_environmental_consequence;
+
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
 
@@ -336,14 +363,17 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
+                                 <Typography variant="h5">
+                                    {calculated_environmental_consequence1}
+                                </Typography>
+                                {/* <TextField
                                     disabled
                                     label="Calculated Environmental Consequence"
                                     name={[
                                         'calculated_environmental_consequence',
                                     ]}
                                     unit="Barrels of Oil Equivalent (BOE)"
-                                />
+                                /> */}
                             </Grid>
 
                             <Grid item xs={4}>
@@ -571,12 +601,15 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField
+                                <Typography variant="h5">
+                                    {environmental_consequence_category}
+                                </Typography>
+                                {/* <TextField
                                     label="Environmental Consequence Category"
                                     name={[
                                         'environmental_consequence_category',
                                     ]}
-                                />
+                                /> */}
                             </Grid>
 
                             <Grid item xs={6}>
@@ -586,12 +619,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                          </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
-                                    label="Economic Consequence Category"
-                                    name={[
-                                        'economic_consequence_category',
-                                    ]}
-                                />
+                            <Typography variant="h5">
+                                    {economic_consequence_category}
+                                </Typography>
                             </Grid>
 
 
@@ -602,13 +632,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField
-                                    disabled={daily_oil_production === 0}
-                                    label="Final Consequence Category"
-                                    name={[
-                                        'final_consequence_category',
-                                    ]}
-                                />
+                                <Typography variant="h5">
+                                    {final_consequence_category}
+                                </Typography>
                             </Grid>
 
 
@@ -630,13 +656,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </p>
                             </Grid>
                             <Grid item xs={4}>
-                                <TextField
+                                <Typography variant="h5">
+                                    {risk_based_underwater_inspection_interval}
+                                </Typography>
+                                {/* <TextField
                                     disabled={daily_oil_production === 0}
                                     label="Likelihood of Failure Category"
                                     name={[
                                         'risk_based_underwater_inspection_interval',
                                     ]}
-                                />
+                                /> */}
                             </Grid>
                             <Grid item xs={4}>
                                 <p>
@@ -648,13 +677,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                 </p>
                             </Grid>
                             <Grid item xs={4}>
-                                <TextField
+                            <Typography variant="h5">
+                                    {final_consequence_category}
+                                </Typography>
+                                {/* <TextField
                                     disabled
                                     label="Final Consequence Category"
                                     name={[
                                         'final_consequence_category',
                                     ]}
-                                />
+                                /> */}
                             </Grid>
                             <Grid item xs={4}>
                                 <p>
@@ -668,13 +700,16 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             <Grid item xs={4}>
-                                <TextField
+                                <Typography variant="h5">
+                                    {risk_ranking}
+                                </Typography>
+                                {/* <TextField
                                     disabled
                                     label="Risk Ranking"
                                     name={[
                                         'risk_ranking',
                                     ]}
-                                />
+                                /> */}
                             </Grid>
                             <Grid item xs={4}>
                                 <p>
