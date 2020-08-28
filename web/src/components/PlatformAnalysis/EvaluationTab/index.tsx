@@ -34,6 +34,7 @@ import Scour from './Scour';
 import ShallowGas from './ShallowGas';
 import UnprotectedAppurtenances from './UnprotectedAppurtenances';
 import TextField from '../../FormWidget/TextField';
+import {Pie,Doughnut} from 'react-chartjs-2';
 
 export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
     const { watch } = useFormContext();
@@ -43,13 +44,30 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
     const platform_manned_status_id = watch('platform_manned_status_id');
 
 
-    // var ButtonDesign = {
-        
-    //     backgroundColor: 'yellow',
-    //     padding:    '15px 32px',
-    //     margin: '4px 2px',
-
-    // };
+    const state = {
+        labels: ['January', 'February', 'March',
+                 'April', 'May'],
+        datasets: [
+          {
+            label: 'Rainfall',
+            backgroundColor: [
+              '#B21F00',
+              '#C9DE00',
+              '#2FDE00',
+              '#00A6B4',
+              '#6800B4'
+            ],
+            hoverBackgroundColor: [
+            '#501800',
+            '#4B5000',
+            '#175000',
+            '#003350',
+            '#35014F'
+            ],
+            data: [65, 59, 80, 81, 56]
+          }
+        ]
+      }
 
     const [
         platformMannedStatusList,
@@ -135,11 +153,6 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
 
     console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
-
-
-    // const reserve_strength_ratio =
-    //     watch('reserve_strength_ratio_score.reserve_strength_ratio') ??
-    //     'unknown';
 
     return (
         <Box hidden={hidden}>
@@ -650,12 +663,13 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={3}>
-                        <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <p>
                                 Likelihood of Failure Category
                                 </p>
+
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <Typography variant="h5">
                                     {risk_based_underwater_inspection_interval}
                                 </Typography>
@@ -667,16 +681,12 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     ]}
                                 /> */}
                             </Grid>
-                            <Grid item xs={4}>
-                                <p>
-                                </p>
-                            </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <p>
                                 Final Consequence Category                             
                                 </p>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                             <Typography variant="h5">
                                     {final_consequence_category}
                                 </Typography>
@@ -688,18 +698,12 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     ]}
                                 /> */}
                             </Grid>
-                            <Grid item xs={4}>
-                                <p>
-                                </p>
-                            </Grid>
-
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <p>
                                 Risk Ranking
                                 </p>
                             </Grid>
-
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <Typography variant="h5">
                                     {risk_ranking}
                                 </Typography>
@@ -711,9 +715,27 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     ]}
                                 /> */}
                             </Grid>
-                            <Grid item xs={4}>
-                                <p>
-                                </p>
+                            <Grid item xs={6}>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing = {1}>
+                            <Grid item xs={12}>
+                                <div>
+                                    <Pie
+                                        data={state}
+                                        options={{
+                                            title:{
+                                            display:true,
+                                            text:'Average Rainfall per month',
+                                            fontSize:20
+                                            },
+                                            legend:{
+                                            display:true,
+                                            position:'right'
+                                            }
+                                        }}
+                                    />
+                            </div>
                             </Grid>
                         </Grid>
                     </AccordionDetails>
