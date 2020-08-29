@@ -6,6 +6,10 @@ import NumberOfLegsTypeListProvider, { useNumberOfLegsTypeList } from './NumberO
 import PlatformMannedStatusListProvider, { usePlatformMannedStatusList } from './PlatformMannedStatusListProvider';
 import PlatformTypeListProvider, { usePlatformTypeList } from './PlatformTypeListProvider';
 
+const NewUser = React.lazy(() => import('./Newuser'));
+
+const Existinguser = React.lazy(() => import('./Existinguser'));
+
 const PlatformAnalysis = React.lazy(() => import('./PlatformAnalysis'));
 
 const SiteList = React.lazy(() => import('./SiteList'));
@@ -47,6 +51,8 @@ export default function Dashboard(_: RouteComponentProps) {
                             <Router>
                                 <Redirect from="/" to="projects" noThrow />
                                 <ProjectList path="projects" default />
+                                <NewUser path="newuser" />
+                                <Existinguser path = "existinguser" />
                                 <SiteList path="projects/:projectId/sites" />
                                 <SiteList path="sites" />
                                 <PlatformList path="sites/:siteId/platforms" />

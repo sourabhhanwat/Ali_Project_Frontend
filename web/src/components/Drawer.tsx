@@ -18,6 +18,8 @@ import { useAuthContext } from './AuthProvider';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
 import SiteIcon from './icons/Site';
+import NewuserIcon from './icons/Newuser';
+import ExcistinguserIcon from './icons/Existinguser';
 
 function toggleDrawer({ theme, open }: { theme: Theme; open: boolean }) {
     return {
@@ -102,10 +104,32 @@ export default function Drawer({ open }: { open: boolean }) {
                 </ListItem>
             </List>
             <List>
+                
                 <ListItem
                     button
-                    onClick={() => navigate('/dashboard/projects')}
-                >
+                    onClick={() => navigate('/dashboard/newuser')}>
+                    <Tooltip title="Newuser">
+                        <ListItemIcon>
+                            <NewuserIcon />
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="NewUser" />
+                </ListItem>
+
+                <ListItem
+                    button
+                    onClick={() => navigate('/dashboard/existinguser')}>
+                    <Tooltip title="Existinguser">
+                        <ListItemIcon>
+                            <ExcistinguserIcon />
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="Existinguser" />
+                </ListItem>
+
+                <ListItem
+                    button
+                    onClick={() => navigate('/dashboard/projects')}>
                     <Tooltip title="Projects">
                         <ListItemIcon>
                             <ProjectIcon />
@@ -113,6 +137,7 @@ export default function Drawer({ open }: { open: boolean }) {
                     </Tooltip>
                     <ListItemText primary="Projects" />
                 </ListItem>
+
                 <ListItem button onClick={() => navigate('/dashboard/sites')}>
                     <Tooltip title="Sites">
                         <ListItemIcon>

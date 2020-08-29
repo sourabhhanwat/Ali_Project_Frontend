@@ -11,6 +11,15 @@ import React from 'react';
 import '../modules/Subject';
 import ProjectCard, { SkeletonProjectCard } from './ProjectCard';
 import { useProjectList } from './ProjectListProvider';
+import {Pie,Doughnut} from 'react-chartjs-2';
+
+var GraphDiv = {   
+    width:'500px',
+    height: '800px',
+    margin: 'auto',
+    border: '3px solid #73AD21',
+    padding: '10px',
+};
 
 const StyledDivider = styled(Divider)(
     ({
@@ -49,6 +58,32 @@ const SkeletonProjectCards = React.memo(() => (
     </>
 ));
 
+const state = {
+    labels: ['veryHigh', 'high', 'medium',
+             'low', 'veryLow'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+          '#6800B4'
+        ],
+        hoverBackgroundColor: [
+        '#501800',
+        '#4B5000',
+        '#175000',
+        '#003350',
+        '#35014F'
+        ],
+        data: [3, 3, 3, 3, 3]
+      }
+    ]
+  }
+
+  
 export default function ProjectList(_: RouteComponentProps) {
     const { subject } = useProjectList();
     const [isPending, setIsPending] = React.useState<boolean | undefined>();
@@ -81,76 +116,33 @@ export default function ProjectList(_: RouteComponentProps) {
                 </Box>
             </Box>
             <Grid container spacing={2}>
-                <Box clone height="100%">
-                    <Grid item xs={6} sm={2}>
-                        <Card>
-                            <CardContent>
-                                <Typography variant="h3">0</Typography>
-                                <StyledDivider bgcolor="veryHigh" />
-                                <StyledTypography variant="caption">
-                                    Very High
-                                </StyledTypography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Box>
-                <Box clone height="100%">
-                    <Grid item xs={6} sm={2}>
-                        <Card>
-                            <CardContent>
-                                <Typography variant="h3">1</Typography>
-                                <StyledDivider bgcolor="high" />
-                                <StyledTypography variant="caption">
-                                    High
-                                </StyledTypography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Box>
-                <Grid item xs={6} sm={2}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h3">7</Typography>
-                            <StyledDivider bgcolor="medium" />
-                            <StyledTypography variant="caption">
-                                Medium
-                            </StyledTypography>
-                        </CardContent>
-                    </Card>
+                <Grid item container spacing={1}>
+                    <Grid item xs={12}>
+                            <Pie
+                                data={state}
+                                width={500}
+                                height={140}
+                                options={{
+                                    title:{
+                                        display:true,
+                                        text:'OFFSHORE FIELD-1 RISK LEVELS',
+                                        fontSize:20
+                                        },
+                                    legend:{
+                                    display:true,
+                                    position:'bottom'
+                                    }
+                                }}
+                            />
+                    </Grid>  
                 </Grid>
-                <Grid item xs={6} sm={2}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h3">7</Typography>
-                            <StyledDivider bgcolor="low" />
-                            <StyledTypography variant="caption">
-                                Low
-                            </StyledTypography>
-                        </CardContent>
-                    </Card>
+
+                <Grid item container spacing={1}>
+                    <Grid item xs={12}>
+
+                    </Grid>  
                 </Grid>
-                <Grid item xs={6} sm={2}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h3">7</Typography>
-                            <StyledDivider bgcolor="veryLow" />
-                            <StyledTypography variant="caption">
-                                Very Low
-                            </StyledTypography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={6} sm={2}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h3">7</Typography>
-                            <StyledDivider />
-                            <StyledTypography variant="caption">
-                                Total
-                            </StyledTypography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                        
                 <Grid item container spacing={3}>
                     {projects?.map((project) => (
                         <Grid key={project.id} item xs={12}>
