@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
 import ProjectCard, { SkeletonProjectCard } from './ProjectCard';
@@ -21,15 +21,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { usePlatformList } from './PlatformListProvider';
+import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
 // ---------------------
 
-var GraphDiv = {   
-    width:'500px',
-    height: '800px',
-    margin: 'auto',
-    border: '3px solid #73AD21',
-    padding: '10px',
-};
+// var GraphDiv = {   
+//     width:'500px',
+//     height: '800px',
+//     margin: 'auto',
+//     border: '3px solid #73AD21',
+//     padding: '10px',
+// };
 
 // ==================
 const StyledTableCell = withStyles((theme) => ({
@@ -134,28 +136,73 @@ const state = {
     ]
   }
 
-  
-export default function ProjectList(_: RouteComponentProps) {
-    const { subject } = useProjectList();
-    const [isPending, setIsPending] = React.useState<boolean | undefined>();
-    const [projects, setProjects] = React.useState<Project[] | null>();
+  const SkeletonPlatformCards = React.memo(() => (
+    <>
+        {[...Array(3).keys()].map((index) => (
+            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+                <SkeletonPlatformCard />
+            </Grid>
+        ))}
+    </>
+));
 
-    const handleProjectList = (state: State<Project[] | null>) => {
+export default function ProjectList(_: RouteComponentProps) {
+    // const { subject } = useProjectList();
+    // const [isPending, setIsPending] = React.useState<boolean | undefined>();
+    // const [projects, setProjects] = React.useState<Project[] | null>();
+
+    // const handleProjectList = (state: State<Project[] | null>) => {
+    //     setIsPending(state.isPending);
+    //     setProjects(state.value);
+    // };
+
+    // React.useEffect(() => {
+    //     subject.attach(handleProjectList);
+    //     subject.list();
+    //     return () => subject.detach(handleProjectList);
+    // }, [subject]);
+
+    const platformList = usePlatformList();
+
+    const [isPending, setIsPending] = React.useState<boolean>();
+    const [platforms, setPlatforms] = React.useState<Platform[] | null>();
+
+    const handlePlatformList = (state: State<Platform[] | null>) => {
         setIsPending(state.isPending);
-        setProjects(state.value);
+        setPlatforms(state.value);
     };
 
+    let siteId: number | undefined;
+
+    const match = useMatch('/dashboard/sites/:siteId/platforms');
+
+    if (match) {
+        siteId = parseInt((match as any).siteId);
+    }
+
+    const fetch = React.useCallback(() => {
+        if (siteId) {
+            platformList.subject.list({
+                filter: {
+                    site: siteId,
+                },
+            });
+        } else {
+            platformList.subject.list(undefined);
+        }
+    }, [siteId, platformList.subject]);
+
     React.useEffect(() => {
-        subject.attach(handleProjectList);
-        subject.list();
-        return () => subject.detach(handleProjectList);
-    }, [subject]);
+        platformList.subject.attach(handlePlatformList);
+        fetch();
+        return () => platformList.subject.detach(handlePlatformList);
+    }, [fetch, platformList.subject]);
 
     const classes = useStyles();
 
     return (
         <>
-            <Box display="flex" justifyContent="flex-end" my={2}>
+            {/* <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
                     <Button
                         onClick={() => subject.list()}
@@ -167,8 +214,16 @@ export default function ProjectList(_: RouteComponentProps) {
                         Refresh
                     </Button>
                 </Box>
-            </Box>
+            </Box> */}
             <Grid container spacing={2}>
+               {/* <Grid item container spacing={3}>
+                    {projects?.map((project) => (
+                        <Grid key={project.id} item xs={12}>
+                            <ProjectCard project={project} />
+                        </Grid>
+                    ))}
+                    {isPending && <SkeletonProjectCards />}
+                </Grid> */}
                 <Grid item container spacing={1}>
                     <Grid item xs={12}>
                             <Pie
@@ -189,53 +244,91 @@ export default function ProjectList(_: RouteComponentProps) {
                             />
                     </Grid>  
                 </Grid>
-
                 <Grid item container spacing={1}>
                     <Grid item xs={12}>
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="customized table">
-                            <TableHead>
+                            <TableHead >
                                 <TableRow>
-                                    <StyledTableCell>No.</StyledTableCell>
-                                    <StyledTableCell align="center">Platform Name</StyledTableCell>
-                                    <StyledTableCell align="center">Primary Function</StyledTableCell>
-                                    <StyledTableCell align="center">Platfom Manned Status</StyledTableCell>
-                                    <StyledTableCell align="center">Platform Risk Ranking</StyledTableCell>
-                                    <StyledTableCell align="center">Exposure Category</StyledTableCell>
-                                    <StyledTableCell align="center">Selected Next Inspection Intervals (years)</StyledTableCell>
-                                    <StyledTableCell align="center">Last Inspection Date</StyledTableCell>
-                                    <StyledTableCell align="center">Next Inspection Date</StyledTableCell>
-                                    <StyledTableCell align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
+                                    <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Platform Risk Ranking</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Exposure Category</StyledTableCell>
+                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Selected Next Inspection Intervals (years)</StyledTableCell>
+                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Last Inspection Date</StyledTableCell>
+                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Next Inspection Date</StyledTableCell>
+                                    <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                    <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2021</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2022</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2023</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2024</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2025</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2026</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2027</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2028</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2029</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row) => (
-                                <StyledTableRow key={row.no}>
-                                <StyledTableCell component="th" scope="row"> {row.no}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Platform_Name}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Primary_Function}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Platfom_Manned_Status}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Platform_Risk_Ranking}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Exposure_Category}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Inspection_Intervals}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Last_Inspection_Date}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Next_Inspection_Date}</StyledTableCell>
-                                <StyledTableCell align="center">{row.Next_10_year}</StyledTableCell>
+                            {platforms?.map((platform) => (
+                                <StyledTableRow key={platform.id}>
+                                <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.description}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
                                 </StyledTableRow>
                             ))}
+                            {/* {isPending && <SkeletonPlatformCards />} */}
                             </TableBody>
                         </Table>
                         </TableContainer>
                     </Grid>  
                 </Grid>
-                <Grid item container spacing={3}>
-                    {projects?.map((project) => (
-                        <Grid key={project.id} item xs={12}>
-                            <ProjectCard project={project} />
-                        </Grid>
-                    ))}
-                    {isPending && <SkeletonProjectCards />}
+                <Grid item container spacing={1}>
+                    
                 </Grid>
+            
             </Grid>
         </>
     );

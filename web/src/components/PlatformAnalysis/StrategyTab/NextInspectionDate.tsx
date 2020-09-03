@@ -8,6 +8,7 @@ import React from 'react';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 import {Pie,Doughnut} from 'react-chartjs-2';
+import DatePicker from '../../FormWidget/DatePicker';
 
 export default function NextInspectionDate() {
 
@@ -206,9 +207,10 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                        <TextField
-                            name={['level_1_inspection_date']}
+                        <DatePicker
                             label="Inspection Date"
+                            name={['level_1_inspection_date']}
+                            required
                         />
                     </Grid>        
                 
@@ -224,10 +226,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                        <TextField
-                            name={['level_2_inspection_date']}
-                            label="Inspection Date"
-                        />
+                    <DatePicker
+                        label="Inspection Date"
+                        name={['level_2_inspection_date']}
+                        required
+                    />
                     </Grid>
 
                     <Grid item xs={6} md={3}>
@@ -242,10 +245,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                        <TextField
-                            name={['level_3_inspection_date']}
-                            label="Inspection Date"
-                        />
+                    <DatePicker
+                        label="Inspection Date"
+                        name={['level_3_inspection_date']}
+                        required
+                    />
                     </Grid>
 
             </Grid>
