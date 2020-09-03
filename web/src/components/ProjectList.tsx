@@ -25,13 +25,9 @@ import { usePlatformList } from './PlatformListProvider';
 import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
 // ---------------------
 
-// var GraphDiv = {   
-//     width:'500px',
-//     height: '800px',
-//     margin: 'auto',
-//     border: '3px solid #73AD21',
-//     padding: '10px',
-// };
+var p = {
+    height: '100px',
+};
 
 // ==================
 const StyledTableCell = withStyles((theme) => ({
@@ -298,25 +294,25 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2 Level 3</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                             {/* {isPending && <SkeletonPlatformCards />} */}
@@ -326,7 +322,7 @@ export default function ProjectList(_: RouteComponentProps) {
                     </Grid>  
                 </Grid>
                 <Grid item container spacing={1}>
-                    
+                    <p style={p}></p>
                 </Grid>
             
             </Grid>

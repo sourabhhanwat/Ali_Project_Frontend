@@ -244,6 +244,12 @@ export const PlatformSchema = yup
         level_1_next_inspection_date:yup.string(),
         level_2_next_inspection_date:yup.string(),
         level_3_next_inspection_date:yup.string(),
+        // next_10_years_inspection_plan: yup
+        // .object({
+        //     year: IntegerSchema,
+        //     level: yup.string(),
+        // })
+        // .noUnknown(),
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         number_of_main_piles: IntegerSchema,
         number_of_skirt_piles: IntegerSchema,
