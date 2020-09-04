@@ -115,20 +115,22 @@ const state = {
       {
         label: 'Rainfall',
         backgroundColor: [
+            // '#FFA500',
           '#B21F00',
-          '#C9DE00',
+          '#FFA500',
           '#2FDE00',
           '#00A6B4',
           '#6800B4'
         ],
         hoverBackgroundColor: [
+            // '#C9DE00',
         '#501800',
         '#4B5000',
         '#175000',
         '#003350',
         '#35014F'
         ],
-        data: [3, 3, 3, 3, 3]
+        data: [0,1,0,0,0]
       }
     ]
   }
