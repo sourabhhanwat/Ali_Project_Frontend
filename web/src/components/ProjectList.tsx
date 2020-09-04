@@ -276,7 +276,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
-                                    {/* <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">2021</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">2022</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">2023</StyledTableCell>
