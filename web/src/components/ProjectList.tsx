@@ -23,6 +23,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
+import Subject from '../modules/Subject';
 // ---------------------
 
 var p = {
@@ -158,6 +159,7 @@ export default function ProjectList(_: RouteComponentProps) {
     //     return () => subject.detach(handleProjectList);
     // }, [subject]);
 
+
     const platformList = usePlatformList();
 
     const [isPending, setIsPending] = React.useState<boolean>();
@@ -195,7 +197,8 @@ export default function ProjectList(_: RouteComponentProps) {
     }, [fetch, platformList.subject]);
 
     const classes = useStyles();
-
+    console.log("ALl Data ========================"+platformList)
+    let next_10 = [];
     return (
         <>
             {/* <Box display="flex" justifyContent="flex-end" my={2}>
@@ -273,7 +276,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell>
+                                    {/* <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell> */}
                                     <StyledTableCell style={{minWidth: 120}} align="center">2021</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">2022</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">2023</StyledTableCell>
@@ -287,6 +290,7 @@ export default function ProjectList(_: RouteComponentProps) {
                             </TableHead>
                             <TableBody>
                             {platforms?.map((platform) => (
+
                                 <StyledTableRow key={platform.id}>
                                 <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
@@ -303,7 +307,11 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                
+                                {platform.next_10_years_inspection_plan?.map((next) => (
+                                    <StyledTableCell style={{minWidth: 130}} align="center">{next.level}</StyledTableCell>
+                                ))},
+                                {/* <StyledTableCell style={{minWidth: 130}} align="center">Level 3</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2 Level 3</StyledTableCell>
@@ -312,10 +320,10 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2 Level 3</StyledTableCell> */}
+                                
                                 </StyledTableRow>
                             ))}
-                            {/* {isPending && <SkeletonPlatformCards />} */}
                             </TableBody>
                         </Table>
                         </TableContainer>
