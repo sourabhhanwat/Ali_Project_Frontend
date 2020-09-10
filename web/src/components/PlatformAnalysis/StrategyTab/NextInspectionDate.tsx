@@ -43,14 +43,6 @@ export default function NextInspectionDate() {
         ]
       }
 
-      const { watch } = useFormContext();
-
-    //   const exposure_category_level1 = watch(
-    //     'exposure_category_level'
-    // );
-    //   let exposure_category_level = (exposure_category_level1 === null) ?  'Unknown' : exposure_category_level1;
-
-
     const platformTypeListSubject = usePlatformTypeListContext();
     const content = React.useMemo(
         () => (
@@ -103,7 +95,7 @@ export default function NextInspectionDate() {
                         <Grid container spacing = {1}>
                             <Grid item xs={12}>
                                 <div>
-                                    <Pie
+                                    {/* <Pie
                                         data={state}
                                         options={{
                                             title:{
@@ -116,7 +108,7 @@ export default function NextInspectionDate() {
                                             position:'right'
                                             }
                                         }}
-                                    />
+                                    /> */}
                             </div>
                             </Grid>
                         </Grid>
@@ -162,7 +154,6 @@ export default function NextInspectionDate() {
                                 name={['exposure_category_level_1']}
                                 label="Level I"
                                 disabled
-                                nullable
                             />
                         </Grid>         
                     
@@ -174,7 +165,6 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level_2']}
                                 label="Level II"
-                                nullable
                                 disabled
                             />
                             {/* <Typography variant="subtitle2">
@@ -190,7 +180,6 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level_3']}
                                 label="Level III"
-                                nullable
                                 disabled
                             />
                             {/* <Typography variant="subtitle2">

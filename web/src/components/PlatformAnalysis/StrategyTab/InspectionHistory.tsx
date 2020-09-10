@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
-import DatePicker from '../../FormWidget/DatePicker';
 
 export default function InspectionHistory() {
     const platformTypeListSubject = usePlatformTypeListContext();
@@ -29,7 +28,7 @@ export default function InspectionHistory() {
                 </Grid> 
 
                 <Grid item xs={12} md={6}>
-                    <DatePicker
+                    <TextField
                         name={['level_1_last_inspection_date']}
                         label="Level I"
                     />
@@ -40,7 +39,7 @@ export default function InspectionHistory() {
                 </Grid> 
 
                 <Grid item xs={12} md={6}>
-                    <DatePicker
+                    <TextField
                         name={['level_2_last_inspection_date']}
                         label="Level II"
                         
@@ -52,7 +51,7 @@ export default function InspectionHistory() {
                 </Grid> 
 
                 <Grid item xs={12} md={6}>
-                    <DatePicker
+                    <TextField
                         name={['level_3_last_inspection_date']}
                         label="Level III"
                     />
