@@ -105,6 +105,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
+    const lof_ranking = watch('lof_ranking');
+
     console.log("platform_manned_status_id");
     console.log(platform_manned_status_id);
     
@@ -863,15 +865,16 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography variant="h5">
-                                    {risk_based_underwater_inspection_interval}
+                                 <Typography variant="h5">
+                                    {lof_ranking}
                                 </Typography>
-                                {/* <TextField
-                                    disabled={daily_oil_production === 0}
+                                 {/* <TextField
+                                    disabled
                                     label="Likelihood of Failure Category"
                                     name={[
-                                        'risk_based_underwater_inspection_interval',
+                                        'lof_ranking',
                                     ]}
+                                    
                                 /> */}
                             </Grid>
                             <Grid item xs={6}>
@@ -911,7 +914,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             <Grid item xs={6}>
                             </Grid>
                         </Grid>
-                        <Grid container spacing = {1}>
+                        {/* <Grid container spacing = {1}>
                             <Grid item xs={12}>
                                 <div>
                                     <Pie
@@ -930,7 +933,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     />
                             </div>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                     </AccordionDetails>
                 </Accordion>
 

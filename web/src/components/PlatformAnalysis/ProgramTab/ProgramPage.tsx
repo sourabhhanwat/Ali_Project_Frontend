@@ -8,6 +8,7 @@ import React from 'react';
 import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
+import { useFormContext } from 'react-hook-form';
 
 export default function ProgramPage() {
     // var ButtonDesign = {
@@ -22,8 +23,12 @@ export default function ProgramPage() {
 
     };
 
+
     const platformTypeListSubject = usePlatformTypeListContext();
 
+    const { watch } = useFormContext();
+    const name = watch('name');
+    
     const content = React.useMemo(
         () => (
             <Grid container spacing={4}>
@@ -34,8 +39,9 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['pf_name']}
+                        name={['name']}
                         label="Platform Name"
+                        disabled
                     />
                 </Grid>
                 
@@ -53,8 +59,9 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['Under_Water_Inspection_Date']}
+                        name={['last_inspection','last_underwater_inspection_date']}
                         label="Inspection Date"
+                        disabled
                     />
                 </Grid>
 
@@ -74,8 +81,9 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['Platform_Risk_Rankinge']}
+                        name={['risk_ranking']}
                         label="Platform Risk Rankinge"
+                        disabled
                     />
                 </Grid>
 

@@ -26,7 +26,6 @@ export const PlatformSchema = yup
         loading_score: IntegerSchema,
         total_score: IntegerSchema,
         rsr_override_score: IntegerSchema,
-        lof_ranking: IntegerSchema,
         platform_vintage_score: yup.number(),
         access_type: yup.mixed<'M' | 'V'>().oneOf(['M', 'V']),
         platform_legs_and_bracing_score: yup.number(),
@@ -219,6 +218,7 @@ export const PlatformSchema = yup
         number_of_bays: IntegerSchema,
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         risk_based_underwater_inspection_interval:IntegerSchema,
+        lof_ranking: IntegerSchema,
         exposure_category_level:yup.string().nullable(),
         exposure_category_level_1:yup.string().nullable(),
         exposure_category_level_2:yup.string().nullable(),

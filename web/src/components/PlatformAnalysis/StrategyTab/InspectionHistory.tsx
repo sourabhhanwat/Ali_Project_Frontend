@@ -30,7 +30,7 @@ export default function InspectionHistory() {
                 <Grid item xs={12} md={6}>
                     <TextField
                         name={['level_1_last_inspection_date']}
-                        label="Level I"
+                        label="YYYY-MM-DD"
                     />
                 </Grid>
 
@@ -41,7 +41,7 @@ export default function InspectionHistory() {
                 <Grid item xs={12} md={6}>
                     <TextField
                         name={['level_2_last_inspection_date']}
-                        label="Level II"
+                        label="YYYY-MM-DD"
                         
                     />
                 </Grid>
@@ -53,7 +53,7 @@ export default function InspectionHistory() {
                 <Grid item xs={12} md={6}>
                     <TextField
                         name={['level_3_last_inspection_date']}
-                        label="Level III"
+                        label="YYYY-MM-DD"
                     />
                 </Grid>
             

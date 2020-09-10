@@ -92,10 +92,10 @@ export default function NextInspectionDate() {
                             <Grid item xs={6}>
                             </Grid>
                         </Grid>
-                        <Grid container spacing = {1}>
+                        {/* <Grid container spacing = {1}>
                             <Grid item xs={12}>
                                 <div>
-                                    {/* <Pie
+                                     <Pie
                                         data={state}
                                         options={{
                                             title:{
@@ -108,10 +108,10 @@ export default function NextInspectionDate() {
                                             position:'right'
                                             }
                                         }}
-                                    /> */}
+                                    /> 
                             </div>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                     </AccordionDetails>
                 </Accordion> 
 {/* ============================================== */}
