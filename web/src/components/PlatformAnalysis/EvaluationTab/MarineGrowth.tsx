@@ -14,8 +14,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Add from '@material-ui/icons/Add';
+
 
 import MaterialTable from 'material-table'
+import { IconButton } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -81,8 +85,21 @@ export default function MarineGrowth() {
             headNoBorderBottom
         >
             <Box m={3}>
-                <Grid container spacing={3}>
-                <TableContainer component={Paper} elevation={3}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                                <Typography variant="body1">
+                                        <h3>Data</h3>
+                                </Typography>
+                                <Typography variant="subtitle2">
+                                    Marine Growth Inspection Performed and Elevations of Inspection Marine Growth are Known?
+                                
+                                <IconButton color="secondary" aria-label="add an alarm">
+                                    <Add />
+                                </IconButton>
+                                </Typography>
+                        </Grid>
+                    </Grid>
+                    {/* <TableContainer component={Paper} elevation={3}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -99,12 +116,12 @@ export default function MarineGrowth() {
                                                 label=""
                                                 size="small"
                                                 nullable
-                                            /></TableCell>
+                                            />
+                                            </TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </TableContainer>
-                </Grid>
+                    </TableContainer> */}
 <br></br>
 <br></br>
              <Grid item xs={12}>             

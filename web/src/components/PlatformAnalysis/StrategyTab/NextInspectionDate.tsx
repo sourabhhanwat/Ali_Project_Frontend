@@ -169,6 +169,7 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level_3']}
                                 label="Level III"
+                                nullable
                             />
                         </Grid>
                     </Grid> 

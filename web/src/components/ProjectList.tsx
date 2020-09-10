@@ -24,6 +24,10 @@ import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
 import Subject from '../modules/Subject';
+import { navigate } from '@reach/router';
+import { Tooltip, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import NewuserIcon from './icons/Newuser';
+
 // ---------------------
 
 var p = {
@@ -203,19 +207,29 @@ export default function ProjectList(_: RouteComponentProps) {
     let next_10 = [];
     return (
         <>
-            {/* <Box display="flex" justifyContent="flex-end" my={2}>
+             <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
-                    <Button
-                        onClick={() => subject.list()}
+                    {/* <Button
+                        onClick={() => navigate('/dashboard/existinguser')}>
                         variant="contained"
                         size="large"
                         color="primary"
                         disabled={isPending}
                     >
-                        Refresh
-                    </Button>
+                        + New Project
+                    </Button> */}
+                     <ListItem
+                    button
+                    onClick={() => navigate('/dashboard/newProject')}>
+                    <Tooltip title="NewProject">
+                        <ListItemIcon>
+                            <NewuserIcon />
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="New Project" />
+                </ListItem>
                 </Box>
-            </Box> */}
+            </Box> 
             <Grid container spacing={2}>
                {/* <Grid item container spacing={3}>
                     {projects?.map((project) => (

@@ -205,15 +205,15 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 alignItems="center"
                 clone
             >
-                <Tooltip title={platform.site.description}>
+                <Tooltip title={platform.description}>
                     <CardContent>
                         <Box clone fontWeight={800}>
                             <Typography>Site</Typography>
                         </Box>
                         <Box>
-                            <Typography>{platform.site.name}</Typography>
+                            <Typography>{platform.name}</Typography>
                             <Typography variant="caption">
-                                <RelativeDate date={platform.site.updated_at} />
+                                <RelativeDate date={platform.updated_at} />
                             </Typography>
                         </Box>
                     </CardContent>

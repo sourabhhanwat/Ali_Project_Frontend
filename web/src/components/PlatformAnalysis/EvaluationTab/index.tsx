@@ -30,12 +30,10 @@ import TextField from '../../FormWidget/TextField';
 import {Pie,Doughnut} from 'react-chartjs-2';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { Button,TextArea } from 'semantic-ui-react'
+import { Button,TextArea, Dropdown } from 'semantic-ui-react'
 import IconButton from '@material-ui/core/IconButton';
 import Info from '@material-ui/icons/Info';
 import Hidden from '@material-ui/core/Hidden';
-
-// 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -44,6 +42,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import 'dropdown-select/dist/css/dropdown-select.css';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -85,6 +84,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 // 
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
@@ -94,6 +94,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         padding: '10px 5px'
 
     };
+    
 
     const { watch } = useFormContext();
 
@@ -107,6 +108,17 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     console.log("platform_manned_status_id");
     console.log(platform_manned_status_id);
     
+    let options = [
+        {
+          label: 'label1',
+          value: 'value1'
+        },
+        {
+          label: 'label2',
+          value: 'value2'
+        },
+      ]
+
     let state = {
         labels: ['January', 'February', 'March',
                  'April', 'May'],
@@ -571,18 +583,19 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
+                                <h3>Environmental Consequence</h3>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p></p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p></p>
                             </Grid>
 
                             <Grid item xs={4}>
                                 <p>Description</p>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <p>Category</p>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <p>Environmental Consequence</p>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -592,12 +605,33 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 />
                             </Grid>
 
+                            <Grid item xs={4}></Grid>
+
                             <Grid item xs={4}>
-                            <Select
-                                    toOption={(option) => option}
-                                    name="environmental_consequence_category"
-                                    subject={platformMannedStatusListSubject}
-                                    label="Category"
+                            <Typography> Category (Only One)</Typography>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                            
+                            <Checkbox
+                                    name="CategoryA"
+                                    label="A"
+                                />
+                                <Checkbox
+                                    name="CategoryB"
+                                    label="B"
+                                />
+                                <Checkbox
+                                    name="CategoryC"
+                                    label="C"
+                                />
+                                <Checkbox
+                                    name="CategoryD"
+                                    label="D"
+                                />
+                                <Checkbox
+                                    name="CategoryE"
+                                    label="E"
                                 />
                             </Grid>
 
@@ -733,18 +767,19 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
+                                <h3>Economic Consequence</h3>
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Description</p>
+                                <p></p>
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Category</p>
+                                
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Economic Consequence </p>
+                                <p> Description</p>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -756,13 +791,32 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     ]}
                                 />
                             </Grid>
+                            <Grid item xs={4}></Grid>
 
                             <Grid item xs={4}>
-                            <Select
-                                    toOption={(option) => option}
-                                    name="economic_consequence_category"
-                                    subject={platformMannedStatusListSubject}
-                                    label="Category"
+                            <Typography> Category (Only One)</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                            
+                            <Checkbox
+                                    name="CategoryA"
+                                    label="A"
+                                />
+                                <Checkbox
+                                    name="CategoryB"
+                                    label="B"
+                                />
+                                <Checkbox
+                                    name="CategoryC"
+                                    label="C"
+                                />
+                                <Checkbox
+                                    name="CategoryD"
+                                    label="D"
+                                />
+                                <Checkbox
+                                    name="CategoryE"
+                                    label="E"
                                 />
                             </Grid>
 

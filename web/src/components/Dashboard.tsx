@@ -7,6 +7,7 @@ import PlatformMannedStatusListProvider, { usePlatformMannedStatusList } from '.
 import PlatformTypeListProvider, { usePlatformTypeList } from './PlatformTypeListProvider';
 
 const NewUser = React.lazy(() => import('./Newuser'));
+const NewProject = React.lazy(() => import('./NewProject'));
 
 const Existinguser = React.lazy(() => import('./Existinguser'));
 
@@ -52,6 +53,7 @@ export default function Dashboard(_: RouteComponentProps) {
                                 <Redirect from="/" to="projects" noThrow />
                                 <ProjectList path="projects" default />
                                 <NewUser path="newuser" />
+                                <NewProject path="newProject" />
                                 <Existinguser path = "existinguser" />
                                 <SiteList path="projects/:projectId/sites" />
                                 <SiteList path="sites" />
