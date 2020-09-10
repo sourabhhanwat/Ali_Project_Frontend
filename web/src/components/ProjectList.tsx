@@ -310,7 +310,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <StyledTableRow key={platform.id}>
                                 <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.description}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
