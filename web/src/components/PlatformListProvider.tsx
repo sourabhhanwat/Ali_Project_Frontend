@@ -5,14 +5,14 @@ import Subject from '../modules/Subject';
 import { SiteSchema } from './SiteListProvider';
 
 export const DecimalLikeSchema = yup
-    .string()
-    .matches(/^[0-9.]*$/, 'Only character 0-9 and "."')
-    .typeError('Only character 0-9 and "."');
+    .string();
+    // .matches(/^[0-9.]*$/, 'Only character 0-9 and "."')
+    // .typeError('Only character 0-9 and "."');
 
 export const IntegerSchema = yup
-    .number()
-    .integer('Only character 0-9')
-    .typeError('Only character 0-9');
+    .number();
+    // .integer('Only character 0-9')
+    // .typeError('Only character 0-9');
 
 export const DateSchema = yup
     .date()
