@@ -28,8 +28,11 @@ import ShallowGas from './ShallowGas';
 import UnprotectedAppurtenances from './UnprotectedAppurtenances';
 import TextField from '../../FormWidget/TextField';
 import {Pie,Doughnut} from 'react-chartjs-2';
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { Button, Popup } from 'semantic-ui-react'
+import IconButton from '@material-ui/core/IconButton';
+import Info from '@material-ui/icons/Info';
 
 // 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -335,7 +338,11 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <p></p>
                         <p></p>
                     </Typography>
-                    <Popup className="mypopup" trigger={<button>Check Ranking & Score</button>} >
+                    <Popup className="mypopup" trigger={
+                        <IconButton color="secondary" aria-label="add an alarm">
+                        <Info />
+                        </IconButton>
+                    } >
                         <div >    
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
@@ -404,9 +411,14 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <p></p>
                         <p></p>
                         {/* // second button */}
+                        
                     </Typography>
-                    <Popup  trigger={<button>Check  All </button>} position = 'top left' >
-                        <div >    
+                         <Popup  trigger={      
+                             <IconButton color="secondary" aria-label="add an alarm">
+                              <Info />
+                        </IconButton>
+                        } position = 'top left' >
+                        <div > 
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
                                     <TableHead>
