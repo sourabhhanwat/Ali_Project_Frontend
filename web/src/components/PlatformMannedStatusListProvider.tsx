@@ -17,20 +17,20 @@ export const PlatformMannedStatusListSchema = yup.array(
 );
 
 declare global {
-    export type PlatformMannedStatus = yup.InferType<
+    export type platform_manned_status = yup.InferType<
         typeof PlatformMannedStatusSchema
     >;
 }
 
 class PlatformMannedStatusListSubject extends Subject<
-    PlatformMannedStatus[] | null
+    platform_manned_status[] | null
 > {
-    cached: null | PlatformMannedStatus[] = null;
+    cached: null | platform_manned_status[] = null;
 
     list = this.createAsync(async ({ cached }: { cached: boolean }) => {
         if (cached) {
             if (!this.cached) {
-                const { data } = await axios.get<PlatformMannedStatus[]>(
+                const { data } = await axios.get<platform_manned_status[]>(
                     '/api/v1/platform-manned-statuses/',
                     {
                         transformResponse(data) {
@@ -43,7 +43,7 @@ class PlatformMannedStatusListSubject extends Subject<
                 this.cached = data;
             }
         } else {
-            const { data } = await axios.get<PlatformMannedStatus[]>(
+            const { data } = await axios.get<platform_manned_status[]>(
                 '/api/v1/platform-manned-statuses/',
                 {
                     transformResponse(data) {

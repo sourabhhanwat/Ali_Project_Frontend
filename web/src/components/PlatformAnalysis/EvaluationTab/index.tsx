@@ -135,10 +135,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     const [
         platformMannedStatusList,
         setPlatformMannedStatusList,
-    ] = React.useState<PlatformMannedStatus[]>([]);
+    ] = React.useState<platform_manned_status[]>([]);
 
     const handlePlatformMannedStatus = React.useCallback(
-        (state: State<PlatformMannedStatus[] | null>) => {
+        (state: State<platform_manned_status[] | null>) => {
             setPlatformMannedStatusList(state.value ?? []);
         },
         []
@@ -207,6 +207,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         'calculated_environmental_consequence'
     );
 
+    
     let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'null' : calculated_environmental_consequence;
 
 
@@ -215,6 +216,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     let environmental_consequence_description1 = (environmental_consequence_description === 'null') ?  'environmental_consequence_description' : 'Blank';
 
+    
     console.log("I am evaluation Tab" ,environmental_consequence_description);
 
 
@@ -383,13 +385,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             <Grid item xs={12}>
                                 <Select
                                     toOption={(option) => option}
-                                    name="platform_manned_status_id"
+                                    name="platform_manned_status.id"
                                     subject={platformMannedStatusListSubject}
                                     label="Platform Manned Status"
                                 />
                             </Grid>
 
-                            <Grid item xs={6}>
+                            {/* <Grid item xs={6}>
                                 <p>
                                 platform manned status id
                                 </p>
@@ -402,7 +404,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         'id',
                                     ]} disabled
                                 />
-                            </Grid>
+                            </Grid> */}
 
                             <Grid item xs={12}>
                                 <Typography variant="subtitle2">
