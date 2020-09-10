@@ -208,13 +208,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     );
 
     
-    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'null' : calculated_environmental_consequence;
+    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'Unknown' : calculated_environmental_consequence;
 
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
 
 
-    let environmental_consequence_description1 = (environmental_consequence_description === 'null') ?  'environmental_consequence_description' : 'Blank';
+    let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
 
     
     console.log("I am evaluation Tab" ,environmental_consequence_description);
@@ -222,6 +222,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
     
+    const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
+
 
     return (
         <Box hidden={hidden}>

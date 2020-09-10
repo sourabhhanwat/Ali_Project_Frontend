@@ -138,14 +138,14 @@ export default function Drawer({ open }: { open: boolean }) {
                     <ListItemText primary="Projects" />
                 </ListItem>
 
-                <ListItem button onClick={() => navigate('/dashboard/sites')}>
+                {/* <ListItem button onClick={() => navigate('/dashboard/sites')}>
                     <Tooltip title="Sites">
                         <ListItemIcon>
                             <SiteIcon />
                         </ListItemIcon>
                     </Tooltip>
                     <ListItemText primary="Sites" />
-                </ListItem>
+                </ListItem> */}
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard/platforms')}

@@ -47,7 +47,7 @@ export default function StructuralDetailsFieldset() {
                             'measured_scour_depth_during_inspection',
                         ]}
                         label="Measured Scour Depth"
-                        unit="m"
+                        // unit="m"
                         nullable
                     />
                 </Grid>

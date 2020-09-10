@@ -15,18 +15,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import MaterialTable, { Column } from 'material-table';
-interface Row {
-    name: string;
-    surname: string;
-    birthYear: number;
-    birthCity: number;
-  }
-  
-  interface TableState {
-    columns: Array<Column<Row>>;
-    data: Row[];
-  }
+import MaterialTable from 'material-table'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -61,12 +50,12 @@ const rows = [
 ];
 
 
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
 });
+
 
 // 
 
@@ -78,6 +67,11 @@ export default function MarineGrowth() {
         backgroundColor: 'light blue',
 
     };
+
+    const state = {
+		shown: true,
+	};
+    
     
     return (
         <ExpansionRow
@@ -88,44 +82,33 @@ export default function MarineGrowth() {
         >
             <Box m={3}>
                 <Grid container spacing={3}>
-                    <Grid item xs={6} md={4}>
-                        <h3 style={h3Design}>Data</h3> 
-                    </Grid>
-
-                    <Grid item xs={6} md={4}>
-                        <h3 style={h3Design}>Input ID No.</h3>
-                    </Grid>
-
-                    <Grid item xs={6} md={4}>
-                    </Grid>
-
-                    <Grid item xs={6} md={4}>
-                            <TextField
-                                name={['Data']}
-                                label="Data"
-                            />
-                    </Grid>
-
-                        <Grid item xs={6} md={4}>
-                            <TextField
-                                name={['InputIDNo']}
-                                label="Input ID No"
-                            />
-                        </Grid>
-
-                    <Grid item xs={4} md={4}>
-                        <Checkbox
-                            label="Display"
-                            name="Display"
-                        />
-                    </Grid>
-
+                <TableContainer component={Paper} elevation={3}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell colSpan={2} align="center">Data</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                    <TableCell align="center">                                           
+                                             <TextField
+                                                name={[
+                                                    'Marine_Growth_Depths',
+                                                ]}
+                                                label=""
+                                                size="small"
+                                                nullable
+                                            /></TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                 </Grid>
 <br></br>
 <br></br>
-//button table
-             <Grid item xs={12}>
-                        {/* <TableContainer component={Paper} elevation={3}>
+             <Grid item xs={12}>             
+                        <TableContainer component={Paper} elevation={3}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -197,7 +180,7 @@ export default function MarineGrowth() {
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </TableContainer> */}
+                        </TableContainer>
                     </Grid> 
             </Box>
         </ExpansionRow>
