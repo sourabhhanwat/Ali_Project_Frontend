@@ -454,12 +454,11 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                                 {row.ranking}
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center">
-                                            {/* {row.name}    */}
-                                            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+                                            {row.name}   
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center"> 
-                                            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-                                                    {/* {row.description} */}
+                                            
+                                                    {row.description}
                                             </StyledTableCell>
                                             </StyledTableRow>
                                         ))}
