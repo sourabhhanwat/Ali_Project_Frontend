@@ -3,15 +3,8 @@ import { Accordion } from '@material-ui/core'
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import '../../../modules/Subject';
 import Checkbox from '../../FormWidget/Checkbox';
@@ -35,16 +28,83 @@ import ShallowGas from './ShallowGas';
 import UnprotectedAppurtenances from './UnprotectedAppurtenances';
 import TextField from '../../FormWidget/TextField';
 import {Pie,Doughnut} from 'react-chartjs-2';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
-export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
+// 
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+function createData(lof: string, score: string) {
+  return { lof, score };
+}
+
+function createData1(cof: string, ilof: string, clof: string) {
+    return { cof, ilof , clof};
+  }
+
+const rows = [
+  createData('5', ' ≥ 680'),
+  createData('4', '>= 490 to < 680'),
+  createData('3','≥ 310 to < 490' ),
+  createData('2', '≥ 120 < 310'),
+  createData('1','< 120' ),
+];
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 700,
+  },
+});
+
+// 
+
+export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
+
+
+
+
+    var modal = {
+        width: '100%',
+        padding: '10px 5px'
+
+    };
+
     const { watch } = useFormContext();
+
+    const classes = useStyles();
+
 
     const platformMannedStatusListSubject = usePlatformMannedStatusListContext();
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
 
-    const state = {
+    let state = {
         labels: ['January', 'February', 'March',
                  'April', 'May'],
         datasets: [
@@ -94,6 +154,9 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
             ),
         [platform_manned_status_id, platformMannedStatusList]
     );
+
+    console.log('platformMannedStatusList');
+    console.log(platformMannedStatusList);
 
     const daily_oil_production = watch(
         'environmental_consequence.daily_oil_production'
@@ -153,6 +216,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
 
 
     console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
+    
 
     return (
         <Box hidden={hidden}>
@@ -250,9 +314,53 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                 </Table>
             </TableContainer>
 
-            <Typography variant="h6" gutterBottom>
-                Likelihood of Failure Category {watch('lof_ranking')}
-            </Typography>
+            
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                <Typography variant="h5" gutterBottom>
+                    <p></p>
+                    <p>Likelihood of Failure Category</p>
+                </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    <Typography variant="h5" gutterBottom>
+                        <p></p>
+                        {watch('lof_ranking')}
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    {/* // ek button */}
+                    <Typography variant="h5" gutterBottom>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </Typography>
+                    <Popup className="mypopup" trigger={<button>Check Ranking & Score</button>} >
+                        <div >    
+                            <TableContainer component={Paper}>
+                                 <Table className={classes.table} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell style={{minWidth: 10}} >LOF Ranking</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} >Total Score Range (CLOF-86 Or CLOF-87)</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <StyledTableRow key={row.lof}>
+                                            <StyledTableCell style={{minWidth: 10}} component="th" scope="row" align="center">
+                                                {row.lof}
+                                            </StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.score}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>
+                        </div>
+                    </Popup>
+                </Grid>
+            </Grid>
 
             <Typography variant="h4" gutterBottom>
                 Consequence of Failure Calculation
@@ -282,7 +390,7 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                         'Unknown'}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={4}>
                                 <Typography variant="subtitle2">
                                     Ranking
                                 </Typography>
@@ -290,6 +398,40 @@ export default function EvaluationTab({ hidden }: { hidden?: boolean }) {
                                     {platformMannedStatus?.ranking ?? 'Unknown'}
                                 </Typography>
                             </Grid>
+                            <Grid item xs={4}>
+                    <Typography variant="h5" gutterBottom>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        {/* // second button */}
+                    </Typography>
+                    <Popup  trigger={<button>Check  All </button>} position = 'top left' >
+                        <div >    
+                            <TableContainer component={Paper}>
+                                 <Table className={classes.table} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell style={{minWidth: 10}} >COF Ranking (CLOF-90)</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} >Platform Manned Status (ILOF-63)</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} >Description (CLOF-89)</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {platformMannedStatusList.map((row) => (
+                                            <StyledTableRow key={row.name}>
+                                            <StyledTableCell style={{minWidth: 10}} component="th" scope="row" align="center">
+                                                {row.ranking}
+                                            </StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.name}</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.description}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>
+                        </div>
+                    </Popup>
+                </Grid>
                         </Grid>
                     </AccordionDetails>
                 </Accordion>
