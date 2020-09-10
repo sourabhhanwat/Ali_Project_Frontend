@@ -30,9 +30,10 @@ import TextField from '../../FormWidget/TextField';
 import {Pie,Doughnut} from 'react-chartjs-2';
 // import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { Button, Popup } from 'semantic-ui-react'
+import { Button, Popup,TextArea } from 'semantic-ui-react'
 import IconButton from '@material-ui/core/IconButton';
 import Info from '@material-ui/icons/Info';
+import Hidden from '@material-ui/core/Hidden';
 
 // 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -50,7 +51,7 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14,
+    fontSize: 12,
   },
 }))(TableCell);
 
@@ -80,16 +81,13 @@ const rows = [
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 400,
   },
 });
 
 // 
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
-
-
-
 
     var modal = {
         width: '100%',
@@ -106,7 +104,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
-
+    console.log("platform_manned_status_id");
+    console.log(platform_manned_status_id);
+    
     let state = {
         labels: ['January', 'February', 'March',
                  'April', 'May'],
@@ -338,27 +338,27 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <p></p>
                         <p></p>
                     </Typography>
-                    <Popup className="mypopup" trigger={
+                    <Popup trigger={
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    } >
+                    } size = 'mini'>
                         <div >    
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
                                     <TableHead>
                                         <TableRow>
-                                            <StyledTableCell style={{minWidth: 10}} >LOF Ranking</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} >Total Score Range (CLOF-86 Or CLOF-87)</StyledTableCell>
+                                            <StyledTableCell align="center" >LOF Ranking</StyledTableCell>
+                                            <StyledTableCell align="center" >Total Score Range</StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {rows.map((row) => (
                                             <StyledTableRow key={row.lof}>
-                                            <StyledTableCell style={{minWidth: 10}} component="th" scope="row" align="center">
+                                            <StyledTableCell component="th" scope="row" align="center">
                                                 {row.lof}
                                             </StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.score}</StyledTableCell>
+                                            <StyledTableCell  align="center">{row.score}</StyledTableCell>
                                             </StyledTableRow>
                                         ))}
                                         </TableBody>
@@ -388,6 +388,22 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     label="Platform Manned Status"
                                 />
                             </Grid>
+
+                            <Grid item xs={6}>
+                                <p>
+                                platform manned status id
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    label=""
+                                    name={[
+                                        'platform_manned_status',
+                                        'id',
+                                    ]} disabled
+                                />
+                            </Grid>
+
                             <Grid item xs={12}>
                                 <Typography variant="subtitle2">
                                     Description
@@ -413,29 +429,38 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         {/* // second button */}
                         
                     </Typography>
+                    <Box>
                          <Popup  trigger={      
                              <IconButton color="secondary" aria-label="add an alarm">
                               <Info />
                         </IconButton>
-                        } position = 'top left' >
+                        } position = 'top left' size= 'small' >
                         <div > 
-                            <TableContainer component={Paper}>
+                            <TableContainer style={{minWidth: 10}} component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
                                     <TableHead>
                                         <TableRow>
-                                            <StyledTableCell style={{minWidth: 10}} >COF Ranking (CLOF-90)</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} >Platform Manned Status (ILOF-63)</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} >Description (CLOF-89)</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center" >COF Ranking</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center" >Platform Manned Status</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center" >Description</StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {platformMannedStatusList.map((row) => (
-                                            <StyledTableRow key={row.name}>
+                                            <StyledTableRow style={{minWidth: 10}} key={row.name}>
                                             <StyledTableCell style={{minWidth: 10}} component="th" scope="row" align="center">
                                                 {row.ranking}
                                             </StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.name}</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} align="center">{row.description}</StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center">
+                                            <h6>
+                                            {row.name}                                             
+                                            </h6>
+                                            </StyledTableCell>
+                                            <StyledTableCell style={{minWidth: 10}} align="center"> 
+                                                <h6>
+                                                    {row.description}
+                                                </h6>
+                                            </StyledTableCell>
                                             </StyledTableRow>
                                         ))}
                                         </TableBody>
@@ -443,6 +468,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </TableContainer>
                         </div>
                     </Popup>
+                    </Box>
                 </Grid>
                         </Grid>
                     </AccordionDetails>

@@ -15,6 +15,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import MaterialTable, { Column } from 'material-table';
+interface Row {
+    name: string;
+    surname: string;
+    birthYear: number;
+    birthCity: number;
+  }
+  
+  interface TableState {
+    columns: Array<Column<Row>>;
+    data: Row[];
+  }
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -112,7 +125,7 @@ export default function MarineGrowth() {
 <br></br>
 //button table
              <Grid item xs={12}>
-                        <TableContainer component={Paper} elevation={3}>
+                        {/* <TableContainer component={Paper} elevation={3}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -184,7 +197,7 @@ export default function MarineGrowth() {
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </TableContainer>
+                        </TableContainer> */}
                     </Grid> 
             </Box>
         </ExpansionRow>
