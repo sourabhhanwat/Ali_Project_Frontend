@@ -28,9 +28,9 @@ import ShallowGas from './ShallowGas';
 import UnprotectedAppurtenances from './UnprotectedAppurtenances';
 import TextField from '../../FormWidget/TextField';
 import {Pie,Doughnut} from 'react-chartjs-2';
-// import Popup from 'reactjs-popup';
+import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { Button, Popup,TextArea } from 'semantic-ui-react'
+import { Button,TextArea } from 'semantic-ui-react'
 import IconButton from '@material-ui/core/IconButton';
 import Info from '@material-ui/icons/Info';
 import Hidden from '@material-ui/core/Hidden';
@@ -344,7 +344,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    } size = 'mini'>
+                    }>
                         <div >    
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
@@ -436,7 +436,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                              <IconButton color="secondary" aria-label="add an alarm">
                               <Info />
                         </IconButton>
-                        } position = 'top left' size= 'small' >
+                        } position = 'top center' >
                         <div > 
                             <TableContainer style={{minWidth: 10}} component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
@@ -454,14 +454,12 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                                 {row.ranking}
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center">
-                                            <h6>
-                                            {row.name}                                             
-                                            </h6>
+                                            {/* {row.name}    */}
+                                            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center"> 
-                                                <h6>
-                                                    {row.description}
-                                                </h6>
+                                            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+                                                    {/* {row.description} */}
                                             </StyledTableCell>
                                             </StyledTableRow>
                                         ))}
