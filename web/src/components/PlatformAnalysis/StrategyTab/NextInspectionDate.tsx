@@ -9,6 +9,7 @@ import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 import {Pie,Doughnut} from 'react-chartjs-2';
 import DatePicker from '../../FormWidget/DatePicker';
+import { useFormContext } from 'react-hook-form';
 
 export default function NextInspectionDate() {
 
@@ -41,6 +42,14 @@ export default function NextInspectionDate() {
           }
         ]
       }
+
+      const { watch } = useFormContext();
+
+    //   const exposure_category_level1 = watch(
+    //     'exposure_category_level'
+    // );
+    //   let exposure_category_level = (exposure_category_level1 === null) ?  'Unknown' : exposure_category_level1;
+
 
     const platformTypeListSubject = usePlatformTypeListContext();
     const content = React.useMemo(
@@ -128,7 +137,12 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level']}
                                 label="Level"
+                                disabled
+                                nullable
                             />
+                            {/* <Typography variant="subtitle2">
+                            {'exposure_category_level'}                                
+                            </Typography> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -147,6 +161,8 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level_1']}
                                 label="Level I"
+                                disabled
+                                nullable
                             />
                         </Grid>         
                     
@@ -158,7 +174,12 @@ export default function NextInspectionDate() {
                             <TextField
                                 name={['exposure_category_level_2']}
                                 label="Level II"
+                                nullable
+                                disabled
                             />
+                            {/* <Typography variant="subtitle2">
+                            {'exposure_category_level_2'}                                
+                            </Typography> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -170,7 +191,11 @@ export default function NextInspectionDate() {
                                 name={['exposure_category_level_3']}
                                 label="Level III"
                                 nullable
+                                disabled
                             />
+                            {/* <Typography variant="subtitle2">
+                            {exposure_category_level_3}                                
+                            </Typography> */}
                         </Grid>
                     </Grid> 
                 
@@ -202,7 +227,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['Inspection_Interval']}
+                            name={['level_1_selected_inspection_interval_for_next_inspection']}
                             label="Inspection Interval"
                         />
                     </Grid>
@@ -211,7 +236,7 @@ export default function NextInspectionDate() {
                         <DatePicker
                             label="Inspection Date"
                             name={['level_1_inspection_date']}
-                            required
+                            disabled
                         />
                     </Grid>        
                 
@@ -221,7 +246,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['level_2_selected_inspection_interval_for_next_inspection']}
                             label="Inspection Interval"
                         />
                     </Grid>
@@ -230,7 +255,7 @@ export default function NextInspectionDate() {
                     <DatePicker
                         label="Inspection Date"
                         name={['level_2_inspection_date']}
-                        required
+                        disabled
                     />
                     </Grid>
 
@@ -240,7 +265,7 @@ export default function NextInspectionDate() {
 
                     <Grid item xs={6} md={4}>
                         <TextField
-                            name={['date_inspection1']}
+                            name={['level_3_selected_inspection_interval_for_next_inspection']}
                             label="Inspection Interval"
                         />
                     </Grid>
@@ -249,7 +274,7 @@ export default function NextInspectionDate() {
                     <DatePicker
                         label="Inspection Date"
                         name={['level_3_inspection_date']}
-                        required
+                        disabled
                     />
                     </Grid>
 
