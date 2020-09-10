@@ -235,7 +235,7 @@ export default function NextInspectionDate() {
                     <Grid item xs={6} md={4}>
                         <DatePicker
                             label="Inspection Date"
-                            name={['level_1_inspection_date']}
+                            name={['level_1_next_inspection_date']}
                             disabled
                         />
                     </Grid>        
@@ -252,11 +252,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                    <DatePicker
+                     <DatePicker
                         label="Inspection Date"
-                        name={['level_2_inspection_date']}
+                        name={['level_2_next_inspection_date']}
                         disabled
-                    />
+                    /> 
                     </Grid>
 
                     <Grid item xs={6} md={3}>
@@ -273,7 +273,7 @@ export default function NextInspectionDate() {
                     <Grid item xs={6} md={4}>
                     <DatePicker
                         label="Inspection Date"
-                        name={['level_3_inspection_date']}
+                        name={['level_3_next_inspection_date']}
                         disabled
                     />
                     </Grid>

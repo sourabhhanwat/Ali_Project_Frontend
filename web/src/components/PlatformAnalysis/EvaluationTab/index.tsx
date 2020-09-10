@@ -583,19 +583,18 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                                <h3>Environmental Consequence</h3>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <p></p>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <p></p>
                             </Grid>
 
                             <Grid item xs={4}>
                                 <p>Description</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Category</p>
+                            </Grid>
+
+                            <Grid item xs={4}>
+                                <p>Environmental Consequence</p>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -605,33 +604,12 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 />
                             </Grid>
 
-                            <Grid item xs={4}></Grid>
-
                             <Grid item xs={4}>
-                            <Typography> Category (Only One)</Typography>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                            
-                            <Checkbox
-                                    name="CategoryA"
-                                    label="A"
-                                />
-                                <Checkbox
-                                    name="CategoryB"
-                                    label="B"
-                                />
-                                <Checkbox
-                                    name="CategoryC"
-                                    label="C"
-                                />
-                                <Checkbox
-                                    name="CategoryD"
-                                    label="D"
-                                />
-                                <Checkbox
-                                    name="CategoryE"
-                                    label="E"
+                            <Select
+                                    toOption={(option) => option}
+                                    name="environmental_consequence_category"
+                                    subject={platformMannedStatusListSubject}
+                                    label="Category"
                                 />
                             </Grid>
 
@@ -767,19 +745,18 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                                <h3>Economic Consequence</h3>
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p></p>
+                                <p>Description</p>
                             </Grid>
 
                             <Grid item xs={4}>
-                                
+                                <p>Category</p>
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p> Description</p>
+                                <p>Economic Consequence </p>
                             </Grid>
 
                             <Grid item xs={4}>
@@ -791,32 +768,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     ]}
                                 />
                             </Grid>
-                            <Grid item xs={4}></Grid>
 
                             <Grid item xs={4}>
-                            <Typography> Category (Only One)</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                            
-                            <Checkbox
-                                    name="CategoryA"
-                                    label="A"
-                                />
-                                <Checkbox
-                                    name="CategoryB"
-                                    label="B"
-                                />
-                                <Checkbox
-                                    name="CategoryC"
-                                    label="C"
-                                />
-                                <Checkbox
-                                    name="CategoryD"
-                                    label="D"
-                                />
-                                <Checkbox
-                                    name="CategoryE"
-                                    label="E"
+                            <Select
+                                    toOption={(option) => option}
+                                    name="economic_consequence_category"
+                                    subject={platformMannedStatusListSubject}
+                                    label="Category"
                                 />
                             </Grid>
 
