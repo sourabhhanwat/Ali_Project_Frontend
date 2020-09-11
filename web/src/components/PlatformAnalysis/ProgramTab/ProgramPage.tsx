@@ -9,6 +9,7 @@ import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 import { useFormContext } from 'react-hook-form';
+import DatePicker from '../../FormWidget/DatePicker';
 
 export default function ProgramPage() {
     // var ButtonDesign = {
@@ -123,17 +124,20 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level1']}
-                        label="Level I"
-                    />
+                <TextField
+                            name={['level_1_selected_inspection_interval_for_next_inspection']}
+                            label="Inspection Interval"
+                            disabled
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level1']}
-                        label="Inspection Date"
-                    />
+                <DatePicker
+                            label="Inspection Date"
+                            name={['level_1_next_inspection_date']}
+                            disabled
+                            required
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
@@ -148,17 +152,20 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level2']}
-                        label="Level II"
-                    />
+                <TextField
+                            name={['level_2_selected_inspection_interval_for_next_inspection']}
+                            label="Inspection Interval"
+                            disabled
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level2']}
-                        label="Inspection Date"
-                    />
+                <DatePicker
+                            label="Inspection Date"
+                            name={['level_2_next_inspection_date']}
+                            disabled
+                            required
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
@@ -173,17 +180,20 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level3']}
-                        label="Level III"
-                    />
+                <TextField
+                            name={['level_3_selected_inspection_interval_for_next_inspection']}
+                            label="Inspection Interval"
+                            disabled
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['Level3']}
-                        label="Inspection Date"
-                    />
+                <DatePicker
+                            label="Inspection Date"
+                            name={['level_3_next_inspection_date']}
+                            disabled
+                            required
+                        />
                 </Grid>
 
                 <Grid item xs={3} md={3}>

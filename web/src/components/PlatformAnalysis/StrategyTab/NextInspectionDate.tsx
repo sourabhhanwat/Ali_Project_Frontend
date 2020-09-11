@@ -68,8 +68,9 @@ export default function NextInspectionDate() {
                                 <TextField
                                     label="Platform Risk Level"
                                     name={[
-                                        'Platform_Risk_Level',
+                                        'risk_ranking',
                                     ]}
+                                    disabled
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -85,8 +86,9 @@ export default function NextInspectionDate() {
                                 <TextField
                                     label="Risk Based Underwater Inspection Interval (Years)"
                                     name={[
-                                        'yers',
+                                        'risk_based_underwater_inspection_interval',
                                     ]}
+                                    disabled
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -226,6 +228,7 @@ export default function NextInspectionDate() {
                             label="Inspection Date"
                             name={['level_1_next_inspection_date']}
                             disabled
+                            required
                         />
                     </Grid>        
                 
@@ -245,6 +248,7 @@ export default function NextInspectionDate() {
                         label="Inspection Date"
                         name={['level_2_next_inspection_date']}
                         disabled
+                        required
                     /> 
                     </Grid>
 
@@ -264,6 +268,7 @@ export default function NextInspectionDate() {
                         label="Inspection Date"
                         name={['level_3_next_inspection_date']}
                         disabled
+                        required
                     />
                     </Grid>
 

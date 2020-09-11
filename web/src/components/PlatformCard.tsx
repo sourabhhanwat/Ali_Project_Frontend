@@ -199,7 +199,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 </Typography>
             </CardContent>
             <Divider />
-            <Box
+            {/* <Box
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
@@ -218,7 +218,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                         </Box>
                     </CardContent>
                 </Tooltip>
-            </Box>
+            </Box> */}
             <Divider />
             <List>
                 <ListItem>

@@ -239,16 +239,18 @@ export default function NewProject(_: RouteComponentProps) {
             />
             </Grid>
 
-            <Box mb={2}>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                >
-                    {/* {!isPending && 'Sign In'}
-                    {isPending && <CircularProgress />} */}
-                </Button>
+            <Box display="flex" justifyContent="flex-center" my={1}>
+                <Box fontWeight={800} clone>
+                    <Button
+                        // onClick={() => fetch()}
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        // disabled={isPending}
+                    >
+                        Submit
+                    </Button>
+                </Box>
             </Box>
             
             </Grid>
