@@ -24,17 +24,21 @@
         "chokidar": "^3.4.2",
         "date-fns": "^2.10.0",
         "dropdown-select": "^3.1.1",
+        "formik": "^2.1.5",
         "immer": "^6.0.1",
         "jwt-decode": "^2.2.0",
         "material-table": "^1.69.0",
         "query-string": "^6.12.1",
         "react": "^16.12.0",
+        "react-bootstrap-table": "^4.3.1",
         "react-chartjs-2": "^2.10.0",
         "react-dom": "^16.12.0",
         "react-drag-drawer": "^3.3.4",
         "react-dropdown": "^1.8.0",
+        "react-google-charts": "^3.0.15",
         "react-hook-form": "^5.5.3",
         "react-scripts": "^3.4.1",
+        "react-vis": "^1.11.7",
         "reactjs-popup": "^2.0.3",
         "recharts": "^1.8.5",
         "semantic-ui-react": "^1.2.1",
@@ -74,6 +78,7 @@
         "tabWidth": 4
     },
     "devDependencies": {
+        "@types/react-vis": "^1.11.3",
         "@types/recharts": "^1.8.9",
         "@types/yup": "^0.28.3"
     }

@@ -17,7 +17,6 @@ import '../modules/Subject';
 import { useAuthContext } from './AuthProvider';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
-import SiteIcon from './icons/Site';
 import NewuserIcon from './icons/Newuser';
 import ExcistinguserIcon from './icons/Existinguser';
 

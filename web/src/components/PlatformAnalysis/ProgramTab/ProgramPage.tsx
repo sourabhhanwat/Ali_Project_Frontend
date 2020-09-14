@@ -8,7 +8,6 @@ import React from 'react';
 import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
-import { useFormContext } from 'react-hook-form';
 import DatePicker from '../../FormWidget/DatePicker';
 
 export default function ProgramPage() {
@@ -27,8 +26,7 @@ export default function ProgramPage() {
 
     const platformTypeListSubject = usePlatformTypeListContext();
 
-    const { watch } = useFormContext();
-    const name = watch('name');
+    // const { watch } = useFormContext();
     
     const content = React.useMemo(
         () => (

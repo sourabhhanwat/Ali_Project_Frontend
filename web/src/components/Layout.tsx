@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Match } from '@reach/router';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import Breadcrumbs from './Breadcrumbs';
 import Drawer from './Drawer';
 import PlatformIcon from './icons/Platform';

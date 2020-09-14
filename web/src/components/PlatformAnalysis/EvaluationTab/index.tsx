@@ -43,6 +43,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
+import { red } from '@material-ui/core/colors';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -70,6 +71,7 @@ function createData1(cof: string, ilof: string, clof: string) {
     return { cof, ilof , clof};
   }
 
+
 const rows = [
   createData('5', ' ≥ 680'),
   createData('4', '>= 490 to < 680'),
@@ -78,14 +80,36 @@ const rows = [
   createData('1','< 120' ),
 ];
 
+function createData2(a: string, b: string, c: string) {
+    return { a, b , c};
+  }
+
+
+const rows_env = [
+  createData2('D', ' ≥ 5,000 to < 50,000','Event where structural failure is expected to cause between 5,000 to 50,000 equivalent bbl oil leak'),
+  createData2('C', '>= 500 to < 5,000','Event where structural failure is expected to cause between 500 to 5,000 equivalent bbl oil leak'),
+  createData2('B','≥ 50 to < 500', 'Event where structural failure is expected to cause between 50 to 500 equivalent bbl oil leak'),
+  createData2('A', '< 50','Event where structural failure is expected to cause between 1 to 50 equivalent bbl oil leak'),
+];
+
+function createData3(a: string, b: string, c: string) {
+    return { a, b , c};
+  }
+
+
+const rows_eco = [
+  createData3('E', ' ≥ 100','The consequence of failure represents very high cost'),
+  createData3('D', ' ≥ 75 - < 100','The consequence of failure represents very high cost'),
+  createData3('C', '>= 45 - < 75','The consequence of failure represents  medium cost'),
+  createData3('B','≥ 6 - < 45', 'The consequence of failure represents low cost'),
+  createData3('A', '< 6','The consequence of failure represents very low cost'),
+];
+
 const useStyles = makeStyles({
   table: {
     minWidth: 400,
   },
 });
-
-
-// 
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
 
@@ -109,17 +133,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     console.log("platform_manned_status_id");
     console.log(platform_manned_status_id);
-    
-    let options = [
-        {
-          label: 'label1',
-          value: 'value1'
-        },
-        {
-          label: 'label2',
-          value: 'value2'
-        },
-      ]
+
 
     let state = {
         labels: ['January', 'February', 'March',
@@ -565,9 +579,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={6}>
-                                <p>
                                 Calculated Environmental Consequence 
-                                </p>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -588,15 +600,40 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Description</p>
+                                <p></p>
+                                Description
+                             </Grid>
+                            
+                            <Grid item xs={4}>
+                            <Popup trigger={
+                        <IconButton color="secondary" aria-label="add an alarm">
+                        <Info />
+                        </IconButton>
+                    }>
+                        <div >    
+
+                            <TableContainer component={Paper}>
+                                 <Table className={classes.table} aria-label="customized table">
+                                    <TableBody>
+                                        {rows_env.map((row) => (
+                                            <StyledTableRow key={row.a}>
+                                            <StyledTableCell component="th" scope="row" align="center">
+                                                {row.a}
+                                            </StyledTableCell>
+                                            <StyledTableCell  align="center">{row.b}</StyledTableCell>
+                                            <StyledTableCell  align="center">{row.c}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>
+                        </div>
+                    </Popup>
+                                Category
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Category</p>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <p>Environmental Consequence</p>
+                            Environmental Consequence
                             </Grid>
 
                             <Grid item xs={4}>
@@ -754,7 +791,31 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                                <p>Category</p>
+                            <Popup trigger={
+                        <IconButton color="secondary" aria-label="add an alarm">
+                        <Info />
+                        </IconButton>
+                    }>
+                        <div >    
+
+                            <TableContainer component={Paper}>
+                                 <Table className={classes.table} aria-label="customized table">
+                                    <TableBody>
+                                        {rows_eco.map((row) => (
+                                            <StyledTableRow key={row.a}>
+                                            <StyledTableCell component="th" scope="row" align="center">
+                                                {row.a}
+                                            </StyledTableCell>
+                                            <StyledTableCell  align="center">{row.b}</StyledTableCell>
+                                            <StyledTableCell  align="center">{row.c}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>
+                        </div>
+                    </Popup>
+                                Category
                             </Grid>
 
                             <Grid item xs={4}>
@@ -903,6 +964,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 <Typography variant="h5">
                                     {risk_ranking}
                                 </Typography>
+
+                                {/* </Typography> */}
                                 {/* <TextField
                                     disabled
                                     label="Risk Ranking"
@@ -914,26 +977,78 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             <Grid item xs={6}>
                             </Grid>
                         </Grid>
-                        {/* <Grid container spacing = {1}>
+                         <Grid container spacing = {1}>
                             <Grid item xs={12}>
                                 <div>
-                                    <Pie
-                                        data={state}
-                                        options={{
-                                            title:{
-                                            display:true,
-                                            text:'Average Rainfall per month',
-                                            fontSize:20
-                                            },
-                                            legend:{
-                                            display:true,
-                                            position:'right'
-                                            }
-                                        }}
-                                    />
+                                <TableContainer component={Paper}>
+                                 <Table>
+                                    <TableBody style={{borderColor: "black"}}>
+                                        {/* {rowscol.map((row) => ( */}
+                                            <StyledTableRow>
+                                            <StyledTableCell rowSpan={7} style={{backgroundColor: "white"}} component="th" scope="row" align="center">LIKELIHOOD OF FAILURE</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell>
+                                            <StyledTableCell  style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">B</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">C</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">D</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">E</StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell  style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell colSpan={6} style={{backgroundColor: "white"}} align="center">CONSEQUENCE OF FAILURE</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+
+                                        {/* ))} */}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>                              
+
                             </div>
                             </Grid>
-                        </Grid> */}
+                        </Grid> 
                     </AccordionDetails>
                 </Accordion>
 

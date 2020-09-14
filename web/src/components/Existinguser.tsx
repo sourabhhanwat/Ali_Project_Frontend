@@ -1,29 +1,26 @@
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import { RouteComponentProps, useMatch } from '@reach/router';
+import { RouteComponentProps } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import SiteCard, { SkeletonSiteCard } from './SiteCard';
-import { useSiteList } from './SiteListProvider';
 import { Link as NavLink } from "@reach/router";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Typography, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Link, styled, Avatar, makeStyles, Theme, createStyles, Checkbox, IconButton, Collapse } from '@material-ui/core';
+import { Typography, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, styled, Avatar, makeStyles, Theme, createStyles, Checkbox, IconButton, Collapse } from '@material-ui/core';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="#">
-                rbui
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// function Copyright() {
+//     return (
+//         <Typography variant="body2" color="textSecondary" align="center">
+//             {'Copyright © '}
+//             <Link color="inherit" href="#">
+//                 rbui
+//             </Link>{' '}
+//             {new Date().getFullYear()}
+//             {'.'}
+//         </Typography>
+//     );
+// }
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,

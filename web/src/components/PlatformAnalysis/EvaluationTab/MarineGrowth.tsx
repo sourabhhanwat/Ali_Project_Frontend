@@ -125,7 +125,7 @@ export default function MarineGrowth() {
 <br></br>
 <br></br>
              <Grid item xs={12}>             
-                        <TableContainer component={Paper} elevation={3}>
+                        {/* <TableContainer component={Paper} elevation={3}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -197,7 +197,7 @@ export default function MarineGrowth() {
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </TableContainer>
+                        </TableContainer> */}
                     </Grid> 
             </Box>
         </ExpansionRow>

@@ -1,7 +1,4 @@
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
@@ -10,8 +7,7 @@ import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
 import ProjectCard, { SkeletonProjectCard } from './ProjectCard';
-import { useProjectList } from './ProjectListProvider';
-import {Pie,Doughnut} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 // -----------------------
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -209,15 +205,6 @@ export default function ProjectList(_: RouteComponentProps) {
         <>
              <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
-                    {/* <Button
-                        onClick={() => navigate('/dashboard/existinguser')}>
-                        variant="contained"
-                        size="large"
-                        color="primary"
-                        disabled={isPending}
-                    >
-                        + New Project
-                    </Button> */}
                      <ListItem
                     button
                     onClick={() => navigate('/dashboard/newProject')}>

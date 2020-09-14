@@ -7,41 +7,38 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
-import {Pie,Doughnut} from 'react-chartjs-2';
 import DatePicker from '../../FormWidget/DatePicker';
-import { useFormContext } from 'react-hook-form';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 12,
+    },
+  }))(TableCell);
+  
+  const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  }))(TableRow);
+
+  
 export default function NextInspectionDate() {
 
-    var GraphDesign = {   
-        width:'500px',
-        height: '500px',
-    };
-
-    const state = {
-        labels: ['January', 'February', 'March',
-                 'April', 'May'],
-        datasets: [
-          {
-            label: 'Rainfall',
-            backgroundColor: [
-              '#B21F00',
-              '#C9DE00',
-              '#2FDE00',
-              '#00A6B4',
-              '#6800B4'
-            ],
-            hoverBackgroundColor: [
-            '#501800',
-            '#4B5000',
-            '#175000',
-            '#003350',
-            '#35014F'
-            ],
-            data: [65, 59, 80, 81, 56]
-          }
-        ]
-      }
 
     const platformTypeListSubject = usePlatformTypeListContext();
     const content = React.useMemo(
@@ -94,26 +91,77 @@ export default function NextInspectionDate() {
                             <Grid item xs={6}>
                             </Grid>
                         </Grid>
-                        {/* <Grid container spacing = {1}>
+                        <Grid container spacing = {1}>
                             <Grid item xs={12}>
                                 <div>
-                                     <Pie
-                                        data={state}
-                                        options={{
-                                            title:{
-                                            display:true,
-                                            text:'Average Rainfall per month',
-                                            fontSize:20
-                                            },
-                                            legend:{
-                                            display:true,
-                                            position:'right'
-                                            }
-                                        }}
-                                    /> 
+                                <TableContainer component={Paper}>
+                                 <Table>
+                                    <TableBody style={{borderColor: "black"}}>
+                                        {/* {rowscol.map((row) => ( */}
+                                            <StyledTableRow>
+                                            <StyledTableCell rowSpan={7} style={{backgroundColor: "white"}} component="th" scope="row" align="center">LIKELIHOOD OF FAILURE</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell>
+                                            <StyledTableCell  style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "green"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">B</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">C</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">D</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">E</StyledTableCell></StyledTableRow>
+                                            <StyledTableRow>
+                                            <StyledTableCell  style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell colSpan={6} style={{backgroundColor: "white"}} align="center">CONSEQUENCE OF FAILURE</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+
+                                        {/* ))} */}
+                                        </TableBody>
+                                 </Table>
+                            </TableContainer>    
                             </div>
                             </Grid>
-                        </Grid> */}
+                        </Grid> 
                     </AccordionDetails>
                 </Accordion> 
 {/* ============================================== */}
