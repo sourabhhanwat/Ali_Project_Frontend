@@ -16,6 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { useFormContext } from 'react-hook-form';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -35,12 +36,20 @@ const StyledTableCell = withStyles((theme) => ({
       },
     },
   }))(TableRow);
-
   
 export default function NextInspectionDate() {
 
 
     const platformTypeListSubject = usePlatformTypeListContext();
+
+    const { watch } = useFormContext();
+    const risk_ranking = watch(
+      'risk_ranking'
+      );
+    let red = (risk_ranking === 'H') ?  'red' : (risk_ranking === 'M') ?  'green' : (risk_ranking === 'L') ?  'Orange' : 'yellow';
+  
+
+    
     const content = React.useMemo(
         () => (
             <Grid container spacing={2}>

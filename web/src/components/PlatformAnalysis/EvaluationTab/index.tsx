@@ -252,7 +252,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
-
+    let red = (risk_ranking === 'H') ?  'red' : (risk_ranking === 'M') ?  'green' : (risk_ranking === 'L') ?  'Orange' : 'yellow';
     return (
         <Box hidden={hidden}>
             <Typography variant="h4" gutterBottom>
@@ -961,7 +961,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography variant="h5">
+                                <Typography style={{color: red}} variant="h5">
                                     {risk_ranking}
                                 </Typography>
 
