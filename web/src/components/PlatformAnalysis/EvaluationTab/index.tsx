@@ -44,6 +44,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import { red } from '@material-ui/core/colors';
+import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -127,6 +128,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
 
     const platformMannedStatusListSubject = usePlatformMannedStatusListContext();
+    const categoryTypeListSubject = usePlatformTypeListContext();
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
@@ -652,12 +654,19 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                            <Select
-                                    toOption={(option) => option}
-                                    name="environmental_consequence_category"
-                                    subject={platformMannedStatusListSubject}
-                                    label="Category"
-                                />
+                             <Select<PlatformType>
+                        label="Platform Type"
+                        name="environmental_consequence.platform_type_id"
+                        subject={categoryTypeListSubject}
+                        toOption={(value) => value}
+                    /> 
+                          {/* <select name="gender">
+                            <option value="female">A</option>
+                            <option value="male">B</option>
+                            <option value="other">C</option>
+                            <option value="male">D</option>
+                            <option value="other">C</option>
+                        </select> */}
                             </Grid>
 
                         </Grid>
@@ -851,7 +860,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             <Select
                                     toOption={(option) => option}
                                     name="economic_consequence_category"
-                                    subject={platformMannedStatusListSubject}
+                                    subject={categoryTypeListSubject}
                                     label="Category"
                                 />
                             </Grid>

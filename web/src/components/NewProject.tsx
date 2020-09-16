@@ -6,23 +6,18 @@ import React from 'react';
 import '../modules/Subject';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Typography, TextField,  Link, styled, Avatar, makeStyles, Theme, createStyles, Checkbox, IconButton, Collapse } from '@material-ui/core';
-import { useFormContext } from 'react-hook-form';
+import { useForm, useFormContext } from 'react-hook-form';
 import { usePlatformMannedStatusListContext } from './UsersDropdown';
 import Select from './FormWidget/User';
+import { green, lightBlue, lightGreen } from '@material-ui/core/colors';
+import { FormatBold } from '@material-ui/icons';
+import axios from "axios";
 
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="#">
-                rbui
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// enum GenderEnum {
+//     female = "female",
+//     male = "male",
+//     other = "other"
+//   }
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -46,53 +41,47 @@ const useStyles = makeStyles((theme: Theme) =>
 const tableStyles = {
   padding: 'unset',
 };
+  
+  interface IFormInput {
+    name: String;
+    des: String;
+    startdate: Date;
+    res: String;
+    enddate: Date;
+  }
 
+export default function NewProject(this: any, _: RouteComponentProps) {
 
-export default function NewProject(_: RouteComponentProps) {
+    const { register, handleSubmit } = useForm<IFormInput>();
 
+    const onSubmit = (data: IFormInput) => {
+      console.log(data.name)
+      console.log(data.des)
+      console.log(data.startdate)
+      console.log(data.res)
+      console.log(data.enddate)
+      axios.post('/api/v1/saveproject/', {
+        Name: data.name,
+        Description: data.des,
+        StartDate: data.startdate,
+        Responsible: data.res,
+        EndDate: data.enddate
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    };
 
-//     const { watch } = useFormContext();
-
-// const platformMannedStatusListSubject = usePlatformMannedStatusListContext();
-
-// const platform_manned_status_id = watch('platform_manned_status_id');
-
-// console.log("platform_manned_status_id");
-// console.log(platform_manned_status_id);
-
-// const [
-//     platformMannedStatusList,
-//     setPlatformMannedStatusList,
-// ] = React.useState<platform_user_status[]>([]);
-
-// const handlePlatformMannedStatus = React.useCallback(
-//     (state: State<platform_user_status[] | null>) => {
-//         setPlatformMannedStatusList(state.value ?? []);
-//     },
-//     []
-// );
-
-// React.useEffect(() => {
-//     platformMannedStatusListSubject.attach(handlePlatformMannedStatus);
-//     return () =>
-//         platformMannedStatusListSubject.detach(handlePlatformMannedStatus);
-// }, [platformMannedStatusListSubject, handlePlatformMannedStatus]);
-
-// const platformMannedStatus = React.useMemo(
-//     () =>
-//         platformMannedStatusList.find(
-//             (value) => value.id === platform_manned_status_id
-//         ),
-//     [platform_manned_status_id, platformMannedStatusList]
-// );
-
-// console.log('platformMannedStatusList');
-// console.log(platformMannedStatusList);
+    //   const New =
 
     
+    
+    
   return (
-        <>
-        <form noValidate>
+    <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               display="flex"
               flexDirection="column"
@@ -112,202 +101,29 @@ export default function NewProject(_: RouteComponentProps) {
                 </Box>
 
             </Box>  
-
-        <Box mb={2}>
-
-        <Grid container spacing={1}>
+                <Grid container spacing={1}>
              <Grid item xs={12}>
-            <TextField
-                // inputRef={register({
-                //     required: {
-                //         value: true,
-                //         message: 'firstname required',
-                //     },
-                //     minLength: {
-                //         value: 3,
-                //         message: 'firstname too short',
-                //     },
-                // })}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                label="Name"
-                name="Name"
-                autoComplete="firstname"
-                // error={!!errors['firstname']}
-                // helperText={errors['firstname']?.message}
-                autoFocus
-            />
+                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Project Name</label>
+                <input style={{ width : "1000px" , height: "40px", margin:"20px"}} name="name" ref={register({ required: true, maxLength: 100 })}  />
             </Grid>
             <Grid item xs={12}>
-            <TextField
-                // inputRef={register({
-                //     required: {
-                //         value: true,
-                //         message: 'lastname required',
-                //     },
-                //     minLength: {
-                //         value: 3,
-                //         message: 'lastname too short',
-                //     },
-                // })}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                label="Description"
-                name="Description"
-                autoComplete="firstname"
-                // error={!!errors['lastname']}
-                // helperText={errors['lastname']?.message}
-                autoFocus
-            />
+                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Project Description</label>
+                <input style={{ width : "1000px" , height: "40px", margin:"20px"}} name="des" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
-
             <Grid item xs={12}>
-            <TextField
-                // inputRef={register({
-                //     required: {
-                //         value: true,
-                //         message: 'lastname required',
-                //     },
-                //     minLength: {
-                //         value: 3,
-                //         message: 'lastname too short',
-                //     },
-                // })}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                label="Start Date"
-                name="StartDate"
-                autoComplete="firstname"
-                // error={!!errors['lastname']}
-                // helperText={errors['lastname']?.message}
-                autoFocus
-            />
+                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Project Start Date</label>
+                <input type='date' style={{ width : "1000px" , height: "40px", margin:"20px"}} name="startdate" ref={register({ required: true })}  />
             </Grid>
-
             <Grid item xs={12}>
-            <TextField
-                // inputRef={register({
-                //     required: {
-                //         value: true,
-                //         message: 'lastname required',
-                //     },
-                //     minLength: {
-                //         value: 3,
-                //         message: 'lastname too short',
-                //     },
-                // })}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                label="Responsible"
-                name="Responsible"
-                autoComplete="firstname"
-                // error={!!errors['lastname']}
-                // helperText={errors['lastname']?.message}
-                autoFocus
-            />
+                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Responsible</label>
+                <input style={{ width : "1000px" , height: "40px", margin:"20px"}} name="res" ref={register({ required: true})} />
             </Grid>
-            <Grid item xs={12}> 
-            <TextField
-                // inputRef={register({
-                //     required: {
-                //         value: true,
-                //         message: 'lastname required',
-                //     },
-                //     minLength: {
-                //         value: 3,
-                //         message: 'lastname too short',
-                //     },
-                // })}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                label="Expected Completion Date"
-                name="ExpectedCompletionDate"
-                autoComplete="firstname"
-                // error={!!errors['lastname']}
-                // helperText={errors['lastname']?.message}
-                autoFocus
-            />
+            <Grid item xs={12}>
+                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Expected Completion Date</label>
+                <input type='date' style={{ width : "1000px" , height: "40px", margin:"20px"}} name="enddate" ref={register({ required: true})} />
             </Grid>
-
-            <Box display="flex" justifyContent="flex-center" my={1}>
-                <Box fontWeight={800} clone>
-                    <Button
-                        // onClick={() => fetch()}
-                        variant="contained"
-                        size="large"
-                        color="primary"
-                        // disabled={isPending}
-                    >
-                        Submit
-                    </Button>
-                </Box>
-            </Box>
-            
             </Grid>
-        </Box>
-  </form>
-        </>
+      <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" />
+    </form>
     );
 }
-
-// import { Button, TextField } from "@material-ui/core";
-// import { Form, Formik, Field } from "formik";
-// import * as React from "react";
-// import { MyField } from "./MyField";
-
-// interface Values {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-// }
-
-// interface Props {
-//   onSubmit: (values: Values) => void;
-// }
-
-// // export default function NewProject(_: RouteComponentProps) {
-
-// export const MyForm: React.FC<Props> = ({ onSubmit }) => {
-//   return (
-//     <Formik
-//       initialValues={{ firstName: "", lastName: "", email: "" }}
-//       onSubmit={values => {
-//         onSubmit(values);
-//       }}
-//     >
-//       {({ values }) => (
-//         <Form>
-//           <div>
-//             <Field
-//               name="firstName"
-//               placeholder="first name"
-//               component={MyField}
-//             />
-//           </div>
-//           <div>
-//             <Field
-//               name="lastName"
-//               placeholder="last name"
-//               component={MyField}
-//             />
-//           </div>
-//           <div>
-//             <Field name="email" placeholder="email" component={MyField} />
-//           </div>
-//           <Button type="submit">submit</Button>
-//           <pre>{JSON.stringify(values, null, 2)}</pre>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };

@@ -66,16 +66,6 @@ const useStyles = makeStyles({
 export default function MarineGrowth() {
     const { watch } = useFormContext();
     const classes = useStyles();
-
-    var h3Design = {
-        backgroundColor: 'light blue',
-
-    };
-
-    const state = {
-		shown: true,
-	};
-    
     
     return (
         <ExpansionRow
@@ -85,47 +75,73 @@ export default function MarineGrowth() {
             headNoBorderBottom
         >
             <Box m={3}>
-                    <Grid container spacing={2}>
+                     <Grid item container xs={12} md={10} spacing={2}>
                         <Grid item xs={12}>
                                 <Typography variant="body1">
                                         <h3>Data</h3>
                                 </Typography>
                                 <Typography variant="subtitle2">
                                     Marine Growth Inspection Performed and Elevations of Inspection Marine Growth are Known?
-                                
+{/*                                 
                                 <IconButton color="secondary" aria-label="add an alarm">
                                     <Add />
-                                </IconButton>
+                                </IconButton> */}
                                 </Typography>
                         </Grid>
+                        <Grid item xs={6} md={3}>
+                            <h3>Marine Growth Depths :</h3>
+                        </Grid>
+
+                        <Grid item xs={6} md={3}>
+                            <TextField
+                                name={['marine_growth_depths_from_el']}
+                                label="insert From EL"
+                                unit="m"
+                            />
+                        </Grid>
+
+                        <Grid item xs={6} md={3}>
+                            <TextField
+                                name={['marine_growth_depths_to_el']}
+                                label="insert TO EL"
+                                unit="m"
+                            />
+                        </Grid>
+                        <Grid item xs={6} md={3}></Grid>
+
+                        <Grid item xs={6} md={3}>
+                            <h3> Marine Growth Inspected Thickness </h3>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                name={['marine_growth_inspected_thickness']}
+                                label="insert Marine Growth Inspected Thickness"
+                                unit="mm"
+                            />
+                        </Grid>
+
+                        <Grid item xs={6} md={3}></Grid>
+
+                        <Grid item xs={6} md={3}>
+                            <h3> Marine Growth Allowable Design Thickness </h3>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                name={['marine_growth_design_thickness']}
+                                label="insert Marine Growth Allowable Design Thick"
+                                unit="mm"
+                            />
+                        </Grid>
+
                     </Grid>
-                    {/* <TableContainer component={Paper} elevation={3}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell colSpan={2} align="center">Data</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                    <TableCell align="center">                                           
-                                             <TextField
-                                                name={[
-                                                    'Marine_Growth_Depths',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            />
-                                            </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                    </TableContainer> */}
+
 <br></br>
 <br></br>
-             <Grid item xs={12}>             
-                        {/* <TableContainer component={Paper} elevation={3}>
+             <Grid item xs={12}> 
+             <h3>Table:</h3>            
+                        <TableContainer component={Paper} elevation={3}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -146,58 +162,25 @@ export default function MarineGrowth() {
                                 </TableHead>
                                 <TableBody>
                                     <TableRow>
-                                    <TableCell align="center">                                           
-                                             <TextField
-                                                name={[
-                                                    'Marine_Growth_Depths',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            /></TableCell>
                                         <TableCell align="center">                                           
-                                             <TextField
-                                                name={[
-                                                    'Marine_Growth_Depths',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            /></TableCell>
-                                        <TableCell align="center">
-                                            <TextField
-                                                name={[
-                                                    'Marine_Growth_Depths',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            />
+                                            {watch('marine_growths_score')}
+                                        </TableCell>
+                                        <TableCell align="center">                                           
+                                            {watch('marine_growths_score')}
                                         </TableCell>
                                         <TableCell align="center">
-                                            <TextField
-                                                name={[
-                                                    'Thickness',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            />
+                                            {watch('marine_growths_score')}
                                         </TableCell>
                                         <TableCell align="center">
-                                            <TextField
-                                                name={[
-                                                    'Thickness',
-                                                ]}
-                                                label=""
-                                                size="small"
-                                                nullable
-                                            />
+                                            {watch('marine_growths_score')}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {watch('marine_growth_each_elevation')}
                                         </TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </TableContainer> */}
+                        </TableContainer>
                     </Grid> 
             </Box>
         </ExpansionRow>
