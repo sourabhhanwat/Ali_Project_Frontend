@@ -6,9 +6,10 @@ import Subject from '../modules/Subject';
 export const PlatformMannedStatusSchema1 = yup
     .object({
         id: yup.number(),
-        name: yup.string(),
-        ranking: yup.string(),
-        description: yup.string(),
+        username: yup.string(),
+        // name: yup.string(),
+        // ranking: yup.string(),
+        // description: yup.string(),
     })
     .noUnknown();
 
@@ -31,7 +32,7 @@ class PlatformMannedStatusListSubject1 extends Subject<
         if (cached) {
             if (!this.cached) {
                 const { data } = await axios.get<platform_manned_status1[]>(
-                    '/api/v1/platform-manned-statuses/',
+                    '/api/v1/users/',
                     {
                         transformResponse(data) {
                             return PlatformMannedStatusListSchema1.validateSync(
@@ -44,7 +45,7 @@ class PlatformMannedStatusListSubject1 extends Subject<
             }
         } else {
             const { data } = await axios.get<platform_manned_status1[]>(
-                '/api/v1/platform-manned-statuses/',
+                '/api/v1/users/',
                 {
                     transformResponse(data) {
                         return PlatformMannedStatusListSchema1.validateSync(

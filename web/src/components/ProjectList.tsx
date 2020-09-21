@@ -201,7 +201,7 @@ export default function ProjectList(_: RouteComponentProps) {
     const classes = useStyles();
     console.log("ALl Data ========================"+platformList)
     let next_10 = [];
-    return (
+    return ( 
         <>
              <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>

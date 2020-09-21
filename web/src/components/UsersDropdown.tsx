@@ -3,7 +3,7 @@
 // import * as yup from 'yup';
 // import Subject from '../modules/Subject';
 
-// export const PlatformUserSchema = yup
+// export const PlatformMannedStatusSchema = yup
 //     .object({
 //         id: yup.number(),
 //         password: yup.string(),
@@ -19,29 +19,29 @@
 //     })
 //     .noUnknown();
 
-// export const PlatformUserListSchema = yup.array(
-//     PlatformUserSchema
+// export const PlatformMannedStatusListSchema = yup.array(
+//     PlatformMannedStatusSchema
 // );
 
 // declare global {
-//     export type PlatformUser = yup.InferType<
-//         typeof PlatformUserSchema
+//     export type platform_user_status = yup.InferType<
+//         typeof PlatformMannedStatusSchema
 //     >;
 // }
 
-// class PlatformUserListSubject extends Subject<
-//     PlatformUser[] | null
+// class PlatformMannedStatusListSubject extends Subject<
+//     platform_user_status[] | null
 // > {
-//     cached: null | PlatformUser[] = null;
+//     cached: null | platform_user_status[] = null;
 
 //     list = this.createAsync(async ({ cached }: { cached: boolean }) => {
 //         if (cached) {
 //             if (!this.cached) {
-//                 const { data } = await axios.get<PlatformUser[]>(
+//                 const { data } = await axios.get<platform_user_status[]>(
 //                     '/api/v1/users/',
 //                     {
 //                         transformResponse(data) {
-//                             return PlatformUserListSchema.validateSync(
+//                             return PlatformMannedStatusListSchema.validateSync(
 //                                 data
 //                             );
 //                         },
@@ -50,11 +50,11 @@
 //                 this.cached = data;
 //             }
 //         } else {
-//             const { data } = await axios.get<PlatformUser[]>(
+//             const { data } = await axios.get<platform_user_status[]>(
 //                 '/api/v1/users/',
 //                 {
 //                     transformResponse(data) {
-//                         return PlatformUserListSchema.validateSync(
+//                         return PlatformMannedStatusListSchema.validateSync(
 //                             data
 //                         );
 //                     },
@@ -67,83 +67,73 @@
 //     });
 // }
 
-// export function usePlatformUserStatusList(): {
-//     subject: PlatformUserListSubject;
+// export function usePlatformMannedStatusList(): {
+//     subject: PlatformMannedStatusListSubject;
 // } {
-//     const ref = React.useRef<PlatformUserListSubject>();
+//     const ref = React.useRef<PlatformMannedStatusListSubject>();
 
 //     if (!ref.current) {
-//         ref.current = new PlatformUserListSubject(null);
+//         ref.current = new PlatformMannedStatusListSubject(null);
 //     }
 
 //     return { subject: ref.current };
 // }
 
-// const PlatformUserStatusListContext = React.createContext<
-//     PlatformUserListSubject
+// const PlatformMannedStatusListContext = React.createContext<
+//     PlatformMannedStatusListSubject
 // >(null as any);
 
-// export function usePlatformUserStatusListContext(): PlatformUserListSubject {
-//     return React.useContext(PlatformUserStatusListContext);
+// export function usePlatformMannedStatusListContext(): PlatformMannedStatusListSubject {
+//     return React.useContext(PlatformMannedStatusListContext);
 // }
 
-// export default function PlatformUserStatusListProvider({
+// export default function PlatformMannedStatusListProvider({
 //     children,
 //     subject,
-// }: PropsWithChildren<{ subject: PlatformUserListSubject }>) {
+// }: PropsWithChildren<{ subject: PlatformMannedStatusListSubject }>) {
 //     return (
-//         <PlatformUserStatusListContext.Provider value={subject}>
+//         <PlatformMannedStatusListContext.Provider value={subject}>
 //             {children}
-//         </PlatformUserStatusListContext.Provider>
+//         </PlatformMannedStatusListContext.Provider>
 //     );
 // }
+
 
 import axios from 'axios';
 import React, { PropsWithChildren } from 'react';
 import * as yup from 'yup';
 import Subject from '../modules/Subject';
 
-export const PlatformMannedStatusSchema = yup
+export const PlatformMannedStatusSchema2 = yup
     .object({
         id: yup.number(),
-        password: yup.string(),
-        last_login: yup.string(),
-        is_superuser:yup.boolean(),
         username: yup.string(),
-        first_name: yup.string(),
-        last_name: yup.string(),
-        email: yup.string(),
-        date_joined: yup.string(),
-        is_staff:yup.boolean(),
-        is_active:yup.boolean(),
-        groups:yup.string(),
-        user_permissions:yup.string(),
     })
     .noUnknown();
 
-export const PlatformMannedStatusListSchema = yup.array(
-    PlatformMannedStatusSchema
+export const PlatformMannedStatusListSchema2 = yup.array(
+    PlatformMannedStatusSchema2
 );
 
 declare global {
-    export type platform_user_status = yup.InferType<
-        typeof PlatformMannedStatusSchema
+    export type platform_manned_status2 = yup.InferType<
+        typeof PlatformMannedStatusSchema2
     >;
 }
 
-class PlatformMannedStatusListSubject extends Subject<
-    platform_user_status[] | null
+class PlatformMannedStatusListSubject2 extends Subject<
+    platform_manned_status2[] | null
 > {
-    cached: null | platform_user_status[] = null;
+    cached: null | platform_manned_status2[] = null;
 
     list = this.createAsync(async ({ cached }: { cached: boolean }) => {
         if (cached) {
             if (!this.cached) {
-                const { data } = await axios.get<platform_user_status[]>(
+                const { data } = await axios.get<platform_manned_status2[]>(
                     '/api/v1/users/',
                     {
                         transformResponse(data) {
-                            return PlatformMannedStatusListSchema.validateSync(
+                            return PlatformMannedStatusListSchema2.validateSync(
                                 data
                             );
                         },
@@ -152,11 +142,11 @@ class PlatformMannedStatusListSubject extends Subject<
                 this.cached = data;
             }
         } else {
-            const { data } = await axios.get<platform_user_status[]>(
+            const { data } = await axios.get<platform_manned_status2[]>(
                 '/api/v1/users/',
                 {
                     transformResponse(data) {
-                        return PlatformMannedStatusListSchema.validateSync(
+                        return PlatformMannedStatusListSchema2.validateSync(
                             data
                         );
                     },
@@ -169,33 +159,33 @@ class PlatformMannedStatusListSubject extends Subject<
     });
 }
 
-export function usePlatformMannedStatusList(): {
-    subject: PlatformMannedStatusListSubject;
+export function usePlatformMannedStatusList2(): {
+    subject: PlatformMannedStatusListSubject2;
 } {
-    const ref = React.useRef<PlatformMannedStatusListSubject>();
+    const ref = React.useRef<PlatformMannedStatusListSubject2>();
 
     if (!ref.current) {
-        ref.current = new PlatformMannedStatusListSubject(null);
+        ref.current = new PlatformMannedStatusListSubject2(null);
     }
 
     return { subject: ref.current };
 }
 
-const PlatformMannedStatusListContext = React.createContext<
-    PlatformMannedStatusListSubject
+const PlatformMannedStatusListContext2 = React.createContext<
+    PlatformMannedStatusListSubject2
 >(null as any);
 
-export function usePlatformMannedStatusListContext(): PlatformMannedStatusListSubject {
-    return React.useContext(PlatformMannedStatusListContext);
+export function usePlatformMannedStatusListContext2(): PlatformMannedStatusListSubject2 {
+    return React.useContext(PlatformMannedStatusListContext2);
 }
 
-export default function PlatformMannedStatusListProvider({
+export default function PlatformMannedStatusListProvider2({
     children,
     subject,
-}: PropsWithChildren<{ subject: PlatformMannedStatusListSubject }>) {
+}: PropsWithChildren<{ subject: PlatformMannedStatusListSubject2 }>) {
     return (
-        <PlatformMannedStatusListContext.Provider value={subject}>
+        <PlatformMannedStatusListContext2.Provider value={subject}>
             {children}
-        </PlatformMannedStatusListContext.Provider>
+        </PlatformMannedStatusListContext2.Provider>
     );
 }

@@ -46,6 +46,15 @@ import 'dropdown-select/dist/css/dropdown-select.css';
 import { red } from '@material-ui/core/colors';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 
+
+enum CatEnum {
+    A = "A",
+    B = "B",
+    C = "C",
+    D = "D",
+    E = "E"
+  }
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -128,7 +137,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
 
     const platformMannedStatusListSubject = usePlatformMannedStatusListContext();
-    const categoryTypeListSubject = usePlatformTypeListContext();
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
@@ -654,19 +662,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                             <Select<PlatformType>
-                        label="Platform Type"
-                        name="environmental_consequence.platform_type_id"
-                        subject={categoryTypeListSubject}
-                        toOption={(value) => value}
-                    /> 
-                          {/* <select name="gender">
-                            <option value="female">A</option>
-                            <option value="male">B</option>
-                            <option value="other">C</option>
-                            <option value="male">D</option>
-                            <option value="other">C</option>
-                        </select> */}
+                                <select style={{ width : "300px" , height: "50px"}} name="env_category">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                </select> 
                             </Grid>
 
                         </Grid>
@@ -857,12 +859,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                            <Select
-                                    toOption={(option) => option}
-                                    name="economic_consequence_category"
-                                    subject={categoryTypeListSubject}
-                                    label="Category"
-                                />
+                            <select style={{ width : "300px" , height: "50px"}} name="eco_category">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                </select> 
                             </Grid>
 
 
