@@ -31,71 +31,6 @@ const tableStyles = {
   padding: 'unset',
 };
   
-  var global_num: any ; 
-
-  var lst1 : any;
-
-  function Drop() {
-
-    const [lst, setLst] = React.useState([])
-
-    React.useEffect(() =>  {
-
-      axios.get('/api/v1/users/')
-      .then(function (response) {
-        // global_num = response.data;
-        setLst(response.data.map((item: any) => item.username))
-        // console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }, [lst])
-    
-
-    // let lst = [];
-
-    
-
-    // for (let i in global_num) {
-    //   lst.push(global_num[i]['username']); 
-    //   // console.log(global_num[i]['username']); // "0", "1", "2",
-    // }
-
-    // for (let i in lst) {
-    //   console.log('ist');
-    //   console.log(i);
-    // }
-
-    console.log("global nav")
-    console.log(lst);
-
-    
-    return (
-      
-      <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="res"> 
-      {lst.map((list) => (
-      <option value= {list}> {list} </option>
-      ))}
-      </select> 
-    );
-  }
-
-
-
-  
-  // enum GenderEnum {
-  //   male = "male",
-  //   female = "female"
-  // }
-
-  // interface KeyValuePair {
-  //   key: string;
-  //   value: string;
-  // }
-  
-  // let foo: KeyValuePair = { key: "k", value: "val" };
-
 
   interface IFormInput {
     name: String;
@@ -108,6 +43,8 @@ const tableStyles = {
   export default function NewProject(this: any, _: RouteComponentProps) {
 
     const { register, handleSubmit } = useForm<IFormInput>();
+    const [lst, setLst] = React.useState([])
+
    
     const onSubmit = (data: IFormInput) => {
       console.log(data.name);
@@ -125,21 +62,21 @@ const tableStyles = {
       })
       .then(function (response) {
         console.log(response);
-      })
+    })
       .catch(function (error) {
         console.log(error);
       });
     };
 
-    // const onDrop = () => {
-    //   axios.get('/api/v1/users/')
-    //   .then(function (response) {
-    //     global_num = response.data;
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // };
+    const onDrop = () => {
+      axios.get('/api/v1/users/')
+      .then(function (response) {
+        setLst(response.data.map((item: any) => item.username))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -182,21 +119,16 @@ const tableStyles = {
               
                 <Box>
                     <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Responsible</label>
-                    <Drop />
-                    {/* <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} 
-                     value="load" type="button" onClick={() => Drop()} /> */}
+                    {/* <Drop /> */}
+                    <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="res" ref={register}> 
+                    {lst.map((list) => (
+                    <option value= {list} key={list}> {list} </option>
+                    ))}
+                    </select> 
+                    <button type="button" onClick={() => onDrop()}>Load</button>
+                    
                 </Box>
             </Grid>
-
-            {/* <Grid item xs={12}>
-              <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Responsible</label>
-                <DropDownList
-                  data= {this.sizes}
-                  value= {this.state.value}
-                  onChange = {this.handleChange}
-                  inputRef={register}
-                />
-            </Grid> */}
 
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Expected Completion Date</label>
