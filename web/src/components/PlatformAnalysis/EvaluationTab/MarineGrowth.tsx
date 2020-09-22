@@ -5,7 +5,6 @@ import { useFormContext } from 'react-hook-form';
 import ExpansionRow from '../ExpansionRow';
 import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
-// 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,11 +14,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Add from '@material-ui/icons/Add';
-
-
-import MaterialTable from 'material-table'
-import { IconButton } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -66,7 +60,21 @@ const useStyles = makeStyles({
 export default function MarineGrowth() {
     const { watch } = useFormContext();
     const classes = useStyles();
-    
+    // const [lst, setLst] = React.useState([])
+
+    let enumerableKeys = [];
+    enumerableKeys = watch('marine_growths');
+    // console.log(enumerableKeys);
+    // for (let key in enumerableKeys) {
+    //     console.log(enumerableKeys[key]);
+    //     enumerableKeys.push(enumerableKeys);
+    // }
+    // enumerableKeys.pop();
+
+    let elv = [];
+    elv = watch('marine_growth_each_elevation');
+    // console.log(elv);
+  
     return (
         <ExpansionRow
             title="Marine Growth"
@@ -78,7 +86,7 @@ export default function MarineGrowth() {
                      <Grid item container xs={12} md={10} spacing={2}>
                         <Grid item xs={12}>
                                 <Typography variant="body1">
-                                        <h3>Data</h3>
+                                        {/* <h3>Data</h3> */}
                                 </Typography>
                                 <Typography variant="subtitle2">
                                     Marine Growth Inspection Performed and Elevations of Inspection Marine Growth are Known?
@@ -139,49 +147,67 @@ export default function MarineGrowth() {
 
 <br></br>
 <br></br>
-             <Grid item xs={12}> 
-             <h3>Table:</h3>            
-                        <TableContainer component={Paper} elevation={3}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell colSpan={2} align="center"> Marine Growth Depths</TableCell>
-                                        <TableCell align="center">Marine Growth Inspected Thickness (mm)</TableCell>
-                                        <TableCell align="center">Marine Growth Allowable Design Thickness (mm)</TableCell>
-                                        <TableCell align="center">Evaluated Score at Each Elevation</TableCell>
+
+            <Grid item container spacing={1}>
+                    <Grid item xs={8}>
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="customized table">
+                            <TableHead >
+                                <TableRow>
+                                    <StyledTableCell style={{minWidth: 10}} align="center">No.</StyledTableCell>
+                                    <StyledTableCell colSpan={2} align="center" style={{minWidth: 50}} >Depths (m)</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 10}} align="center">Inspected Thickness (mm)</StyledTableCell>
+                                    <StyledTableCell  style={{minWidth: 10}} align="center">Allowable Design Thickness (mm)</StyledTableCell>
+                                    {/* <StyledTableCell  style={{minWidth: 120}} align="center">Evaluated Score at Each Elevation</StyledTableCell> */}
                                     </TableRow>
-                                </TableHead>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell align="center"> From EL (m)</TableCell>
-                                        <TableCell align="center"> To EL (m) </TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell align="center">                                           
-                                            {watch('marine_growths_score')}
-                                        </TableCell>
-                                        <TableCell align="center">                                           
-                                            {watch('marine_growths_score')}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {watch('marine_growths_score')}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {watch('marine_growths_score')}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {watch('marine_growth_each_elevation')}
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
+                                <TableRow>
+                                    <StyledTableCell style={{minWidth: 25}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 25}} align="center">From EL</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 25}} align="center">To EL</StyledTableCell>
+                                    <StyledTableCell  style={{minWidth: 10}} align="center"></StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 10}} align="center"></StyledTableCell>
+                                    {/* <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell> */}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {enumerableKeys && enumerableKeys.map((list:any) => (
+                                <StyledTableRow key={list.id}>
+                                <StyledTableCell style={{minWidth: 25}} align="center" component="th" scope="row"> {list.id}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 25}} align="center"> {list.marine_growth_depths_from_el}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 25}} align="center">{list.marine_growth_depths_to_el}</StyledTableCell>             
+                                <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_inspected_thickness}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_design_thickness}</StyledTableCell>
+                                {/* <StyledTableCell style={{minWidth: 120}} align="center">{}</StyledTableCell> */}
+                               </StyledTableRow>
+                             ))}
+                            </TableBody>
+                        </Table>
                         </TableContainer>
-                    </Grid> 
+                    </Grid>  
+
+                    <Grid item xs={4}>
+                    <TableContainer  style={{width: 'auto'}} component={Paper}>
+                        <Table>
+                            <TableHead >
+                                <TableRow>
+                                        <StyledTableCell align="center">Evaluated Score</StyledTableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <StyledTableCell align="center">At Each Elevation</StyledTableCell>
+                                    </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {elv && elv.map((list:any) => (
+                                <StyledTableRow key={list}>
+                                    <StyledTableCell align="center">{list}</StyledTableCell>
+                               </StyledTableRow>
+                             ))}
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
+                    </Grid>  
+            </Grid>
+
             </Box>
         </ExpansionRow>
     );

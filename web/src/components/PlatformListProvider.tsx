@@ -75,6 +75,7 @@ export const PlatformSchema = yup
         marine_growths: yup.array(
             yup
                 .object({
+                    id:yup.number(),
                     marine_growth_depths_from_el: yup.string(),
                     marine_growth_depths_to_el: yup.string(),
                     marine_growth_inspected_thickness: yup.string(),
@@ -82,6 +83,7 @@ export const PlatformSchema = yup
                 })
                 .noUnknown()
         ),
+        marine_growth_each_elevation: yup.array(yup.number()),
         marine_growths_score: yup.number(),
         scour: yup
             .object({

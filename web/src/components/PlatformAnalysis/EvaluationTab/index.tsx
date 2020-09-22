@@ -45,6 +45,7 @@ import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import { red } from '@material-ui/core/colors';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
+import MaterialTable from 'material-table';
 
 
 enum CatEnum {
@@ -142,8 +143,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     const lof_ranking = watch('lof_ranking');
 
-    console.log("platform_manned_status_id");
-    console.log(platform_manned_status_id);
+    // console.log("platform_manned_status_id");
+    // console.log(platform_manned_status_id);
 
 
     let state = {
@@ -197,14 +198,14 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         [platform_manned_status_id, platformMannedStatusList]
     );
 
-    console.log('platformMannedStatusList');
-    console.log(platformMannedStatusList);
+    // console.log('platformMannedStatusList');
+    // console.log(platformMannedStatusList);
 
     const daily_oil_production = watch(
         'environmental_consequence.daily_oil_production'
     );
     
-    console.log("I am daily => ", daily_oil_production);
+    // console.log("I am daily => ", daily_oil_production);
     
     const environmental_consequence_description = watch(
         'environmental_consequence_description'
@@ -256,10 +257,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
 
     
-    console.log("I am evaluation Tab" ,environmental_consequence_description);
+    // console.log("I am evaluation Tab" ,environmental_consequence_description);
 
 
-    console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
+    // console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 

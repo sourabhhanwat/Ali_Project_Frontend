@@ -199,7 +199,7 @@ export default function ProjectList(_: RouteComponentProps) {
     }, [fetch, platformList.subject]);
 
     const classes = useStyles();
-    console.log("ALl Data ========================"+platformList)
+    // console.log("ALl Data ========================"+platformList)
     let next_10 = [];
     return ( 
         <>

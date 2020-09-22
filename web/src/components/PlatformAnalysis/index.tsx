@@ -43,7 +43,7 @@ export default function PlatformAnalysis(this: any, {
 
     const { reset, handleSubmit, errors } = methods;
 
-    console.log(errors);
+    // console.log(errors);
 
     // console.log(this.state);
 
@@ -53,8 +53,8 @@ export default function PlatformAnalysis(this: any, {
                 return;
             }
             reset(state.value);
-            console.log(state);
-            console.log("This Name =>" ,state.value.name);
+            // console.log(state);
+            // console.log("This Name =>" ,state.value.name);
         },
         [reset]
     );

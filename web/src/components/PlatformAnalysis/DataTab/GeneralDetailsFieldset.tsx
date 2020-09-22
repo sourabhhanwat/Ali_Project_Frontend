@@ -15,7 +15,7 @@ import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 export default function GeneralDetailsFieldset() {
     const platformTypeListSubject = usePlatformTypeListContext();
 
-    console.log("data");
+    // console.log("data");
     // console.log(props);
 
     const content = React.useMemo(

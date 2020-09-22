@@ -47,11 +47,11 @@ const tableStyles = {
 
    
     const onSubmit = (data: IFormInput) => {
-      console.log(data.name);
-      console.log(data.des)
-      console.log(data.startdate)
-      console.log(data.res)
-      console.log(data.enddate)
+      // console.log(data.name);
+      // console.log(data.des)
+      // console.log(data.startdate)
+      // console.log(data.res)
+      // console.log(data.enddate)
       
       axios.post('/api/v1/saveproject/', {
         Name: data.name,
