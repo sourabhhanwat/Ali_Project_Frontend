@@ -60,10 +60,16 @@ interface IFormInput {
     marine_growth_inspected_thickness: String;
     marine_growth_depths_from_el: String;
     marine_growth_depths_to_el: String;
+    id:String;
   }
 
 export default function MarineGrowth() {
 
+    const { watch } = useFormContext();
+    const classes = useStyles();
+
+    let id: any;
+    id = watch('id');
 
     const { register, handleSubmit } = useForm<IFormInput>();
 
@@ -74,6 +80,7 @@ export default function MarineGrowth() {
         marine_growth_inspected_thickness: data.marine_growth_inspected_thickness,
         marine_growth_depths_from_el: data.marine_growth_depths_from_el,
         marine_growth_depths_to_el: data.marine_growth_depths_to_el,
+        platform_id: id,
       })
       .then(function (response) {
         console.log("response");
@@ -84,8 +91,6 @@ export default function MarineGrowth() {
       });
     };
 
-    const { watch } = useFormContext();
-    const classes = useStyles();
     let enumerableKeys = [];
     enumerableKeys = watch('marine_growths');
     let elv = [];
