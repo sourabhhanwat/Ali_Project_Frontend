@@ -8,6 +8,8 @@ export const ProjectSchema = yup
         id: yup.number(),
         name: yup.string(),
         description: yup.string(),
+        // start_date: yup.date(),
+        // end_date: yup.date(),
         created_at: yup.date(),
         updated_at: yup.date(),
     })

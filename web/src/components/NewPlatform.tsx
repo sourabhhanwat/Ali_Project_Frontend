@@ -7,6 +7,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Typography, TextField,  Link, styled, Avatar, makeStyles, Theme, createStyles, Checkbox, IconButton, Collapse } from '@material-ui/core';
 import { useForm, useFormContext } from 'react-hook-form';
 import axios from "axios";
+import PlatformIcon from './icons/Platform';
+import ProjectIcon from './icons/Project';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -101,7 +103,7 @@ const tableStyles = {
 
               <Box display="flex" justifyContent="center" mb={2}>
             <StyledAvatar>
-                <LockOutlinedIcon />
+              <PlatformIcon />
             </StyledAvatar>
              </Box>
             
@@ -114,51 +116,59 @@ const tableStyles = {
             </Box>  
                 <Grid container spacing={1}>
              <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Platform Name</label>
-                <input style={{ width : "1000px" , height: "40px", margin:"20px"}} name="name" ref={register({ required: true, maxLength: 100 })}  />
+                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Name</label> 
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" placeholder="Platform Name here" ref={register({ required: true, maxLength: 100 })}  />
             </Grid>
             
             <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Platform Description</label>
-                <input style={{ width : "1000px" , height: "40px", margin:"20px"}} name="des" ref={register({ required: true, maxLength: 2000 })}  />
+                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Description</label>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" placeholder="Platform Description here" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
 
             <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Platform Start Date</label>
-                <input type='date' style={{ width : "1000px" , height: "40px", margin:"20px"}} name="startdate" ref={register({ required: true })}  />
+                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Start Date</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" ref={register({ required: true })}  />
             </Grid>
             
             <Grid item xs={12}>
             <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Responsible</label>
-                    {/* <Drop /> */}
-                    <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="res" ref={register}> 
+                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Responsible</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
                     {lst.map((list) => (
                     <option value= {list} key={list}> {list} </option>
                     ))}
                     </select> 
-                    <button style={{ width : "200px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
+                    <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
                     
                 </Box>
             </Grid>
 
             <Grid item xs={12}>
             <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Projects</label>
-                    {/* <Drop /> */}
-                    <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="pro" ref={register}> 
+                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Projects   </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="pro" ref={register}> 
                     {lst2.map((list) => (
                     <option value= {list} key={list}> {list} </option>
                     ))}
                     </select> 
-                    <button style={{ width : "200px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop2()}>Load</button>
+                    <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop2()}>Load</button>
                     
                 </Box>
             </Grid>
 
             <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Expected Completion Date</label>
-                <input type='date' style={{ width : "1000px" , height: "40px", margin:"20px"}} name="enddate" ref={register({ required: true})} />
+                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="enddate" ref={register({ required: true})} />
             </Grid>
             </Grid>
       <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/>

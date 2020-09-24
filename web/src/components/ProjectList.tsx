@@ -407,13 +407,46 @@ export default function ProjectList(_: RouteComponentProps) {
                         <p style={p}></p>
                     </Grid>
 
+                    <Grid item container spacing={1}>
+                        <h3>Project List: </h3>
+                    </Grid>
+
                     <Grid item container spacing={3}>
-                        {projects?.map((project) => (
+                        {/* {projects?.map((project) => (
                             <Grid key={project.id} item xs={12}>
-                                <ProjectCard project={project} />
-                            </Grid>
-                        ))}
-                        {isPending && <SkeletonProjectCards />}
+                                <p>{project.name}</p>
+                                {/* <ProjectCard project={project} /> */}
+                            {/* </Grid> */}
+                        {/* ))} */}
+                        {/* {isPending && <SkeletonProjectCards />}  */}
+
+                        <TableContainer component={Paper}>
+                            <Table className={classes.table} aria-label="customized table">
+                                <TableHead >
+                                    <TableRow>
+                                        <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
+                                        <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
+                                        {/* <StyledTableCell style={{minWidth: 30}} align="center">Created Date</StyledTableCell> */}
+                                        {/* <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell> */}
+                            
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {projects?.map((project) => (
+
+                                    <StyledTableRow key={project.id}>
+                                    <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.name}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
+                                    {/* <StyledTableCell style={{minWidth: 30}} align="center">{project.created_at}</StyledTableCell>              */}
+                                    {/* <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date}</StyledTableCell> */}
+                                    </StyledTableRow>
+                                ))}
+                                </TableBody>
+                            </Table>
+                            </TableContainer>
+
                     </Grid>
 
                     <Grid item container spacing={1}>
