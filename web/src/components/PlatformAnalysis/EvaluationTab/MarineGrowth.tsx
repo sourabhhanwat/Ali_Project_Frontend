@@ -71,7 +71,7 @@ export default function MarineGrowth() {
     let id: any;
     id = watch('id');
 
-    const { register, handleSubmit } = useForm<IFormInput>();
+    const { register, handleSubmit, reset, errors  } = useForm<IFormInput>();
 
     const onSubmit = (data: IFormInput) => {
       console.log(data);
@@ -84,7 +84,6 @@ export default function MarineGrowth() {
       })
       .then(function (response) {
         console.log("response");
-        console.log(response);
     })
       .catch(function (error) {
         console.log(error);
@@ -123,7 +122,7 @@ export default function MarineGrowth() {
                                 label="insert From EL"
                                 unit="m"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_depths_from_el" ref={register({ required: true })}  />
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 54" name="marine_growth_depths_from_el" ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -170,7 +169,7 @@ export default function MarineGrowth() {
                         <Grid item xs={6} md={6}></Grid>
 
                         <Grid item xs={12} md={6}>
-                            <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" value = "Add"/>
+                            <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" value = "Add" />
                         </Grid>
                     </Grid>
                     </form>

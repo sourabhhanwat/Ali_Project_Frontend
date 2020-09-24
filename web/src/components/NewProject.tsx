@@ -54,6 +54,8 @@ const tableStyles = {
       // console.log(data.startdate)
       // console.log(data.res)
       // console.log(data.enddate)
+
+
       
       axios.post('/api/v1/saveproject/', {
         Name: data.name,
@@ -74,7 +76,10 @@ const tableStyles = {
     const onDrop = () => {
       axios.get('/api/v1/users/')
       .then(function (response) {
-        setLst(response.data.map((item: any) => item.username + " id:" + item.id))
+        setLst(response.data.map((item: any) => item.username ))
+        // setLst(response.data.map((item: any) => item.username + " id:" + item.id))
+        console.log("test");
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
