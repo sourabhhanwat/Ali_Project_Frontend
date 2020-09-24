@@ -125,7 +125,7 @@ const tableStyles = {
                     <option value= {list} key={list}> {list} </option>
                     ))}
                     </select> 
-                    <button type="button" onClick={() => onDrop()}>Load</button>
+                    <button style={{ width : "200px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
                     
                 </Box>
             </Grid>

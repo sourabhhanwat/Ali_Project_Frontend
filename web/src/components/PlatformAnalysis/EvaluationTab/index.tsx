@@ -43,9 +43,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
-import { red } from '@material-ui/core/colors';
-import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
-import MaterialTable from 'material-table';
+import axios from "axios";
+
 
 
 enum CatEnum {
@@ -55,6 +54,8 @@ enum CatEnum {
     D = "D",
     E = "E"
   }
+
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -125,12 +126,17 @@ const useStyles = makeStyles({
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
 
-    var modal = {
-        width: '100%',
-        padding: '10px 5px'
+    const [lst, setLst] = React.useState([])    
 
-    };
-    
+    const onDrop = () => {
+        axios.get('/api/v1/category/')
+        .then(function (response) {
+          setLst(response.data.map((item: any) => item))
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      };
 
     const { watch } = useFormContext();
 
@@ -617,42 +623,41 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                              </Grid>
                             
                             <Grid item xs={4}>
-                            <Popup trigger={
-                        <IconButton color="secondary" aria-label="add an alarm">
-                        <Info />
-                        </IconButton>
-                    }>
-                        <div >    
-
-                            <TableContainer component={Paper}>
-                                 <Table className={classes.table} aria-label="customized table">
-                                 <TableHead>
-                                        <TableRow>
-                                            <StyledTableCell style={{minWidth: 10}} align="center" >COF Ranking</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} align="center" >Quantitative BOE</StyledTableCell>
-                                            <StyledTableCell style={{minWidth: 10}} align="center" >Description</StyledTableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {rows_env.map((row) => (
-                                            <StyledTableRow key={row.a}>
-                                            <StyledTableCell component="th" scope="row" align="center">
-                                                {row.a}
-                                            </StyledTableCell>
-                                            <StyledTableCell  align="center">{row.b}</StyledTableCell>
-                                            <StyledTableCell  align="center">{row.c}</StyledTableCell>
-                                            </StyledTableRow>
-                                        ))}
-                                        </TableBody>
-                                 </Table>
-                            </TableContainer>
-                        </div>
-                    </Popup>
-                                Category
+                                <Popup trigger={
+                                        <IconButton color="secondary" aria-label="add an alarm">
+                                            <Info />
+                                        </IconButton>
+                                    }>
+                                    <div >    
+                                        <TableContainer component={Paper}>
+                                            <Table className={classes.table} aria-label="customized table">
+                                            <TableHead>
+                                                    <TableRow>
+                                                        <StyledTableCell style={{minWidth: 10}} align="center" >COF Ranking</StyledTableCell>
+                                                        <StyledTableCell style={{minWidth: 10}} align="center" >Quantitative BOE</StyledTableCell>
+                                                        <StyledTableCell style={{minWidth: 10}} align="center" >Description</StyledTableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {rows_env.map((row) => (
+                                                        <StyledTableRow key={row.a}>
+                                                        <StyledTableCell component="th" scope="row" align="center">
+                                                            {row.a}
+                                                        </StyledTableCell>
+                                                        <StyledTableCell  align="center">{row.b}</StyledTableCell>
+                                                        <StyledTableCell  align="center">{row.c}</StyledTableCell>
+                                                        </StyledTableRow>
+                                                    ))}
+                                                    </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </div>
+                                </Popup>
+                                    Category
                             </Grid>
 
                             <Grid item xs={4}>
-                            Environmental Consequence
+                                Environmental Consequence
                             </Grid>
 
                             <Grid item xs={4}>
@@ -663,13 +668,21 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                                <select style={{ width : "300px" , height: "50px"}} name="env_category">
+                                {/* <select style={{ width : "300px" , height: "53px"}} name="env_category">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
                                     <option value="D">D</option>
                                     <option value="E">E</option>
-                                </select> 
+                                </select>  */}
+                                
+                                <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="env_category"> 
+                                        {lst.map((list) => (
+                                        <option value= {list} key={list}> {list} </option>
+                                        ))}
+                                </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
+                    
                             </Grid>
 
                         </Grid>
@@ -830,11 +843,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     <TableBody>
                                         {rows_eco.map((row) => (
                                             <StyledTableRow key={row.a}>
-                                            <StyledTableCell component="th" scope="row" align="center">
-                                                {row.a}
-                                            </StyledTableCell>
-                                            <StyledTableCell  align="center">{row.b}</StyledTableCell>
-                                            <StyledTableCell  align="center">{row.c}</StyledTableCell>
+                                                <StyledTableCell component="th" scope="row" align="center">{row.a}</StyledTableCell>
+                                                <StyledTableCell  align="center">{row.b}</StyledTableCell>
+                                                <StyledTableCell  align="center">{row.c}</StyledTableCell>
                                             </StyledTableRow>
                                         ))}
                                         </TableBody>
@@ -860,13 +871,19 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
-                            <select style={{ width : "300px" , height: "50px"}} name="eco_category">
+                            {/* <select style={{ width : "300px" , height: "53px"}} name="eco_category">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
                                     <option value="D">D</option>
                                     <option value="E">E</option>
-                                </select> 
+                                </select>  */}
+                                <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="eco_category"> 
+                                        {lst.map((list) => (
+                                        <option value= {list} key={list}> {list} </option>
+                                        ))}
+                                </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
                             </Grid>
 
 

@@ -299,6 +299,8 @@ class PlatformListSubject extends Subject<Platform[] | null> {
         const { data } = await axios.get<Platform[]>('/api/v1/platforms/', {
             params: param.filter,
             transformResponse(data) {
+                console.log("MYYYYYY")
+                console.log(data)
                 return PlatformListSchema.validateSync(data);
             },
         });

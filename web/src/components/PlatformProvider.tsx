@@ -20,6 +20,7 @@ class PlatformSubject extends Subject<Platform | null> {
             `/api/v1/platforms/${param.id}/`,
             PlatformSchema.validateSync(param)
         );
+        console.log("I AM UPDATED")
         return PlatformSchema.validateSync(data);
     });
 }

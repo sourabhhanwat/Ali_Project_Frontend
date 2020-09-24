@@ -1,7 +1,6 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 import ExpansionRow from '../ExpansionRow';
 import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
@@ -14,6 +13,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { useForm, useFormContext } from 'react-hook-form';
+import axios from "axios";
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -37,8 +39,6 @@ function createData(lof: string, score: string) {
   return { lof, score };
 }
 
-
-
 const rows = [
   createData('5', ' ≥ 680'),
   createData('4', '>= 490 to < 680'),
@@ -55,25 +55,42 @@ const useStyles = makeStyles({
 });
 
 
-// 
+interface IFormInput {
+    marine_growth_design_thickness: String;
+    marine_growth_inspected_thickness: String;
+    marine_growth_depths_from_el: String;
+    marine_growth_depths_to_el: String;
+  }
 
 export default function MarineGrowth() {
+
+
+    const { register, handleSubmit } = useForm<IFormInput>();
+
+    const onSubmit = (data: IFormInput) => {
+      console.log(data);
+      axios.post('/api/v1/platforms/', {
+        marine_growth_design_thickness: data.marine_growth_design_thickness,
+        marine_growth_inspected_thickness: data.marine_growth_inspected_thickness,
+        marine_growth_depths_from_el: data.marine_growth_depths_from_el,
+        marine_growth_depths_to_el: data.marine_growth_depths_to_el,
+      })
+      .then(function (response) {
+        console.log("response");
+        console.log(response);
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
+    };
+
     const { watch } = useFormContext();
     const classes = useStyles();
-    // const [lst, setLst] = React.useState([])
-
     let enumerableKeys = [];
     enumerableKeys = watch('marine_growths');
-    // console.log(enumerableKeys);
-    // for (let key in enumerableKeys) {
-    //     console.log(enumerableKeys[key]);
-    //     enumerableKeys.push(enumerableKeys);
-    // }
-    // enumerableKeys.pop();
-
     let elv = [];
     elv = watch('marine_growth_each_elevation');
-    // console.log(elv);
+    console.log(elv);
   
     return (
         <ExpansionRow
@@ -83,67 +100,75 @@ export default function MarineGrowth() {
             headNoBorderBottom
         >
             <Box m={3}>
-                     <Grid item container xs={12} md={10} spacing={2}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                     <Grid item container xs={12} spacing={2}>
                         <Grid item xs={12}>
                                 <Typography variant="body1">
-                                        {/* <h3>Data</h3> */}
                                 </Typography>
                                 <Typography variant="subtitle2">
                                     Marine Growth Inspection Performed and Elevations of Inspection Marine Growth are Known?
-{/*                                 
-                                <IconButton color="secondary" aria-label="add an alarm">
-                                    <Add />
-                                </IconButton> */}
                                 </Typography>
                         </Grid>
-                        <Grid item xs={6} md={3}>
-                            <h3>Marine Growth Depths :</h3>
+                        <Grid item xs={12} md={6}>
+                            <h3>Marine Growth Depths From EL </h3>
                         </Grid>
-
-                        <Grid item xs={6} md={3}>
-                            <TextField
+                        <Grid item xs={12} md={6}>
+                            {/* <TextField
                                 name={['marine_growth_depths_from_el']}
                                 label="insert From EL"
                                 unit="m"
-                            />
+                            /> */}
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_depths_from_el" ref={register({ required: true })}  />
+
                         </Grid>
 
-                        <Grid item xs={6} md={3}>
-                            <TextField
+                        <Grid item xs={12} md={6}>
+                            <h3>Marine Growth Depths To EL </h3>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            {/* <TextField
                                 name={['marine_growth_depths_to_el']}
                                 label="insert TO EL"
                                 unit="m"
-                            />
-                        </Grid>
-                        <Grid item xs={6} md={3}></Grid>
+                            /> */}
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
 
-                        <Grid item xs={6} md={3}>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
                             <h3> Marine Growth Inspected Thickness </h3>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField
+                            {/* <TextField
                                 name={['marine_growth_inspected_thickness']}
                                 label="insert Marine Growth Inspected Thickness"
                                 unit="mm"
-                            />
+                            /> */}
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
+
                         </Grid>
 
-                        <Grid item xs={6} md={3}></Grid>
-
-                        <Grid item xs={6} md={3}>
+                        <Grid item xs={12} md={6}>
                             <h3> Marine Growth Allowable Design Thickness </h3>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField
+                            {/* <TextField
                                 name={['marine_growth_design_thickness']}
                                 label="insert Marine Growth Allowable Design Thick"
                                 unit="mm"
-                            />
+                            /> */}
+                            <input style={{width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_design_thickness" ref={register({ required: true })}  />
                         </Grid>
+                        <Grid item xs={6} md={6}></Grid>
 
+                        <Grid item xs={12} md={6}>
+                            <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" value = "Add"/>
+                        </Grid>
                     </Grid>
+                    </form>
 
 <br></br>
 <br></br>
@@ -154,30 +179,24 @@ export default function MarineGrowth() {
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead >
                                 <TableRow>
-                                    <StyledTableCell style={{minWidth: 10}} align="center">No.</StyledTableCell>
                                     <StyledTableCell colSpan={2} align="center" style={{minWidth: 50}} >Depths (m)</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 10}} align="center">Inspected Thickness (mm)</StyledTableCell>
                                     <StyledTableCell  style={{minWidth: 10}} align="center">Allowable Design Thickness (mm)</StyledTableCell>
-                                    {/* <StyledTableCell  style={{minWidth: 120}} align="center">Evaluated Score at Each Elevation</StyledTableCell> */}
                                     </TableRow>
                                 <TableRow>
-                                    <StyledTableCell style={{minWidth: 25}} align="center"></StyledTableCell>
                                     <StyledTableCell style={{minWidth: 25}} align="center">From EL</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 25}} align="center">To EL</StyledTableCell>
                                     <StyledTableCell  style={{minWidth: 10}} align="center"></StyledTableCell>
                                     <StyledTableCell style={{minWidth: 10}} align="center"></StyledTableCell>
-                                    {/* <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                             {enumerableKeys && enumerableKeys.map((list:any) => (
                                 <StyledTableRow key={list.id}>
-                                <StyledTableCell style={{minWidth: 25}} align="center" component="th" scope="row"> {list.id}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 25}} align="center"> {list.marine_growth_depths_from_el}</StyledTableCell>
+                                <StyledTableCell style={{minWidth: 25}} align="center" component="th" scope="row"> {list.marine_growth_depths_from_el}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 25}} align="center">{list.marine_growth_depths_to_el}</StyledTableCell>             
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_inspected_thickness}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_design_thickness}</StyledTableCell>
-                                {/* <StyledTableCell style={{minWidth: 120}} align="center">{}</StyledTableCell> */}
                                </StyledTableRow>
                              ))}
                             </TableBody>
