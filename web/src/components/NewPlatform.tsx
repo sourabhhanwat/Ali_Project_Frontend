@@ -76,7 +76,7 @@ const tableStyles = {
     const onDrop = () => {
       axios.get('/api/v1/users/')
       .then(function (response) {
-        setLst(response.data.map((item: any) => item.username + " id:"+ item.id))
+        setLst(response.data.map((item: any) => item.username + ":"+ item.id))
       })
       .catch(function (error) {
         console.log(error);
@@ -86,7 +86,7 @@ const tableStyles = {
     const onDrop2 = () => {
       axios.get('/api/v1/projects/')
       .then(function (response) {
-        setLst2(response.data.map((item: any) => item.name + " id:"+ item.id))
+        setLst2(response.data.map((item: any) => item.name + ":"+ item.id))
       })
       .catch(function (error) {
         console.log(error);
