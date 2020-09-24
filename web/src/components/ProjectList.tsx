@@ -250,15 +250,6 @@ export default function ProjectList(_: RouteComponentProps) {
                 </Box>
             </Box>  */}
             <Grid container spacing={2}>
-                    <Grid item container spacing={3}>
-                        {projects?.map((project) => (
-                            <Grid key={project.id} item xs={12}>
-                                <ProjectCard project={project} />
-                            </Grid>
-                        ))}
-                        {isPending && <SkeletonProjectCards />}
-                    </Grid>
-
 
                 <Grid item container spacing={1}>
                     <p style={p}></p>
@@ -411,6 +402,19 @@ export default function ProjectList(_: RouteComponentProps) {
                         </Grid>  
                     </Grid>
 
+
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
+
+                    <Grid item container spacing={3}>
+                        {projects?.map((project) => (
+                            <Grid key={project.id} item xs={12}>
+                                <ProjectCard project={project} />
+                            </Grid>
+                        ))}
+                        {isPending && <SkeletonProjectCards />}
+                    </Grid>
 
                     <Grid item container spacing={1}>
                         <p style={p}></p>

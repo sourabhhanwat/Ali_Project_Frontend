@@ -57,11 +57,12 @@ const tableStyles = {
         Name: data.name,
         Description: data.des,
         StartDate: data.startdate,
-        Responsible: data.res,
+        Responsible: data.res.split(":")[1],
         EndDate: data.enddate
       })
       .then(function (response) {
         console.log(response);
+        // window.alert(response.status);
     })
       .catch(function (error) {
         console.log(error);
@@ -71,7 +72,7 @@ const tableStyles = {
     const onDrop = () => {
       axios.get('/api/v1/users/')
       .then(function (response) {
-        setLst(response.data.map((item: any) => item.username))
+        setLst(response.data.map((item: any) => item.username + " id:" + item.id))
       })
       .catch(function (error) {
         console.log(error);

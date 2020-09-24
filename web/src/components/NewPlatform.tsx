@@ -37,6 +37,7 @@ const tableStyles = {
     des: String;
     startdate: Date;
     res: String;
+    pro: String;
     enddate: Date;
   }
 
@@ -44,20 +45,22 @@ const tableStyles = {
 
     const { register, handleSubmit } = useForm<IFormInput>();
     const [lst, setLst] = React.useState([])
+    const [lst2, setLst2] = React.useState([])
 
    
     const onSubmit = (data: IFormInput) => {
-      // console.log(data.name);
+      console.log(data);
       // console.log(data.des)
       // console.log(data.startdate)
       // console.log(data.res)
       // console.log(data.enddate)
       
-      axios.post('/api/v1/saveproject/', {
+      axios.post('/api/v1/saveplatform/', {
         Name: data.name,
         Description: data.des,
         StartDate: data.startdate,
-        Responsible: data.res,
+        Responsible: data.res.split(":")[1],
+        Project: data.pro.split(":")[1],
         EndDate: data.enddate
       })
       .then(function (response) {
@@ -71,7 +74,17 @@ const tableStyles = {
     const onDrop = () => {
       axios.get('/api/v1/users/')
       .then(function (response) {
-        setLst(response.data.map((item: any) => item.username))
+        setLst(response.data.map((item: any) => item.username + " id:"+ item.id))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    };
+
+    const onDrop2 = () => {
+      axios.get('/api/v1/projects/')
+      .then(function (response) {
+        setLst2(response.data.map((item: any) => item.name + " id:"+ item.id))
       })
       .catch(function (error) {
         console.log(error);
@@ -116,8 +129,7 @@ const tableStyles = {
             </Grid>
             
             <Grid item xs={12}>
-              
-                <Box>
+            <Box>
                     <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Responsible</label>
                     {/* <Drop /> */}
                     <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="res" ref={register}> 
@@ -126,6 +138,20 @@ const tableStyles = {
                     ))}
                     </select> 
                     <button style={{ width : "200px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
+                    
+                </Box>
+            </Grid>
+
+            <Grid item xs={12}>
+            <Box>
+                    <label style={{ width : "100px" , height: "40px", margin:"20px", fontSize:"18px"}}>Projects</label>
+                    {/* <Drop /> */}
+                    <select style={{ width : "300px" , height: "40px", margin:"20px", fontSize:"18px"}} name="pro" ref={register}> 
+                    {lst2.map((list) => (
+                    <option value= {list} key={list}> {list} </option>
+                    ))}
+                    </select> 
+                    <button style={{ width : "200px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop2()}>Load</button>
                     
                 </Box>
             </Grid>
