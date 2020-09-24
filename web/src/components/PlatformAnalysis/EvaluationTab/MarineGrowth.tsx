@@ -69,7 +69,7 @@ export default function MarineGrowth() {
 
     const onSubmit = (data: IFormInput) => {
       console.log(data);
-      axios.post('/api/v1/platforms/', {
+      axios.post('/api/v1/savemarinegrowth/', {
         marine_growth_design_thickness: data.marine_growth_design_thickness,
         marine_growth_inspected_thickness: data.marine_growth_inspected_thickness,
         marine_growth_depths_from_el: data.marine_growth_depths_from_el,
