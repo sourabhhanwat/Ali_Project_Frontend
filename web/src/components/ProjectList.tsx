@@ -23,11 +23,14 @@ import Subject from '../modules/Subject';
 import { navigate } from '@reach/router';
 import { Tooltip, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import NewuserIcon from './icons/Newuser';
+import PlatformIcon from './icons/Platform';
+import ProjectIcon from './icons/Project';
+import { useProjectList } from './ProjectListProvider';
 
 // ---------------------
 
 var p = {
-    height: '100px',
+    height: '20px',
 };
 
 // ==================
@@ -161,6 +164,21 @@ export default function ProjectList(_: RouteComponentProps) {
     //     return () => subject.detach(handleProjectList);
     // }, [subject]);
 
+    const { subject } = useProjectList();
+    // const [isPending, setIsPending] = React.useState<boolean | undefined>();
+    const [projects, setProjects] = React.useState<Project[] | null>();
+
+    const handleProjectList = (state: State<Project[] | null>) => {
+        setIsPending(state.isPending);
+        setProjects(state.value);
+    };
+
+    React.useEffect(() => {
+        subject.attach(handleProjectList);
+        subject.list();
+        return () => subject.detach(handleProjectList);
+    }, [subject]);
+
 
     const platformList = usePlatformList();
 
@@ -203,14 +221,14 @@ export default function ProjectList(_: RouteComponentProps) {
     let next_10 = [];
     return ( 
         <>
-             <Box display="flex" justifyContent="flex-end" my={2}>
+             {/* <Box display="flex" justifyContent="flex-end" my={2}>
                     <Box fontWeight={800} clone>
                         <ListItem
                         button
                         onClick={() => navigate('/dashboard/newProject')}>
                         <Tooltip title="NewProject">
                             <ListItemIcon>
-                                <NewuserIcon />
+                                <ProjectIcon />
                             </ListItemIcon>
                         </Tooltip>
                         <ListItemText primary="New Project" />
@@ -224,131 +242,179 @@ export default function ProjectList(_: RouteComponentProps) {
                     onClick={() => navigate('/dashboard/NewPlatform')}>
                     <Tooltip title="NewProject">
                         <ListItemIcon>
-                            <NewuserIcon />
+                            <PlatformIcon />
                         </ListItemIcon>
                     </Tooltip>
                     <ListItemText primary="New Platform" />
                 </ListItem>
                 </Box>
-            </Box> 
+            </Box>  */}
             <Grid container spacing={2}>
-               {/* <Grid item container spacing={3}>
-                    {projects?.map((project) => (
-                        <Grid key={project.id} item xs={12}>
-                            <ProjectCard project={project} />
-                        </Grid>
-                    ))}
-                    {isPending && <SkeletonProjectCards />}
-                </Grid> */}
-                <Grid item container spacing={1}>
-                    <Grid item xs={12}>
-                            <Pie
-                                data={state}
-                                width={500}
-                                height={140}
-                                options={{
-                                    title:{
-                                        display:true,
-                                        text:'OFFSHORE FIELD-1 RISK LEVELS',
-                                        fontSize:20
-                                        },
-                                    legend:{
-                                    display:true,
-                                    position:'bottom'
-                                    }
-                                }}
-                            />
-                    </Grid>  
-                </Grid>
-                <Grid item container spacing={1}>
-                    <Grid item xs={12}>
-                    <TableContainer component={Paper}>
-                        <Table className={classes.table} aria-label="customized table">
-                            <TableHead >
-                                <TableRow>
-                                    <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
-                                    <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Platform Risk Ranking</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Exposure Category</StyledTableCell>
-                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Selected Next Inspection Intervals (years)</StyledTableCell>
-                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Last Inspection Date</StyledTableCell>
-                                    <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Next Inspection Date</StyledTableCell>
-                                    <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                    <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2021</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2022</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2023</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2024</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2025</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2026</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2027</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2028</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">2029</StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {platforms?.map((platform) => (
+                    <Grid item container spacing={3}>
+                        {projects?.map((project) => (
+                            <Grid key={project.id} item xs={12}>
+                                <ProjectCard project={project} />
+                            </Grid>
+                        ))}
+                        {isPending && <SkeletonProjectCards />}
+                    </Grid>
 
-                                <StyledTableRow key={platform.id}>
-                                <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
-                                
-                                {platform.next_10_years_inspection_plan?.map((next) => (
-                                    <StyledTableCell style={{minWidth: 130}} align="center">{next.level}</StyledTableCell>
-                                ))},
-                                {/* <StyledTableCell style={{minWidth: 130}} align="center">Level 3</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2 Level 3</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 1</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                <StyledTableCell style={{minWidth: 130}} align="center">Level 2 Level 3</StyledTableCell> */}
-                                
-                                </StyledTableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                        </TableContainer>
-                    </Grid>  
-                </Grid>
+
                 <Grid item container spacing={1}>
                     <p style={p}></p>
                 </Grid>
+
+
+                <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                        <ListItem
+                            button
+                            onClick={() => navigate('/dashboard/newProject')}>
+                            <Tooltip title="NewProject">
+                                <ListItemIcon>
+                                    <ProjectIcon />
+                                </ListItemIcon>
+                            </Tooltip>
+                            <ListItemText primary="Add New Project" />
+                        </ListItem>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <ListItem
+                            button
+                            onClick={() => navigate('/dashboard/NewPlatform')}>
+                            <Tooltip title="NewProject">
+                                <ListItemIcon>
+                                    <PlatformIcon />
+                                </ListItemIcon>
+                            </Tooltip>
+                            <ListItemText primary="Add New Platform" />
+                         </ListItem>
+                        </Grid>
+                    </Grid>
+
+
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
+
+
+                    <Grid item container spacing={1}>
+                        <Grid item xs={12}>
+                                <Pie
+                                    data={state}
+                                    width={500}
+                                    height={140}
+                                    options={{
+                                        title:{
+                                            display:true,
+                                            text:'OFFSHORE FIELD-1 RISK LEVELS',
+                                            fontSize:20
+                                            },
+                                        legend:{
+                                        display:true,
+                                        position:'bottom'
+                                        }
+                                    }}
+                                />
+                        </Grid>  
+                    </Grid>
+
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
+
+
+                    <Grid item container spacing={1}>
+                        <Grid item xs={12}>
+                        <TableContainer component={Paper}>
+                            <Table className={classes.table} aria-label="customized table">
+                                <TableHead >
+                                    <TableRow>
+                                        <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
+                                        <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Platform Risk Ranking</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Exposure Category</StyledTableCell>
+                                        <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Selected Next Inspection Intervals (years)</StyledTableCell>
+                                        <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Last Inspection Date</StyledTableCell>
+                                        <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Next Inspection Date</StyledTableCell>
+                                        <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 1</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 2</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Level 3</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2020</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2021</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2022</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2023</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2024</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2025</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2026</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2027</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2028</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">2029</StyledTableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {platforms?.map((platform) => (
+
+                                    <StyledTableRow key={platform.id}>
+                                    <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
+                                    
+                                    {platform.next_10_years_inspection_plan?.map((next) => (
+                                        <StyledTableCell style={{minWidth: 130}} align="center">{next.level}</StyledTableCell>
+                                    ))},
+                                    {/* <StyledTableCell style={{minWidth: 130}} align="center">Level 3</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2 Level 3</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2 Level 3</StyledTableCell> */}
+                                    
+                                    </StyledTableRow>
+                                ))}
+                                </TableBody>
+                            </Table>
+                            </TableContainer>
+                        </Grid>  
+                    </Grid>
+
+
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
             
             </Grid>
             
