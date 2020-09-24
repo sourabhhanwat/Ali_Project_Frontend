@@ -204,16 +204,30 @@ export default function ProjectList(_: RouteComponentProps) {
     return ( 
         <>
              <Box display="flex" justifyContent="flex-end" my={2}>
+                    <Box fontWeight={800} clone>
+                        <ListItem
+                        button
+                        onClick={() => navigate('/dashboard/newProject')}>
+                        <Tooltip title="NewProject">
+                            <ListItemIcon>
+                                <NewuserIcon />
+                            </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="New Project" />
+                    </ListItem>
+                    </Box>
+                </Box>
+                <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
                      <ListItem
                     button
-                    onClick={() => navigate('/dashboard/newProject')}>
+                    onClick={() => navigate('/dashboard/NewPlatform')}>
                     <Tooltip title="NewProject">
                         <ListItemIcon>
                             <NewuserIcon />
                         </ListItemIcon>
                     </Tooltip>
-                    <ListItemText primary="New Project" />
+                    <ListItemText primary="New Platform" />
                 </ListItem>
                 </Box>
             </Box> 
