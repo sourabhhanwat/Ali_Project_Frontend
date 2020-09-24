@@ -76,10 +76,11 @@ const tableStyles = {
     const onDrop = () => {
       axios.get('/api/v1/users/')
       .then(function (response) {
-        setLst(response.data.map((item: any) => item.username ))
+        setLst(response.data.map((item: any) => item ))
         // setLst(response.data.map((item: any) => item.username + " id:" + item.id))
         console.log("test");
-        console.log(response);
+        console.log(lst);
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -135,11 +136,11 @@ const tableStyles = {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
+                    {/* <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
                     {lst.map((list) => (
                     <option value= {list} key={list}> {list} </option>
                     ))}
-                    </select> 
+                    </select>  */}
                     <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
                     
                 </Box>

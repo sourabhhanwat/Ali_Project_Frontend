@@ -244,9 +244,9 @@ export const PlatformSchema = yup
         level_1_last_inspection_date:yup.string().nullable(),
         level_2_last_inspection_date:yup.string().nullable(),
         level_3_last_inspection_date:yup.string().nullable(),
-        level_1_next_inspection_date:yup.string(),
-        level_2_next_inspection_date:yup.string(),
-        level_3_next_inspection_date:yup.string(),
+        level_1_next_inspection_date:yup.string().nullable(),
+        level_2_next_inspection_date:yup.string().nullable(),
+        level_3_next_inspection_date:yup.string().nullable(),
 
         next_10_years_inspection_plan: yup.array()
         .of(
