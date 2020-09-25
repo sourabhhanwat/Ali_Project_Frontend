@@ -314,6 +314,10 @@ export default function ProjectList(_: RouteComponentProps) {
                         <p style={p}></p>
                     </Grid>
 
+                    <Grid item container spacing={1}>
+                        <h3>Platform List : </h3>
+                    </Grid>
+
 
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -321,7 +325,7 @@ export default function ProjectList(_: RouteComponentProps) {
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
-                                        <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} >Platform No.</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
@@ -408,7 +412,7 @@ export default function ProjectList(_: RouteComponentProps) {
                     </Grid>
 
                     <Grid item container spacing={1}>
-                        <h3>Project List: </h3>
+                        <h3>Project List : </h3>
                     </Grid>
 
                     <Grid item container spacing={3}>

@@ -45,12 +45,12 @@ const tableStyles = {
 
   export default function NewPlatform(this: any, _: RouteComponentProps) {
 
-    const { register, handleSubmit } = useForm<IFormInput>();
+    const { register, handleSubmit ,reset} = useForm<IFormInput>();
     const [lst, setLst] = React.useState([])
     const [lst2, setLst2] = React.useState([])
 
    
-    const onSubmit = (data: IFormInput) => {
+    const onSubmit = (data: IFormInput,e:any) => {
       console.log(data);
       // console.log(data.des)
       // console.log(data.startdate)
@@ -71,6 +71,7 @@ const tableStyles = {
       .catch(function (error) {
         console.log(error);
       });
+      e.target.reset();
     };
 
     const onDrop = () => {

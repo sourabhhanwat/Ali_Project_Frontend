@@ -73,7 +73,10 @@ export default function MarineGrowth() {
 
     const { register, handleSubmit, reset, errors  } = useForm<IFormInput>();
 
-    const onSubmit = (data: IFormInput) => {
+    
+
+    const onSubmit = (data: IFormInput,e:any) => {
+      e.target.reset();
       console.log(data);
       axios.post('/api/v1/savemarinegrowth/', {
         marine_growth_design_thickness: data.marine_growth_design_thickness,
@@ -123,7 +126,11 @@ export default function MarineGrowth() {
                                 label="insert From EL"
                                 unit="m"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 54" name="marine_growth_depths_from_el" ref={register({ required: true })}  />
+                            <input 
+                            style={{ width : "400px" , height: "53px"}} 
+                            placeholder="example: 54" 
+                            name="marine_growth_depths_from_el" 
+                            ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -170,7 +177,9 @@ export default function MarineGrowth() {
                         <Grid item xs={6} md={6}></Grid>
 
                         <Grid item xs={12} md={6}>
-                            <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" value = "Add" />
+                            <input 
+                            style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} 
+                            type="submit" value = "Add" />
                         </Grid>
                     </Grid>
                     </form>
