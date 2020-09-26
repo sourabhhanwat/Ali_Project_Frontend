@@ -241,13 +241,13 @@ export const PlatformSchema = yup
         level_1_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_2_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_3_selected_inspection_interval_for_next_inspection: IntegerSchema,
-        level_1_last_inspection_date:yup.string().nullable(),
-        level_2_last_inspection_date:yup.string().nullable(),
-        level_3_last_inspection_date:yup.string().nullable(),
-        level_1_next_inspection_date:yup.string().nullable(),
-        level_2_next_inspection_date:yup.string().nullable(),
-        level_3_next_inspection_date:yup.string().nullable(),
-
+        level_1_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_2_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_3_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_1_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_2_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_3_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+// (0?[1-9]|[12][0-9]|3[01])[\-](0?[1-9]|1[012])[\-]\d
         next_10_years_inspection_plan: yup.array()
         .of(
           yup.object({

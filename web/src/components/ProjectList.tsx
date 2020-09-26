@@ -443,8 +443,8 @@ export default function ProjectList(_: RouteComponentProps) {
                                     {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
                                     <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date}</StyledTableCell>             
-                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                                 </TableBody>
