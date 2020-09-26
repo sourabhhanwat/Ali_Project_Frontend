@@ -657,6 +657,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
+                                <p></p>
                                 Environmental Consequence
                             </Grid>
 
@@ -668,6 +669,16 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
+
+                            <TextField
+                                    label="Environmental Consequence Category"
+                                    helperText="Entry only Between A,B,C,D and E"
+                                    name={[
+                                        'environmental_consequence_category',
+                                    ]}
+                                    
+                                />
+
                                 {/* <select style={{ width : "300px" , height: "53px"}} name="env_category">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -676,13 +687,14 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     <option value="E">E</option>
                                 </select>  */}
                                 
-                                <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="env_category"> 
+                                {/* <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="env_category"> 
+                                        <option selected={environmental_consequence_category}>{environmental_consequence_category}</option>
                                         {lst.map((list) => (
-                                        <option value= {list} key={list}> {list} </option>
+                                        <option  value= {list} key={list}> {list} </option>
                                         ))}
                                 </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
-                    
+                     */}
                             </Grid>
 
                         </Grid>
@@ -857,6 +869,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={4}>
+                                <p></p>
                                 <p>Economic Consequence </p>
                             </Grid>
 
@@ -865,12 +878,21 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     label="Free Text as per Client Risk Matrix"
                                     name={[
                                         'economic_consequence_description',
-                                        // 'economic_consequence_description',
                                     ]}
                                 />
                             </Grid>
 
                             <Grid item xs={4}>
+
+                            <TextField
+                                    label="Economic Consequence Category"
+                                    helperText="Entry only Between A,B,C,D and E"
+                                    name={[
+                                        'economic_consequence_category',
+                                        // 'economic_consequence_description',
+                                    ]}
+                                    
+                                />
                             {/* <select style={{ width : "300px" , height: "53px"}} name="eco_category">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -878,12 +900,14 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     <option value="D">D</option>
                                     <option value="E">E</option>
                                 </select>  */}
-                                <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="eco_category"> 
+                                {/* <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="eco_category"> 
+                                    <option selected={economic_consequence_category}>{economic_consequence_category}</option>
                                         {lst.map((list) => (
                                         <option value= {list} key={list}> {list} </option>
                                         ))}
                                 </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
+                            */}
                             </Grid>
 
 

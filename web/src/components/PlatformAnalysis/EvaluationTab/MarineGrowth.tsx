@@ -144,7 +144,7 @@ export default function MarineGrowth() {
                                 label="insert TO EL"
                                 unit="m"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -158,7 +158,7 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Inspected Thickness"
                                 unit="mm"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -172,7 +172,7 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Allowable Design Thick"
                                 unit="mm"
                             /> */}
-                            <input style={{width : "400px" , height: "53px"}} placeholder="example: 100" name="marine_growth_design_thickness" ref={register({ required: true })}  />
+                            <input style={{width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_design_thickness" ref={register({ required: true })}  />
                         </Grid>
                         <Grid item xs={6} md={6}></Grid>
 
