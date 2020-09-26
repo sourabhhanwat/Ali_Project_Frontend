@@ -44,6 +44,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import axios from "axios";
+import { register } from '../../../serviceWorker';
 
 
 
@@ -665,6 +666,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             <TextField
                                     label="Free Text as per Client Risk Matrix"
                                     name= {['environmental_consequence_description']}
+                                    multiline
                                 />
                             </Grid>
 
@@ -676,6 +678,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     name={[
                                         'environmental_consequence_category',
                                     ]}
+                                    
+                                    // inputRef = {register}
                                     
                                 />
 
@@ -879,6 +883,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     name={[
                                         'economic_consequence_description',
                                     ]}
+                                    multiline
                                 />
                             </Grid>
 
@@ -886,7 +891,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <TextField
                                     label="Economic Consequence Category"
-                                    helperText="Entry only Between A,B,C,D and E"
+                                    helperText="Entry only A,B,C,D and E"
                                     name={[
                                         'economic_consequence_category',
                                         // 'economic_consequence_description',
