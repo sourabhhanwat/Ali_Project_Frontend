@@ -325,7 +325,7 @@ export default function ProjectList(_: RouteComponentProps) {
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
-                                        <StyledTableCell style={{minWidth: 120}} >Platform No.</StyledTableCell>
+                                        {/* <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell> */}
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
@@ -337,7 +337,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                         <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
+                                        {/* <StyledTableCell style={{minWidth: 120}} ></StyledTableCell> */}
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
@@ -368,8 +368,8 @@ export default function ProjectList(_: RouteComponentProps) {
                                 {platforms?.map((platform) => (
 
                                     <StyledTableRow key={platform.id}>
-                                    <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.name}</StyledTableCell>             
+                                    {/* <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
@@ -428,11 +428,11 @@ export default function ProjectList(_: RouteComponentProps) {
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
-                                        <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell>
+                                        {/* <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell> */}
                                         <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
-                                        {/* <StyledTableCell style={{minWidth: 30}} align="center">Created Date</StyledTableCell> */}
-                                        {/* <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell> */}
+                                        <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
+                                        <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell>
                             
                                     </TableRow>
                                 </TableHead>
@@ -440,11 +440,11 @@ export default function ProjectList(_: RouteComponentProps) {
                                 {projects?.map((project) => (
 
                                     <StyledTableRow key={project.id}>
-                                    <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.name}</StyledTableCell>             
+                                    {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
-                                    {/* <StyledTableCell style={{minWidth: 30}} align="center">{project.created_at}</StyledTableCell>              */}
-                                    {/* <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date}</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                                 </TableBody>

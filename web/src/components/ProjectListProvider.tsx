@@ -8,8 +8,8 @@ export const ProjectSchema = yup
         id: yup.number(),
         name: yup.string(),
         description: yup.string(),
-        // start_date: yup.date(),
-        // end_date: yup.date(),
+        start_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
+        end_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
         created_at: yup.date(),
         updated_at: yup.date(),
     })

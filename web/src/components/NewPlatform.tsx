@@ -37,10 +37,10 @@ const tableStyles = {
   interface IFormInput {
     name: String;
     des: String;
-    startdate: Date;
+    // startdate: Date;
     res: String;
     pro: String;
-    enddate: Date;
+    // enddate: Date;
   }
 
   export default function NewPlatform(this: any, _: RouteComponentProps) {
@@ -60,10 +60,10 @@ const tableStyles = {
       axios.post('/api/v1/saveplatform/', {
         Name: data.name,
         Description: data.des,
-        StartDate: data.startdate,
+        // StartDate: data.startdate,
         Responsible: data.res,
         Project: data.pro,
-        EndDate: data.enddate
+        // EndDate: data.enddate
       })
       .then(function (response) {
         console.log(response);
@@ -146,12 +146,12 @@ const tableStyles = {
                  <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" placeholder="Platform Description here" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Start Date</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" ref={register({ required: true })}  />
-            </Grid>
+            </Grid> */}
             
             <Grid item xs={12}>
             <Box>
@@ -184,10 +184,10 @@ const tableStyles = {
                 </Box>
             </Grid>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
                   <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="enddate" ref={register({ required: true})} />
-            </Grid>
+            </Grid> */}
             </Grid>
       <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/>
     </form>

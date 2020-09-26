@@ -234,7 +234,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                         }
                     />
                 </ListItem>
-                <Divider />
+                {/* <Divider />
                 <ListItem>
                     <ListItemAvatar>
                         <StyledAvatar level="high">
@@ -293,7 +293,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             </Box>
                         }
                     />
-                </ListItem>
+                </ListItem> */}
             </List>
             <Box justifyContent="flex-end" clone>
                 <CardActions>

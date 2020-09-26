@@ -288,11 +288,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                        <DatePicker
+                        <TextField
                             label="Inspection Date"
                             name={['level_1_next_inspection_date']}
-                            disabled
-                            required
+                            // disabled
+                            // required
                         />
                     </Grid>        
                 
@@ -308,11 +308,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                     <DatePicker
+                     <TextField
                         label="Inspection Date"
                         name={['level_2_next_inspection_date']}
-                        disabled
-                        required
+                        // disabled
+                        // required
                     /> 
                     </Grid>
 
@@ -328,11 +328,11 @@ export default function NextInspectionDate() {
                     </Grid>
 
                     <Grid item xs={6} md={4}>
-                    <DatePicker
+                    <TextField
                         label="Inspection Date"
                         name={['level_3_next_inspection_date']}
-                        disabled
-                        required
+                        // disabled
+                        // required
                     />
                     </Grid>
 
