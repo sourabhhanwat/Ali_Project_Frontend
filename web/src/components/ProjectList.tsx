@@ -26,14 +26,15 @@ import NewuserIcon from './icons/Newuser';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
+import { platform } from 'os';
+import axios from "axios";
+import { date } from 'yup';
 
-// ---------------------
 
 var p = {
     height: '20px',
 };
 
-// ==================
 const StyledTableCell = withStyles((theme) => ({
     head: {
       backgroundColor: theme.palette.common.black,
@@ -72,7 +73,7 @@ const StyledTableCell = withStyles((theme) => ({
       minWidth: 700,
     },
   });
-// ==================
+
 
 const StyledDivider = styled(Divider)(
     ({
@@ -110,33 +111,6 @@ const SkeletonProjectCards = React.memo(() => (
         ))}
     </>
 ));
-
-const state = {
-    labels: ['veryHigh', 'high', 'medium',
-             'low', 'veryLow'],
-    datasets: [
-      {
-        label: 'Rainfall',
-        backgroundColor: [
-            // '#FFA500',
-          '#B21F00',
-          '#FFA500',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4'
-        ],
-        hoverBackgroundColor: [
-            // '#C9DE00',
-        '#501800',
-        '#4B5000',
-        '#175000',
-        '#003350',
-        '#35014F'
-        ],
-        data: [0,1,0,0,0]
-      }
-    ]
-  }
 
   const SkeletonPlatformCards = React.memo(() => (
     <>
@@ -179,7 +153,6 @@ export default function ProjectList(_: RouteComponentProps) {
         return () => subject.detach(handleProjectList);
     }, [subject]);
 
-
     const platformList = usePlatformList();
 
     const [isPending, setIsPending] = React.useState<boolean>();
@@ -217,8 +190,120 @@ export default function ProjectList(_: RouteComponentProps) {
     }, [fetch, platformList.subject]);
 
     const classes = useStyles();
-    // console.log("ALl Data ========================"+platformList)
-    let next_10 = [];
+
+    let backgroundColor: string[] = [];
+    let Color: string[] = [];
+    let data: number[] = [];
+    let hoverBackgroundColor: string[] = [];
+    let BackgroundColor: string[] = [];
+    let pltname: string[] = [];
+    let label: string[] = [];
+
+    //=========================
+    let i = 0;
+    {platforms?.map((platform) => (
+        data.push(i+1)
+    ))}
+
+    {platforms?.map((platform) => (
+        pltname.push(platform.name)
+        ))}
+    // console.log(data)    
+    //=========================
+    {platforms?.map((platform) => (
+        backgroundColor.push(platform.risk_ranking)
+    ))}
+
+    for(let i in backgroundColor){
+        console.log(backgroundColor[i])
+        switch(backgroundColor[i]) { 
+            case "VL": { 
+               label.push('Very Low')
+               Color.push('#6800B4');
+               hoverBackgroundColor.push('#6800B4');
+            //    console.log("Excellent"); 
+               break; 
+            } 
+            case "H": { 
+                label.push('High')
+                Color.push('#FFA500');
+                hoverBackgroundColor.push('#FFA500');
+                break; 
+            } 
+            case "M": {
+                label.push('Medium')
+                Color.push('#2FDE00');
+                hoverBackgroundColor.push('#FFA500');
+                break;    
+            } 
+            case "L": { 
+                label.push('Low')
+                Color.push('#00A6B4');
+                hoverBackgroundColor.push('#FFA500');
+                break; 
+            }  
+            default: { 
+                label.push('Very High')
+                Color.push('#B21F00');
+                hoverBackgroundColor.push('#FFA500');
+                break;              
+            } 
+        }
+    }
+
+
+    //           '#B21F00',
+    // '#FFA500',
+    // '#2FDE00',
+    // '#00A6B4',
+    // '#6800B4'
+
+    // '#501800',
+    // '#4B5000',
+    // '#175000',
+    // '#003350',
+    // '#35014F'
+
+    // for(let i in BackgroundColor){
+    //     console.log(BackgroundColor[i])
+    //     switch(BackgroundColor[i]) { 
+    //         case "VL": { 
+    //            Color.push('#6800B4');
+    //         //    console.log("Excellent"); 
+    //            break; 
+    //         } 
+    //         case "H": { 
+    //            Color.push('#FFA500');
+    //            break; 
+    //         } 
+    //         case "M": {
+    //             Color.push('#2FDE00');
+    //             break;    
+    //         } 
+    //         case "L": { 
+    //             Color.push('#00A6B4');
+    //             break; 
+    //         }  
+    //         default: { 
+    //             Color.push('#501800');
+    //             break;              
+    //         } 
+    //     }
+    // }
+
+
+    const state = {
+        labels: pltname,
+        datasets: [
+          {
+            label: 'Platform Risk',
+            backgroundColor: Color,
+            hoverBackgroundColor: BackgroundColor,
+            data: data
+          }
+        ]
+      }
+
     return ( 
         <>
              {/* <Box display="flex" justifyContent="flex-end" my={2}>
