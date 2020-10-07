@@ -18,6 +18,8 @@ import { useAuthContext } from './AuthProvider';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
 import NewuserIcon from './icons/Newuser';
+import SiteIcon from './icons/Site';
+// import Add from './icons/Add';
 import ExcistinguserIcon from './icons/Existinguser';
 
 function toggleDrawer({ theme, open }: { theme: Theme; open: boolean }) {
@@ -126,6 +128,15 @@ export default function Drawer({ open }: { open: boolean }) {
                     <ListItemText primary="Existinguser" />
                 </ListItem>
 
+                <ListItem button onClick={() => navigate('/dashboard/CreatePlatform')}>
+                    <Tooltip title="Create Platform">
+                        <ListItemIcon>
+                            <SiteIcon />
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="Create Platform" />
+                </ListItem>
+
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard/projects')}>
@@ -137,14 +148,6 @@ export default function Drawer({ open }: { open: boolean }) {
                     <ListItemText primary="Projects" />
                 </ListItem>
 
-                {/* <ListItem button onClick={() => navigate('/dashboard/sites')}>
-                    <Tooltip title="Sites">
-                        <ListItemIcon>
-                            <SiteIcon />
-                        </ListItemIcon>
-                    </Tooltip>
-                    <ListItemText primary="Sites" />
-                </ListItem> */}
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard/platforms')}
