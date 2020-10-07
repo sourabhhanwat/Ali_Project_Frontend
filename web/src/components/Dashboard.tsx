@@ -12,6 +12,8 @@ const NewPlatform = React.lazy(() => import('./NewPlatform'));
 
 const Existinguser = React.lazy(() => import('./Existinguser'));
 
+const CreatePlatform = React.lazy(() => import('./CreatePlatform'));
+
 const PlatformAnalysis = React.lazy(() => import('./PlatformAnalysis'));
 
 const SiteList = React.lazy(() => import('./SiteList'));
@@ -57,6 +59,7 @@ export default function Dashboard(_: RouteComponentProps) {
                                 <NewProject path="newProject" />
                                 <NewPlatform path="NewPlatform" />
                                 <Existinguser path = "existinguser" />
+                                <CreatePlatform path = "CreatePlatform" />
                                 <SiteList path="projects/:projectId/sites" />
                                 <SiteList path="sites" />
                                 <PlatformList path="sites/:siteId/platforms" />
