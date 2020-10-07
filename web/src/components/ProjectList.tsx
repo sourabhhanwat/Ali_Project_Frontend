@@ -29,8 +29,6 @@ import { useProjectList } from './ProjectListProvider';
 import { platform } from 'os';
 import axios from "axios";
 import { date } from 'yup';
-import { useForm } from "react-hook-form";
-import { FormatAlignRight } from '@material-ui/icons';
 
 
 var p = {
@@ -114,7 +112,7 @@ const SkeletonProjectCards = React.memo(() => (
     </>
 ));
 
-const SkeletonPlatformCards = React.memo(() => (
+  const SkeletonPlatformCards = React.memo(() => (
     <>
         {[...Array(3).keys()].map((index) => (
             <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
@@ -124,19 +122,21 @@ const SkeletonPlatformCards = React.memo(() => (
     </>
 ));
 
-{/* /// search Box Added  */}
-// interface IFormInput {
-//     search: String;
-//   }
-
-//   const { register, handleSubmit } = useForm<IFormInput>();
-
-//   const onSubmit = (data: IFormInput) => {
-//     alert(JSON.stringify(data));
-//   }
-{/* /// search Box Added end */}
-
 export default function ProjectList(_: RouteComponentProps) {
+    // const { subject } = useProjectList();
+    // const [isPending, setIsPending] = React.useState<boolean | undefined>();
+    // const [projects, setProjects] = React.useState<Project[] | null>();
+
+    // const handleProjectList = (state: State<Project[] | null>) => {
+    //     setIsPending(state.isPending);
+    //     setProjects(state.value);
+    // };
+
+    // React.useEffect(() => {
+    //     subject.attach(handleProjectList);
+    //     subject.list();
+    //     return () => subject.detach(handleProjectList);
+    // }, [subject]);
 
     const { subject } = useProjectList();
     // const [isPending, setIsPending] = React.useState<boolean | undefined>();
@@ -209,54 +209,88 @@ export default function ProjectList(_: RouteComponentProps) {
         pltname.push(platform.name)
         ))}
     // console.log(data)    
-
-
     //=========================
     {platforms?.map((platform) => (
         backgroundColor.push(platform.risk_ranking)
     ))}
 
     for(let i in backgroundColor){
-        // console.log(backgroundColor[i])
+        console.log(backgroundColor[i])
         switch(backgroundColor[i]) { 
             case "VL": { 
                label.push('Very Low')
-               console.log('VL')
-               Color.push('#006400');
-               hoverBackgroundColor.push('#006400');
+               Color.push('#6800B4');
+               hoverBackgroundColor.push('#6800B4');
             //    console.log("Excellent"); 
                break; 
             } 
             case "H": { 
                 label.push('High')
-                console.log('high')
-                Color.push('#FF8C00');
-                hoverBackgroundColor.push('#FF8C00');
+                Color.push('#FFA500');
+                hoverBackgroundColor.push('#FFA500');
                 break; 
             } 
             case "M": {
                 label.push('Medium')
-                console.log('Medium')
-                Color.push('#FFA500');
+                Color.push('#2FDE00');
                 hoverBackgroundColor.push('#FFA500');
                 break;    
             } 
             case "L": { 
                 label.push('Low')
-                console.log('Low')
-                Color.push('#ADFF2F');
-                hoverBackgroundColor.push('#ADFF2F');
+                Color.push('#00A6B4');
+                hoverBackgroundColor.push('#FFA500');
                 break; 
             }  
             default: { 
                 label.push('Very High')
-                console.log('VH')
-                Color.push('#FF0000');
-                hoverBackgroundColor.push('#FF0000');
+                Color.push('#B21F00');
+                hoverBackgroundColor.push('#FFA500');
                 break;              
             } 
         }
     }
+
+
+    //           '#B21F00',
+    // '#FFA500',
+    // '#2FDE00',
+    // '#00A6B4',
+    // '#6800B4'
+
+    // '#501800',
+    // '#4B5000',
+    // '#175000',
+    // '#003350',
+    // '#35014F'
+
+    // for(let i in BackgroundColor){
+    //     console.log(BackgroundColor[i])
+    //     switch(BackgroundColor[i]) { 
+    //         case "VL": { 
+    //            Color.push('#6800B4');
+    //         //    console.log("Excellent"); 
+    //            break; 
+    //         } 
+    //         case "H": { 
+    //            Color.push('#FFA500');
+    //            break; 
+    //         } 
+    //         case "M": {
+    //             Color.push('#2FDE00');
+    //             break;    
+    //         } 
+    //         case "L": { 
+    //             Color.push('#00A6B4');
+    //             break; 
+    //         }  
+    //         default: { 
+    //             Color.push('#501800');
+    //             break;              
+    //         } 
+    //     }
+    // }
+
 
     const state = {
         labels: pltname,
@@ -272,7 +306,73 @@ export default function ProjectList(_: RouteComponentProps) {
 
     return ( 
         <>
+             {/* <Box display="flex" justifyContent="flex-end" my={2}>
+                    <Box fontWeight={800} clone>
+                        <ListItem
+                        button
+                        onClick={() => navigate('/dashboard/newProject')}>
+                        <Tooltip title="NewProject">
+                            <ListItemIcon>
+                                <ProjectIcon />
+                            </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="New Project" />
+                    </ListItem>
+                    </Box>
+                </Box>
+                <Box display="flex" justifyContent="flex-end" my={2}>
+                <Box fontWeight={800} clone>
+                     <ListItem
+                    button
+                    onClick={() => navigate('/dashboard/NewPlatform')}>
+                    <Tooltip title="NewProject">
+                        <ListItemIcon>
+                            <PlatformIcon />
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="New Platform" />
+                </ListItem>
+                </Box>
+            </Box>  */}
             <Grid container spacing={2}>
+
+                <Grid item container spacing={1}>
+                    <p style={p}></p>
+                </Grid>
+
+
+                <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                        <ListItem
+                            button
+                            onClick={() => navigate('/dashboard/newProject')}>
+                            <Tooltip title="NewProject">
+                                <ListItemIcon>
+                                    <ProjectIcon />
+                                </ListItemIcon>
+                            </Tooltip>
+                            <ListItemText primary="Add New Project" />
+                        </ListItem>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <ListItem
+                            button
+                            onClick={() => navigate('/dashboard/NewPlatform')}>
+                            <Tooltip title="NewProject">
+                                <ListItemIcon>
+                                    <PlatformIcon />
+                                </ListItemIcon>
+                            </Tooltip>
+                            <ListItemText primary="Add New Platform" />
+                         </ListItem>
+                        </Grid>
+                    </Grid>
+
+
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
+
 
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -300,33 +400,9 @@ export default function ProjectList(_: RouteComponentProps) {
                     </Grid>
 
                     <Grid item container spacing={1}>
-                         <h3>Platform List : </h3>
-                    </Grid>
-{/* /// search Box Added  */}
-
-                    <Grid item container spacing={1}>
-                        <Grid item xs={8}>
-                            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                <input style={{ width : "400px" , height: "40px", margin:"10px"}} placeholder="Search by Project Name" name="search" /> 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" />
-                            {/* </form> */}
-                        </Grid>
-                        <Grid item xs={4}>
-                        <ListItem style={{ height: "40px", marginTop:"20px", marginLeft: "120px"}} 
-                            button
-                            onClick={() => navigate('/dashboard/newProject')}>
-                            <Tooltip  title="NewProject">
-                                <ListItemIcon>
-                                    <ProjectIcon />
-                                </ListItemIcon>
-                            </Tooltip>
-                            <ListItemText primary="Add New Project" />
-                        </ListItem>
-                        </Grid>
+                        <h3>Platform List : </h3>
                     </Grid>
 
-{/* /// search Box Added  end */}
 
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -420,11 +496,11 @@ export default function ProjectList(_: RouteComponentProps) {
                         <p style={p}></p>
                     </Grid>
 
-                    {/* <Grid item container spacing={1}>
+                    <Grid item container spacing={1}>
                         <h3>Project List : </h3>
-                    </Grid> */}
+                    </Grid>
 
-                    {/* <Grid item container spacing={3}>
+                    <Grid item container spacing={3}>
                         {/* {projects?.map((project) => (
                             <Grid key={project.id} item xs={12}>
                                 <p>{project.name}</p>
@@ -433,12 +509,12 @@ export default function ProjectList(_: RouteComponentProps) {
                         {/* ))} */}
                         {/* {isPending && <SkeletonProjectCards />}  */}
 
-                        {/* <TableContainer component={Paper}>
+                        <TableContainer component={Paper}>
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
                                         {/* <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell> */}
-                                        {/* <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell>
@@ -448,23 +524,23 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <TableBody>
                                 {projects?.map((project) => (
 
-                    //                 <StyledTableRow key={project.id}>
-                    //                 {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
-                    {/* //                 <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
-                    //                 </StyledTableRow>
-                    //             ))}
-                    //             </TableBody> */}
-                    {/* //         </Table>
-                    //         </TableContainer> */}
+                                    <StyledTableRow key={project.id}>
+                                    {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
+                                    </StyledTableRow>
+                                ))}
+                                </TableBody>
+                            </Table>
+                            </TableContainer>
 
-                    {/* // </Grid>
+                    </Grid>
 
-                    // <Grid item container spacing={1}>
-                    //     <p style={p}></p>
-                    // </Grid>   */}
+                    <Grid item container spacing={1}>
+                        <p style={p}></p>
+                    </Grid>
             
             </Grid>
             
