@@ -5,7 +5,6 @@ import ProgramPage from './ProgramPage';
 export default function StrategyTab({ hidden }: { hidden?: boolean }) {
     
     var paragraphDesign = {
-        // border: '1px solid black',
         backgroundColor: 'green',
         padding:    '.5rem',
 

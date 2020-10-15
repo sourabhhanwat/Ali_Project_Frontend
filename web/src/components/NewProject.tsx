@@ -1,13 +1,11 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { RouteComponentProps, useMatch } from '@reach/router';
+import { RouteComponentProps} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Typography, TextField,  Link, styled, Avatar, makeStyles, Theme, createStyles, Checkbox, IconButton, Collapse } from '@material-ui/core';
-import { useForm, useFormContext } from 'react-hook-form';
+import { Typography, styled, Avatar, makeStyles, Theme, createStyles} from '@material-ui/core';
+import { useForm} from 'react-hook-form';
 import axios from "axios";
-import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({

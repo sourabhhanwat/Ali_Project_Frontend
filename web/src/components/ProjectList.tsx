@@ -1,4 +1,3 @@
-import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
@@ -6,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import ProjectCard, { SkeletonProjectCard } from './ProjectCard';
+import { SkeletonProjectCard } from './ProjectCard';
 import {Pie} from 'react-chartjs-2';
 // -----------------------
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -18,19 +17,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
-import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
-import Subject from '../modules/Subject';
+import { SkeletonPlatformCard } from './PlatformCard';
 import { navigate } from '@reach/router';
 import { Tooltip, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import NewuserIcon from './icons/Newuser';
-import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
-import { platform } from 'os';
-import axios from "axios";
-import { date } from 'yup';
-import { useForm } from "react-hook-form";
-import { FormatAlignRight } from '@material-ui/icons';
 
 
 var p = {
@@ -312,7 +303,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" />
                             {/* </form> */}
                         </Grid>
-                        <Grid item xs={4}>
+                        {/* <Grid item xs={4}>
                         <ListItem style={{ height: "40px", marginTop:"20px", marginLeft: "120px"}} 
                             button
                             onClick={() => navigate('/dashboard/newProject')}>
@@ -323,7 +314,7 @@ export default function ProjectList(_: RouteComponentProps) {
                             </Tooltip>
                             <ListItemText primary="Add New Project" />
                         </ListItem>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
 
 {/* /// search Box Added  end */}
@@ -337,7 +328,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                         {/* <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell> */}
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
-                                        <StyledTableCell style={{minWidth: 120}} align="center">Platfom Manned Status</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Platform Manned Status</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Risk Ranking</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Exposure Category</StyledTableCell>
                                         <StyledTableCell colSpan={3} style={{minWidth: 120}} align="center">Selected Next Inspection Intervals (years)</StyledTableCell>

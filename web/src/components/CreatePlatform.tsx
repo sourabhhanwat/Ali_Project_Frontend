@@ -1,12 +1,11 @@
-import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { RouteComponentProps, useMatch } from '@reach/router';
+import { navigate, RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import ProjectCard, { SkeletonProjectCard } from './ProjectCard';
+import { SkeletonProjectCard } from './ProjectCard';
 import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from '@reach/router';
@@ -20,17 +19,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
-import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
-import Subject from '../modules/Subject';
-import { navigate } from '@reach/router';
-import { Tooltip, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import NewuserIcon from './icons/Newuser';
-import PlatformIcon from './icons/Platform';
-import ProjectIcon from './icons/Project';
+import { SkeletonPlatformCard } from './PlatformCard';
 import { useProjectList } from './ProjectListProvider';
-import { platform } from 'os';
-import axios from "axios";
-import { date } from 'yup';
+import { ListItem, Tooltip, ListItemIcon, ListItemText, Box } from '@material-ui/core';
 
 
 var p = {
@@ -47,14 +38,14 @@ const StyledTableCell = withStyles((theme) => ({
     },
   }))(TableCell);
   
-  const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
+        '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
-      },
+        },
     },
-  }))(TableRow);
-  
+}))(TableRow);
+
 
   function createData(no: string, Platform_Name: string, Primary_Function: string, Platfom_Manned_Status: string, Platform_Risk_Ranking: string,
     Exposure_Category: string, Inspection_Intervals: string, Last_Inspection_Date: string, Next_Inspection_Date: string, Next_10_year: string ) {
@@ -114,7 +105,7 @@ const SkeletonProjectCards = React.memo(() => (
     </>
 ));
 
-  const SkeletonPlatformCards = React.memo(() => (
+const SkeletonPlatformCards = React.memo(() => (
     <>
         {[...Array(3).keys()].map((index) => (
             <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
@@ -269,8 +260,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
         }
     }
 
-
-
     const state = {
         labels: pltname,
         datasets: [
@@ -285,12 +274,50 @@ export default function CreatePlatform(_: RouteComponentProps) {
 
     return ( 
         <>
+            {/* <Box justifyContent="flex-end" my={2}>Create Platform */}
+                        {/* <p style={p}></p> */}
+            {/* </Box> */}
+
+            <Box display="flex" justifyContent="flex-end" my={2}>
+                <Box fontWeight={800} clone>
+                    <Button
+                        onClick={() => navigate('/dashboard/newProject')}
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        style={{margin: 5}}
+                        disabled={isPending}>
+                        Add Project
+                    </Button>
+                </Box>
+
+                <Box fontWeight={800} clone>
+                    <Button
+                        onClick={() => navigate('/dashboard/newProject')}
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        style={{margin: 5}}
+                        disabled={isPending}>
+                        Update Project
+                    </Button>
+                </Box>
+
+                <Box fontWeight={800} clone>
+                    <Button
+                        onClick={() => navigate('/dashboard/newProject')}
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        style={{margin: 5}}
+                        disabled={isPending}>
+                        Delete Project
+                    </Button>
+                </Box>
+                    
+            </Box>
 
             <Grid container spacing={2}>
-
-                    <Grid item container spacing={1}>
-                        <p style={p}></p>
-                    </Grid>
 
                     <Grid item container spacing={1}>
                         <h3>Project List : </h3>
@@ -327,11 +354,21 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="right">
-                                    <StyledLink to={`/dashboard/NewPlatform/`}>
-                                            <Button color="primary">
-                                                Create Platform <ChevronRightIcon />
+                                     <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
+                                            <Button color="primary" >
+                                                Create PLatform <ChevronRightIcon />
                                             </Button>
                                     </StyledLink>
+                                    {/*<StyledLink to={`/dashboard/NewPlatform/`}>
+                                            <Button color="primary">
+                                                Update <ChevronRightIcon />
+                                            </Button>
+                                    </StyledLink>
+                                    <StyledLink to={`/dashboard/NewPlatform/`}>
+                                            <Button color="primary">
+                                                Delete <ChevronRightIcon />
+                                            </Button>
+                                    </StyledLink> */}
                                      {/* <ListItem alignItems="center"
                                             button
                                             onClick={() => navigate('/dashboard/NewPlatform')}>

@@ -53,11 +53,11 @@ export default function Dashboard(_: RouteComponentProps) {
                     >
                         <Layout>
                             <Router>
-                                <Redirect from="/" to="projects" noThrow />
+                                <Redirect from="/" to="rbui" noThrow />
                                 <ProjectList path="projects" default />
                                 <NewUser path="newuser" />
                                 <NewProject path="newProject" />
-                                <NewPlatform path="NewPlatform" />
+                                <NewPlatform path="NewPlatform/:projectId" />
                                 <Existinguser path = "existinguser" />
                                 <CreatePlatform path = "CreatePlatform" />
                                 <SiteList path="projects/:projectId/sites" />
