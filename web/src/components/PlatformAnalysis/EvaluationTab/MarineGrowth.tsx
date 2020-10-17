@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { useForm, useFormContext } from 'react-hook-form';
 import axios from "axios";
+import { Button } from '@material-ui/core';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -128,7 +129,7 @@ export default function MarineGrowth() {
                             /> */}
                             <input 
                             style={{ width : "400px" , height: "53px"}} 
-                            placeholder="example: 54" 
+                            placeholder="Example: 54" 
                             name="marine_growth_depths_from_el" 
                             ref={register({ required: true })}  />
 
@@ -144,7 +145,7 @@ export default function MarineGrowth() {
                                 label="insert TO EL"
                                 unit="m"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="Example: 20" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -158,7 +159,7 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Inspected Thickness"
                                 unit="mm"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
+                            <input style={{ width : "400px" , height: "53px"}} placeholder="Example: 20" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
 
                         </Grid>
 
@@ -172,14 +173,26 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Allowable Design Thick"
                                 unit="mm"
                             /> */}
-                            <input style={{width : "400px" , height: "53px"}} placeholder="example: 20" name="marine_growth_design_thickness" ref={register({ required: true })}  />
+                            <input style={{width : "400px" , height: "53px"}} placeholder=" Example: 20" name="marine_growth_design_thickness" ref={register({ required: true })}  />
                         </Grid>
                         <Grid item xs={6} md={6}></Grid>
 
                         <Grid item xs={12} md={6}>
-                            <input 
+                            
+                                  <Box fontWeight={800} clone>
+                                    <Button
+                                        type = "submit"
+                                        variant="contained"
+                                        size="large"
+                                        color="primary"
+                                        style={{margin: 5}}>
+                                        Submit
+                                    </Button>
+                                </Box>
+                            
+                            {/* <input 
                             style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} 
-                            type="submit" value = "Add" />
+                            type="submit" value = "Add" />  */}
                         </Grid>
                     </Grid>
                     </form>

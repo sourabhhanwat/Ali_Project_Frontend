@@ -35,6 +35,24 @@ export default function CommonBreadcrumbs() {
                     )
                 }
             </Match>
+            <Match path="/dashboard/rbui">
+                {(props) =>
+                    props.match && (
+                        <Breadcrumbs separator=">">
+                            <Box>RBUI Dashboard</Box>
+                        </Breadcrumbs>
+                    )
+                }
+            </Match>
+            <Match path="/dashboard/CreatePlatform">
+                {(props) =>
+                    props.match && (
+                        <Breadcrumbs separator=">">
+                            <Box>Projects</Box>
+                        </Breadcrumbs>
+                    )
+                }
+            </Match>
             <Match path="/dashboard/platforms">
                 {(props) =>
                     props.match && (

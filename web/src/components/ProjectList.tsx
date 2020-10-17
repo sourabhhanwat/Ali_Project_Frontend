@@ -19,7 +19,7 @@ import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
 import { navigate } from '@reach/router';
-import { Tooltip, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Tooltip, ListItem, ListItemIcon, ListItemText, Box, Button } from '@material-ui/core';
 import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
 
@@ -300,7 +300,18 @@ export default function ProjectList(_: RouteComponentProps) {
                             {/* <form onSubmit={handleSubmit(onSubmit)}> */}
                                 <input style={{ width : "400px" , height: "40px", margin:"10px"}} placeholder="Search by Project Name" name="search" /> 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" />
+                                <Box fontWeight={800} clone>
+                                    <Button
+                                        type = "submit"
+                                        variant="contained"
+                                        size="large"
+                                        color="primary"
+                                        style={{margin: 5}}
+                                        disabled={isPending}>
+                                        Submit
+                                    </Button>
+                                </Box>
+                                {/* <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" /> */}
                             {/* </form> */}
                         </Grid>
                         {/* <Grid item xs={4}>

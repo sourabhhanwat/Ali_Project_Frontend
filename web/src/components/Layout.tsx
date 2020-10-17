@@ -14,6 +14,7 @@ import Breadcrumbs from './Breadcrumbs';
 import Drawer from './Drawer';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
+// import Projects from './icons/Project';
 import SiteIcon from './icons/Site';
 
 const StyledAppBar = styled(MAppBar)(
@@ -44,13 +45,16 @@ function ResourceAvatar() {
     return (
         <Box clone display="block" mr={4} ml={1}>
             <Avatar>
-                <Match path="/dashboard/projects">
+                <Match path="/dashboard/rbui">
                     {(props) => props.match && <ProjectIcon />}
                 </Match>
                 <Match path="/dashboard/sites">
                     {(props) => props.match && <SiteIcon />}
                 </Match>
                 <Match path="/dashboard/projects/:projectId/sites">
+                    {(props) => props.match && <SiteIcon />}
+                </Match>
+                <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && <SiteIcon />}
                 </Match>
                 <Match path="/dashboard/platforms">
@@ -74,11 +78,17 @@ function ResourceTitle() {
                 <Match path="/dashboard/projects">
                     {(props) => props.match && 'Project List'}
                 </Match>
+                <Match path="/dashboard/rbui">
+                    {(props) => props.match && 'RBUI Dashboard'}
+                </Match>
                 <Match path="/dashboard/sites">
                     {(props) => props.match && 'Site List'}
                 </Match>
                 <Match path="/dashboard/projects/:projectId/sites">
                     {(props) => props.match && 'Site List'}
+                </Match>
+                <Match path="/dashboard/CreatePlatform">
+                    {(props) => props.match && 'Project List'}
                 </Match>
                 <Match path="/dashboard/platforms">
                     {(props) => props.match && 'Platform List'}
@@ -103,9 +113,19 @@ function ResourceCaption() {
                         props.match && 'List all projects that you can view.'
                     }
                 </Match>
+                <Match path="/dashboard/rbui">
+                    {(props) =>
+                        props.match && 'RBUI Summary Dashboard'
+                    }
+                </Match>
                 <Match path="/dashboard/sites">
                     {(props) =>
                         props.match && 'List all sites that you can view.'
+                    }
+                </Match>
+                <Match path="/dashboard/CreatePlatform">
+                    {(props) =>
+                        props.match && 'List all projects that you can view.'
                     }
                 </Match>
                 <Match path="/dashboard/projects/:projectId/sites">

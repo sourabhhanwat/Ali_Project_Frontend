@@ -109,23 +109,23 @@ export default function Drawer({ open }: { open: boolean }) {
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard/newuser')}>
-                    <Tooltip title="Newuser">
+                    <Tooltip title="New User">
                         <ListItemIcon>
                             <NewuserIcon />
                         </ListItemIcon>
                     </Tooltip>
-                    <ListItemText primary="NewUser" />
+                    <ListItemText primary="New User" />
                 </ListItem>
 
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard/existinguser')}>
-                    <Tooltip title="Existinguser">
+                    <Tooltip title="Existing User">
                         <ListItemIcon>
                             <ExcistinguserIcon />
                         </ListItemIcon>
                     </Tooltip>
-                    <ListItemText primary="Existinguser" />
+                    <ListItemText primary="Existing User" />
                 </ListItem>
 
                 <ListItem
