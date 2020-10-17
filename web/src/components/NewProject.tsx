@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { Typography, styled, Avatar, makeStyles, Theme, createStyles} from '@material-ui/core';
+import { Typography, styled, Avatar, makeStyles, Theme, createStyles, Button} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import ProjectIcon from './icons/Project';
@@ -148,7 +148,18 @@ const tableStyles = {
                     <option value= {list.id} key={list.id}> {list.username} </option>
                     ))}
                     </select> 
-                    <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
+                    <Box fontWeight={800} clone>
+                        <Button
+                            type = "button"
+                            onClick={() => onDrop()}
+                            variant="contained"
+                            size="large"
+                            color="primary"
+                            style={{margin: 5}}>
+                            Load
+                        </Button>
+                    </Box>
+                    {/* <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button> */}
                     
                 </Box>
             </Grid>
@@ -159,7 +170,17 @@ const tableStyles = {
                  <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" ref={register({ required: true})} />
             </Grid>
             </Grid>
-      <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/>
+            <Box fontWeight={800} clone>
+                <Button
+                    type = "submit"
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    style={{margin: 5}}>
+                    Submit
+                </Button>
+            </Box>
+      {/* <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/> */}
         
     </form>
     );
