@@ -59,7 +59,7 @@ export default function StructuralDetailsFieldset() {
 
     return (
         <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary style={{backgroundColor: "Gainsboro"}} expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="body1">Operational Details</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>

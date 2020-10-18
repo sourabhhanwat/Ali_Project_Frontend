@@ -5,9 +5,9 @@ import NextInspectionDate from './NextInspectionDate';
 
 export default function ProgramTab({ hidden }: { hidden?: boolean }) {
     var paragraphDesign = {
-        // border: '1px solid black',
-        backgroundColor: 'green',
-        padding:    '.5rem',
+        backgroundColor: 'Gray',
+        padding:    '.8rem',
+        color: 'white',
 
     };
 

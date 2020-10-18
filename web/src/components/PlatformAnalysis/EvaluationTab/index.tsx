@@ -271,7 +271,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
-    let red = (risk_ranking === 'H') ?  'red' : (risk_ranking === 'M') ?  'green' : (risk_ranking === 'L') ?  'Orange' : 'yellow';
+    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';
     return (
         <Box hidden={hidden}>
             <Typography variant="h4" gutterBottom>
@@ -385,9 +385,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <Grid item xs={4}>
                     {/* // ek button */}
                     <Typography variant="h5" gutterBottom>
-                        <p></p>
-                        <p></p>
-                        <p></p>
+                    <br />
+                    <br />
                     </Typography>
                     <Popup trigger={
                         <IconButton color="secondary" aria-label="add an alarm">
@@ -426,10 +425,12 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
             <Box>
                 <Accordion defaultExpanded>
-                    <AccordionSummary>
+                    <AccordionSummary style={{backgroundColor: "Gainsboro"}}>
                         <Typography>Life-Safety Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
+                        <br></br>
+                        <br></br>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Select
@@ -525,7 +526,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
                 
                 <Accordion>
-                    <AccordionSummary>
+                    <AccordionSummary style={{backgroundColor: "Gainsboro"}}>
                         <Typography>Environmental Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -708,7 +709,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary>
+                    <AccordionSummary style={{backgroundColor: "Gainsboro"}}>
                         <Typography>Economic Impact Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -923,7 +924,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary>
+                    <AccordionSummary style={{backgroundColor: "Gainsboro"}}>
                         <Typography>Final Consequence Level</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -988,56 +989,55 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary>
+                    <AccordionSummary style={{backgroundColor: "Gainsboro"}}>
                         <Typography>Risk Evaluation</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Grid container spacing={2}>
-                            <Grid item xs={4}>
+                        <Grid container spacing={1}>  
+                            <Grid item xs={12}></Grid>
+                            <Grid item xs={6}>
                                 <p>
                                 Likelihood of Failure Category
                                 </p>
-
                             </Grid>
                             <Grid item xs={4}>
-                                 <Typography variant="h5">
-                                    {lof_ranking}
-                                </Typography>
-                                 {/* <TextField
+                                <TextField
                                     disabled
                                     label="Likelihood of Failure Category"
                                     name={[
                                         'lof_ranking',
                                     ]}
                                     
-                                /> */}
+                                />
+                                 {/* <Typography style={{paddingTop: "5px"}} variant="h5">
+                                    {lof_ranking}
+                                </Typography> */}
                             </Grid>
-                            <Grid item xs={4}></Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <p>
                                 Final Consequence Category                             
                                 </p>
                             </Grid>
                             <Grid item xs={4}>
-                            <Typography variant="h5">
-                                    {final_consequence_category}
-                                </Typography>
-                                {/* <TextField
+                                <TextField
                                     disabled
                                     label="Final Consequence Category"
                                     name={[
                                         'final_consequence_category',
                                     ]}
-                                /> */}
-                            </Grid>
-                            <Grid item xs={4}></Grid>
-                            <Grid item xs={4}>
+                                    
+                                />
+                                {/* <Typography style={{paddingTop: "5px"}} variant="h5">
+                                    {final_consequence_category}
+                                </Typography> */}
+                            </Grid> 
+                            <Grid item xs={6}>
                                 <p>
                                 Risk Ranking
                                 </p>
                             </Grid>
                             <Grid item xs={4}>
-                                <Typography style={{color: red}} variant="h5">
+                                <Typography style={{backgroundColor:red, paddingLeft:"40%", color: "black", paddingTop: "5px"}} variant="h5">
                                     {risk_ranking}
                                 </Typography>
 
@@ -1050,9 +1050,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     ]}
                                 /> */}
                             </Grid>
-                            <Grid item xs={4}>
-                            </Grid>
-                        
+                            <Grid item xs={12}></Grid>
+                        </Grid>  
+                         
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <div>
                                 <TableContainer component={Paper}>
@@ -1066,9 +1067,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">M</StyledTableCell>
@@ -1076,9 +1078,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very High Risk Zone</StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very High Risk Zone</StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
@@ -1086,9 +1089,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">High Risk Zone</StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">High Risk Zone</StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
@@ -1096,9 +1100,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "yellow"}} align="center">M</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Medium Risk Zone</StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Medium Risk Zone</StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "green"}} align="center">VL</StyledTableCell>
@@ -1106,9 +1111,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellow"}} align="center">M</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Low Risk Zone</StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Low Risk Zone</StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "green"}} align="center">VL</StyledTableCell>
@@ -1116,9 +1122,10 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">M</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "Green"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very Low Risk Zone</StyledTableCell></StyledTableRow>
+                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very Low Risk Zone</StyledTableCell> */}
+                                            </StyledTableRow>
                                             <StyledTableRow>
                                             <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
