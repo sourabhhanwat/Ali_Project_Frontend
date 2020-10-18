@@ -46,7 +46,7 @@ export default function NextInspectionDate() {
         'risk_ranking'
     );
     let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';
-  
+    let risk = (risk_ranking === 'H') ?  'High (H)' : (risk_ranking === 'VH') ?  'Very High (VH)' : (risk_ranking === 'M') ?  'Medium (M)' : (risk_ranking === 'L') ?  'Low (L)' : 'Very Low (VL)';
 
     
     const content = React.useMemo(
@@ -67,13 +67,9 @@ export default function NextInspectionDate() {
 
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField 
-                                    label="Platform Risk Level"
-                                    name={[
-                                        'risk_ranking',
-                                    ]}
-                                    disabled
-                                />
+                                <div style={{backgroundColor: red, height:"50px"}}>
+                                    <Typography style={{color: "Black",paddingTop:"13px" ,paddingLeft:"30%"}}>{risk}</Typography>
+                                </div>
                             </Grid>
                             <Grid item xs={4}>
                                 <p>
