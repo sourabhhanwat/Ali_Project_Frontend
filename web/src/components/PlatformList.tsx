@@ -17,7 +17,7 @@ const SkeletonPlatformCards = React.memo(() => (
     </>
 ));
 
-export default function PlatformsList(_: RouteComponentProps) {
+export default function PlatformsList(this: any, {projectId}: RouteComponentProps<{projectId: number;}>) {
     const platformList = usePlatformList();
 
     const [isPending, setIsPending] = React.useState<boolean>();
@@ -25,34 +25,41 @@ export default function PlatformsList(_: RouteComponentProps) {
 
     const handlePlatformList = (state: State<Platform[] | null>) => {
         setIsPending(state.isPending);
-        setPlatforms(state.value);
+        let values = state.value?.filter((v) => v.project === projectId)
+        console.log('project 1 value = ', values)
+        setPlatforms(values);
     };
 
-    let siteId: number | undefined;
+    // let projectId: number | undefined;
 
-    const match = useMatch('/dashboard/sites/:siteId/platforms');
+    const match = useMatch('/dashboard/project/:projectId/platforms');
 
     if (match) {
-        siteId = parseInt((match as any).siteId);
+        projectId = parseInt((match as any).projectId);
     }
 
+    console.log("================", projectId);
+
     const fetch = React.useCallback(() => {
-        if (siteId) {
+        if (projectId) {
             platformList.subject.list({
                 filter: {
-                    site: siteId,
+                    project: projectId,
                 },
             });
         } else {
             platformList.subject.list(undefined);
         }
-    }, [siteId, platformList.subject]);
+    }, [projectId, platformList.subject]);
 
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
         fetch();
         return () => platformList.subject.detach(handlePlatformList);
     }, [fetch, platformList.subject]);
+
+    console.log("I AM PLATFORM ==>")
+    console.log(platformList.subject)
 
     return (
         <>

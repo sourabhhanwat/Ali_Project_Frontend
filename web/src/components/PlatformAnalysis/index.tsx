@@ -17,6 +17,7 @@ import DataTab from './DataTab';
 import EvaluationTab from './EvaluationTab';
 import StrategyTab from './StrategyTab';
 import ProgramTab from './ProgramTab';
+import { Console } from 'console';
 
 const SyledAppBar = styled(AppBar)(({ theme }) => ({
     bottom: 0,
@@ -25,14 +26,7 @@ const SyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.grey['50'],
 }));
 
-export default function PlatformAnalysis(this: any, {
-    platformId,
-    location,
-    navigate,
-    uri,
-}: RouteComponentProps<{
-    platformId: number;
-}>) {
+export default function PlatformAnalysis(this: any, {platformId,location,navigate,uri,}: RouteComponentProps<{platformId: number;}>) {
     const { type = 'data' } = querystring.parse(location?.search ?? '');
 
     const platform = usePlatform();
@@ -41,11 +35,10 @@ export default function PlatformAnalysis(this: any, {
         validationSchema: PlatformSchema,
     });
 
+    console.log("I am inside function");
+    console.log(platformId);
+
     const { reset, handleSubmit, errors } = methods;
-
-    // console.log(errors);
-
-    // console.log(this.state);
 
     const handlePlatform = React.useCallback(
         (state: State<Platform | null>) => {
@@ -53,8 +46,6 @@ export default function PlatformAnalysis(this: any, {
                 return;
             }
             reset(state.value);
-            // console.log(state);
-            // console.log("This Name =>" ,state.value.name);
         },
         [reset]
     );
@@ -64,6 +55,9 @@ export default function PlatformAnalysis(this: any, {
         platform.subject.get({ id: platformId! });
         return () => platform.subject.detach(handlePlatform);
     }, [platform.subject, platformId, handlePlatform]);
+
+    console.log("DATATATA ===>")
+    console.log(platform.subject)
 
     return (
         <>

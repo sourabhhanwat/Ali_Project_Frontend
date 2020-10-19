@@ -18,9 +18,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
-import { navigate } from '@reach/router';
-import { Tooltip, ListItem, ListItemIcon, ListItemText, Box, Button } from '@material-ui/core';
-import ProjectIcon from './icons/Project';
+// import { navigate } from '@reach/router';
+import { Box, Button } from '@material-ui/core';
+// import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
 
 
@@ -154,25 +154,25 @@ export default function ProjectList(_: RouteComponentProps) {
         setPlatforms(state.value);
     };
 
-    let siteId: number | undefined;
+    let projectId: number | undefined;
 
-    const match = useMatch('/dashboard/sites/:siteId/platforms');
+    const match = useMatch('/dashboard/project/:projectId/platforms');
 
     if (match) {
-        siteId = parseInt((match as any).siteId);
+        projectId = parseInt((match as any).siteId);
     }
 
     const fetch = React.useCallback(() => {
-        if (siteId) {
+        if (projectId) {
             platformList.subject.list({
                 filter: {
-                    site: siteId,
+                    project: projectId,
                 },
             });
         } else {
             platformList.subject.list(undefined);
         }
-    }, [siteId, platformList.subject]);
+    }, [projectId, platformList.subject]);
 
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);

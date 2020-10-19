@@ -21,7 +21,7 @@ import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
 import { useProjectList } from './ProjectListProvider';
-import { ListItem, Tooltip, ListItemIcon, ListItemText, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 
 var p = {
@@ -115,7 +115,11 @@ const SkeletonPlatformCards = React.memo(() => (
     </>
 ));
 
+
+
 export default function CreatePlatform(_: RouteComponentProps) {
+
+
     // const { subject } = useProjectList();
     // const [isPending, setIsPending] = React.useState<boolean | undefined>();
     // const [projects, setProjects] = React.useState<Project[] | null>();
@@ -156,27 +160,27 @@ export default function CreatePlatform(_: RouteComponentProps) {
         setPlatforms(state.value);
     };
 
-    let siteId: number | undefined;
+    let projectId: number | undefined;
 
-    const match = useMatch('/dashboard/sites/:siteId/platforms');
+    const match = useMatch('/dashboard/project/:projectId/platforms');
 
     if (match) {
-        siteId = parseInt((match as any).siteId);
+        projectId = parseInt((match as any).projectId);
     }
 
     const StyledLink = styled(Link)({ textDecoration: 'none' });
 
     const fetch = React.useCallback(() => {
-        if (siteId) {
+        if (projectId) {
             platformList.subject.list({
                 filter: {
-                    site: siteId,
+                    project: projectId,
                 },
             });
         } else {
             platformList.subject.list(undefined);
         }
-    }, [siteId, platformList.subject]);
+    }, [projectId, platformList.subject]);
 
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
@@ -354,9 +358,14 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="right">
-                                     <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
+                                    <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
                                             <Button color="primary" >
                                                 Create PLatform <ChevronRightIcon />
+                                            </Button>
+                                    </StyledLink>
+                                    <StyledLink to={`/dashboard/project/${project.id}/platforms`}>
+                                            <Button color="primary" >
+                                                View PLatform <ChevronRightIcon />
                                             </Button>
                                     </StyledLink>
                                     {/*<StyledLink to={`/dashboard/NewPlatform/`}>

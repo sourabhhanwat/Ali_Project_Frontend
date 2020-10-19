@@ -3,7 +3,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 export default function Site() {
     return (
-        <SvgIcon enable-background="new 0 0 64 64" height="612" viewBox="0 0 64 64" width="612">
+        <SvgIcon height="612" viewBox="0 0 64 64" width="612">
           
                 <path d="m32 53v-10.586l-2 2v10.586h6.05c-.03-.33-.05-.662-.05-1s.021-.67.05-1z"/>
 <path d="m10 27c-.338 0-.67-.021-1-.05v11.05h6.586l2-2h-6.586v-9.05c-.33.029-.662.05-1 .05z"/>

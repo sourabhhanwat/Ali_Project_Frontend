@@ -278,6 +278,7 @@ export const PlatformSchema = yup
         rbui_assessment_date: yup.date(),
         selected_inspection_interval_for_next_inspection: IntegerSchema,
         calculated_environmental_consequence: IntegerSchema.nullable(),
+        project: IntegerSchema
     })
     .noUnknown();
 
@@ -289,8 +290,8 @@ declare global {
 
 export type ListParam = {
     filter?: {
-        site?: number;
-        site__project?: number;
+        project?: number;
+        // site__project?: number;
     };
 };
 
@@ -299,7 +300,7 @@ class PlatformListSubject extends Subject<Platform[] | null> {
         const { data } = await axios.get<Platform[]>('/api/v1/platforms/', {
             params: param.filter,
             transformResponse(data) {
-                console.log("MYYYYYY")
+                console.log("DATABASE ===>")
                 console.log(data)
                 return PlatformListSchema.validateSync(data);
             },

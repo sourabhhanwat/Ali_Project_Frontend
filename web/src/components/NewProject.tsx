@@ -19,13 +19,13 @@ const StyledImage = styled('img')(({ theme }) => ({
     textAlign: 'center',
 }));
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-  }),
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     root: {
+//       flexGrow: 1,
+//     },
+//   }),
+// );
 
 const tableStyles = {
   padding: 'unset',
