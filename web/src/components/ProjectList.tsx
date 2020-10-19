@@ -144,6 +144,9 @@ export default function ProjectList(_: RouteComponentProps) {
         return () => subject.detach(handleProjectList);
     }, [subject]);
 
+    console.log("project");
+    console.log(projects);
+
     const platformList = usePlatformList();
 
     const [isPending, setIsPending] = React.useState<boolean>();
@@ -153,10 +156,6 @@ export default function ProjectList(_: RouteComponentProps) {
         setIsPending(state.isPending);
         setPlatforms(state.value);
     };
-
-    function createrisk(risk:string) {
-        return ;
-      }
 
     let siteId: number | undefined;
 
@@ -276,7 +275,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     options={{
                                         title:{
                                             display:true,
-                                            text:'OFFSHORE FIELD-1 RISK LEVELS',
+                                            text:'',
                                             fontSize:20
                                             },
                                         legend:{

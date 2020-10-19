@@ -25,6 +25,7 @@ export const PlatformSchema = yup
         condition_score: IntegerSchema,
         loading_score: IntegerSchema,
         total_score: IntegerSchema,
+        project:IntegerSchema,
         rsr_override_score: IntegerSchema,
         platform_vintage_score: yup.number(),
         access_type: yup.mixed<'M' | 'V'>().oneOf(['M', 'V']),
