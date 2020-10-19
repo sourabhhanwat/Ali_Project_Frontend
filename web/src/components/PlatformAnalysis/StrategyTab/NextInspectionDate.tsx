@@ -42,11 +42,12 @@ export default function NextInspectionDate() {
 
     const { watch } = useFormContext();
     const risk_ranking = watch(
-      'risk_ranking'
-      );
-    let red = (risk_ranking === 'H') ?  'red' : (risk_ranking === 'M') ?  'green' : (risk_ranking === 'L') ?  'Orange' : 'yellow';
-  
+        'risk_ranking'
+    );
+    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';
+    let risk = (risk_ranking === 'H') ?  'High (H)' : (risk_ranking === 'VH') ?  'Very High (VH)' : (risk_ranking === 'M') ?  'Medium (M)' : (risk_ranking === 'L') ?  'Low (L)' : 'Very Low (VL)';
 
+   
     
     const content = React.useMemo(
         () => (
@@ -58,22 +59,19 @@ export default function NextInspectionDate() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
-                            <Grid item xs={6}>
+                             <Grid item xs={12}></Grid>
+                            <Grid item xs={4}>
                                 <p>
                                 Platform Risk Level
                                 </p>
 
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField
-                                    label="Platform Risk Level"
-                                    name={[
-                                        'risk_ranking',
-                                    ]}
-                                    disabled
-                                />
+                                <div style={{backgroundColor: red, height:"50px"}}>
+                                    <Typography style={{color: "Black",paddingTop:"13px" ,paddingLeft:"30%"}}>{risk}</Typography>
+                                </div>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={4}>
                                 <p>
                                 Risk Based Underwater Inspection Interval (Years)
                                 </p>
@@ -87,95 +85,105 @@ export default function NextInspectionDate() {
                                     disabled
                                 />
                             </Grid>
-                        <Grid item xs={12}>
-                                <div>
-                                <TableContainer component={Paper}>
-                                 <Table>
-                                    <TableBody style={{borderColor: "black"}}>
-                                        {/* {rowscol.map((row) => ( */}
-                                            <StyledTableRow>
-                                            <StyledTableCell rowSpan={7} style={{backgroundColor: "white"}} component="th" scope="row" align="center">LIKELIHOOD OF FAILURE</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
-                                            <StyledTableCell  style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very High Risk Zone</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">High Risk Zone</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center">7</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Medium Risk Zone</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center">7</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Low Risk Zone</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "Green"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very Low Risk Zone</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">B</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">C</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">D</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">E</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell  style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell colSpan={6} style={{backgroundColor: "white"}} align="center">CONSEQUENCE OF FAILURE</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
+                            <Grid item xs={12}></Grid>
+                        </Grid>   
+                        <Grid container spacing={1}>
+                                <Grid item xs={12}>
+                                    <div>
+                                    <TableContainer component={Paper}>
+                                    <Table>
+                                        <TableBody style={{borderColor: "black"}}>
+                                            {/* {rowscol.map((row) => ( */}
+                                                <StyledTableRow>
+                                                <StyledTableCell rowSpan={7} style={{backgroundColor: "white"}} component="th" scope="row" align="center">LIKELIHOOD OF FAILURE</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
+                                                <StyledTableCell  style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very High Risk Zone</StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "red"}} align="center">3</StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">High Risk Zone</StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}} align="center">7</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">Medium Risk Zone</StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}} align="center">7</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "orange"}} align="center">5</StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">Low Risk Zone</StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "green"}} align="center">12</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">10</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">7</StyledTableCell>
+                                                {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "Green"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very Low Risk Zone</StyledTableCell> */}
+                                                </StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center">B</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center">C</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center">D</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center">E</StyledTableCell></StyledTableRow>
+                                                <StyledTableRow>
+                                                <StyledTableCell  style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell colSpan={6} style={{backgroundColor: "white"}} align="center">CONSEQUENCE OF FAILURE</StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
+                                                <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
 
-                                        {/* ))} */}
-                                        </TableBody>
-                                 </Table>
-                            </TableContainer>                              
+                                            {/* ))} */}
+                                            </TableBody>
+                                    </Table>
+                                </TableContainer>                              
 
-                            </div>
-                            </Grid>
+                                </div>
+                                </Grid>
                         </Grid>
+                        
                     </AccordionDetails>
                 </Accordion> 
 {/* ============================================== */}
@@ -344,8 +352,8 @@ export default function NextInspectionDate() {
 
     return (
         <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="body1">Next Inspection Date</Typography>
+            <AccordionSummary style={{backgroundColor: "Black" }} expandIcon={<ExpandMoreIcon />}>
+                <Typography style={{color: "White" }} variant="body1">Next Inspection Date</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>

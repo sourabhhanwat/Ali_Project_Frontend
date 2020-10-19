@@ -20,6 +20,7 @@ export default function GeneralDetailsFieldset() {
 
     const content = React.useMemo(
         () => (
+           
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                     <TextField name={['name']} label="Name" required />
@@ -146,8 +147,8 @@ export default function GeneralDetailsFieldset() {
 
     return (
         <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="body1">General Details</Typography>
+            <AccordionSummary style={{backgroundColor: "Black"}} expandIcon={<ExpandMoreIcon />}>
+                <Typography style={{color: "White"}} variant="body1">General Details</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>

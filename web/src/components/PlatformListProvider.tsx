@@ -279,7 +279,7 @@ export const PlatformSchema = yup
         rbui_assessment_date: yup.date(),
         selected_inspection_interval_for_next_inspection: IntegerSchema,
         calculated_environmental_consequence: IntegerSchema.nullable(),
-        project: IntegerSchema
+        // project: IntegerSchema
     })
     .noUnknown();
 

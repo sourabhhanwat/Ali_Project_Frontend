@@ -119,7 +119,7 @@ export default function MarineGrowth() {
                                 </Typography>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <h3>Marine Growth Depths From EL </h3>
+                            <p>Marine Growth Depths From EL </p>
                         </Grid>
                         <Grid item xs={12} md={6}>
                             {/* <TextField
@@ -136,7 +136,7 @@ export default function MarineGrowth() {
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <h3>Marine Growth Depths To EL </h3>
+                            <p>Marine Growth Depths To EL </p>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -150,7 +150,7 @@ export default function MarineGrowth() {
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <h3> Marine Growth Inspected Thickness </h3>
+                            <p> Marine Growth Inspected Thickness </p>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -164,7 +164,7 @@ export default function MarineGrowth() {
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <h3> Marine Growth Allowable Design Thickness </h3>
+                            <p> Marine Growth Allowable Design Thickness </p>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
