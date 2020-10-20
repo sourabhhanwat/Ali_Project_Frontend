@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { PropsWithChildren } from 'react';
 import * as yup from 'yup';
 import Subject from '../modules/Subject';
-import { SiteSchema } from './SiteListProvider';
 
 export const DecimalLikeSchema = yup
     .string();
@@ -195,13 +194,13 @@ export const PlatformSchema = yup
                 platform_replacement_time: IntegerSchema,
             })
             .noUnknown(),
-        site: SiteSchema,
-        bracing_type: yup
-            .object({
-                id: IntegerSchema,
-                name: yup.string(),
-            })
-            .noUnknown(),
+        // site: SiteSchema,
+        // bracing_type: yup
+        //     .object({
+        //         id: IntegerSchema,
+        //         name: yup.string(),
+        //     })
+        //     .noUnknown(),
         bracing_type_id: yup.ref('bracing_type.id'),
         number_of_legs_type: yup
             .object({

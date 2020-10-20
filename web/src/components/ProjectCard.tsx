@@ -1,8 +1,7 @@
 import formatRFC7231 from 'date-fns/formatRFC7231';
 import React from 'react';
 import '../modules/Subject';
-import ResourceCard, { SkeletonResourceCard } from './ResourceCard';
-import { useSiteList } from './SiteListProvider';
+import { SkeletonResourceCard } from './ResourceCard';
 
 const HEADERS = [
     { key: 'name' as const, label: 'Name' },
@@ -23,36 +22,38 @@ export const SkeletonProjectCard = React.memo(() => (
 ));
 
 export default function ProjectCard({ project }: { project: Project }) {
-    const { subject } = useSiteList();
+    // const { subject } = useSiteList();
 
-    const [sites, setSites] = React.useState<Site[] | null>();
-    const [isPending, setIsPending] = React.useState<boolean>();
+    // const [sites, setSites] = React.useState<Site[] | null>();
+    // const [isPending, setIsPending] = React.useState<boolean>();
 
-    const handleSiteList = (state: State<Site[] | null>) => {
-        setIsPending(state.isPending);
-        setSites(state.value);
-    };
+    // const handleSiteList = (state: State<Site[] | null>) => {
+    //     setIsPending(state.isPending);
+    //     setSites(state.value);
+    // };
 
-    React.useEffect(() => {
-        subject.attach(handleSiteList);
-        subject.list({
-            filter: {
-                project: project.id,
-            },
-        });
-        return () => subject.detach(handleSiteList);
-    }, [project.id, subject]);
+    // React.useEffect(() => {
+    //     subject.attach(handleSiteList);
+    //     subject.list({
+    //         filter: {
+    //             project: project.id,
+    //         },
+    //     });
+    //     return () => subject.detach(handleSiteList);
+    // }, [project.id, subject]);
 
     return (
-        <ResourceCard<Site>
-            updatedAt={project.updated_at}
-            isPending={isPending}
-            title={`Project ${project.name}`}
-            caption={project.description}
-            headers={HEADERS}
-            getKey={(resource) => `${resource.id}`}
-            resources={sites}
-            link={`/dashboard/projects/${project.id}/sites`}
-        />
+        <p>hello</p>
+        // <ResourceCard 
+        // // <Site>
+        //     updatedAt={project.updated_at}
+        //     // isPending={isPending}
+        //     title={`Project ${project.name}`}
+        //     caption={project.description}
+        //     headers={HEADERS}
+        //     // getKey={(resource) => `${resource.id}`}
+        //     // resources={sites}
+        //     link={`/dashboard/projects/${project.id}/sites`}
+        // />
     );
 }

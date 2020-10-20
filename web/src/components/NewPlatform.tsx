@@ -27,9 +27,9 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 //   }),
 // );
 
-const tableStyles = {
-  padding: 'unset',
-};
+// const tableStyles = {
+//   padding: 'unset',
+// };
   
 
 interface IFormInput {
@@ -41,7 +41,7 @@ interface IFormInput {
 
 export default function NewPlatform(this: any, {projectId,}: RouteComponentProps<{projectId: number;}>) {
 
-    const { register, handleSubmit ,reset} = useForm<IFormInput>();
+    const { register, handleSubmit } = useForm<IFormInput>();
     const [lst, setLst] = React.useState([])
     const [project, setProject] = React.useState<any>([]);
 

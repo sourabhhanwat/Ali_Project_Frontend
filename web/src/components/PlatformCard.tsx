@@ -13,10 +13,6 @@ import { styled, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Filter1OutlinedIcon from '@material-ui/icons/Filter1Outlined';
-import Filter2OutlinedIcon from '@material-ui/icons/Filter2Outlined';
-import Filter3OutlinedIcon from '@material-ui/icons/Filter3Outlined';
-import Filter4OutlinedIcon from '@material-ui/icons/Filter4Outlined';
-import Filter5OutlinedIcon from '@material-ui/icons/Filter5Outlined';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from '@reach/router';
 import React from 'react';
@@ -51,28 +47,6 @@ export function SkeletonPlatformCard() {
                 </Typography>
             </CardContent>
             <Divider />
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                clone
-            >
-                <CardContent>
-                    <Box clone fontWeight={800}>
-                        <Typography>
-                            <Skeleton variant="text" />
-                        </Typography>
-                    </Box>
-                    <Box>
-                        <Typography>
-                            <Skeleton variant="text" />
-                        </Typography>
-                        <Typography variant="caption">
-                            <Skeleton variant="text" />
-                        </Typography>
-                    </Box>
-                </CardContent>
-            </Box>
             <Divider />
             <List>
                 <ListItem>
@@ -96,75 +70,8 @@ export function SkeletonPlatformCard() {
                     />
                 </ListItem>
                 <Divider />
+                
                 <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="high">
-                            <Filter2OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box
-                                clone
-                                fontWeight={800}
-                                fontSize="body2.fontSize"
-                            >
-                                <Typography>
-                                    <Skeleton variant="text" />
-                                </Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="medium">
-                            <Filter3OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box
-                                clone
-                                fontWeight={800}
-                                fontSize="body2.fontSize"
-                            >
-                                <Typography>
-                                    <Skeleton variant="text" />
-                                </Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="low">
-                            <Filter4OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box
-                                clone
-                                fontWeight={800}
-                                fontSize="body2.fontSize"
-                            >
-                                <Typography>
-                                    <Skeleton variant="text" />
-                                </Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="veryLow">
-                            <Filter5OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
                     <ListItemText
                         primary={
                             <Box
@@ -198,26 +105,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 </Typography>
             </CardContent>
             <Divider />
-            {/* <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                clone
-            >
-                <Tooltip title={platform.description}>
-                    <CardContent>
-                        <Box clone fontWeight={800}>
-                            <Typography>Site</Typography>
-                        </Box>
-                        <Box>
-                            <Typography>{platform.name}</Typography>
-                            <Typography variant="caption">
-                                <RelativeDate date={platform.updated_at} />
-                            </Typography>
-                        </Box>
-                    </CardContent>
-                </Tooltip>
-            </Box> */}
             <Divider />
             <List>
                 <ListItem>
@@ -234,66 +121,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                         }
                     />
                 </ListItem>
-                {/* <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="high">
-                            <Filter2OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box clone fontSize="body2.fontSize">
-                                <Typography>Pipelines</Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="medium">
-                            <Filter3OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box clone fontSize="body2.fontSize">
-                                <Typography>Wells</Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="low">
-                            <Filter4OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box clone fontSize="body2.fontSize">
-                                <Typography>Critical Safety System</Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <StyledAvatar level="veryLow">
-                            <Filter5OutlinedIcon />
-                        </StyledAvatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Box clone fontSize="body2.fontSize">
-                                <Typography>QHSE</Typography>
-                            </Box>
-                        }
-                    />
-                </ListItem> */}
+                
             </List>
             <Box justifyContent="flex-end" clone>
                 <CardActions>
@@ -308,12 +136,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                     </StyledLink>
                 </CardActions>
             </Box>
-
-            {/* ================================================================== */}
-
-            
-
-            {/* ================================================================== */}
         </Card>
     );
 }

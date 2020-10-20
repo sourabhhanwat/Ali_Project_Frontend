@@ -17,7 +17,6 @@ import DataTab from './DataTab';
 import EvaluationTab from './EvaluationTab';
 import StrategyTab from './StrategyTab';
 import ProgramTab from './ProgramTab';
-import { Console } from 'console';
 
 const SyledAppBar = styled(AppBar)(({ theme }) => ({
     bottom: 0,
@@ -38,7 +37,7 @@ export default function PlatformAnalysis(this: any, {platformId,location,navigat
     console.log("I am inside function");
     console.log(platformId);
 
-    const { reset, handleSubmit, errors } = methods;
+    const { reset, handleSubmit } = methods;
 
     const handlePlatform = React.useCallback(
         (state: State<Platform | null>) => {
