@@ -5,6 +5,7 @@ import Layout from './Layout';
 import NumberOfLegsTypeListProvider, { useNumberOfLegsTypeList } from './NumberOfLegsTypeListProvider';
 import PlatformMannedStatusListProvider, { usePlatformMannedStatusList } from './PlatformMannedStatusListProvider';
 import PlatformTypeListProvider, { usePlatformTypeList } from './PlatformTypeListProvider';
+import UpdatePlatform from './UpdatePlatform';
 
 const NewUser = React.lazy(() => import('./Newuser'));
 
@@ -61,6 +62,7 @@ export default function Dashboard(_: RouteComponentProps) {
                                 <NewProject path="newProject" />
                                 <UpdateProject path="UpdateProject/:projectId" />
                                 <NewPlatform path="NewPlatform/:projectId" />
+                                <UpdatePlatform path="UpdatePlatform/:platformId/"/>
                                 <Platform path="Platform" />
                                 <Existinguser path = "existinguser" />
                                 <CreatePlatform path = "CreatePlatform" />

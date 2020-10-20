@@ -19,6 +19,7 @@ import React from 'react';
 import UpdateIcon from '@material-ui/icons/Update';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RelativeDate from './RelativeDate';
+import axios from "axios";
 
 const StyledAvatar = styled(Avatar)(
     ({
@@ -96,17 +97,36 @@ export function SkeletonPlatformCard() {
 const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 export default function PlatformCard({ platform }: { platform: Platform }) {
+    
+    const deletePlatform = (value : any) => {
+
+        console.log(value);
+
+        axios.post('/api/v1/deleteplatform/', {
+            platformId: value,
+          })
+    
+          .then(function (response) {
+            console.log(response);
+        })
+          .catch(function (error) {
+            console.log(error);
+          });
+      
+    };
+
     return (
         <Card>
             <CardContent>
                 <Box style={{paddingLeft: "45%"}}>
-                <StyledLink to={`/dashboard/`}>
+                <StyledLink to={`/dashboard/UpdatePlatform/${platform.id}`}>
                         <Button size= "medium" color="primary">
                         <UpdateIcon />
                         </Button>
                 </StyledLink> 
-                <StyledLink to={`/dashboard/CreatePlatform/`}>
-                        <Button size= "medium" color="primary">
+                <StyledLink to={`/dashboard/platforms/`}>
+                        <Button size= "medium" color="primary"
+                        onClick={() => deletePlatform(platform.id)} >
                             <DeleteIcon />
                         </Button>
                 </StyledLink>

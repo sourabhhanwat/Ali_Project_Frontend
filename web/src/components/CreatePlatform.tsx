@@ -10,8 +10,6 @@ import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteIcon from '@material-ui/icons/Delete';
 import UpdateIcon from '@material-ui/icons/Update';
-// import PageviewIcon from '@material-ui/icons/Pageview';
-// import CreateIcon from '@material-ui/icons/Create';
 
 import { Link } from '@reach/router';
 // -----------------------
@@ -27,6 +25,7 @@ import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
 import { useProjectList } from './ProjectListProvider';
 import { Box } from '@material-ui/core';
+import axios from "axios";
 
 
 var p = {
@@ -52,19 +51,19 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 
-  function createData(no: string, Platform_Name: string, Primary_Function: string, Platfom_Manned_Status: string, Platform_Risk_Ranking: string,
-    Exposure_Category: string, Inspection_Intervals: string, Last_Inspection_Date: string, Next_Inspection_Date: string, Next_10_year: string ) {
-    return { no, Platform_Name, Primary_Function, Platfom_Manned_Status, Platform_Risk_Ranking, Exposure_Category ,  Inspection_Intervals,
-        Last_Inspection_Date, Next_Inspection_Date, Next_10_year };
-  }
+//   function createData(no: string, Platform_Name: string, Primary_Function: string, Platfom_Manned_Status: string, Platform_Risk_Ranking: string,
+//     Exposure_Category: string, Inspection_Intervals: string, Last_Inspection_Date: string, Next_Inspection_Date: string, Next_10_year: string ) {
+//     return { no, Platform_Name, Primary_Function, Platfom_Manned_Status, Platform_Risk_Ranking, Exposure_Category ,  Inspection_Intervals,
+//         Last_Inspection_Date, Next_Inspection_Date, Next_10_year };
+//   }
   
-  const rows = [
-    createData('1', 'PP', 'Production (P)', 'Yes', 'VH','L-1', '1', '01/03/2019', '01/03/2019', 'Level 1'),
-    createData('2', 'RP', 'Production (P)', 'NO', 'H', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-    createData('3', 'WP1', 'Drilling (D)', 'Yes', 'M', 'L-1', '6', '01/03/2019', '01/03/2019', 'Level 1'),
-    createData('4', 'WP10', 'Drilling (D)', 'Yes', 'M', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-    createData('5', 'QP', 'LQ (Q)', 'Yes', 'L', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-  ];
+//   const rows = [
+//     createData('1', 'PP', 'Production (P)', 'Yes', 'VH','L-1', '1', '01/03/2019', '01/03/2019', 'Level 1'),
+//     createData('2', 'RP', 'Production (P)', 'NO', 'H', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
+//     createData('3', 'WP1', 'Drilling (D)', 'Yes', 'M', 'L-1', '6', '01/03/2019', '01/03/2019', 'Level 1'),
+//     createData('4', 'WP10', 'Drilling (D)', 'Yes', 'M', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
+//     createData('5', 'QP', 'LQ (Q)', 'Yes', 'L', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
+//   ];
   
   const useStyles = makeStyles({
     table: {
@@ -73,27 +72,27 @@ const StyledTableRow = withStyles((theme) => ({
   });
 
 
-const StyledDivider = styled(Divider)(
-    ({
-        theme,
-        bgcolor,
-    }: {
-        theme: Theme;
-        bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
-    }) => ({
-        backgroundColor: bgcolor
-            ? theme.palette[bgcolor].main
-            : theme.palette.divider,
-        height: 4,
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        width: theme.spacing(4),
-        border: `1px solid ${
-            bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
-        }`,
-        borderRadius: theme.spacing(1),
-    })
-);
+// const StyledDivider = styled(Divider)(
+//     ({
+//         theme,
+//         bgcolor,
+//     }: {
+//         theme: Theme;
+//         bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
+//     }) => ({
+//         backgroundColor: bgcolor
+//             ? theme.palette[bgcolor].main
+//             : theme.palette.divider,
+//         height: 4,
+//         marginTop: theme.spacing(1),
+//         marginBottom: theme.spacing(1),
+//         width: theme.spacing(4),
+//         border: `1px solid ${
+//             bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
+//         }`,
+//         borderRadius: theme.spacing(1),
+//     })
+// );
 
 const StyledTypography = styled(Typography)({
     textTransform: 'uppercase',
@@ -220,55 +219,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
         backgroundColor.push(platform.risk_ranking)
     ))}
 
-    // 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
-    //           '#B21F00',
-    // '#FFA500',
-    // '#2FDE00',
-    // '#00A6B4',
-    // '#6800B4'
-
-    for(let i in backgroundColor){
-        // console.log(backgroundColor[i])
-        switch(backgroundColor[i]) { 
-            case "VL": { 
-               label.push('Very Low')
-               console.log('VL')
-               Color.push('#006400');
-               hoverBackgroundColor.push('#006400');
-            //    console.log("Excellent"); 
-               break; 
-            } 
-            case "H": { 
-                label.push('High')
-                console.log('high')
-                Color.push('#FF8C00');
-                hoverBackgroundColor.push('#FF8C00');
-                break; 
-            } 
-            case "M": {
-                label.push('Medium')
-                console.log('Medium')
-                Color.push('#FFA500');
-                hoverBackgroundColor.push('#FFA500');
-                break;    
-            } 
-            case "L": { 
-                label.push('Low')
-                console.log('Low')
-                Color.push('#ADFF2F');
-                hoverBackgroundColor.push('#ADFF2F');
-                break; 
-            }  
-            default: { 
-                label.push('Very High')
-                console.log('VH')
-                Color.push('#FF0000');
-                hoverBackgroundColor.push('#FF0000');
-                break;              
-            } 
-        }
-    }
-
     const state = {
         labels: pltname,
         datasets: [
@@ -280,13 +230,21 @@ export default function CreatePlatform(_: RouteComponentProps) {
           }
         ]
       }
-    
-
-    
 
     const Delete = (value : any) => {
 
-      console.log("I am deleted",value )
+        console.log(value);
+
+        axios.post('/api/v1/deleteproject/', {
+            projectId: value,
+          })
+    
+          .then(function (response) {
+            console.log(response);
+        })
+          .catch(function (error) {
+            console.log(error);
+          });
       
     };
 
