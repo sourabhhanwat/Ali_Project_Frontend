@@ -359,7 +359,8 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                         <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell>
-                                        <StyledTableCell align="center" ></StyledTableCell>
+                                        <StyledTableCell align="center" >Project &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Platform</StyledTableCell>
+                                        {/* <StyledTableCell align="center" >Platform</StyledTableCell> */}
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -370,42 +371,33 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
-                                    <StyledTableCell align="center">
-                                    <StyledLink to={`/dashboard/UpdateProject/${project.id}`}>
-                                            <Button size= "medium" color="primary">
-                                             <UpdateIcon />
-                                            </Button>
-                                    </StyledLink> 
-                                    <StyledLink to={`/dashboard/CreatePlatform/`}>
-                                            <Button size= "medium" color="primary"
-                                                onClick={() => Delete(project.id)}
-                                            >
-                                            
-                                                <DeleteIcon />
-                                            </Button>
-                                    </StyledLink>
-
-                                    <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
-                                            <Button size= "medium" color="primary" >
-                                                Create PLatform <ChevronRightIcon />
-                                            </Button>
-                                    </StyledLink>
-                                    <StyledLink to={`/dashboard/project/${project.id}/platforms`}>
-                                            <Button size= "medium" color="primary" >
-                                                View PLatform <ChevronRightIcon />
-                                            </Button>
-                                    </StyledLink>
-                                    
-                                     {/* <ListItem alignItems="center"
-                                            button
-                                            onClick={() => navigate('/dashboard/NewPlatform')}>
-                                            <Tooltip title="NewProject">
-                                                <ListItemIcon>
-                                                    <PlatformIcon />
-                                                </ListItemIcon>
-                                            </Tooltip>
-                                            <ListItemText primary="Create Platform" />
-                                        </ListItem>  */}
+                                    <StyledTableCell align="center" >
+                                        <StyledLink to={`/dashboard/UpdateProject/${project.id}`}>
+                                                <Button size= "medium" color="primary">
+                                                <UpdateIcon />
+                                                </Button>
+                                        </StyledLink> 
+                                        <StyledLink to={`/dashboard/CreatePlatform/`}>
+                                                <Button size= "medium" color="primary"
+                                                    onClick={() => Delete(project.id)}
+                                                >
+                                                
+                                                    <DeleteIcon />
+                                                </Button>
+                                        </StyledLink>
+                                    {/* </StyledTableCell>
+                                    <StyledTableCell align="center"> */}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
+                                                <Button size= "medium" color="primary" >
+                                                    Create<ChevronRightIcon />
+                                                </Button>
+                                        </StyledLink>
+                                        <StyledLink to={`/dashboard/project/${project.id}/platforms`}>
+                                                <Button size= "medium" color="primary" >
+                                                    View <ChevronRightIcon />
+                                                </Button>
+                                        </StyledLink>
                                      </StyledTableCell>
                                     </StyledTableRow>
                                 ))}

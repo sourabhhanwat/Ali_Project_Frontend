@@ -16,6 +16,8 @@ import Filter1OutlinedIcon from '@material-ui/icons/Filter1Outlined';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from '@reach/router';
 import React from 'react';
+import UpdateIcon from '@material-ui/icons/Update';
+import DeleteIcon from '@material-ui/icons/Delete';
 import RelativeDate from './RelativeDate';
 
 const StyledAvatar = styled(Avatar)(
@@ -97,6 +99,18 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
     return (
         <Card>
             <CardContent>
+                <Box style={{paddingLeft: "45%"}}>
+                <StyledLink to={`/dashboard/`}>
+                        <Button size= "medium" color="primary">
+                        <UpdateIcon />
+                        </Button>
+                </StyledLink> 
+                <StyledLink to={`/dashboard/CreatePlatform/`}>
+                        <Button size= "medium" color="primary">
+                            <DeleteIcon />
+                        </Button>
+                </StyledLink>
+                </Box>
                 <Box fontWeight={800} clone>
                     <Typography variant="h5">Platform {platform.name}</Typography>
                 </Box>
