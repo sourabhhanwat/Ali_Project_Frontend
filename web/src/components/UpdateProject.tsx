@@ -51,7 +51,7 @@ const tableStyles = {
         });
     }, []);
 
-    console.log("update project==>" , project.start_date)
+    console.log("update project==>", project.users )
    
     const onSubmit = (data: IFormInput,e:any) => {
       
@@ -78,21 +78,32 @@ const tableStyles = {
 
     };
 
-    const onDrop = () => {
-
-      axios.get('/api/v1/users/')
-      .then(function (response) {
-          setLst(response.data.map((item: any) =>({
+    React.useEffect(() => {
+      fetch('/api/v1/users/')
+        .then(results => results.json())
+        .then(data => {
+          setLst(data.map((item: any) => ({
             username: item.username,
             id: item.id
-          })))
-        console.log(lst)
-      })
+          })));
+        });
+    }, []);
 
-      .catch(function (error) {
-        console.log(error);
-      });
-    };
+    // const onDrop = () => {
+
+    //   axios.get('/api/v1/users/')
+    //   .then(function (response) {
+    //       setLst(response.data.map((item: any) =>({
+    //         username: item.username,
+    //         id: item.id
+    //       })))
+    //     console.log(lst)
+    //   })
+
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -136,7 +147,7 @@ const tableStyles = {
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={project.start_date.toString().split('T')[0]} ref={register({ required: true })}  />
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={String(project.start_date).split('T')[0]} ref={register({ required: true })}  />
             </Grid>
             
             <Grid item xs={12}>
@@ -151,17 +162,17 @@ const tableStyles = {
                     <option value= {list.id} key={list.id}> {list.username} </option>
                     ))}
                     </select> 
-                    <Box fontWeight={800} clone>
+                    {/* <Box fontWeight={800} clone>
                         <Button
                             type = "button"
-                            onClick={() => onDrop()}
+                            // onClick={() => onDrop()}
                             variant="contained"
                             size="large"
                             color="primary"
                             style={{margin: 5}}>
                             Load
                         </Button>
-                    </Box>
+                    </Box> */}
                     {/* <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button> */}
                     
                 </Box>
@@ -170,7 +181,7 @@ const tableStyles = {
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
                 
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} value={project.end_date.toString().split('T')[0]} name="enddate" ref={register({ required: true})} />
+                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" value={String(project.end_date).split('T')[0]} ref={register({ required: true})} />
             </Grid>
             </Grid>
             <Box fontWeight={800} clone>

@@ -280,6 +280,15 @@ export default function CreatePlatform(_: RouteComponentProps) {
           }
         ]
       }
+    
+
+    
+
+    const Delete = (value : any) => {
+
+      console.log("I am deleted",value )
+      
+    };
 
     return ( 
         <>
@@ -364,11 +373,14 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                     <StyledTableCell align="center">
                                     <StyledLink to={`/dashboard/UpdateProject/${project.id}`}>
                                             <Button size= "medium" color="primary">
-                                            Update <UpdateIcon />
+                                             <UpdateIcon />
                                             </Button>
                                     </StyledLink> 
-                                    <StyledLink to={`/dashboard/NewPlatform/`}>
-                                            <Button size= "medium" color="primary">
+                                    <StyledLink to={`/dashboard/CreatePlatform/`}>
+                                            <Button size= "medium" color="primary"
+                                                onClick={() => Delete(project.id)}
+                                            >
+                                            
                                                 <DeleteIcon />
                                             </Button>
                                     </StyledLink>
