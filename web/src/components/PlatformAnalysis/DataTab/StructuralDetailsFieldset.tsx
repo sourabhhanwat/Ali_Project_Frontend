@@ -20,6 +20,8 @@ export default function StructuralDetailsFieldset() {
     const content = React.useMemo(
         () => (
             <Grid container spacing={2}>
+                <Grid item xs={12} md={12}>
+                </Grid>
                 <Grid item xs={12} md={6}>
                     <Select<BracingType>
                         label="Bracing Type"

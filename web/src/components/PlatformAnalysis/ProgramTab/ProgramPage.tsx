@@ -31,7 +31,8 @@ export default function ProgramPage() {
     const content = React.useMemo(
         () => (
             <Grid container spacing={4}>
-               
+                <Grid item xs={12} md={12}>
+                </Grid>
                 <Grid item xs={3} md={3}>
                     <p>Platform Name</p> 
                 </Grid>

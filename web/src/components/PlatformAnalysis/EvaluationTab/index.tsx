@@ -451,6 +451,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
+                        <Grid item xs={12} md={12}>
+                         </Grid>
                             <Grid item xs={12}>
                                 <Select
                                     toOption={(option) => option}
@@ -550,6 +552,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
+                           <Grid item xs={12} md={12}>
+                              </Grid>
                         <Grid item xs={6}>
                                 <p>
                                 Estimated Fraction of Oil Production Loss Due to Leakage
@@ -733,6 +737,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
+                              <Grid item xs={12} md={12}>
+                                </Grid>
                         <Grid item xs={6}>
                                 <p>
                                 Gas Price
@@ -948,6 +954,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
+                              <Grid item xs={12} md={12}>
+                             </Grid>
                         <Grid item xs={6}>
                                 <p>
                                 Life-Safety Consequence Category

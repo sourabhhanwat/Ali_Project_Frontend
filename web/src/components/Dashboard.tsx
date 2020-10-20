@@ -8,6 +8,8 @@ import PlatformTypeListProvider, { usePlatformTypeList } from './PlatformTypeLis
 
 const NewUser = React.lazy(() => import('./Newuser'));
 const NewProject = React.lazy(() => import('./NewProject'));
+const UpdateProject = React.lazy(() => import('./UpdateProject'));
+
 const NewPlatform = React.lazy(() => import('./NewPlatform'));
 
 const Existinguser = React.lazy(() => import('./Existinguser'));
@@ -55,6 +57,7 @@ export default function Dashboard(_: RouteComponentProps) {
                                 <ProjectList path="projects" default />
                                 <NewUser path="newuser" />
                                 <NewProject path="newProject" />
+                                <UpdateProject path="UpdateProject" />
                                 <NewPlatform path="NewPlatform/:projectId" />
                                 <Existinguser path = "existinguser" />
                                 <CreatePlatform path = "CreatePlatform" />

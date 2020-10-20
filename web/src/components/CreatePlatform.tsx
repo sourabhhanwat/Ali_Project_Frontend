@@ -8,6 +8,11 @@ import '../modules/Subject';
 import { SkeletonProjectCard } from './ProjectCard';
 import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import DeleteIcon from '@material-ui/icons/Delete';
+import UpdateIcon from '@material-ui/icons/Update';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import CreateIcon from '@material-ui/icons/Create';
+
 import { Link } from '@reach/router';
 // -----------------------
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -345,7 +350,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                         <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell>
-                                        <StyledTableCell  style={{minWidth: 30}} align="center" ></StyledTableCell>
+                                        <StyledTableCell align="center" ></StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -357,27 +362,27 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 30}} align="right">
+                                    <StyledTableCell align="center">
                                     <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
-                                            <Button color="primary" >
+                                            <Button size= "medium" color="primary" >
                                                 Create PLatform <ChevronRightIcon />
                                             </Button>
                                     </StyledLink>
                                     <StyledLink to={`/dashboard/project/${project.id}/platforms`}>
-                                            <Button color="primary" >
+                                            <Button size= "medium" color="primary" >
                                                 View PLatform <ChevronRightIcon />
                                             </Button>
                                     </StyledLink>
-                                    {/*<StyledLink to={`/dashboard/NewPlatform/`}>
-                                            <Button color="primary">
-                                                Update <ChevronRightIcon />
+                                    <StyledLink to={`/dashboard/UpdateProject/`}>
+                                            <Button size= "medium" color="primary">
+                                            Update <UpdateIcon />
+                                            </Button>
+                                    </StyledLink> 
+                                    <StyledLink to={`/dashboard/NewPlatform/`}>
+                                            <Button size= "medium" color="primary">
+                                                <DeleteIcon />
                                             </Button>
                                     </StyledLink>
-                                    <StyledLink to={`/dashboard/NewPlatform/`}>
-                                            <Button color="primary">
-                                                Delete <ChevronRightIcon />
-                                            </Button>
-                                    </StyledLink> */}
                                      {/* <ListItem alignItems="center"
                                             button
                                             onClick={() => navigate('/dashboard/NewPlatform')}>

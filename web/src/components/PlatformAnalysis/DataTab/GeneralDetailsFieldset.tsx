@@ -22,6 +22,8 @@ export default function GeneralDetailsFieldset() {
         () => (
            
             <Grid container spacing={2}>
+                <Grid item xs={12} md={12}>
+                </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField name={['name']} label="Name" required />
                 </Grid>
