@@ -195,6 +195,7 @@ export default function ProjectList(_: RouteComponentProps) {
     let BackgroundColor: string[] = [];
     let pltname: string[] = [];
     let label: string[] = [];
+    let id: number = 0;
 
     //=========================
     let i = 0;
@@ -341,7 +342,7 @@ export default function ProjectList(_: RouteComponentProps) {
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
-                                        {/* <StyledTableCell style={{minWidth: 120}} >No.</StyledTableCell> */}
+                                        <StyledTableCell style={{minWidth: 120}} align="center" >S No.</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Manned Status</StyledTableCell>
@@ -384,7 +385,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                 {platforms?.map((platform) => (
 
                                     <StyledTableRow key={platform.id}>
-                                    {/* <StyledTableCell style={{minWidth: 120}} component="th" scope="row"> {platform.id}</StyledTableCell> */}
+                                    <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>

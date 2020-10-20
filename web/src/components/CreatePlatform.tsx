@@ -202,7 +202,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
     let BackgroundColor: string[] = [];
     let pltname: string[] = [];
     let label: string[] = [];
-
+    let id: number = 0;
     //=========================
     let i = 0;
     {platforms?.map((platform) => (
@@ -345,7 +345,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
-                                        {/* <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell> */}
+                                        <StyledTableCell style={{minWidth: 30}} align="center" >S No.</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
@@ -357,8 +357,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                 {projects?.map((project) => (
 
                                     <StyledTableRow key={project.id}>
-                                    {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
-                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row"> {id += 1 }</StyledTableCell>                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>

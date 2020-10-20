@@ -136,7 +136,7 @@ const tableStyles = {
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={project.start_date} ref={register({ required: true })}  />
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={project.start_date.toString().split('T')[0]} ref={register({ required: true })}  />
             </Grid>
             
             <Grid item xs={12}>
@@ -170,7 +170,7 @@ const tableStyles = {
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
                 
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} value={project.end_date} name="enddate" ref={register({ required: true})} />
+                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} value={project.end_date.toString().split('T')[0]} name="enddate" ref={register({ required: true})} />
             </Grid>
             </Grid>
             <Box fontWeight={800} clone>
