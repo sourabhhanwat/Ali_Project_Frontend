@@ -1,9 +1,9 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { RouteComponentProps} from '@reach/router';
+import { RouteComponentProps, useMatch} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { Typography, styled, Avatar, makeStyles, Theme, createStyles, Button} from '@material-ui/core';
+import { Typography, styled, Avatar, Button} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import ProjectIcon from './icons/Project';
@@ -11,21 +11,6 @@ import ProjectIcon from './icons/Project';
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
 }));
-
-const StyledImage = styled('img')(({ theme }) => ({
-    width: theme.spacing(25),
-    marginBottom: theme.spacing(2),
-    objectFit: 'contain',
-    textAlign: 'center',
-}));
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//   }),
-// );
 
 const tableStyles = {
   padding: 'unset',
@@ -41,18 +26,36 @@ const tableStyles = {
     project_id:String;
   }
 
-  export default function NewProject(this: any, _: RouteComponentProps) {
+  export default function NewProject(this: any, {projectId,}: RouteComponentProps<{projectId: number;}>) {
 
-    const { register, handleSubmit, reset } = useForm<IFormInput>();
-    const [lst, setLst] = React.useState([])
+    const { register, handleSubmit } = useForm<IFormInput>();
+    const [lst, setLst] = React.useState([]);
+    const [project, updateProject] = React.useState<any>([]);
+
     const [status , setStatus] = React.useState({
       isSubmitted : false,
       status : false
     })
+
+    const match = useMatch('/dashboard/projects/:projectId');
+
+    if (match) {
+        projectId = parseInt((match as any).projectId);
+    }
+
+    React.useEffect(() => {
+      fetch(`/api/v1/projects/${projectId}`)
+        .then(results => results.json())
+        .then(data => {
+          updateProject(data);
+        });
+    }, []);
+
+    console.log("update project==>" , project.start_date)
    
     const onSubmit = (data: IFormInput,e:any) => {
       
-      axios.post('/api/v1/saveproject/', {
+      axios.post('/api/v1/updateproject/', {
         Name: data.name,
         Description: data.des,
         StartDate: data.startdate,
@@ -114,26 +117,26 @@ const tableStyles = {
                 <Grid container spacing={1}>
                 <Grid item xs={12}>
                 {status.isSubmitted ? status.status ? 
-                  <p style={{color: "green"}}>Data Submitted Succesfully!!..</p> : 
-                  <p style={{ color : "red"}}>Data Not Saved!!.</p> : null
+                  <p style={{color: "green"}}>Projetc Submitted Succesfully!!..</p> : 
+                  <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                 }
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Name</label> 
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" value={project.name} placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
             </Grid>
             
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Description</label>
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" value={project.description} placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
 
             <Grid item xs={12}>
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" ref={register({ required: true })}  />
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={project.start_date} ref={register({ required: true })}  />
             </Grid>
             
             <Grid item xs={12}>
@@ -143,7 +146,7 @@ const tableStyles = {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} value= {project.users} name="res" ref={register}> 
                     {lst.map((list:any) => (
                     <option value= {list.id} key={list.id}> {list.username} </option>
                     ))}
@@ -167,7 +170,7 @@ const tableStyles = {
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
                 
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" ref={register({ required: true})} />
+                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} value={project.end_date} name="enddate" ref={register({ required: true})} />
             </Grid>
             </Grid>
             <Box fontWeight={800} clone>
@@ -177,7 +180,7 @@ const tableStyles = {
                     size="large"
                     color="primary"
                     style={{margin: 5}}>
-                    Submit
+                    Update Project
                 </Button>
             </Box>
       {/* <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/> */}
