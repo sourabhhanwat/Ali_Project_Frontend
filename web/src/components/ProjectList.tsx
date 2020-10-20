@@ -177,6 +177,9 @@ export default function ProjectList(_: RouteComponentProps) {
         }
     }, [projectId, platformList.subject]);
 
+    // console.log("projectid");
+    // console.log(projectId);
+
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
         fetch();
@@ -267,7 +270,6 @@ export default function ProjectList(_: RouteComponentProps) {
     return ( 
         <>
             <Grid container spacing={2}>
-
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
                                 <Pie

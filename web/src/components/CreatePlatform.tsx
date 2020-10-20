@@ -295,7 +295,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                     </Button>
                 </Box>
 
-                <Box fontWeight={800} clone>
+                {/* <Box fontWeight={800} clone>
                     <Button
                         onClick={() => navigate('/dashboard/newProject')}
                         variant="contained"
@@ -317,7 +317,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                         disabled={isPending}>
                         Delete Project
                     </Button>
-                </Box>
+                </Box> */}
                     
             </Box>
 

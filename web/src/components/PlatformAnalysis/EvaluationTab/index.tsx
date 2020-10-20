@@ -45,6 +45,7 @@ import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import axios from "axios";
 import { register } from '../../../serviceWorker';
+import {Link, styled, Avatar, Theme, createStyles, Collapse } from '@material-ui/core';
 
 
 
@@ -57,6 +58,13 @@ enum CatEnum {
   }
 
 
+  const StyledImage = styled('img')(({ theme }) => ({
+    width: theme.spacing(60),
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    objectFit: 'contain',
+    textAlign: 'center',
+}));
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -117,6 +125,19 @@ const rows_eco = [
   createData3('C', '>= 45 - < 75','The consequence of failure represents  medium cost'),
   createData3('B','≥ 6 - < 45', 'The consequence of failure represents low cost'),
   createData3('A', '< 6','The consequence of failure represents very low cost'),
+];
+
+function createData4(a: string, b: string, c: string) {
+    return { a, b , c};
+  }
+
+
+const rows_cof = [
+  createData3('E', 'Manned Non-Evacuated','The manned, non-evacuated category refres to a platform that is continuosly occupied by persons accommodated and living thereon, and personnel evacuation prior to the design metocean, or it is impractical.'),
+  createData3('D', 'Not-Normally Manned with Temporary Accommodation','The not-normally manned category refres to a platform that is not normally manned, which is occasionally manned.'),
+  createData3('C', 'Not-Normally Manned without any Accommodation,but with a Boat-Landing or bridge linked to another platform','The not-normally manned category refers to a platform that is not normally manned, which is occasionally manned.'),
+  createData3('B','Not in use', 'Not Applicable'),
+  createData3('A', 'Unmanned or Manned-Evacuated','The unmanned category refers to a platform that is not normally manned and has no accommodation, no boat landing and no bridge link to another platform.'),
 ];
 
 const useStyles = makeStyles({
@@ -271,8 +292,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
-    let red = (risk_ranking === 'H') ?  'red' : (risk_ranking === 'M') ?  'green' : (risk_ranking === 'L') ?  'Orange' : 'yellow';
-    return (
+    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    return (
         <Box hidden={hidden}>
             <Typography variant="h4" gutterBottom>
                 Likelihood of Failure Calculation
@@ -426,8 +446,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
             <Box>
                 <Accordion defaultExpanded>
-                    <AccordionSummary style={{backgroundColor: "Black"}}>
-                        <Typography style={{color: "White"}}>Life-Safety Consequence</Typography>
+                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                        <Typography >Life-Safety Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -497,17 +517,17 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {platformMannedStatusList.map((row) => (
-                                            <StyledTableRow style={{minWidth: 10}} key={row.name}>
+                                        {rows_cof.map((row) => (
+                                            <StyledTableRow style={{minWidth: 10}} key={row.a}>
                                             <StyledTableCell style={{minWidth: 10}} component="th" scope="row" align="center">
-                                                {row.ranking}
+                                                {row.a}
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center">
-                                            {row.name}   
+                                            {row.b}   
                                             </StyledTableCell>
                                             <StyledTableCell style={{minWidth: 10}} align="center"> 
                                             
-                                                    {row.description}
+                                                    {row.c}
                                             </StyledTableCell>
                                             </StyledTableRow>
                                         ))}
@@ -525,8 +545,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
                 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "Black"}}>
-                        <Typography style={{color: "White"}}>Environmental Consequence</Typography>
+                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                        <Typography >Environmental Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -708,8 +728,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "Black"}}>
-                        <Typography style={{color: "White"}}>Economic Impact Consequence</Typography>
+                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                        <Typography >Economic Impact Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -923,8 +943,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "Black"}}>
-                        <Typography style={{color: "White"}}>Final Consequence Level</Typography>
+                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                        <Typography >Final Consequence Level</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -988,8 +1008,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "Black"}}>
-                        <Typography style={{color: "White"}}>Risk Evaluation</Typography>
+                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                        <Typography >Risk Evaluation</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={1}>  
@@ -1055,95 +1075,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <div>
-                                <TableContainer component={Paper}>
-                                 <Table>
-                                    <TableBody style={{borderColor: "black"}}>
-                                        {/* {rowscol.map((row) => ( */}
-                                            <StyledTableRow>
-                                            <StyledTableCell rowSpan={7} style={{backgroundColor: "white"}} component="th" scope="row" align="center">LIKELIHOOD OF FAILURE</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">5</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">M</StyledTableCell>
-                                            <StyledTableCell  style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very High Risk Zone</StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">4</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">M</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "red"}} align="center">VH</StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">High Risk Zone</StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">3</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center">M</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Medium Risk Zone</StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">2</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">VL</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}} align="center">M</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "orange"}} align="center">H</StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Low Risk Zone</StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center">1</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">VL</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "green"}} align="center">VL</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellowgreen"}} align="center">L</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "yellow"}}  align="center">M</StyledTableCell>
-                                            {/* <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "Green"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">Very Low Risk Zone</StyledTableCell> */}
-                                            </StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">A</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">B</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">C</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center">D</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center">E</StyledTableCell></StyledTableRow>
-                                            <StyledTableRow>
-                                            <StyledTableCell  style={{backgroundColor: "white"}} component="th" scope="row" align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell colSpan={6} style={{backgroundColor: "white"}} align="center">CONSEQUENCE OF FAILURE</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}} align="center"></StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: "white"}}  align="center"></StyledTableCell></StyledTableRow>
-
-                                        {/* ))} */}
-                                        </TableBody>
-                                 </Table>
-                            </TableContainer>                              
+                                 <StyledImage src="/risk.png" />
 
                             </div>
                             </Grid>
