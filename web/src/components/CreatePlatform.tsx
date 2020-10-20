@@ -231,7 +231,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
         ]
       }
 
-    const Delete = (value : any) => {
+    const deleteProject = (value : any) => {
 
         console.log(value);
 
@@ -337,7 +337,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                         </StyledLink> 
                                         <StyledLink to={`/dashboard/CreatePlatform/`}>
                                                 <Button size= "medium" color="primary"
-                                                    onClick={() => Delete(project.id)}
+                                                    onClick={() => deleteProject(project.id)}
                                                 >
                                                 
                                                     <DeleteIcon />
