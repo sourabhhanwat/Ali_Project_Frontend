@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { RouteComponentProps, useMatch } from '@reach/router';
+import { navigate, RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
 import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
@@ -65,11 +65,23 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
         <>
             <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
+                <Button
+                        onClick={() => navigate('/dashboard/Platform')}
+                        variant="contained"
+                        size="large"
+                        color="primary"
+                        style={{margin: 5}}
+                        disabled={isPending}>
+                        New Platform
+                    </Button>
+                </Box>
+                <Box fontWeight={800} clone>
                     <Button
                         onClick={() => fetch()}
                         variant="contained"
                         size="large"
                         color="primary"
+                        style={{margin: 5}}
                         disabled={isPending}
                     >
                         Refresh
