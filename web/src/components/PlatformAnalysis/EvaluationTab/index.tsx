@@ -447,7 +447,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
             <Box>
                 <Accordion defaultExpanded>
                     <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
-                        <Typography >Life-Safety Consequence</Typography>
+                        <Typography style={{color: "Black"}} variant="h6">Life-Safety Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -548,7 +548,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 
                 <Accordion>
                     <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
-                        <Typography >Environmental Consequence</Typography>
+                        <Typography  style={{color: "Black"}} variant="h6">Environmental Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -733,7 +733,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                 <Accordion>
                     <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
-                        <Typography >Economic Impact Consequence</Typography>
+                        <Typography style={{color: "Black"}} variant="h6">Economic Impact Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -950,7 +950,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                 <Accordion>
                     <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
-                        <Typography >Final Consequence Level</Typography>
+                        <Typography style={{color: "Black"}} variant="h6" >Final Consequence Level</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
@@ -1017,7 +1017,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                 <Accordion>
                     <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
-                        <Typography >Risk Evaluation</Typography>
+                        <Typography style={{color: "Black"}} variant="h6" >Risk Evaluation</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={1}>  

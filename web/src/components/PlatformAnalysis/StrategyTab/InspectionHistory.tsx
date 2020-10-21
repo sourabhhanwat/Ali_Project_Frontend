@@ -65,7 +65,7 @@ export default function InspectionHistory() {
     return (
         <Accordion defaultExpanded>
             <AccordionSummary style={{backgroundColor: "#68c1a8" }} expandIcon={<ExpandMoreIcon />}>
-                <Typography  variant="body1">Inspection History</Typography>
+                <Typography  style={{color: "Black"}} variant="h6">Inspection History</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>

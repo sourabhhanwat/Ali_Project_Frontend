@@ -150,7 +150,7 @@ export default function GeneralDetailsFieldset() {
     return (
         <Accordion defaultExpanded>
             <AccordionSummary style={{backgroundColor: "#68c1a8"}} expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="body1">General Details</Typography>
+                <Typography style={{color: "Black"}} variant="h6">General Details</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>

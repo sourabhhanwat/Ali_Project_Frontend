@@ -1,4 +1,5 @@
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import ProgramPage from './ProgramPage';
 
@@ -14,7 +15,9 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
     const content = React.useMemo(
         () => (
             <>
-                <p style={paragraphDesign}>INSPECTION PROGRAM</p>
+                {/* <h6 style={paragraphDesign}>INSPECTION PROGRAM</h6> */}
+                {/* <Typography style={{color: "Black",backgroundColor: '#68c1a8',padding:'.8rem',font:"bold"}} variant="body1">INSPECTION PROGRAM</Typography> */}
+                <p></p>
                 <ProgramPage />
             </>
         ),

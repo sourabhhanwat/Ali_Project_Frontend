@@ -146,7 +146,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 </ListItem>
                 
             </List>
-            <Box justifyContent="flex-end" clone>
+            <Box justifyContent="space-between" clone>
                 <CardActions>
                 <StyledLink to={`/dashboard/UpdatePlatform/${platform.id}`}>
                         <Button size= "small" title="Update" color="primary">
@@ -159,11 +159,10 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             <DeleteIcon />
                         </Button>
                 </StyledLink>
-                <p></p><p></p><p></p><p></p><p></p><p></p><p></p>
                     <StyledLink
                         to={`/dashboard/platforms/${platform.id}/analysis`}
                     >
-                        <Box clone fontWeight={800}>
+                        <Box  clone fontWeight={800}>
                             <Button color="primary">
                                 View <ChevronRightIcon />
                             </Button>

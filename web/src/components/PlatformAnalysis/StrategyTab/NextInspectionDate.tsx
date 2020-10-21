@@ -272,7 +272,7 @@ export default function NextInspectionDate() {
     return (
         <Accordion defaultExpanded>
             <AccordionSummary style={{backgroundColor: "#68c1a8" }} expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="body1">Next Inspection Date</Typography>
+                <Typography style={{color: "Black"}} variant="h6">Next Inspection Date</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>
