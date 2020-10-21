@@ -63,6 +63,7 @@ const tableStyles = {
         StartDate: data.startdate,
         Responsible: data.res,
         EndDate: data.enddate,
+        projectId : projectId,
       })
 
       .then(function (response) {

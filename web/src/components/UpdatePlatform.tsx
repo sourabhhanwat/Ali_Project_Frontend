@@ -62,6 +62,7 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
         Description: data.des,
         Responsible: data.res,
         Project: data.pro,
+        platformId : platformId,
       })
       .then(function (response) {
         console.log(response);
@@ -96,6 +97,8 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
     //     console.log(error);
     //   });
     // };
+
+    // if(status )
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
