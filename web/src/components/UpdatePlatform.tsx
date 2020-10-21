@@ -25,6 +25,7 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
     const { register, handleSubmit } = useForm<IFormInput>();
     const [lst, setLst] = React.useState([])
     const [platform, updatePlatform] = React.useState<any>([]);
+    const [project, updateProject] = React.useState<any>([]);
 
     const [status, setStatus] = React.useState({
       isSubmitted : false,
@@ -45,8 +46,13 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
         });
     }, []);
 
-
-    console.log("Platform ===>", platform)
+    React.useEffect(() => {
+        fetch('/api/v1/projects')
+          .then(results => results.json())
+          .then(data => {
+            updateProject(data);
+          });
+      }, []);
 
     const onSubmit = (data: IFormInput,e:any) => {
       console.log(data);
@@ -55,7 +61,7 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
         Name: data.name,
         Description: data.des,
         Responsible: data.res,
-        // Project: project.id,
+        Project: data.pro,
       })
       .then(function (response) {
         console.log(response);
@@ -70,18 +76,26 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
       e.target.reset();
     };
 
-    const onDrop = () => {
-      axios.get('/api/v1/users/')
-      .then(function (response) {
-        setLst(response.data.map((item : any) => ({
-          username : item.username,
-          id : item.id,
-        })))
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    };
+    React.useEffect(() => {
+        fetch('/api/v1/users')
+          .then(results => results.json())
+          .then(data => {
+            setLst(data);
+          });
+      }, []);
+
+    // const onDrop = () => {
+    //   axios.get('/api/v1/users/')
+    //   .then(function (response) {
+    //     setLst(response.data.map((item : any) => ({
+    //       username : item.username,
+    //       id : item.id,
+    //     })))
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -115,13 +129,13 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Name</label> 
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" value={platform.name} placeholder="Platform Name here" ref={register({ required: true, maxLength: 100 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" defaultValue={platform.name} placeholder="Platform Name here" ref={register({ required: true, maxLength: 100 })}  />
             </Grid>
             
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Description</label>
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" value={platform.description} placeholder="Platform Description here" ref={register({ required: true, maxLength: 2000 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" defaultValue={platform.description} placeholder="Platform Description here" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
             
             <Grid item xs={12}>
@@ -130,12 +144,12 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} defaultValue="res" name="res" ref={register}> 
                     {lst.map((list: any) => (
                     <option value= {list.id} key={list.id}> {list.username} </option>
                     ))}
                     </select> 
-                    <Box fontWeight={800} clone>
+                    {/* <Box fontWeight={800} clone>
                           <Button
                               type = "button"
                               variant="contained"
@@ -145,7 +159,7 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
                               style={{margin: 5}}>
                               Load
                           </Button>
-                      </Box>
+                      </Box> */}
                 </Box>
             </Grid>
 
@@ -155,13 +169,13 @@ export default function UpdatePlatform(this: any, {platformId,}: RouteComponentP
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                 <input style={{ width : "400px" , height: "40px", margin:"10px"}}  name="pro" ref={register} />
+                 {/* <input style={{ width : "400px" , height: "40px", margin:"10px"}}  defaultValue="pro" ref={register} /> */}
                     
-                    {/* <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="pro" ref={register}> 
-                    {lst2.map((list: any) => (
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="pro" ref={register}> 
+                    {project.map((list: any) => (
                     <option value= {list.id} key={list.id}> {list.name} </option>
                     ))}
-                    </select>  */}
+                    </select> 
                     
                 </Box>
             </Grid>

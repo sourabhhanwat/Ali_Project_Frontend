@@ -54,6 +54,8 @@ const tableStyles = {
     console.log("update project==>", project.users )
    
     const onSubmit = (data: IFormInput,e:any) => {
+
+      console.log("I am sending data==>", data);
       
       axios.post('/api/v1/updateproject/', {
         Name: data.name,
@@ -134,20 +136,21 @@ const tableStyles = {
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Name</label> 
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" value={project.name} placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" defaultValue={project.name} 
+                 placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
             </Grid>
             
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Description</label>
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" value={project.description} placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
+                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" defaultValue={project.description} placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
             </Grid>
 
             <Grid item xs={12}>
                   <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" value={String(project.start_date).split('T')[0]} ref={register({ required: true })}  />
+                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" defaultValue={String(project.start_date).split('T')[0]} ref={register({ required: true })}  />
             </Grid>
             
             <Grid item xs={12}>
@@ -157,7 +160,7 @@ const tableStyles = {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} value= {project.users} name="res" ref={register}> 
+                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} defaultValue= {project.users} name="res" ref={register}> 
                     {lst.map((list:any) => (
                     <option value= {list.id} key={list.id}> {list.username} </option>
                     ))}
@@ -181,7 +184,7 @@ const tableStyles = {
             <Grid item xs={12}>
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
                 
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" value={String(project.end_date).split('T')[0]} ref={register({ required: true})} />
+                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" defaultValue={String(project.end_date).split('T')[0]} ref={register({ required: true})} />
             </Grid>
             </Grid>
             <Box fontWeight={800} clone>

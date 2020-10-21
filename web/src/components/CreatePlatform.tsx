@@ -1,4 +1,3 @@
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';

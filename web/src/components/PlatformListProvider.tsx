@@ -24,7 +24,7 @@ export const PlatformSchema = yup
         condition_score: IntegerSchema,
         loading_score: IntegerSchema,
         total_score: IntegerSchema,
-        project:IntegerSchema,
+        // project:IntegerSchema,
         rsr_override_score: IntegerSchema,
         platform_vintage_score: yup.number(),
         access_type: yup.mixed<'M' | 'V'>().oneOf(['M', 'V']),
@@ -206,6 +206,17 @@ export const PlatformSchema = yup
             .object({
                 id: IntegerSchema,
                 name: yup.string(),
+            })
+            .noUnknown(),
+        project: yup
+            .object({
+                id: yup.number(),
+                name: yup.string(),
+                description: yup.string(),
+                start_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
+                end_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
+                created_at: yup.date(),
+                updated_at: yup.date(),
             })
             .noUnknown(),
         number_of_legs_type_id: yup.ref('number_of_legs_type.id'),
