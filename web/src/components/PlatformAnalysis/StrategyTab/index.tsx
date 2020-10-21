@@ -14,7 +14,7 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
     const content = React.useMemo(
         () => (
             <>
-                <p style={paragraphDesign}>INSPECTION STRATEGY</p>
+                {/* <p style={paragraphDesign}>INSPECTION STRATEGY</p> */}
                 <InspectionHistory />
                 <br />
                 <NextInspectionDate />

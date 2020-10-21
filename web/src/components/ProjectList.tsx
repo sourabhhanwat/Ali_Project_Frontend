@@ -23,7 +23,13 @@ import { Box, Button } from '@material-ui/core';
 // import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
 import MaterialTable from 'material-table';
+import { useForm } from "react-hook-form";
+import { ContinuousColorLegend } from 'react-vis';
 
+  
+  interface IFormInput {
+    firstName: string;
+  }
 
 var p = {
     height: '20px',
@@ -116,22 +122,15 @@ const SkeletonPlatformCards = React.memo(() => (
     </>
 ));
 
-{/* /// search Box Added  */}
-// interface IFormInput {
-//     search: String;
-//   }
-
-//   const { register, handleSubmit } = useForm<IFormInput>();
-
-//   const onSubmit = (data: IFormInput) => {
-//     alert(JSON.stringify(data));
-//   }
-{/* /// search Box Added end */}
 
 export default function ProjectList(_: RouteComponentProps) {
 
+    const { register, handleSubmit } = useForm<IFormInput>();
+
+    const [project, updateProject] = React.useState<any>([]);
+
+
     const { subject } = useProjectList();
-    // const [isPending, setIsPending] = React.useState<boolean | undefined>();
     const [projects, setProjects] = React.useState<Project[] | null>();
 
     const handleProjectList = (state: State<Project[] | null>) => {
@@ -145,18 +144,47 @@ export default function ProjectList(_: RouteComponentProps) {
         return () => subject.detach(handleProjectList);
     }, [subject]);
 
-    console.log("project");
-    console.log(projects);
+    console.log("project====>", projects);
+
+    let searchresult : any
+
 
     const platformList = usePlatformList();
 
     const [isPending, setIsPending] = React.useState<boolean>();
     const [platforms, setPlatforms] = React.useState<Platform[] | null>();
+    const [copied, copyPlatforms] = React.useState<Platform[] | null>();
 
     const handlePlatformList = (state: State<Platform[] | null>) => {
         setIsPending(state.isPending);
         setPlatforms(state.value);
+        copyPlatforms(state.value);
     };
+
+    const onSubmit = (data: IFormInput) => {
+        let searchdata = data.firstName;
+
+        if(!searchdata){
+            console.log("INSIDE IF ==>", platforms)
+            setPlatforms(copied)
+        }
+
+        else{
+            let searchId = projects?.filter((v : any) => v.name == searchdata)
+            // console.log('project 1 value = ', values)
+            // console.log("I am searched ==>" , searchdata, searchId ? searchId[0].id : null )   
+
+            searchresult = searchId ? searchId[0].id : null;
+            console.log("platform 2 value ===>" ,platforms)
+            let values = platforms?.filter((v) => v.project == searchresult)
+            console.log('project 2 value ===> ', values)
+            setPlatforms(values);
+        }
+        
+        
+    };
+    
+    console.log("I AM TESTING ===> ", platforms)
 
     let projectId: number | undefined;
 
@@ -178,6 +206,8 @@ export default function ProjectList(_: RouteComponentProps) {
         }
     }, [projectId, platformList.subject]);
 
+    console.log("I AM PLATFORM ==>", platformList.subject)
+
     // console.log("projectid");
     // console.log(projectId);
 
@@ -186,6 +216,8 @@ export default function ProjectList(_: RouteComponentProps) {
         fetch();
         return () => platformList.subject.detach(handlePlatformList);
     }, [fetch, platformList.subject]);
+
+
 
     const classes = useStyles();
 
@@ -270,28 +302,8 @@ export default function ProjectList(_: RouteComponentProps) {
       }
 
     return ( 
-        <>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-        <MaterialTable
-            title="Basic Search Preview"
-            columns={[
-                { title: 'Name', field: 'name' },
-                { title: 'Surname', field: 'surname' },
-                { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-                {
-                title: 'Birth Place',
-                field: 'birthCity',
-                lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-                },
-            ]}
-            data={[
-                { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-                { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-            ]}        
-            options={{
-                search: true
-            }}
-            />
             <Grid container spacing={2}>
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -326,7 +338,7 @@ export default function ProjectList(_: RouteComponentProps) {
                     <Grid item container spacing={1}>
                         <Grid item xs={8}>
                             {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                <input style={{ width : "400px" , height: "40px", margin:"10px"}} placeholder="Search by Project Name" name="search" /> 
+                                <input style={{ width : "400px" , height: "40px", margin:"10px"}} placeholder="Search by Project Name" name="firstName"  ref={register}/> 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                                 <Box fontWeight={800} clone>
                                     <Button
@@ -361,6 +373,7 @@ export default function ProjectList(_: RouteComponentProps) {
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
                         <TableContainer component={Paper}>
+                            
                             <Table className={classes.table} aria-label="customized table">
                                 <TableHead >
                                     <TableRow>
@@ -376,7 +389,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                         <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
                                     </TableRow>
                                     <TableRow>
-                                        {/* <StyledTableCell style={{minWidth: 120}} ></StyledTableCell> */}
+                                        <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
@@ -498,6 +511,6 @@ export default function ProjectList(_: RouteComponentProps) {
             
             </Grid>
             
-        </>
-    );
+            </form>
+                );
 }

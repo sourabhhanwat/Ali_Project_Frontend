@@ -17,10 +17,10 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="#">
-                rbui
+                AR Asset Integrity Solutions
             </Link>{' '}
             {new Date().getFullYear()}
-            {'.'}
+            {/* {'.'} */}
         </Typography>
     );
 }

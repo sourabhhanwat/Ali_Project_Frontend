@@ -208,17 +208,17 @@ export const PlatformSchema = yup
                 name: yup.string(),
             })
             .noUnknown(),
-        project: yup
-            .object({
-                id: yup.number(),
-                name: yup.string(),
-                description: yup.string(),
-                start_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
-                end_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
-                created_at: yup.date(),
-                updated_at: yup.date(),
-            })
-            .noUnknown(),
+        // project: yup
+        //     .object({
+        //         id: yup.number(),
+        //         name: yup.string(),
+        //         description: yup.string(),
+        //         start_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
+        //         end_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
+        //         created_at: yup.date(),
+        //         updated_at: yup.date(),
+        //     })
+        //     .noUnknown(),
         number_of_legs_type_id: yup.ref('number_of_legs_type.id'),
         updated_at: yup.date(),
         created_at: yup.date(),
@@ -289,7 +289,7 @@ export const PlatformSchema = yup
         rbui_assessment_date: yup.date(),
         selected_inspection_interval_for_next_inspection: IntegerSchema,
         calculated_environmental_consequence: IntegerSchema.nullable(),
-        // project: IntegerSchema
+        project: IntegerSchema
     })
     .noUnknown();
 

@@ -25,7 +25,7 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
 
     const handlePlatformList = (state: State<Platform[] | null>) => {
         setIsPending(state.isPending);
-        let values = state.value?.filter((v) => v.project.id === projectId)
+        let values = state.value?.filter((v) => v.project === projectId)
         console.log('project 1 value = ', values)
         setPlatforms(values);
     };

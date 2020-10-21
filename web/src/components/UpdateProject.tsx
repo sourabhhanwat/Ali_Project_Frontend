@@ -7,6 +7,10 @@ import { Typography, styled, Avatar, Button} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import ProjectIcon from './icons/Project';
+import { Link } from '@reach/router';
+// import CreatePlatform from './CreatePlatform';
+import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -36,6 +40,8 @@ const tableStyles = {
       isSubmitted : false,
       status : false
     })
+
+    let history = useHistory();
 
     const match = useMatch('/dashboard/projects/:projectId');
 
@@ -107,7 +113,7 @@ const tableStyles = {
     //     console.log(error);
     //   });
     // };
-
+    // const StyledLink = styled(Link)({ textDecoration: 'none' });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
             <Box
@@ -131,7 +137,7 @@ const tableStyles = {
                 <Grid container spacing={1}>
                 <Grid item xs={12}>
                 {status.isSubmitted ? status.status ? 
-                  <p style={{color: "green"}}>Projetc Submitted Succesfully!!..</p> : 
+                <p style={{ color : "green"}}>Project Saved Successfully!!.</p>:
                   <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                 }
                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Name</label> 

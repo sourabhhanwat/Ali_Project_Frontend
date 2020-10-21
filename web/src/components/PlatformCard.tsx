@@ -118,19 +118,8 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
     return (
         <Card>
             <CardContent>
-                <Box style={{paddingLeft: "45%"}}>
-                <StyledLink to={`/dashboard/UpdatePlatform/${platform.id}`}>
-                        <Button size= "medium" color="primary">
-                        <UpdateIcon />
-                        </Button>
-                </StyledLink> 
-                <StyledLink to={`/dashboard/platforms/`}>
-                        <Button size= "medium" color="primary"
-                        onClick={() => deletePlatform(platform.id)} >
-                            <DeleteIcon />
-                        </Button>
-                </StyledLink>
-                </Box>
+                {/* <Box style={{paddingLeft: "45%"}}> */}
+                {/* </Box> */}
                 <Box fontWeight={800} clone>
                     <Typography variant="h5">Platform {platform.name}</Typography>
                 </Box>
@@ -159,6 +148,18 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
             </List>
             <Box justifyContent="flex-end" clone>
                 <CardActions>
+                <StyledLink to={`/dashboard/UpdatePlatform/${platform.id}`}>
+                        <Button size= "small" title="Update" color="primary">
+                        <UpdateIcon />
+                        </Button>
+                </StyledLink> 
+                <StyledLink to={`/dashboard/platforms/`}>
+                        <Button size= "small" title="Delete" color="primary"
+                        onClick={() => deletePlatform(platform.id)} >
+                            <DeleteIcon />
+                        </Button>
+                </StyledLink>
+                <p></p><p></p><p></p><p></p><p></p><p></p><p></p>
                     <StyledLink
                         to={`/dashboard/platforms/${platform.id}/analysis`}
                     >
