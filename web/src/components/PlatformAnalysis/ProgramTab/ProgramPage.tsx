@@ -771,7 +771,7 @@ export default function ProgramPage() {
     return (
         <Accordion defaultExpanded>
             <AccordionSummary style={{backgroundColor: "#68c1a8"}} expandIcon={<ExpandMoreIcon />}>
-                <Typography style={{color: "Black"}} variant="h6">General Details</Typography>
+                <Typography style={{color: "White"}} variant="h6">General Details</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>
         </Accordion>

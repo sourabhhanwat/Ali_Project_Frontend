@@ -69,10 +69,10 @@ export default function PlatformAnalysis(this: any, {platformId,location,navigat
                         navigate?.(`${uri}?type=${type}`);
                     }}
                 >
-                    <Tab label="Data" value="data" />
-                    <Tab label="Evaluation" value="evaluation" />
-                    <Tab label="Strategy" value="strategy" />
-                    <Tab label="Program" value="program" />
+                    <Tab style={{color: "Black", fontWeight: "bold", fontSize: "14px"}}  label="Data" value="data" />
+                    <Tab style={{color: "Black", fontWeight: "bold", fontSize: "14px"}}  label="Evaluation" value="evaluation" />
+                    <Tab style={{color: "Black", fontWeight: "bold", fontSize: "14px"}}  label="Strategy" value="strategy" />
+                    <Tab style={{color: "Black", fontWeight: "bold", fontSize: "14px"}}  label="Program" value="program" />
                 </Tabs>
             </Toolbar>
             <form
