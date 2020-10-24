@@ -161,9 +161,9 @@ export const PlatformSchema = yup
             .noUnknown(),
         platform_manned_status: yup
             .object({
-                id: IntegerSchema,
-                name: yup.string().trim(),
-            }).nullable()
+                id: IntegerSchema.nullable(),
+                name: yup.string().trim().nullable(),
+            })
             .noUnknown(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),
         environmental_consequence: yup
