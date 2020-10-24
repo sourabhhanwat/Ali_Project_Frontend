@@ -193,13 +193,13 @@ export default function CreatePlatform(_: RouteComponentProps) {
 
     const classes = useStyles();
 
-    let backgroundColor: string[] = [];
-    let Color: string[] = [];
+    // let backgroundColor: string[] = [];
+    // let Color: string[] = [];
     let data: number[] = [];
-    let hoverBackgroundColor: string[] = [];
-    let BackgroundColor: string[] = [];
-    let pltname: string[] = [];
-    let label: string[] = [];
+    // let hoverBackgroundColor: string[] = [];
+    // let BackgroundColor: string[] = [];
+    // let pltname: string[] = [];
+    // let label: string[] = [];
     let id: number = 0;
     //=========================
     let i = 0;
@@ -207,28 +207,28 @@ export default function CreatePlatform(_: RouteComponentProps) {
         data.push(i+1)
     ))}
 
-    {platforms?.map((platform) => (
-        pltname.push(platform.name)
-        ))}
+    // {platforms?.map((platform) => (
+    //     pltname.push(platform.name)
+    //     ))}
     // console.log(data)    
 
 
     //=========================
-    {platforms?.map((platform) => (
-        backgroundColor.push(platform.risk_ranking)
-    ))}
+    // {platforms?.map((platform) => (
+    //     backgroundColor.push(platform.risk_ranking)
+    // ))}
 
-    const state = {
-        labels: pltname,
-        datasets: [
-          {
-            label: 'Platform Risk',
-            backgroundColor: Color,
-            hoverBackgroundColor: BackgroundColor,
-            data: data
-          }
-        ]
-      }
+    // const state = {
+    //     labels: pltname,
+    //     datasets: [
+    //       {
+    //         label: 'Platform Risk',
+    //         backgroundColor: Color,
+    //         hoverBackgroundColor: BackgroundColor,
+    //         data: data
+    //       }
+    //     ]
+    //   }
 
     const deleteProject = (value : any) => {
 
@@ -324,7 +324,8 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                 {projects?.map((project) => (
 
                                     <StyledTableRow key={project.id}>
-                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row"> {id += 1 }</StyledTableCell>                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
+                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row"> {id += 1 }</StyledTableCell>                                    
+                                    <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>

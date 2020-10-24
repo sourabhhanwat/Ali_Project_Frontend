@@ -243,9 +243,9 @@ export default function ProjectList(_: RouteComponentProps) {
 
 
     //=========================
-    {platforms?.map((platform) => (
-        backgroundColor.push(platform.risk_ranking)
-    ))}
+    // {platforms?.map((platform) => (
+    //     backgroundColor.push(platform.risk_ranking)
+    // ))}
 
     for(let i in backgroundColor){
         // console.log(backgroundColor[i])
@@ -423,7 +423,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status.name}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.platform_manned_status}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>

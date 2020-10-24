@@ -163,7 +163,7 @@ export const PlatformSchema = yup
             .object({
                 id: IntegerSchema,
                 name: yup.string().trim(),
-            })
+            }).nullable()
             .noUnknown(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),
         environmental_consequence: yup
@@ -231,7 +231,7 @@ export const PlatformSchema = yup
         api_seismic_zone: yup.string().trim(),
         number_of_bays: IntegerSchema,
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        risk_based_underwater_inspection_interval:IntegerSchema,
+        risk_based_underwater_inspection_interval:IntegerSchema.nullable(),
         lof_ranking: IntegerSchema,
         exposure_category_level:yup.string().nullable(),
         exposure_category_level_1:yup.string().nullable(),
@@ -243,9 +243,9 @@ export const PlatformSchema = yup
         structure_replacement_decision: yup.string(),
         calculate_economic_impact_remaining_life_services:yup.string(),
         calculated_economic_impact_consequence:yup.string(),
-        final_consequence_category:yup.string(),
+        final_consequence_category:yup.string().nullable(),
         economic_consequence_category:yup.string().matches(/^[A-E]1*$/, 'Only character A-E').typeError('Only character A-E'),
-        risk_ranking:yup.string(),
+        risk_ranking:yup.string().nullable(),
         environmental_consequence_category:yup.string().matches(/^[A-E]1*$/, 'Only character A-E').typeError('Only character A-E'),
         environmental_consequence_description: yup.string().nullable(),
         economic_consequence_description: yup.string().nullable(),

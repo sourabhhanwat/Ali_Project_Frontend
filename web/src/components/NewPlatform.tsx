@@ -172,7 +172,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                 <input style={{ width : "400px" , height: "40px", margin:"10px"}} id ={project.id} value={project.name} name="pro" ref={register} readOnly/>
+                 <input style={{ width : "400px" , height: "40px", margin:"10px"}} id ={project.id} defaultValue={project.name} name="pro" ref={register} readOnly/>
                     
                     {/* <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="pro" ref={register}> 
                     {lst2.map((list: any) => (
