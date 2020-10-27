@@ -148,7 +148,7 @@ export default function Drawer({ open }: { open: boolean }) {
                     <ListItemText primary="Projects" />
                 </ListItem>
 
-                <ListItem
+                {/* <ListItem
                     button
                     onClick={() => navigate('/dashboard/platforms')}
                 >
@@ -158,7 +158,7 @@ export default function Drawer({ open }: { open: boolean }) {
                         </ListItemIcon>
                     </Tooltip>
                     <ListItemText primary="Platforms" />
-                </ListItem>
+                </ListItem> */}
                 <ListItem button onClick={() => auth.logout()}>
                     <Tooltip title="Logout">
                         <ListItemIcon>

@@ -121,7 +121,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 {/* <Box style={{paddingLeft: "45%"}}> */}
                 {/* </Box> */}
                 <Box fontWeight={800} clone>
-                    <Typography variant="h5">Platform {platform.name}</Typography>
+                    <Typography variant="h5">Platform - {platform.name}</Typography>
                 </Box>
                 <Typography variant="caption">
                     <RelativeDate date={platform.updated_at} />
