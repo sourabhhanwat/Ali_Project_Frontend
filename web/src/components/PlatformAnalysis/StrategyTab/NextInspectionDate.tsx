@@ -59,15 +59,18 @@ export default function NextInspectionDate() {
     
     const content = React.useMemo(
         () => (
-            <Grid container spacing={2}>
+            <Grid>
                 {/* first */}
-                <Accordion>
-                    <AccordionSummary>
-                        <Typography>Inspection Interval Based on Risk Level</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
+                {/* <Accordion>
+                    <AccordionSummary> */}
+                    <Grid item xs={12}>
+                        <Typography variant="h6">Inspection Interval Based on Risk Level</Typography>
+                        <p></p>
+                    </Grid>
+                    {/* </AccordionSummary>
+                    <AccordionDetails> */}
                         <Grid container spacing={2}>
-                             <Grid item xs={12}></Grid>
+                             {/* <Grid item xs={12}></Grid> */}
                             <Grid item xs={4}>
                                 <p>
                                 Platform Risk Level
@@ -93,24 +96,30 @@ export default function NextInspectionDate() {
                                     disabled
                                 />
                             </Grid>
-                            <Grid item xs={12}></Grid>
-                        </Grid>   
-                        <Grid container spacing={1}>
-                                <Grid item xs={12}>
-                                    <div>                            
-                                         <StyledImage src="/risk2.png" />
-                                    </div>
+                            {/* <Grid item xs={12}></Grid> */}
+                        {/* </Grid>   */}
+                                <Grid container spacing={3}> 
+                                    <Grid item xs={3}></Grid>
+                                    <Grid item xs={4}>
+                                        <div>                            
+                                            <StyledImage src="/risk2.png" />
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6}></Grid>
                                 </Grid>
                         </Grid>
-                        
-                    </AccordionDetails>
-                </Accordion> 
+                    {/* </AccordionDetails>
+                </Accordion>  */}
 {/* ============================================== */}
-            <Accordion> 
-                <AccordionSummary>
-                        <Typography>Inspection Interval based on Exposure Category</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
+            {/* <Accordion> 
+                <AccordionSummary> */}
+                    <Grid item xs={12}>
+                        <p></p>
+                        <Typography  variant="h6">Inspection Interval based on Exposure Category</Typography>
+                        <p></p>
+                    </Grid>
+                {/* </AccordionSummary>
+                <AccordionDetails> */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <p>Exposure Category Level</p> 
@@ -179,16 +188,22 @@ export default function NextInspectionDate() {
                         </Grid>
                     </Grid> 
                 
-                </AccordionDetails>
-            </Accordion>
+                {/* </AccordionDetails>
+            </Accordion> */}
 {/* ================================================================= */}
 
-            <Accordion> 
-                <AccordionSummary>
-                        <Typography>Selected Next Inspection Interval and Inspection Date</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
+            {/* <Accordion> 
+                <AccordionSummary> */}
+                <Grid item xs={12}>
+                <p></p>
+                <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
+                <p></p>
+                </Grid> 
+                {/* </AccordionSummary>
+                <AccordionDetails> */}
                 <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                    </Grid> 
                     <Grid item xs={6} md={3}>
                         <p>Type of Survey Level</p> 
                     </Grid> 
@@ -262,8 +277,8 @@ export default function NextInspectionDate() {
                     </Grid>
 
             </Grid>
-            </AccordionDetails>
-            </Accordion>
+            {/* </AccordionDetails>
+            </Accordion> */}
         </Grid>
         ),
         [platformTypeListSubject]
