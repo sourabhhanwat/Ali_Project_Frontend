@@ -208,6 +208,8 @@ export default function ProjectList(_: RouteComponentProps) {
 
     console.log("I AM PLATFORM ==>", platformList.subject)
 
+    // console.log("I AM DATA -====>" , platformList.subject);
+
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
         fetch();
@@ -330,7 +332,8 @@ export default function ProjectList(_: RouteComponentProps) {
                     <Grid item container spacing={1}>
                          <h3>Platform List : </h3>
                     </Grid>
-{/* /// search Box Added  */}
+                    
+                    {/* /// search Box Added  */}
 
                     <Grid item container spacing={1}>
                         <Grid item xs={8}>
@@ -348,24 +351,10 @@ export default function ProjectList(_: RouteComponentProps) {
                                         Submit
                                     </Button>
                                 </Box>
-                                {/* <input style={{ width : "100px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit" /> */}
-                            {/* </form> */}
                         </Grid>
-                        {/* <Grid item xs={4}>
-                        <ListItem style={{ height: "40px", marginTop:"20px", marginLeft: "120px"}} 
-                            button
-                            onClick={() => navigate('/dashboard/newProject')}>
-                            <Tooltip  title="NewProject">
-                                <ListItemIcon>
-                                    <ProjectIcon />
-                                </ListItemIcon>
-                            </Tooltip>
-                            <ListItemText primary="Add New Project" />
-                        </ListItem>
-                        </Grid> */}
+                       
                     </Grid>
-
-{/* /// search Box Added  end */}
+                    {/* SearchBox Ended */}
 
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -416,13 +405,14 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <TableBody>
                                 {platforms?.map((platform) => (
 
+                                    // console.log("DATATAT ===>" ,platform.manned);
                                     <StyledTableRow key={platform.id}>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type.name}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.manned}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type == null ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.manned == false ? 'False' : 'True'}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking == null ? '-' : platform.risk_ranking}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level == null ? '-' : platform.exposure_category_level}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
@@ -458,54 +448,7 @@ export default function ProjectList(_: RouteComponentProps) {
 
                     <Grid item container spacing={1}>
                         <p style={p}></p>
-                    </Grid>
-
-                    {/* <Grid item container spacing={1}>
-                        <h3>Project List : </h3>
-                    </Grid> */}
-
-                    {/* <Grid item container spacing={3}>
-                        {/* {projects?.map((project) => (
-                            <Grid key={project.id} item xs={12}>
-                                <p>{project.name}</p>
-                                {/* <ProjectCard project={project} /> */}
-                            {/* </Grid> */}
-                        {/* ))} */}
-                        {/* {isPending && <SkeletonProjectCards />}  */}
-
-                        {/* <TableContainer component={Paper}>
-                            <Table className={classes.table} aria-label="customized table">
-                                <TableHead >
-                                    <TableRow>
-                                        {/* <StyledTableCell style={{minWidth: 30}} >Project No.</StyledTableCell> */}
-                                        {/* <StyledTableCell style={{minWidth: 30}} align="center">Project Name</StyledTableCell>
-                                        <StyledTableCell  style={{minWidth: 30}} align="center">Project Description</StyledTableCell>
-                                        <StyledTableCell style={{minWidth: 30}} align="center">Start Date</StyledTableCell>
-                                        <StyledTableCell  style={{minWidth: 30}} align="center">End Date</StyledTableCell>
-                            
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                {projects?.map((project) => (
-
-                    //                 <StyledTableRow key={project.id}>
-                    //                 {/* <StyledTableCell style={{minWidth: 30}} component="th" scope="row"> {project.id}</StyledTableCell> */}
-                    {/* //                 <StyledTableCell style={{minWidth: 30}} align="center" component="th" scope="row">{project.name}</StyledTableCell>             
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.description}</StyledTableCell>
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.start_date.toString().split('T')[0]}</StyledTableCell>             
-                    //                 <StyledTableCell style={{minWidth: 30}} align="center">{project.end_date.toString().split('T')[0]}</StyledTableCell>
-                    //                 </StyledTableRow>
-                    //             ))}
-                    //             </TableBody> */}
-                    {/* //         </Table>
-                    //         </TableContainer> */}
-
-                    {/* // </Grid>
-
-                    // <Grid item container spacing={1}>
-                    //     <p style={p}></p>
-                    // </Grid>   */}
-            
+                    </Grid>           
             </Grid>
             
             </form>

@@ -85,7 +85,7 @@ export default function StructuralDetailsFieldset() {
     );
     return (
         <Accordion>
-            <AccordionSummary style={{backgroundColor: "#68c1a8"}} expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary style={{backgroundColor: "#02bfa6"}} expandIcon={<ExpandMoreIcon />}>
                 <Typography style={{color: "White"}} variant="h6">Inspection Details</Typography>
             </AccordionSummary>
             <AccordionDetails>{content}</AccordionDetails>

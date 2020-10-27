@@ -1,7 +1,8 @@
+import { styled } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { navigate, RouteComponentProps, useMatch } from '@reach/router';
+import { Link, navigate, RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
 import PlatformCard, { SkeletonPlatformCard } from './PlatformCard';
@@ -16,6 +17,8 @@ const SkeletonPlatformCards = React.memo(() => (
         ))}
     </>
 ));
+
+const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 export default function PlatformsList(this: any, {projectId}: RouteComponentProps<{projectId: number;}>) {
     const platformList = usePlatformList();
@@ -58,22 +61,23 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
         return () => platformList.subject.detach(handlePlatformList);
     }, [fetch, platformList.subject]);
 
-    console.log("I AM PLATFORM ==>")
+    console.log("I AM PLATFORM in this ==>")
     console.log(platformList.subject)
 
     return (
         <>
             <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
+                <StyledLink to={`/dashboard/NewPlatform/${projectId}`}>
                 <Button
-                        onClick={() => navigate('/dashboard/Platform')}
-                        variant="contained"
-                        size="large"
-                        color="primary"
-                        style={{margin: 5}}
-                        disabled={isPending}>
-                        New Platform
-                    </Button>
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    style={{margin: 5}}
+                    disabled={isPending}>
+                    New Platform
+                </Button>
+                </StyledLink>
                 </Box>
                 <Box fontWeight={800} clone>
                     <Button

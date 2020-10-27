@@ -7,6 +7,7 @@ import { Typography, styled, Avatar, Button } from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import PlatformIcon from './icons/Platform';
+import { CompassCalibrationOutlined } from '@material-ui/icons';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -66,6 +67,8 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     }, []);
 
     const onSubmit = (data: IFormInput,e:any) => {
+
+      console.log("I am ==>" ,data);
       
       axios.post('/api/v1/saveplatform/', {
         Name: data.name,

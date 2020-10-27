@@ -57,7 +57,7 @@ function ResourceAvatar() {
                 <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && <SiteIcon />}
                 </Match>
-                <Match path="/dashboard/platforms">
+                <Match path="/dashboard/project/:projectId/platforms">
                     {(props) => props.match && <PlatformIcon />}
                 </Match>
                 <Match path="/dashboard/sites/:siteId/platforms">
@@ -90,7 +90,7 @@ function ResourceTitle() {
                 <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && 'Project List'}
                 </Match>
-                <Match path="/dashboard/platforms">
+                <Match path="/dashboard/project/:projectId/platforms">
                     {(props) => props.match && 'Platform List'}
                 </Match>
                 <Match path="/dashboard/sites/:siteId/platforms">
@@ -134,7 +134,7 @@ function ResourceCaption() {
                         'List all sites that you can view for current project.'
                     }
                 </Match>
-                <Match path="/dashboard/platforms">
+                <Match path="/dashboard/project/:projectId/platforms">
                     {(props) =>
                         props.match && 'List all platforms that you can view.'
                     }

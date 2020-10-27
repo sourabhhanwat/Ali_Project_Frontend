@@ -121,10 +121,11 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 {/* <Box style={{paddingLeft: "45%"}}> */}
                 {/* </Box> */}
                 <Box fontWeight={800} clone>
-                    <Typography variant="h5">Platform - {platform.name}</Typography>
+                    <Typography variant="h5">{platform.name}</Typography>
                 </Box>
                 <Typography variant="caption">
                     <RelativeDate date={platform.updated_at} />
+                    <p>{platform.description}</p>
                 </Typography>
             </CardContent>
             <Divider />
@@ -160,8 +161,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                         </Button>
                 </StyledLink>
                     <StyledLink
-                        to={`/dashboard/platforms/${platform.id}/analysis`}
-                    >
+                        to={`/dashboard/platforms/${platform.id}/analysis`}>
                         <Box  clone fontWeight={800}>
                             <Button color="primary">
                                 View <ChevronRightIcon />

@@ -164,17 +164,17 @@ export const PlatformSchema = yup
                 id: IntegerSchema.nullable(),
                 name: yup.string().trim().nullable(),
             })
-            .noUnknown(),
+            .noUnknown().nullable(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),
         environmental_consequence: yup
             .object({
-                id: yup.number(),
+                id: yup.number().nullable(),
                 platform_type: yup
                     .object({
                         id: IntegerSchema,
                         name: yup.string().trim(),
                     })
-                    .noUnknown(),
+                    .noUnknown().nullable(),
                 platform_type_id: yup.ref('platform_type.id'),
                 daily_oil_production: IntegerSchema,
                 estimated_fraction_of_oil_production_loss_due_to_leakage: yup.string(),

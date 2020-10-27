@@ -67,7 +67,7 @@ export default function Dashboard(_: RouteComponentProps) {
                                 <Existinguser path = "existinguser" />
                                 <CreatePlatform path = "CreatePlatform" />
                                 <PlatformList path="project/:projectId/platforms" />
-                                <PlatformList path="platforms" />
+                                {/* <PlatformList path="platforms" /> */}
                                 <PlatformAnalysis path="platforms/:platformId/analysis" />
                             </Router>
                         </Layout>
