@@ -217,36 +217,39 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
 
                             <Typography style={{marginTop: '1rem', fontWeight: 'bold', fontSize: '1.2rem'}}>Inspection Interval Based on Risk Level</Typography>
 
-                            <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Grid item xs={2}>
+{/* ======================================================= */}
+            <Accordion>
+                    <AccordionDetails> 
+                        <Grid container spacing={1}>  
+                            <Grid item xs={12}></Grid>
+                            <Grid item xs={6}>
                                     <p>
                                     Platform Risk Level
                                     </p>
-
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <div style={{backgroundColor: red, height:"50px"}}>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <div style={{backgroundColor: red, height:"50px"}}>
                                         <Typography style={{color: "Black",textAlign:"center" ,padding:"1rem"}}>{risk_ranking}</Typography>
                                     </div>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p>
                                     Risk Based Underwater Inspection Interval (Years)
                                     </p>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <TextField
+                            </Grid>
+                            <Grid item xs={6}>
+                                     <TextField
                                         label="Risk Based Underwater Inspection Interval (Years)"
                                         name={[
                                             'risk_based_underwater_inspection_interval',
                                         ]}
                                         disabled
                                     />
-                                </Grid>
-                            </Grid>
-                        </Grid>   
-                            <Grid container spacing={1}>
+                            </Grid> 
+                            <Grid item xs={12}></Grid>
+                        </Grid>  
+                         
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <div style={{marginTop: '3rem'}}>
                                 <table className={graph.table_head}>
@@ -309,13 +312,19 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
 
                                 </div>
                             </Grid>
-                    </Grid>
+                        </Grid> 
+                     </AccordionDetails>
+                </Accordion>
 
-                            <Grid item xs={12}>
+{/* ======================================================= */}
+                    <Grid item xs={12}>
                             <p></p>
                             <Typography  variant="h6">Inspection Interval based on Exposure Category</Typography>
                             <p></p>
-                            </Grid>
+                    </Grid>
+            <Accordion> 
+                    <AccordionDetails>  
+                            
                             {/* </AccordionSummary>
                             <AccordionDetails> */}
                             <Grid container spacing={2}>
@@ -386,19 +395,18 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             </Grid> 
 
-                            {/* </AccordionDetails>
-                            </Accordion> */}
+                        </AccordionDetails>
+                </Accordion>
                             {/* ================================================================= */}
-
-                            {/* <Accordion> 
-                            <AccordionSummary> */}
-                            <Grid item xs={12}>
-                            <p></p>
-                            <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
-                            <p></p>
-                            </Grid> 
-                            {/* </AccordionSummary>
-                            <AccordionDetails> */}
+{/* ================================================= */}
+                           
+                <Grid item xs={12}>
+                    <p></p>
+                    <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
+                    <p></p>
+                </Grid> 
+                    <Accordion>
+                        <AccordionDetails>
                             <Grid container spacing={3}>
                             <Grid item xs={12}>
                             </Grid> 
@@ -475,12 +483,12 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             </Grid>
-                            {/* </AccordionDetails>
-                            </Accordion> */}
-                            </Grid>
+                        </AccordionDetails>
+                </Accordion>    
+            </Grid>
 
-                    </AccordionDetails>
-                </Accordion>
+        </AccordionDetails>
+    </Accordion>
             </Box>
     );
 }
