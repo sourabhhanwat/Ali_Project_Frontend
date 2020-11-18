@@ -143,6 +143,7 @@ export default function NextInspectionDate() {
 
     const content = React.useMemo(
         () => (
+<<<<<<< HEAD
             <Grid container spacing={2}>
 
                         <Typography style={{marginTop: '1rem', fontWeight: 'bold', fontSize: '1.2rem'}}>Inspection Interval Based on Risk Level</Typography>
@@ -153,6 +154,24 @@ export default function NextInspectionDate() {
                                     <p>
                                     Platform Risk Level
                                     </p>
+=======
+            <Grid>
+                {/* first */}
+                {/* <Accordion>
+                    <AccordionSummary> */}
+                    <Grid item xs={12}>
+                        <Typography variant="h6">Inspection Interval Based on Risk Level</Typography>
+                        <p></p>
+                    </Grid>
+                    {/* </AccordionSummary>
+                    <AccordionDetails> */}
+                        <Grid container spacing={2}>
+                             {/* <Grid item xs={12}></Grid> */}
+                            <Grid item xs={4}>
+                                <p>
+                                Platform Risk Level
+                                </p>
+>>>>>>> e317ad40ca11bb5b84745ffba41b5fd2041a6de4
 
                                 </Grid>
                                 <Grid item xs={4}>
@@ -175,6 +194,7 @@ export default function NextInspectionDate() {
                                     />
                                 </Grid>
                             </Grid>
+<<<<<<< HEAD
                         </Grid>   
                         <Grid container spacing={1}>
                                 <Grid item xs={12}>
@@ -242,12 +262,51 @@ export default function NextInspectionDate() {
                         </Grid>
                         
 
+=======
+                            <Grid item xs={6}>
+                                <div style={{backgroundColor: red, height:"50px"}}>
+                                    <Typography style={{color: "Black",paddingTop:"13px" ,paddingLeft:"30%"}}>{risk}</Typography>
+                                </div>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <p>
+                                Risk Based Underwater Inspection Interval (Years)
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    label="Risk Based Underwater Inspection Interval (Years)"
+                                    name={[
+                                        'risk_based_underwater_inspection_interval',
+                                    ]}
+                                    disabled
+                                />
+                            </Grid>
+                            {/* <Grid item xs={12}></Grid> */}
+                        {/* </Grid>   */}
+                                <Grid container spacing={3}> 
+                                    <Grid item xs={3}></Grid>
+                                    <Grid item xs={4}>
+                                        <div>                            
+                                            <StyledImage src="/risk2.png" />
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6}></Grid>
+                                </Grid>
+                        </Grid>
+                    {/* </AccordionDetails>
+                </Accordion>  */}
+>>>>>>> e317ad40ca11bb5b84745ffba41b5fd2041a6de4
 {/* ============================================== */}
-            <Accordion> 
-                <AccordionSummary>
-                        <Typography>Inspection Interval based on Exposure Category</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
+            {/* <Accordion> 
+                <AccordionSummary> */}
+                    <Grid item xs={12}>
+                        <p></p>
+                        <Typography  variant="h6">Inspection Interval based on Exposure Category</Typography>
+                        <p></p>
+                    </Grid>
+                {/* </AccordionSummary>
+                <AccordionDetails> */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <p>Exposure Category Level</p> 
@@ -316,16 +375,22 @@ export default function NextInspectionDate() {
                         </Grid>
                     </Grid> 
                 
-                </AccordionDetails>
-            </Accordion>
+                {/* </AccordionDetails>
+            </Accordion> */}
 {/* ================================================================= */}
 
-            <Accordion> 
-                <AccordionSummary>
-                        <Typography>Selected Next Inspection Interval and Inspection Date</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
+            {/* <Accordion> 
+                <AccordionSummary> */}
+                <Grid item xs={12}>
+                <p></p>
+                <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
+                <p></p>
+                </Grid> 
+                {/* </AccordionSummary>
+                <AccordionDetails> */}
                 <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                    </Grid> 
                     <Grid item xs={6} md={3}>
                         <p>Type of Survey Level</p> 
                     </Grid> 
@@ -399,8 +464,8 @@ export default function NextInspectionDate() {
                     </Grid>
 
             </Grid>
-            </AccordionDetails>
-            </Accordion>
+            {/* </AccordionDetails>
+            </Accordion> */}
         </Grid>
         ),
         [platformTypeListSubject]
