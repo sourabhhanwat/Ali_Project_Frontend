@@ -2,12 +2,13 @@ import React from "react";
 import {
   Page,
   Text,
-  View,
   Document,
-  StyleSheet,
-  Image,
-  Font
-} from "@react-pdf/renderer";
+  StyleSheet} from "@react-pdf/renderer";
+import { DataTableCell } from "@david.kucsai/react-pdf-table/lib/DataTableCell";
+import { TableHeader } from "@david.kucsai/react-pdf-table/lib/TableHeader";
+import { Table, TableBody, TableCell } from "@david.kucsai/react-pdf-table";
+import { TableRow } from "@david.kucsai/react-pdf-table/lib/TableRow";
+// import { Table, TableCell, TableBody } from "@material-ui/core";
 // import { platform } from "os";
 
 // const POSTER_PATH = "https://image.tmdb.org/t/p/w154";
@@ -54,6 +55,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'grey',
   },
+
+  table : {
+    height: 20,
+  },
+
   pageNumber: {
     position: 'absolute',
     fontSize: 12,
@@ -130,6 +136,32 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Likelihood of Failure Category </Text>
             
             <Text style={styles.subtitle}>Consequence of Failure</Text>
+
+            <Table
+                data={[
+                    {firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000"}
+                ]}
+            >
+                <TableHeader textAlign={"center"}>
+                    <TableCell weighting={0.3}>
+                    </TableCell>
+                    <TableCell weighting={0.3}>
+                    </TableCell>
+                    <TableCell>
+                    </TableCell>
+                    <TableCell>
+                    </TableCell>
+                    <TableCell>
+                    </TableCell>
+                </TableHeader>
+                <TableBody>
+                    <DataTableCell style={{border: '1px solid black', height: '12%', width: '1rem'}}weighting={0.3} getContent={(r) => ''}/>
+                    <DataTableCell weighting={0.3} getContent={(r) => ''}/>
+                    <DataTableCell weighting={0.3} getContent={(r) => ''}/>
+                    <DataTableCell weighting={0.3} getContent={(r) => ''}/>
+                    <DataTableCell weighting={0.3} getContent={(r) => ''}/>
+                </TableBody>
+            </Table>
             
            </>
                      

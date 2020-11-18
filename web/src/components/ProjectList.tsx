@@ -18,18 +18,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
-// import { navigate } from '@reach/router';
 import { Box, Button } from '@material-ui/core';
-// import ProjectIcon from './icons/Project';
 import { useProjectList } from './ProjectListProvider';
 import MaterialTable from 'material-table';
 import { useForm } from "react-hook-form";
 import { ContinuousColorLegend } from 'react-vis';
 
   
-  interface IFormInput {
+interface IFormInput {
     firstName: string;
-  }
+}
 
 var p = {
     height: '20px',
@@ -240,13 +238,15 @@ export default function ProjectList(_: RouteComponentProps) {
 
 
     //=========================
-    // {platforms?.map((platform) => (
-    //     backgroundColor.push(platform.risk_ranking)
-    // ))}
+    var arr: (string | null)[]= []
+    {platforms?.map((platform) => (
+        arr.push(platform.risk_ranking)
+        // var val = arr.push(8)
+    ))}
 
-    for(let i in backgroundColor){
+    for(let i in arr){
 
-        switch(backgroundColor[i]) { 
+        switch(arr[i]) { 
             case "VL": { 
                label.push('Very Low')
                console.log('VL')

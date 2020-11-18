@@ -41,10 +41,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import axios from "axios";
-import {Link, styled, Avatar, Theme, createStyles, Collapse } from '@material-ui/core';
-// import { LineWeight } from '@material-ui/icons';
-// import { SlowMotionVideoOutlined } from '@material-ui/icons';
-// import { red } from '@material-ui/core/colors';
+import {styled} from '@material-ui/core';
 
 enum CatEnum {
     A = "A",
