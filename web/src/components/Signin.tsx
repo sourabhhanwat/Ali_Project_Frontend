@@ -3,12 +3,12 @@ import React from 'react';
 import { SignInForm } from './SigninForm';
 
 const LeftGrid = styled(Grid)({
-    background: 'url(/banner.jpeg)',
+    background: 'url(/banner.jpg) center center no-repeat',
     backgroundSize: 'cover',
-    alignItems: 'flex-start',
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
+    transform: 'scaleX(-1)',
 });
 
 const RightGrid = styled(Grid)({

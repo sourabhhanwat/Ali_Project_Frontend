@@ -27,13 +27,10 @@ import Scour from './Scour';
 import ShallowGas from './ShallowGas';
 import UnprotectedAppurtenances from './UnprotectedAppurtenances';
 import TextField from '../../FormWidget/TextField';
-import {Pie,Doughnut} from 'react-chartjs-2';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { Button,TextArea, Dropdown } from 'semantic-ui-react'
 import IconButton from '@material-ui/core/IconButton';
 import Info from '@material-ui/icons/Info';
-import Hidden from '@material-ui/core/Hidden';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -44,10 +41,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
 import axios from "axios";
-import { register } from '../../../serviceWorker';
 import {Link, styled, Avatar, Theme, createStyles, Collapse } from '@material-ui/core';
-
-
+// import { LineWeight } from '@material-ui/icons';
+// import { SlowMotionVideoOutlined } from '@material-ui/icons';
+// import { red } from '@material-ui/core/colors';
 
 enum CatEnum {
     A = "A",
@@ -116,7 +113,7 @@ const rows_env = [
 
 function createData3(a: string, b: string, c: string) {
     return { a, b , c};
-  }
+}
 
 
 const rows_eco = [
@@ -129,7 +126,7 @@ const rows_eco = [
 
 function createData4(a: string, b: string, c: string) {
     return { a, b , c};
-  }
+}
 
 
 const rows_cof = [
@@ -142,8 +139,77 @@ const rows_cof = [
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 400,
+    minWidth: 200,
   },
+});
+
+const graphStyles = makeStyles({
+    table: {
+        border: '1.6px solid white',
+        fontSize: 26,
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+    },
+
+    table_head: {
+        width: '29rem',
+        borderCollapse : 'collapse',
+        margin: '0 auto',
+    },
+
+    x_design:{
+        transform: 'rotate(-90deg)',
+        color: 'black',
+        width: '1%',
+        fontSize: '15px',
+        letterSpacing: '1.5px',
+    },
+
+    y_design:{
+        textAlign: 'end',
+        color: 'black',
+        fontSize: '15px',
+        letterSpacing: '1.5px',
+        paddingRight: '1.8rem', 
+    },
+
+    x_axis :{
+        borderTop : '2px solid black',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        height: 60,
+        width: '10%'
+    },
+
+    y_axis : {
+        borderRight : '2px solid black',
+        height: 60,
+        width: '10%',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+
+    red: {
+        backgroundColor: '#FF0000',
+    },
+
+    darkGreen:{
+        backgroundColor: '#539204',
+    },
+
+    lightGreen: {
+        backgroundColor: '#92D050',
+    },
+
+    orange: {
+        backgroundColor: '#FFC000',
+    },
+
+    yellow: {
+        backgroundColor: '#FFFF00'
+    },
+
 });
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
@@ -164,14 +230,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     const classes = useStyles();
 
+    const graph = graphStyles();
 
     const platformMannedStatusListSubject = usePlatformMannedStatusListContext();
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
-    const lof_ranking = watch('lof_ranking');
-
-    // console.log("platform_manned_status_id");
+    
     // console.log(platform_manned_status_id);
 
 
@@ -226,14 +291,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         [platform_manned_status_id, platformMannedStatusList]
     );
 
-    // console.log('platformMannedStatusList');
-    // console.log(platformMannedStatusList);
-
     const daily_oil_production = watch(
         'environmental_consequence.daily_oil_production'
     );
-    
-    // console.log("I am daily => ", daily_oil_production);
     
     const environmental_consequence_description = watch(
         'environmental_consequence_description'
@@ -262,20 +322,20 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         'environmental_consequence_category'
     );
      
+    const lof_ranking = watch('lof_ranking');
 
     const risk_based_underwater_inspection_interval = watch(
         'risk_based_underwater_inspection_interval'
     );
+
     const risk_ranking = watch(
         'risk_ranking'
     );
-    // calculated_environmental_consequence
 
     const calculated_environmental_consequence = watch(
         'calculated_environmental_consequence'
     );
 
-    
     let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'Unknown' : calculated_environmental_consequence;
 
 
@@ -283,16 +343,16 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
 
     let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
-
-    
-    // console.log("I am evaluation Tab" ,environmental_consequence_description);
-
-
-    // console.log("I am evaluation Tab Change" ,environmental_consequence_description1);
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
-    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    return (
+    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    
+    
+    // Graph Calculation
+
+    let graphMarking = lof_ranking + final_consequence_category;
+
+    return (
         <Box hidden={hidden}>
             <Typography variant="h4" gutterBottom>
                 Likelihood of Failure Calculation
@@ -462,21 +522,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 />
                             </Grid>
 
-                            {/* <Grid item xs={6}>
-                                <p>
-                                platform manned status id
-                                </p>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    label=""
-                                    name={[
-                                        'platform_manned_status',
-                                        'id',
-                                    ]} disabled
-                                />
-                            </Grid> */}
-
                             <Grid item xs={12}>
                                 <Typography variant="subtitle2">
                                     Description
@@ -499,7 +544,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <p></p>
                         <p></p>
                         <p></p>
-                        {/* // second button */}
                         
                     </Typography>
                     <Box>
@@ -588,7 +632,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                                 <p>
-                                Variable Cost for Spill Clean-up (based on the size of spill volume)                                </p>
+                                Variable Cost for Spill Clean-up (based on the size of spill volume)</p>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -702,27 +746,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     name={[
                                         'environmental_consequence_category',
                                     ]}
-                                    
-                                    // inputRef = {register}
-                                    
                                 />
 
-                                {/* <select style={{ width : "300px" , height: "53px"}} name="env_category">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="E">E</option>
-                                </select>  */}
-                                
-                                {/* <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="env_category"> 
-                                        <option selected={environmental_consequence_category}>{environmental_consequence_category}</option>
-                                        {lst.map((list) => (
-                                        <option  value= {list} key={list}> {list} </option>
-                                        ))}
-                                </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
-                     */}
                             </Grid>
 
                         </Grid>
@@ -922,23 +947,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         'economic_consequence_category',
                                         // 'economic_consequence_description',
                                     ]}
-                                    
                                 />
-                            {/* <select style={{ width : "300px" , height: "53px"}} name="eco_category">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="E">E</option>
-                                </select>  */}
-                                {/* <select style={{ width : "100px" , height: "53px", fontSize:"18px"}} name="eco_category"> 
-                                    <option selected={economic_consequence_category}>{economic_consequence_category}</option>
-                                        {lst.map((list) => (
-                                        <option value= {list} key={list}> {list} </option>
-                                        ))}
-                                </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button style={{ width : "100px" , height: "53px", backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button>
-                            */}
                             </Grid>
 
 
@@ -1027,7 +1036,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 Likelihood of Failure Category
                                 </p>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <TextField
                                     disabled
                                     label="Likelihood of Failure Category"
@@ -1036,16 +1045,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     ]}
                                     
                                 />
-                                 {/* <Typography style={{paddingTop: "5px"}} variant="h5">
-                                    {lof_ranking}
-                                </Typography> */}
                             </Grid>
                             <Grid item xs={6}>
                                 <p>
                                 Final Consequence Category                             
                                 </p>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                                 <TextField
                                     disabled
                                     label="Final Consequence Category"
@@ -1054,38 +1060,82 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     ]}
                                     
                                 />
-                                {/* <Typography style={{paddingTop: "5px"}} variant="h5">
-                                    {final_consequence_category}
-                                </Typography> */}
                             </Grid> 
                             <Grid item xs={6}>
                                 <p>
                                 Risk Ranking
                                 </p>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Typography style={{backgroundColor:red, paddingLeft:"40%", color: "black", paddingTop: "5px"}} variant="h5">
+                            <Grid item xs={6}>
+                                <Typography style={{backgroundColor:red, textAlign:"center", color: "white", fontWeight:"bold", padding: "8px"}} variant="h5">
                                     {risk_ranking}
                                 </Typography>
-
-                                {/* </Typography> */}
-                                {/* <TextField
-                                    disabled
-                                    label="Risk Ranking"
-                                    name={[
-                                        'risk_ranking',
-                                    ]}
-                                /> */}
                             </Grid>
                             <Grid item xs={12}></Grid>
                         </Grid>  
                          
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
-                                <div>
-                                 <StyledImage src="/risk.png" />
+                                <div style={{marginTop: '3rem'}}>
+                                <table className={graph.table_head}>
+                                <tbody>
+                                    <tr>
+                                        <td rowSpan={5} className={graph.table+ " " +graph.x_design}>LIKELIHOOD OF FAILURE</td>
+                                        <td className={graph.y_axis} id="">5</td>
+                                        <td className={graph.table+ " " +graph.yellow} style={{borderTop: '2px solid black'}}>{graphMarking === '5A' ? 'M' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange} style={{borderTop: '2px solid black'}}>{graphMarking === '5B' ? 'H' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange} style={{borderTop: '2px solid black'}}>{graphMarking === '5C' ? 'H' : ''}</td>
+                                        <td className={graph.table+ " " +graph.red} style={{borderTop: '2px solid black'}}>{graphMarking === '5D' ? 'VH' : ''}</td>
+                                        <td className={graph.table+ " " +graph.red} style={{borderTop: '2px solid black', borderRight: '2px solid black'}}>{graphMarking === '5E' ? 'VH' : ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={graph.y_axis}>4</td>
+                                        <td className={graph.table+ " " +graph.lightGreen}>{graphMarking === '4A' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.yellow}>{graphMarking === '4B' ? 'M' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange}>{graphMarking === '4C' ? 'H' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange}>{graphMarking === '4D' ? 'H' : ''}</td>
+                                        <td className={graph.table+ " " +graph.red} style={{borderRight: '2px solid black'}}>{graphMarking === '4E' ? 'VH' : ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={graph.y_axis}>3</td>
+                                        <td className={graph.table+ " " +graph.lightGreen}>{graphMarking === '3A' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.lightGreen}>{graphMarking === '3B' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.yellow}>{graphMarking === '3C' ? 'M' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange}>{graphMarking === '3D' ? 'H' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange} style={{borderRight: '2px solid black'}}>{graphMarking === '3E' ? 'H' : ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={graph.y_axis}>2</td>
+                                        <td className={graph.table+ " " +graph.darkGreen}>{graphMarking === '2A' ? 'VL' : ''}</td>
+                                        <td className={graph.table+ " " +graph.lightGreen}>{graphMarking === '2B' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.lightGreen}>{graphMarking === '2C' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.yellow}>{graphMarking === '2D' ? 'M' : ''}</td>
+                                        <td className={graph.table+ " " +graph.orange} style={{borderRight: '2px solid black'}}>{graphMarking === '2E' ? 'H' : ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={graph.y_axis}>1</td>
+                                        <td className={graph.table+ " " +graph.darkGreen} style={{borderBottom: '2px solid black'}}>{graphMarking === '1A' ? 'VL' : ''}</td>
+                                        <td className={graph.table+ " " +graph.darkGreen} style={{borderBottom: '2px solid black'}}>{graphMarking === '1B' ? 'VL' : ''}</td>
+                                        <td className={graph.table+ " " +graph.lightGreen} style={{borderBottom: '2px solid black'}}>{graphMarking === '1C' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.lightGreen} style={{borderBottom: '2px solid black'}}>{graphMarking === '1D' ? 'L' : ''}</td>
+                                        <td className={graph.table+ " " +graph.yellow} style={{borderRight: '2px solid black', borderBottom: '2px solid black'}}>{graphMarking === '1E' ? 'M' : ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td className={graph.table}></td>
+                                        <td className={graph.x_axis} id="">A</td>
+                                        <td className={graph.x_axis} id="">B</td>
+                                        <td className={graph.x_axis} id="">C</td>
+                                        <td className={graph.x_axis} id="">D</td>
+                                        <td className={graph.x_axis} id="">E</td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={7} className={graph.table+ " " +graph.y_design}>CONSEQUENCE OF FAILURE</td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
 
-                            </div>
+                                </div>
                             </Grid>
                         </Grid> 
                     </AccordionDetails>

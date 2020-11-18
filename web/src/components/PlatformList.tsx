@@ -55,14 +55,12 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
         }
     }, [projectId, platformList.subject]);
 
+
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
         fetch();
         return () => platformList.subject.detach(handlePlatformList);
     }, [fetch, platformList.subject]);
-
-    console.log("I AM PLATFORM in this ==>")
-    console.log(platformList.subject)
 
     return (
         <>
@@ -73,7 +71,7 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
                     variant="contained"
                     size="large"
                     color="primary"
-                    style={{margin: 5}}
+                    style={{margin: 5, fontWeight: 'bold'}}
                     disabled={isPending}>
                     New Platform
                 </Button>
@@ -86,8 +84,7 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
                         size="large"
                         color="primary"
                         style={{margin: 5}}
-                        disabled={isPending}
-                    >
+                        disabled={isPending}>
                         Refresh
                     </Button>
                 </Box>

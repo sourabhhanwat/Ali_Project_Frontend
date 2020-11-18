@@ -9,6 +9,8 @@ import Checkbox from '../../FormWidget/Checkbox';
 import TextField from '../../FormWidget/TextField';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 import DatePicker from '../../FormWidget/DatePicker';
+import { platform } from 'os';
+import { usePlatform } from '../../PlatformProvider';
 
 export default function ProgramPage() {
     // var ButtonDesign = {
@@ -22,7 +24,6 @@ export default function ProgramPage() {
         backgroundColor: 'light blue',
 
     };
-
 
     const platformTypeListSubject = usePlatformTypeListContext();
 

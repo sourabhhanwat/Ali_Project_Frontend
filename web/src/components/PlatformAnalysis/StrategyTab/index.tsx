@@ -1,10 +1,9 @@
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import InspectionHistory from './InspectionHistory';
 import NextInspectionDate from './NextInspectionDate';
 
-export default function ProgramTab({ hidden }: { hidden?: boolean }) {
+export default function StrategyTab({ hidden }: { hidden?: boolean }) {
     var paragraphDesign = {
         backgroundColor: '#68c1a8',
         padding:    '.8rem',

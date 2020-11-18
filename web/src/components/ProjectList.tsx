@@ -208,8 +208,6 @@ export default function ProjectList(_: RouteComponentProps) {
 
     console.log("I AM PLATFORM ==>", platformList.subject)
 
-    // console.log("I AM DATA -====>" , platformList.subject);
-
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
         fetch();
@@ -247,7 +245,7 @@ export default function ProjectList(_: RouteComponentProps) {
     // ))}
 
     for(let i in backgroundColor){
-        // console.log(backgroundColor[i])
+
         switch(backgroundColor[i]) { 
             case "VL": { 
                label.push('Very Low')

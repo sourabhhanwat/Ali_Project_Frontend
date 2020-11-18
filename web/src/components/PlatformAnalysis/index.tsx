@@ -34,9 +34,6 @@ export default function PlatformAnalysis(this: any, {platformId,location,navigat
         validationSchema: PlatformSchema,
     });
 
-    console.log("I am inside function");
-    console.log(platformId);
-
     const { reset, handleSubmit } = methods;
 
     const handlePlatform = React.useCallback(
@@ -54,9 +51,6 @@ export default function PlatformAnalysis(this: any, {platformId,location,navigat
         platform.subject.get({ id: platformId! });
         return () => platform.subject.detach(handlePlatform);
     }, [platform.subject, platformId, handlePlatform]);
-
-    console.log("DATATATA ===>")
-    console.log(platform.subject)
 
     return (
         <>
