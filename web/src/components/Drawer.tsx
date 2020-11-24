@@ -106,7 +106,7 @@ export default function Drawer({ open }: { open: boolean }) {
             </List>
             <List>
                 
-                <ListItem
+                {/* <ListItem
                     button
                     onClick={() => navigate('/dashboard/newuser')}>
                     <Tooltip title="New User">
@@ -126,7 +126,7 @@ export default function Drawer({ open }: { open: boolean }) {
                         </ListItemIcon>
                     </Tooltip>
                     <ListItemText primary="Existing User" />
-                </ListItem>
+                </ListItem> */}
 
                 <ListItem
                     button

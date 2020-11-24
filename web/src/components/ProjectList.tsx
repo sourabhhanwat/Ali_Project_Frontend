@@ -250,30 +250,29 @@ export default function ProjectList(_: RouteComponentProps) {
             case "VL": { 
                label.push('Very Low')
                console.log('VL')
-               Color.push('#006400');
-               hoverBackgroundColor.push('#006400');
-            //    console.log("Excellent"); 
+               Color.push('#00B050');
+               hoverBackgroundColor.push('#00B050');    
                break; 
             } 
             case "H": { 
                 label.push('High')
                 console.log('high')
-                Color.push('#FF8C00');
-                hoverBackgroundColor.push('#FF8C00');
+                Color.push('#FFC000');
+                hoverBackgroundColor.push('#FFC000');
                 break; 
             } 
             case "M": {
                 label.push('Medium')
                 console.log('Medium')
-                Color.push('#FFA500');
-                hoverBackgroundColor.push('#FFA500');
+                Color.push('#FFFF00');
+                hoverBackgroundColor.push('#FFFF00');
                 break;    
             } 
             case "L": { 
                 label.push('Low')
                 console.log('Low')
-                Color.push('#ADFF2F');
-                hoverBackgroundColor.push('#ADFF2F');
+                Color.push('#92D050');
+                hoverBackgroundColor.push('#92D050');
                 break; 
             }  
             default: { 
@@ -424,17 +423,6 @@ export default function ProjectList(_: RouteComponentProps) {
                                     {platform.next_10_years_inspection_plan?.map((next) => (
                                         <StyledTableCell style={{minWidth: 130}} align="center">{next.level}</StyledTableCell>
                                     ))},
-                                    {/* <StyledTableCell style={{minWidth: 130}} align="center">Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1 Level 2 Level 3</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 1</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 130}} align="center">Level 2 Level 3</StyledTableCell> */}
-                                    
                                     </StyledTableRow>
                                 ))}
                                 </TableBody>
@@ -442,13 +430,10 @@ export default function ProjectList(_: RouteComponentProps) {
                             </TableContainer>
                         </Grid>  
                     </Grid>
-
-
                     <Grid item container spacing={1}>
                         <p style={p}></p>
                     </Grid>           
-            </Grid>
-            
+            </Grid>            
             </form>
-                );
+        );
 }

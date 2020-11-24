@@ -68,7 +68,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
 
     const onSubmit = (data: IFormInput,e:any) => {
 
-      console.log("I am ==>" ,data);
+      console.log("I am new platform==>" ,data);
       
       axios.post('/api/v1/saveplatform/', {
         Name: data.name,
@@ -77,6 +77,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
         Project: project.id,
       })
       .then(function (response) {
+        console.log("PRINT THE RESPONSE");
         console.log(response);
         setStatus({
           isSubmitted : true,
