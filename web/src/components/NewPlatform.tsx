@@ -74,7 +74,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
         Name: data.name,
         Description: data.des,
         Responsible: data.res,
-        Project: project.id,
+        Project: project.id.toString(),
       })
       .then(function (response) {
         console.log("PRINT THE RESPONSE");
