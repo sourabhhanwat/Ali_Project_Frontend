@@ -46,7 +46,6 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     const [lst, setLst] = React.useState([])
     const [project, setProject] = React.useState<any>([]);
 
-    // const [lst2, setLst2] = React.useState([])
     const [status, setStatus] = React.useState({
       isSubmitted : false,
       status : false,
@@ -57,7 +56,8 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     if (match) {
         projectId = parseInt((match as any).projectId);
     }
-    
+    console.log("I AM PROJECT ID ==", projectId);
+
     React.useEffect(() => {
       fetch(`/api/v1/projects/${projectId}`)
         .then(results => results.json())
@@ -65,6 +65,18 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
           setProject(data);
         });
     }, []);
+
+    // axios.get('/api/v1/projects/')
+    //   .then(function (response) {
+    //     setProject(response.data)
+    //     console.log(lst)
+    //   })
+
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    console.log("New Platform page ==>", project);
 
     const onSubmit = (data: IFormInput,e:any) => {
 
@@ -74,7 +86,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
         Name: data.name,
         Description: data.des,
         Responsible: data.res,
-        Project: project.id.toString(),
+        Project: project.id,
       })
       .then(function (response) {
         console.log("PRINT THE RESPONSE");

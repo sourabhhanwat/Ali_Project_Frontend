@@ -87,16 +87,18 @@ const tableStyles = {
 
     };
 
-    React.useEffect(() => {
-      fetch('/api/v1/users/')
-        .then(results => results.json())
-        .then(data => {
-          setLst(data.map((item: any) => ({
-            username: item.username,
-            id: item.id
-          })));
-        });
-    }, []);
+    // React.useEffect(() => {
+    //   fetch('/api/v1/users/')
+    //     .then(results => results.json())
+    //     .then(data => {
+    //       setLst(data);
+    //       // setLst(data.data.map((item: any) => ({
+    //       //   username: item.username,
+    //       //   id: item.id
+    //       // })));
+    //     });
+    // }, []);
+
 
     // const onDrop = () => {
 
@@ -168,23 +170,11 @@ const tableStyles = {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} defaultValue= {project.users} name="res" ref={register}> 
-                    {lst.map((list:any) => (
+                    {/* {lst.map((list:any) => (
                     <option value= {list.id} key={list.id}> {list.username} </option>
-                    ))}
+                    ))} */}
                     </select> 
-                    {/* <Box fontWeight={800} clone>
-                        <Button
-                            type = "button"
-                            // onClick={() => onDrop()}
-                            variant="contained"
-                            size="large"
-                            color="primary"
-                            style={{margin: 5}}>
-                            Load
-                        </Button>
-                    </Box> */}
-                    {/* <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button> */}
-                    
+                   
                 </Box>
             </Grid>
 
