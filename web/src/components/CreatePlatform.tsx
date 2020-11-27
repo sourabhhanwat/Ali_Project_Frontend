@@ -48,21 +48,6 @@ const StyledTableRow = withStyles((theme) => ({
         },
     },
 }))(TableRow);
-
-
-//   function createData(no: string, Platform_Name: string, Primary_Function: string, Platfom_Manned_Status: string, Platform_Risk_Ranking: string,
-//     Exposure_Category: string, Inspection_Intervals: string, Last_Inspection_Date: string, Next_Inspection_Date: string, Next_10_year: string ) {
-//     return { no, Platform_Name, Primary_Function, Platfom_Manned_Status, Platform_Risk_Ranking, Exposure_Category ,  Inspection_Intervals,
-//         Last_Inspection_Date, Next_Inspection_Date, Next_10_year };
-//   }
-  
-//   const rows = [
-//     createData('1', 'PP', 'Production (P)', 'Yes', 'VH','L-1', '1', '01/03/2019', '01/03/2019', 'Level 1'),
-//     createData('2', 'RP', 'Production (P)', 'NO', 'H', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-//     createData('3', 'WP1', 'Drilling (D)', 'Yes', 'M', 'L-1', '6', '01/03/2019', '01/03/2019', 'Level 1'),
-//     createData('4', 'WP10', 'Drilling (D)', 'Yes', 'M', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-//     createData('5', 'QP', 'LQ (Q)', 'Yes', 'L', 'L-1', '3', '01/03/2019', '01/03/2019', 'Level 1'),
-//   ];
   
   const useStyles = makeStyles({
     table: {
@@ -70,28 +55,6 @@ const StyledTableRow = withStyles((theme) => ({
     },
   });
 
-
-// const StyledDivider = styled(Divider)(
-//     ({
-//         theme,
-//         bgcolor,
-//     }: {
-//         theme: Theme;
-//         bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
-//     }) => ({
-//         backgroundColor: bgcolor
-//             ? theme.palette[bgcolor].main
-//             : theme.palette.divider,
-//         height: 4,
-//         marginTop: theme.spacing(1),
-//         marginBottom: theme.spacing(1),
-//         width: theme.spacing(4),
-//         border: `1px solid ${
-//             bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
-//         }`,
-//         borderRadius: theme.spacing(1),
-//     })
-// );
 
 const StyledTypography = styled(Typography)({
     textTransform: 'uppercase',
@@ -212,24 +175,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
     //     ))}
     // console.log(data)    
 
-
-    //=========================
-    // {platforms?.map((platform) => (
-    //     backgroundColor.push(platform.risk_ranking)
-    // ))}
-
-    // const state = {
-    //     labels: pltname,
-    //     datasets: [
-    //       {
-    //         label: 'Platform Risk',
-    //         backgroundColor: Color,
-    //         hoverBackgroundColor: BackgroundColor,
-    //         data: data
-    //       }
-    //     ]
-    //   }
-
     const deleteProject = (value : any) => {
 
         console.log(value);
@@ -249,9 +194,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
 
     return ( 
         <>
-            {/* <Box justifyContent="flex-end" my={2}>Create Platform */}
-                        {/* <p style={p}></p> */}
-            {/* </Box> */}
 
             <Box display="flex" justifyContent="flex-end" my={2}>
                 <Box fontWeight={800} clone>
@@ -265,30 +207,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
                         Add Project
                     </Button>
                 </Box>
-
-                {/* <Box fontWeight={800} clone>
-                    <Button
-                        onClick={() => navigate('/dashboard/newProject')}
-                        variant="contained"
-                        size="large"
-                        color="primary"
-                        style={{margin: 5}}
-                        disabled={isPending}>
-                        Update Project
-                    </Button>
-                </Box>
-
-                <Box fontWeight={800} clone>
-                    <Button
-                        onClick={() => navigate('/dashboard/newProject')}
-                        variant="contained"
-                        size="large"
-                        color="primary"
-                        style={{margin: 5}}
-                        disabled={isPending}>
-                        Delete Project
-                    </Button>
-                </Box> */}
                     
             </Box>
 
@@ -343,8 +261,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                                     <DeleteIcon />
                                                 </Button>
                                         </StyledLink>
-                                    {/* </StyledTableCell>
-                                    <StyledTableCell align="center"> */}
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <StyledLink to={`/dashboard/NewPlatform/${project.id}`}>
                                                 <Button size= "medium" color="primary" >

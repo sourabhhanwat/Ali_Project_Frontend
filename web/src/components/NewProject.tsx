@@ -3,185 +3,214 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { Typography, styled, Avatar, makeStyles, Theme, createStyles, Button} from '@material-ui/core';
+import {  styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
-import ProjectIcon from './icons/Project';
+import { KeyboardDatePicker } from '@material-ui/pickers';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
 }));
 
-const StyledImage = styled('img')(({ theme }) => ({
-    width: theme.spacing(25),
-    marginBottom: theme.spacing(2),
-    objectFit: 'contain',
-    textAlign: 'center',
-}));
+const formStyles = makeStyles({
+  formDesign: {
+    width : '60%' , 
+    backgroundColor: 'white', 
+    marginTop: "1.5%"
+  },
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//   }),
-// );
-
-const tableStyles = {
-  padding: 'unset',
-};
-  
-
-  interface IFormInput {
-    name: String;
-    des: String;
-    startdate: Date;
-    res: String;
-    enddate: Date;
-    project_id:String;
+  formDate: {
+    width: '35%',
+    backgroundColor: 'white',
   }
+});
 
-  export default function NewProject(this: any, _: RouteComponentProps) {
+interface IFormInput {
+  name: String;
+  des: String;
+  startdate: Date;
+  res: String;
+  enddate: Date;
+  project_id:String;
+}
 
-    const { register, handleSubmit, reset } = useForm<IFormInput>();
-    const [lst, setLst] = React.useState([])
-    const [status , setStatus] = React.useState({
-      isSubmitted : false,
-      status : false
+export default function NewProject(this: any, _: RouteComponentProps) {
+
+  const { register, handleSubmit, reset } = useForm<IFormInput>();
+  const [lst, setLst] = React.useState([])
+  const [user, setUserName] = React.useState('');
+  const [status , setStatus] = React.useState({
+    isSubmitted : false,
+    status : false
+  })
+  const [startDate, setStartDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54'),
+  );
+  
+  const [endDate, setEndDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54'),
+  );
+
+  const onSubmit = (data: IFormInput,e:any) => {  
+    axios.post('/api/v1/saveproject/', {
+      Name: data.name,
+      Description: data.des,
+      StartDate: startDate,
+      Responsible: user,
+      EndDate: endDate,
     })
-   
-    const onSubmit = (data: IFormInput,e:any) => {
-      
-      axios.post('/api/v1/saveproject/', {
-        Name: data.name,
-        Description: data.des,
-        StartDate: data.startdate,
-        Responsible: data.res,
-        EndDate: data.enddate,
+    .then(function (response) {
+      console.log(response);
+      setStatus({
+        isSubmitted: true,
+        status: response.data.status
       })
-
-      .then(function (response) {
-        console.log(response);
-        setStatus({
-          isSubmitted: true,
-          status: response.data.status
-        })
     })
-      .catch(function (error) {
-        console.log(error);
+    .catch(function (error) {
+      console.log(error);
+    });
+    e.target.reset();
+  };
+
+  React.useEffect(() => {
+    axios.get('/api/v1/users/')
+      .then(data => {
+        setLst(data.data.map((item : any) => ({
+                username : item.username,
+                id : item.id,
+              })))
       });
+  }, []);
 
-      e.target.reset();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(event.target.value);
+  };
 
-    };
+  const handleStartDateChange = (date: Date | null) => {
+    setStartDate(date);
+  };
 
-    const onDrop = () => {
+  const handleEndDateChange = (date: Date | null) => {
+    setEndDate(date);
+  };
 
-      axios.get('/api/v1/users/')
-      .then(function (response) {
-          setLst(response.data.map((item: any) =>({
-            username: item.username,
-            id: item.id
-          })))
-        console.log(lst)
-      })
+  const form = formStyles();
 
-      .catch(function (error) {
-        console.log(error);
-      });
-    };
+return (
+    <div className="Container" style={{textAlign : 'center'}}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" style={{display : 'inline-block'}}>
+            <Box mb={8} style={{marginTop: '5%'}}>
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mb={8}>
-
+              {/* <Box display="flex" justifyContent="center" mb={2}>
+                <StyledAvatar><ProjectIcon/></StyledAvatar>
+              </Box>
+              
               <Box display="flex" justifyContent="center" mb={2}>
-            <StyledAvatar>
-              <ProjectIcon />
-            </StyledAvatar>
-             </Box>
-            
-                <Box display="flex" justifyContent="center" mb={2}>
                 <Typography component="h1" variant="h5" align="center">
                     New Project
                 </Typography>
-                </Box>
-            </Box>  
-                <Grid container spacing={1}>
+              </Box> */}
+              
+
+              <Grid container spacing={1}>
                 <Grid item xs={12}>
                 {status.isSubmitted ? status.status ? 
                   <p style={{color: "green"}}>Data Submitted Succesfully!!..</p> : 
                   <p style={{ color : "red"}}>Data Not Saved!!.</p> : null
                 }
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Name</label> 
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
-            </Grid>
-            
-            <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Description</label>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
-            </Grid>
+                <TextField id="outlined-basic" 
+                  className={form.formDesign} 
+                  label="Project Name" 
+                  variant="outlined" 
+                  name="name"
+                  inputRef={register({ required: true, maxLength: 100 })}/>
 
-            <Grid item xs={12}>
-                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" ref={register({ required: true })}  />
-            </Grid>
+                </Grid>
             
-            <Grid item xs={12}>
+                <Grid item xs={12}>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Project Description"
+                    multiline
+                    rows={6}
+                    name="des"
+                    variant="outlined"
+                    className={form.formDesign}
+                    inputRef={register({ required: true,})}
+                  />      
+                </Grid>
               
-                <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Responsible</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
-                    {lst.map((list:any) => (
-                    <option value= {list.id} key={list.id}> {list.username} </option>
-                    ))}
-                    </select> 
-                    <Box fontWeight={800} clone>
-                        <Button
-                            type = "button"
-                            onClick={() => onDrop()}
-                            variant="contained"
-                            size="large"
-                            color="primary"
-                            style={{margin: 5}}>
-                            Load
-                        </Button>
-                    </Box>
-                    {/* <button style={{ width : "200px" , height: "40px", margin:"10px",backgroundColor: 'lightGreen', fontStyle: "inherit"}}  type="button" onClick={() => onDrop()}>Load</button> */}
-                    
-                </Box>
-            </Grid>
+                <Grid container justify="space-around" style={{margin : '0 15%'}}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    fullWidth
+                    inputVariant="outlined"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    label="Start Date"
+                    name="startdate"
+                    value={startDate}
+                    onChange={handleStartDateChange}
+                    className={form.formDate}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
 
-            <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
-                
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" ref={register({ required: true})} />
-            </Grid>
-            </Grid>
-            <Box fontWeight={800} clone>
-                <Button
-                    type = "submit"
-                    variant="contained"
-                    size="large"
-                    color="primary"
-                    style={{margin: 5}}>
-                    Submit
-                </Button>
+                  <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      fullWidth
+                      inputVariant="outlined"
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      label="Completion Date"
+                      name="startdate"
+                      value={endDate}
+                      className={form.formDate}
+                      onChange={handleEndDateChange}
+                      KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                      }}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    id="outlined-select-user"
+                    select
+                    label="Select Username"
+                    value={user}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={form.formDesign}
+                    name="res" 
+                    ref={register}>
+                      {lst.map((list: any) => (
+                        <MenuItem key={list.id} value={list.id}>
+                          {list.username}
+                        </MenuItem>
+                      ))}
+                  </TextField>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                      style={{width: '60%' , marginTop: '1.5%'}}
+                      type = "submit"
+                      variant="contained"
+                      size="large"
+                      color="primary">
+                      Save Project
+                  </Button>
+                </Grid>
+              </Grid>
             </Box>
+            
       {/* <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/> */}
         
     </form>
+    </div>
     );
 }

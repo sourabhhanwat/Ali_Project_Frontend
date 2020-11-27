@@ -6,31 +6,21 @@ import React from 'react';
 export default function CommonBreadcrumbs() {
     return (
         <>
+            <Match path="/dashboard/newprojects">
+                {(props) =>
+                    props.match && (
+                        <Breadcrumbs separator=">">
+                            <Box>Projects</Box>
+                        </Breadcrumbs>
+                    )
+                }
+            </Match>
+
             <Match path="/dashboard/projects">
                 {(props) =>
                     props.match && (
                         <Breadcrumbs separator=">">
                             <Box>Projects</Box>
-                        </Breadcrumbs>
-                    )
-                }
-            </Match>
-            <Match path="/dashboard/sites">
-                {(props) =>
-                    props.match && (
-                        <Breadcrumbs separator=">">
-                            <Box>Sites</Box>
-                        </Breadcrumbs>
-                    )
-                }
-            </Match>
-            <Match path="/dashboard/projects/:projectId/sites">
-                {(props) =>
-                    props.match && (
-                        <Breadcrumbs separator=">">
-                            <Box>Projects</Box>
-                            <Box>{(props.match as any).projectId}</Box>
-                            <Box>Sites</Box>
                         </Breadcrumbs>
                     )
                 }
@@ -66,7 +56,6 @@ export default function CommonBreadcrumbs() {
                 {(props) =>
                     props.match && (
                         <Breadcrumbs separator=">">
-                            <Box>Sites</Box>
                             <Box>{(props.match as any).platformId}</Box>
                             <Box>Platforms</Box>
                         </Breadcrumbs>

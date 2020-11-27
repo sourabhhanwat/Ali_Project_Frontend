@@ -8,9 +8,7 @@ import PlatformTypeListProvider, { usePlatformTypeList } from './PlatformTypeLis
 import UpdatePlatform from './UpdatePlatform';
 
 const NewUser = React.lazy(() => import('./Newuser'));
-
 const NewProject = React.lazy(() => import('./NewProject'));
-
 const UpdateProject = React.lazy(() => import('./UpdateProject'));
 
 const NewPlatform = React.lazy(() => import('./NewPlatform'));

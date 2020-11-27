@@ -3,35 +3,15 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { Typography, styled, Avatar, Button } from '@material-ui/core';
+import {  styled, Avatar, Button, makeStyles } from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
-import PlatformIcon from './icons/Platform';
-import { CompassCalibrationOutlined } from '@material-ui/icons';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
 }));
-
-// const StyledImage = styled('img')(({ theme }) => ({
-//     width: theme.spacing(25),
-//     marginBottom: theme.spacing(2),
-//     objectFit: 'contain',
-//     textAlign: 'center',
-// }));
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//   }),
-// );
-
-// const tableStyles = {
-//   padding: 'unset',
-// };
-  
 
 interface IFormInput {
   name: String;
@@ -40,11 +20,20 @@ interface IFormInput {
   pro: String;
 }
 
+const formStyles = makeStyles({
+  formDesign: {
+    width : '80%' , 
+    backgroundColor: 'white', 
+    marginTop: "1.5%"
+  },
+});
+
 export default function NewPlatform(this: any, {projectId,}: RouteComponentProps<{projectId: number;}>) {
 
-    const { register, handleSubmit } = useForm<IFormInput>();
+    
     const [lst, setLst] = React.useState([])
     const [project, setProject] = React.useState<any>([]);
+    const [user, setUserName] = React.useState('');
 
     const [status, setStatus] = React.useState({
       isSubmitted : false,
@@ -56,40 +45,38 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     if (match) {
         projectId = parseInt((match as any).projectId);
     }
-    console.log("I AM PROJECT ID ==", projectId);
-
     React.useEffect(() => {
-      fetch(`/api/v1/projects/${projectId}`)
-        .then(results => results.json())
+      axios.get(`/api/v1/projects/${projectId}`)
         .then(data => {
-          setProject(data);
+          setProject(data.data);
         });
     }, []);
 
-    // axios.get('/api/v1/projects/')
-    //   .then(function (response) {
-    //     setProject(response.data)
-    //     console.log(lst)
-    //   })
+    React.useEffect(() => {
+      axios.get('/api/v1/users/')
+        .then(data => {
+          setLst(data.data.map((item : any) => ({
+                  username : item.username,
+                  id : item.id,
+                })))
+        });
+    }, []);
 
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
-    console.log("New Platform page ==>", project);
+    const { register, handleSubmit } = useForm<IFormInput>({
+      defaultValues: {
+        pro: '',
+      }
+    });
 
     const onSubmit = (data: IFormInput,e:any) => {
-
-      console.log("I am new platform==>" ,data);
       
       axios.post('/api/v1/saveplatform/', {
         Name: data.name,
         Description: data.des,
-        Responsible: data.res,
+        Responsible: user,
         Project: project.id,
       })
       .then(function (response) {
-        console.log("PRINT THE RESPONSE");
         console.log(response);
         setStatus({
           isSubmitted : true,
@@ -102,113 +89,95 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
       e.target.reset();
     };
 
-    const onDrop = () => {
-      axios.get('/api/v1/users/')
-      .then(function (response) {
-        setLst(response.data.map((item : any) => ({
-          username : item.username,
-          id : item.id,
-        })))
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUserName(event.target.value);
     };
 
+    const form = formStyles();
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mb={8}>
+    <div className="Container" style={{textAlign : 'center'}}>
+      <form onSubmit={handleSubmit(onSubmit)}  noValidate autoComplete="off" style={{display : 'inline-block'}}>
+            <Box mb={8}>
+              <Grid container spacing={1} style={{marginTop: '5%'}}>
+                <Grid item xs={12}>
+                  {status.isSubmitted ? status.status ? 
+                    <p style={{color: "green"}}>Data Submitted Succesfully!!..</p> : 
+                    <p style={{ color : "red"}}>Data Not Saved!!.</p> : null
+                  }
 
-              <Box display="flex" justifyContent="center" mb={2}>
-            <StyledAvatar>
-              <PlatformIcon />
-            </StyledAvatar>
-             </Box>
+                  <TextField id="outlined-basic" 
+                    className={form.formDesign} 
+                    label="Platform Name" 
+                    variant="outlined" 
+                    name="name"
+                    inputRef={register({ required: true, maxLength: 100 })}/>
+                </Grid>
             
-                <Box display="flex" justifyContent="center" mb={2}>
-                <Typography component="h1" variant="h5" align="center">
-                    New Platform
-                </Typography>
-                </Box>
-
-            </Box>  
-                <Grid container spacing={1}>
-             <Grid item xs={12}>
-
-                {status.isSubmitted ? status.status ? 
-                  <p style={{color: "green"}}>Data Submitted Succesfully!!..</p> : 
-                  <p style={{ color : "red"}}>Data Not Saved!!.</p> : null
-                }
-
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Name</label> 
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" placeholder="Platform Name here" ref={register({ required: true, maxLength: 100 })}  />
-            </Grid>
+                <Grid item xs={12} style={{marginTop: "2%"}}>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Platform Description"
+                    multiline
+                    rows={6}
+                    name="des"
+                    variant="outlined"
+                    className={form.formDesign}
+                    inputRef={register({ required: true,})}
+                  />
+                </Grid>
             
-            <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Platform Description</label>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" placeholder="Platform Description here" ref={register({ required: true, maxLength: 2000 })}  />
-            </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="outlined-select-user"
+                    select
+                    label="Select Username"
+                    value={user}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={form.formDesign}
+                    name="res" 
+                    ref={register}>
+                      {lst.map((list: any) => (
+                        <MenuItem key={list.id} value={list.id}>
+                          {list.username}
+                        </MenuItem>
+                      ))}
+                  </TextField>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField id="outlined-basic" 
+                    style={{ width : "80%", backgroundColor: 'white', height: "40px"}} 
+                    label="Platform Name" 
+                    variant="outlined" 
+                    name="res"
+                    value={project.name}
+                    className={form.formDesign}
+                    // defaultValue={project.name ? project.name : 'hello'}
+                    inputRef={register({required: true})}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      readOnly: true,
+                  }}/>
+                </Grid>
+
             
-            <Grid item xs={12}>
-            <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Responsible</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="res" ref={register}> 
-                    {lst.map((list: any) => (
-                    <option value= {list.id} key={list.id}> {list.username} </option>
-                    ))}
-                    </select> 
-                    <Box fontWeight={800} clone>
-                          <Button
-                              type = "button"
-                              variant="contained"
-                              onClick={() => onDrop()}
-                              size="large"
-                              color="primary"
-                              style={{margin: 5}}>
-                              Load
-                          </Button>
-                      </Box>
-                </Box>
+                <Grid item xs={12}>
+                  <Button
+                      style={{width: '80%' , marginTop: '5%'}}
+                      type = "submit"
+                      variant="contained"
+                      size="large"
+                      color="primary">
+                      Save Platform
+                  </Button>
+                </Grid>
             </Grid>
-
-            <Grid item xs={12}>
-            <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Projects</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                 <input style={{ width : "400px" , height: "40px", margin:"10px"}} defaultValue={project.name} name="pro" ref={register} readOnly/>
-                    
-                    {/* <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} name="pro" ref={register}> 
-                    {lst2.map((list: any) => (
-                    <option value= {list.id} key={list.id}> {list.name} </option>
-                    ))}
-                    </select>  */}
-                    
-                </Box>
-            </Grid>
-
-            </Grid>
-            <Box fontWeight={800} clone>
-                <Button
-                    type = "submit"
-                    variant="contained"
-                    size="large"
-                    color="primary"
-                    style={{margin: 5}}>
-                    Submit
-                </Button>
-            </Box>
+          </Box> 
     </form>
+    </div>
     );
 }

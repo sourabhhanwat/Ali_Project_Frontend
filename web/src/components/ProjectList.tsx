@@ -7,7 +7,6 @@ import React from 'react';
 import '../modules/Subject';
 import { SkeletonProjectCard } from './ProjectCard';
 import {Pie} from 'react-chartjs-2';
-// -----------------------
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,11 +17,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
 import { SkeletonPlatformCard } from './PlatformCard';
-import { Box, Button } from '@material-ui/core';
+import { MenuItem, TextField } from '@material-ui/core';
 import { useProjectList } from './ProjectListProvider';
-import MaterialTable from 'material-table';
 import { useForm } from "react-hook-form";
-import { ContinuousColorLegend } from 'react-vis';
+
+import axios from "axios";
 
   
 interface IFormInput {
@@ -123,66 +122,32 @@ const SkeletonPlatformCards = React.memo(() => (
 
 export default function ProjectList(_: RouteComponentProps) {
 
-    const { register, handleSubmit } = useForm<IFormInput>();
-
-    const [project, updateProject] = React.useState<any>([]);
-
-
+    const { register } = useForm<IFormInput>();
     const { subject } = useProjectList();
-    const [projects, setProjects] = React.useState<Project[] | null>();
 
-    const handleProjectList = (state: State<Project[] | null>) => {
-        setIsPending(state.isPending);
-        setProjects(state.value);
-    };
+    const [currency, setCurrency] = React.useState('');
+    const [lst, setLst] = React.useState([])
 
-    React.useEffect(() => {
-        subject.attach(handleProjectList);
-        subject.list();
-        return () => subject.detach(handleProjectList);
-    }, [subject]);
-
-    console.log("project====>", projects);
+      React.useEffect(() => {
+        axios.get('/api/v1/projects/')
+          .then(data => {
+            setLst(data.data.map((item : any) => ({
+                    username : item.name,
+                    id : item.id,
+                  })))
+          });
+      }, []);
 
     let searchresult : any
 
-
     const platformList = usePlatformList();
-
-    const [isPending, setIsPending] = React.useState<boolean>();
     const [platforms, setPlatforms] = React.useState<Platform[] | null>();
     const [copied, copyPlatforms] = React.useState<Platform[] | null>();
 
     const handlePlatformList = (state: State<Platform[] | null>) => {
-        setIsPending(state.isPending);
         setPlatforms(state.value);
         copyPlatforms(state.value);
     };
-
-    const onSubmit = (data: IFormInput) => {
-        let searchdata = data.firstName;
-
-        if(!searchdata){
-            console.log("INSIDE IF ==>", platforms)
-            setPlatforms(copied)
-        }
-
-        else{
-            let searchId = projects?.filter((v : any) => v.name == searchdata)
-            // console.log('project 1 value = ', values)
-            // console.log("I am searched ==>" , searchdata, searchId ? searchId[0].id : null )   
-
-            searchresult = searchId ? searchId[0].id : null;
-            console.log("platform 2 value ===>" ,platforms)
-            let values = platforms?.filter((v) => v.project == searchresult)
-            console.log('project 2 value ===> ', values)
-            setPlatforms(values);
-        }
-        
-        
-    };
-    
-    console.log("I AM TESTING ===> ", platforms)
 
     let projectId: number | undefined;
 
@@ -203,8 +168,6 @@ export default function ProjectList(_: RouteComponentProps) {
             platformList.subject.list(undefined);
         }
     }, [projectId, platformList.subject]);
-
-    console.log("I AM PLATFORM ==>", platformList.subject)
 
     React.useEffect(() => {
         platformList.subject.attach(handlePlatformList);
@@ -233,9 +196,7 @@ export default function ProjectList(_: RouteComponentProps) {
 
     {platforms?.map((platform) => (
         pltname.push(platform.name)
-        ))}
-    // console.log(data)    
-
+    ))}
 
     //=========================
     var arr: (string | null)[]= []
@@ -297,9 +258,22 @@ export default function ProjectList(_: RouteComponentProps) {
         ]
       }
 
-    return ( 
-        <form onSubmit={handleSubmit(onSubmit)}>
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrency(event.target.value);
+        if(!event.target.value){
+            setPlatforms(copied)
+        }
 
+        else{
+            copyPlatforms(platforms);
+            let values = copied?.filter((v : any) => v.project == event.target.value)
+            console.log('project 1 value = ', values)
+            setPlatforms(values);
+        }
+    };
+
+    return ( 
+        <div>
             <Grid container spacing={2}>
                     <Grid item container spacing={1}>
                         <Grid item xs={12}>
@@ -327,28 +301,30 @@ export default function ProjectList(_: RouteComponentProps) {
                     </Grid>
 
                     <Grid item container spacing={1}>
-                         <h3>Platform List : </h3>
+                         <h3 style={{paddingLeft: "8px"}}>Project List : </h3>
                     </Grid>
                     
                     {/* /// search Box Added  */}
 
                     <Grid item container spacing={1}>
                         <Grid item xs={8}>
-                            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                <input style={{ width : "400px" , height: "40px", margin:"10px"}} placeholder="Search by Project Name" name="firstName"  ref={register}/> 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                <Box fontWeight={800} clone>
-                                    <Button
-                                        type = "submit"
-                                        variant="contained"
-                                        size="large"
-                                        color="primary"
-                                        style={{margin: 5}}
-                                        disabled={isPending}>
-                                        Submit
-                                    </Button>
-                                </Box>
-                        </Grid>
+
+                        <TextField
+                            select
+                            label="Select Project"
+                            value={currency}
+                            onChange={handleChange}
+                            variant="outlined"
+                            style={{width : '30%' , backgroundColor: 'white'}}
+                            name="res" 
+                            ref={register}>
+                                {lst.map((list: any) => (
+                                <MenuItem key={list.id} value={list.id}>
+                                    {list.username}
+                                </MenuItem>
+                                ))}
+                        </TextField>
+                    </Grid>
                        
                     </Grid>
                     {/* SearchBox Ended */}
@@ -362,7 +338,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <TableRow>
                                         <StyledTableCell style={{minWidth: 120}} align="center" >S No.</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Name</StyledTableCell>
-                                        <StyledTableCell  style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center">Primary Function</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Manned Status</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Platform Risk Ranking</StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center">Exposure Category</StyledTableCell>
@@ -374,7 +350,7 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <TableRow>
                                         <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                        <StyledTableCell  style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
@@ -433,7 +409,8 @@ export default function ProjectList(_: RouteComponentProps) {
                     <Grid item container spacing={1}>
                         <p style={p}></p>
                     </Grid>           
-            </Grid>            
-            </form>
-        );
+            </Grid>   
+        </div>         
+            
+    );
 }

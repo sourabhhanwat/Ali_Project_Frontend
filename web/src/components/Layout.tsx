@@ -14,7 +14,6 @@ import Breadcrumbs from './Breadcrumbs';
 import Drawer from './Drawer';
 import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
-// import Projects from './icons/Project';
 import SiteIcon from './icons/Site';
 
 const StyledAppBar = styled(MAppBar)(
@@ -48,19 +47,19 @@ function ResourceAvatar() {
                 <Match path="/dashboard/rbui">
                     {(props) => props.match && <ProjectIcon />}
                 </Match>
-                <Match path="/dashboard/sites">
-                    {(props) => props.match && <SiteIcon />}
+                <Match path="/dashboard/newProject">
+                    {(props) => props.match && <ProjectIcon />}
                 </Match>
-                <Match path="/dashboard/projects/:projectId/sites">
-                    {(props) => props.match && <SiteIcon />}
+                <Match path="/dashboard/UpdateProject/:projectId">
+                    {(props) => props.match && <ProjectIcon />}
+                </Match>
+                <Match path="/dashboard/NewPlatform/:platformId">
+                    {(props) => props.match && <PlatformIcon />}
                 </Match>
                 <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && <SiteIcon />}
                 </Match>
                 <Match path="/dashboard/project/:projectId/platforms">
-                    {(props) => props.match && <PlatformIcon />}
-                </Match>
-                <Match path="/dashboard/sites/:siteId/platforms">
                     {(props) => props.match && <PlatformIcon />}
                 </Match>
                 <Match path="/dashboard/platforms/:platformId/analysis">
@@ -78,22 +77,22 @@ function ResourceTitle() {
                 <Match path="/dashboard/projects">
                     {(props) => props.match && 'Project List'}
                 </Match>
+                <Match path="/dashboard/newProject">
+                    {(props) => props.match && 'New Project'}
+                </Match>
+                <Match path="/dashboard/UpdateProject/:projectId">
+                    {(props) => props.match && 'Update Project'}
+                </Match>
+                <Match path="/dashboard/NewPlatform/:platformId">
+                    {(props) => props.match && 'New Platform'}
+                </Match>
                 <Match path="/dashboard/rbui">
                     {(props) => props.match && 'RBUI Dashboard'}
-                </Match>
-                <Match path="/dashboard/sites">
-                    {(props) => props.match && 'Site List'}
-                </Match>
-                <Match path="/dashboard/projects/:projectId/sites">
-                    {(props) => props.match && 'Site List'}
                 </Match>
                 <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && 'Project List'}
                 </Match>
                 <Match path="/dashboard/project/:projectId/platforms">
-                    {(props) => props.match && 'Platform List'}
-                </Match>
-                <Match path="/dashboard/sites/:siteId/platforms">
                     {(props) => props.match && 'Platform List'}
                 </Match>
                 <Match path="/dashboard/platforms/:platformId/analysis">
@@ -113,14 +112,24 @@ function ResourceCaption() {
                         props.match && 'List all projects that you can view.'
                     }
                 </Match>
+                <Match path="/dashboard/newProject">
+                    {(props) =>
+                        props.match && 'Users can create new project.'
+                    }
+                </Match>
+                <Match path="/dashboard/UpdateProject/:projectId">
+                    {(props) =>
+                        props.match && 'Users can update Existing project.'
+                    }
+                </Match>
+                <Match path="/dashboard/NewPlatform/:platformId">
+                    {(props) =>
+                        props.match && 'Users can create new platform.'
+                    }
+                </Match>
                 <Match path="/dashboard/rbui">
                     {(props) =>
                         props.match && 'RBUI Summary Dashboard'
-                    }
-                </Match>
-                <Match path="/dashboard/sites">
-                    {(props) =>
-                        props.match && 'List all sites that you can view.'
                     }
                 </Match>
                 <Match path="/dashboard/CreatePlatform">
@@ -136,13 +145,7 @@ function ResourceCaption() {
                 </Match>
                 <Match path="/dashboard/project/:projectId/platforms">
                     {(props) =>
-                        props.match && 'List all platforms that you can view.'
-                    }
-                </Match>
-                <Match path="/dashboard/sites/:siteId/platforms">
-                    {(props) =>
-                        props.match &&
-                        'List all platforms that you can view for current site.'
+                        props.match && 'List all platforms that you can view for current project.'
                     }
                 </Match>
                 <Match path="/dashboard/platforms/:platformId/analysis">

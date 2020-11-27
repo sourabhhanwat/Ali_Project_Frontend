@@ -15,12 +15,8 @@ import { navigate } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
 import { useAuthContext } from './AuthProvider';
-import PlatformIcon from './icons/Platform';
 import ProjectIcon from './icons/Project';
-import NewuserIcon from './icons/Newuser';
 import SiteIcon from './icons/Site';
-// import Add from './icons/Add';
-import ExcistinguserIcon from './icons/Existinguser';
 
 function toggleDrawer({ theme, open }: { theme: Theme; open: boolean }) {
     return {
@@ -105,28 +101,6 @@ export default function Drawer({ open }: { open: boolean }) {
                 </ListItem>
             </List>
             <List>
-                
-                {/* <ListItem
-                    button
-                    onClick={() => navigate('/dashboard/newuser')}>
-                    <Tooltip title="New User">
-                        <ListItemIcon>
-                            <NewuserIcon />
-                        </ListItemIcon>
-                    </Tooltip>
-                    <ListItemText primary="New User" />
-                </ListItem>
-
-                <ListItem
-                    button
-                    onClick={() => navigate('/dashboard/existinguser')}>
-                    <Tooltip title="Existing User">
-                        <ListItemIcon>
-                            <ExcistinguserIcon />
-                        </ListItemIcon>
-                    </Tooltip>
-                    <ListItemText primary="Existing User" />
-                </ListItem> */}
 
                 <ListItem
                     button
@@ -148,17 +122,6 @@ export default function Drawer({ open }: { open: boolean }) {
                     <ListItemText primary="Projects" />
                 </ListItem>
 
-                {/* <ListItem
-                    button
-                    onClick={() => navigate('/dashboard/platforms')}
-                >
-                    <Tooltip title="Platforms">
-                        <ListItemIcon>
-                            <PlatformIcon />
-                        </ListItemIcon>
-                    </Tooltip>
-                    <ListItemText primary="Platforms" />
-                </ListItem> */}
                 <ListItem button onClick={() => auth.logout()}>
                     <Tooltip title="Logout">
                         <ListItemIcon>

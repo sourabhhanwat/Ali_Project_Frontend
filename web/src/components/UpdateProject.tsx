@@ -7,10 +7,7 @@ import { Typography, styled, Avatar, Button} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import ProjectIcon from './icons/Project';
-import { Link } from '@reach/router';
-// import CreatePlatform from './CreatePlatform';
 import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
