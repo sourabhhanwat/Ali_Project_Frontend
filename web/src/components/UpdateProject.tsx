@@ -3,11 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps, useMatch} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { Typography, styled, Avatar, Button} from '@material-ui/core';
+import {styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
-import ProjectIcon from './icons/Project';
-import { useHistory } from "react-router-dom";
+import { KeyboardDatePicker } from '@material-ui/pickers';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -16,30 +15,49 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const tableStyles = {
   padding: 'unset',
 };
-  
 
-  interface IFormInput {
-    name: String;
-    des: String;
-    startdate: Date;
-    res: String;
-    enddate: Date;
-    project_id:String;
+const formStyles = makeStyles({
+  formDesign: {
+    width : '55%' , 
+    backgroundColor: 'white', 
+    marginTop: "1.5%"
+  },
+
+  formDate: {
+    width: '34%',
+    backgroundColor: 'white',
   }
+});
 
-  export default function NewProject(this: any, {projectId,}: RouteComponentProps<{projectId: number;}>) {
+interface IFormInput {
+  name: String;
+  des: String;
+  startdate: Date;
+  res: String;
+  enddate: Date;
+  project_id:String;
+}
+
+export default function NewProject(this: any, {projectId,}: RouteComponentProps<{projectId: number;}>) {
 
     const { register, handleSubmit } = useForm<IFormInput>();
     const [lst, setLst] = React.useState([]);
     const [project, updateProject] = React.useState<any>([]);
+    const [user, setUserName] = React.useState('');
 
     const [status , setStatus] = React.useState({
       isSubmitted : false,
       status : false
     })
 
-    let history = useHistory();
-
+    const [startDate, setStartDate] = React.useState<Date | null>(
+      new Date(),
+    );
+    
+    const [endDate, setEndDate] = React.useState<Date | null>(
+      new Date(),
+    );
+    
     const match = useMatch('/dashboard/projects/:projectId');
 
     if (match) {
@@ -84,115 +102,135 @@ const tableStyles = {
 
     };
 
-    // React.useEffect(() => {
-    //   fetch('/api/v1/users/')
-    //     .then(results => results.json())
-    //     .then(data => {
-    //       setLst(data);
-    //       // setLst(data.data.map((item: any) => ({
-    //       //   username: item.username,
-    //       //   id: item.id
-    //       // })));
-    //     });
-    // }, []);
+    React.useEffect(() => {
+      axios.get('/api/v1/users/')
+        .then(data => {
+          setLst(data.data.map((item : any) => ({
+                  username : item.username,
+                  id : item.id,
+                })))
+        });
+    }, []);
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUserName(event.target.value);
+    };
+  
+    const handleStartDateChange = (date: Date | null) => {
+      setStartDate(date);
+    };
+  
+    const handleEndDateChange = (date: Date | null) => {
+      setEndDate(date);
+    };
 
-    // const onDrop = () => {
+    const form = formStyles();
 
-    //   axios.get('/api/v1/users/')
-    //   .then(function (response) {
-    //       setLst(response.data.map((item: any) =>({
-    //         username: item.username,
-    //         id: item.id
-    //       })))
-    //     console.log(lst)
-    //   })
+    if(status.isSubmitted == true){
+      window.location.href='/dashboard/CreatePlatform/';
+    }
 
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // };
-    // const StyledLink = styled(Link)({ textDecoration: 'none' });
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mb={8}>
-
-              <Box display="flex" justifyContent="center" mb={2}>
-            <StyledAvatar>
-              <ProjectIcon />
-            </StyledAvatar>
-             </Box>
-            
-                <Box display="flex" justifyContent="center" mb={2}>
-                <Typography component="h1" variant="h5" align="center">
-                    Update Project
-                </Typography>
-                </Box>
-            </Box>  
-                <Grid container spacing={1}>
-                <Grid item xs={12}>
-                {status.isSubmitted ? status.status ? 
-                <p style={{ color : "green"}}>Project Saved Successfully!!.</p>:
-                  <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
-                }
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Name</label> 
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="name" defaultValue={project.name} 
-                 placeholder="Project Name here" ref={register({ required: true, maxLength: 100 })}  />
-            </Grid>
-            
-            <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Description</label>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input style={{ width : "900px" , height: "40px", margin:"10px"}} name="des" defaultValue={project.description} placeholder="Project Description here" ref={register({ required: true, maxLength: 2000 })}  />
-            </Grid>
-
-            <Grid item xs={12}>
-                  <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Project Start Date</label>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='date' style={{ width : "900px" , height: "40px", margin:"10px"}} name="startdate" defaultValue={String(project.start_date).split('T')[0]} ref={register({ required: true })}  />
-            </Grid>
-            
-            <Grid item xs={12}>
-              
-                <Box>
-                    <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Responsible</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style={{ width : "300px" , height: "40px", margin:"10px", fontSize:"18px"}} defaultValue= {project.users} name="res" ref={register}> 
-                    {/* {lst.map((list:any) => (
-                    <option value= {list.id} key={list.id}> {list.username} </option>
-                    ))} */}
-                    </select> 
-                   
-                </Box>
-            </Grid>
-
-            <Grid item xs={12}>
-                 <label style={{ width : "100px" , height: "40px", margin:"10px", fontSize:"18px"}}>Expected Completion Date</label>
+    <div className="Container" style={{textAlign : 'center'}}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+            <Box mb={8}>  
+                <Grid container spacing={1} style={{marginTop: '5%'}}>
+                  <Grid item xs={12}>
+                    {status.isSubmitted ? status.status ? 
+                      <p style={{ color : "green"}}>Project Saved Successfully!!.</p>:
+                      <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
+                    }
                 
-                 <input type='date' style={{ width : "890px" , height: "40px", margin:"10px"}} name="enddate" defaultValue={String(project.end_date).split('T')[0]} ref={register({ required: true})} />
-            </Grid>
-            </Grid>
-            <Box fontWeight={800} clone>
-                <Button
-                    type = "submit"
-                    variant="contained"
-                    size="large"
-                    color="primary"
-                    style={{margin: 5}}>
-                    Update Project
-                </Button>
-            </Box>
-      {/* <input style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} type="submit"/> */}
-        
-    </form>
+                    <TextField id="outlined-basic" 
+                      className={form.formDesign} 
+                      label="Platform Name" 
+                      variant="outlined" 
+                      name="name"
+                      defaultValue={project.name}
+                      inputRef={register({ required: true, maxLength: 100 })}/>             
+                  </Grid>
+                
+                
+                  <Grid item xs={12}>
+                    <TextField
+                      id="outlined-multiline-static"
+                      label="Project Description"
+                      multiline
+                      rows={6}
+                      name="des"
+                      variant="outlined"
+                      defaultValue={project.description}
+                      className={form.formDesign}
+                      inputRef={register({ required: true,})}
+                    />      
+                  </Grid>
+                  
+                  <Grid container justify="space-around" style={{margin : '0 17.5%'}}>
+                      <KeyboardDatePicker
+                        margin="normal"
+                        id="date-picker-dialog"
+                        fullWidth
+                        inputVariant="outlined"
+                        label="Start Date"
+                        format="MM/dd/yyyy"
+                        name="startdate"
+                        value={startDate}
+                        onChange={handleStartDateChange}
+                        className={form.formDate}
+                        KeyboardButtonProps={{
+                          'aria-label': 'change date',
+                        }}
+                      />
+
+                      <KeyboardDatePicker
+                          margin="normal"
+                          id="date-picker-dialog"
+                          fullWidth
+                          inputVariant="outlined"
+                          label="Start Date"
+                          format="MM/dd/yyyy"
+                          name="enddate"
+                          value={endDate}
+                          className={form.formDate}
+                          onChange={handleEndDateChange}
+                          KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                          }}
+                        />
+                    </Grid>
+                    
+                    <Grid item xs={12}>
+                      <TextField
+                        id="outlined-select-user"
+                        select
+                        label="Select Username"
+                        value={user}
+                        onChange={handleChange}
+                        variant="outlined"
+                        className={form.formDesign}
+                        name="res" 
+                        ref={register}>
+                          {lst.map((list: any) => (
+                            <MenuItem key={list.id} value={list.id}>
+                              {list.username}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
+                                
+                      <Grid item xs={12}>
+                        <Button
+                            style={{width: '55%' , marginTop: '1.5%', padding: '.7rem'}}
+                            type = "submit"
+                            variant="contained"
+                            size="large"
+                            color="primary">
+                            Update Project
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </Box>
+      </form>
+    </div>
     );
 }

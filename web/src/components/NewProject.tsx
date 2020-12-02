@@ -3,11 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import {  styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
+import {styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { Redirect } from 'react-router-dom';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,

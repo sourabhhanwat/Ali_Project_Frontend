@@ -94,6 +94,10 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     };
 
     const form = formStyles();
+    
+    if(status.isSubmitted == true){
+      window.location.href='/project/:projectId/platforms';
+    }
 
   return (
     <div className="Container" style={{textAlign : 'center'}}>
