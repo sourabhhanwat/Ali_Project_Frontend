@@ -49,11 +49,11 @@ export default function GeneralDetailsFieldset() {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Select<PlatformType>
+                    <Select
+                        toOption={(option) => option}
                         label="Platform Type"
-                        name="environmental_consequence.platform_type_id"
-                        subject={platformTypeListSubject}
-                        toOption={(value) => value}
+                        name="environmental_consequence.platform_type.id"
+                        subject={platformTypeListSubject}   
                     />
                 </Grid>
 

@@ -18,7 +18,7 @@ const tableStyles = {
 
 const formStyles = makeStyles({
   formDesign: {
-    width : '55%' , 
+    width : '40%' , 
     backgroundColor: 'white', 
     marginTop: "1.5%"
   },
@@ -49,14 +49,6 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
       isSubmitted : false,
       status : false
     })
-
-    const [startDate, setStartDate] = React.useState<Date | null>(
-      new Date(),
-    );
-    
-    const [endDate, setEndDate] = React.useState<Date | null>(
-      new Date(),
-    );
     
     const match = useMatch('/dashboard/projects/:projectId');
 
@@ -72,7 +64,20 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
         });
     }, []);
 
-    console.log("update project==>", project.users )
+    console.log("update project==>", project.users ? project.users[0].username : '')
+
+    let dateValue = project.start_date
+    console.log(dateValue)
+
+    const [startDate, setStartDate] = React.useState<Date | null>(
+      project.start_date
+    );
+
+
+    
+    const [endDate, setEndDate] = React.useState<Date | null>(
+      new Date(),
+    );
    
     const onSubmit = (data: IFormInput,e:any) => {
 
@@ -141,13 +146,19 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                       <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                     }
                 
-                    <TextField id="outlined-basic" 
-                      className={form.formDesign} 
-                      label="Platform Name" 
-                      variant="outlined" 
-                      name="name"
+                    <TextField
+                      id="outlined-multiline-static"
+                      label="Platfrom Name"
+                      multiline
+                      name="des"
+                      variant="outlined"
                       defaultValue={project.name}
-                      inputRef={register({ required: true, maxLength: 100 })}/>             
+                      className={form.formDesign}
+                      inputRef={register({ required: true,})}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />             
                   </Grid>
                 
                 
@@ -162,10 +173,13 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                       defaultValue={project.description}
                       className={form.formDesign}
                       inputRef={register({ required: true,})}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
                     />      
                   </Grid>
                   
-                  <Grid container justify="space-around" style={{margin : '0 17.5%'}}>
+                  <Grid container justify="space-around" style={{margin : '0 26.1%'}}>
                       <KeyboardDatePicker
                         margin="normal"
                         id="date-picker-dialog"
@@ -174,6 +188,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                         label="Start Date"
                         format="MM/dd/yyyy"
                         name="startdate"
+                        defaultValue={project.start_date}
                         value={startDate}
                         onChange={handleStartDateChange}
                         className={form.formDate}
@@ -220,7 +235,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                                 
                       <Grid item xs={12}>
                         <Button
-                            style={{width: '55%' , marginTop: '1.5%', padding: '.7rem'}}
+                            style={{width: '40%' , marginTop: '1.5%', padding: '.7rem'}}
                             type = "submit"
                             variant="contained"
                             size="large"

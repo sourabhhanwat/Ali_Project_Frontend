@@ -157,22 +157,22 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             </Box>
                         }
                     />
-                </ListItem>
+                    </ListItem>
                 
             </List>
             <Box justifyContent="space-between" clone>
                 <CardActions>
                 <StyledLink to={`/dashboard/platforms/`}>
                         <Button size= "small" title="Delete" color="primary"
-                        onClick={() => deletePlatform(platform.id)} >
+                            onClick={() => deletePlatform(platform.id)} >
                             <DeleteIcon />
                         </Button>
                 </StyledLink>
                     <StyledLink
                         to={`/dashboard/platforms/${platform.id}/analysis`}>
                         <Box  clone fontWeight={800}>
-                            <Button color="primary">
-                                View <ChevronRightIcon />
+                            <Button color="primary" title="Analysis">
+                                Assessment <ChevronRightIcon />
                             </Button>
                         </Box>
                     </StyledLink>
@@ -180,23 +180,16 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             <PDFDownloadLink
                                 document={<PdfDocument data={platformData} />}
                                 fileName="platform.pdf" 
-                                // style={{
-                                //   textDecoration: "none",
-                                //   padding: "10px",
-                                //   color: "#4a4a4a",
-                                //   backgroundColor: "#f2f2f2",
-                                //   border: "1px solid #4a4a4a"
-                                // }}
                                 >
                                 <Button
                                     type = "submit"  
                                     variant="contained"
                                     size="large"
                                     color="primary"
-                                    style={{margin: 5}}
-                                    // disabled={isPending}
+                                    title="Download Report"
+                                    style={{margin: 5, backgroundColor: 'unset', boxShadow: 'none'}}
                                     >
-                                    Generate PDF
+                                    <img style={{ width : '30px', height : '30px'}} src="https://img.icons8.com/color/100/000000/export-pdf.png"/>
                                 </Button>
                                 </PDFDownloadLink>
                         </Box>

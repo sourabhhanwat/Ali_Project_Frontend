@@ -23,11 +23,11 @@ export default function StructuralDetailsFieldset() {
                 <Grid item xs={12} md={12}>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Select<BracingType>
+                    <Select
                         label="Bracing Type"
-                        name="bracing_type_id"
+                        name="bracing_type.id"
                         subject={bracingTypeListSubject}
-                        toOption={(value) => value}
+                        toOption={(option) => option}
                     />
                 </Grid>
 

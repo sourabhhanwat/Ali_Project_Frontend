@@ -159,6 +159,7 @@ export const PlatformSchema = yup
                 rsr_override: yup.bool(),
             })
             .noUnknown(),
+        
         platform_manned_status: yup
             .object({
                 id: IntegerSchema.nullable(),
@@ -166,6 +167,9 @@ export const PlatformSchema = yup
             })
             .noUnknown().nullable(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),
+
+
+        
         environmental_consequence: yup
             .object({
                 id: yup.number().nullable(),
@@ -183,6 +187,7 @@ export const PlatformSchema = yup
                 oil_price: yup.string(),
             })
             .noUnknown(),
+        
         economic_impact_consequence: yup
             .object({
                 id: IntegerSchema,
@@ -194,31 +199,21 @@ export const PlatformSchema = yup
                 platform_replacement_time: IntegerSchema,
             })
             .noUnknown(),
-        // site: SiteSchema,
-        // bracing_type: yup
-        //     .object({
-        //         id: IntegerSchema,
-        //         name: yup.string(),
-        //     })
-        //     .noUnknown(),
+
+        bracing_type: yup
+        .object({
+            id: IntegerSchema.nullable(),
+            name: yup.string().trim().nullable(),
+        })
+        .noUnknown().nullable(),
         bracing_type_id: yup.ref('bracing_type.id'),
+
         number_of_legs_type: yup
             .object({
                 id: IntegerSchema,
                 name: yup.string(),
             })
             .noUnknown(),
-        // project: yup
-        //     .object({
-        //         id: yup.number(),
-        //         name: yup.string(),
-        //         description: yup.string(),
-        //         start_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
-        //         end_date: yup.string().typeError('Date should have pattern dd/MM/yyyy'),
-        //         created_at: yup.date(),
-        //         updated_at: yup.date(),
-        //     })
-        //     .noUnknown(),
         number_of_legs_type_id: yup.ref('number_of_legs_type.id'),
         updated_at: yup.date(),
         created_at: yup.date(),
