@@ -213,7 +213,7 @@ export const PlatformSchema = yup
                 id: IntegerSchema,
                 name: yup.string(),
             })
-            .noUnknown(),
+            .noUnknown().nullable(),
         number_of_legs_type_id: yup.ref('number_of_legs_type.id'),
         updated_at: yup.date(),
         created_at: yup.date(),

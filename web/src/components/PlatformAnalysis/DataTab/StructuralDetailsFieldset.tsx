@@ -39,11 +39,11 @@ export default function StructuralDetailsFieldset() {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Select<NumberOfLegsType>
+                    <Select
                         label="Number of Legs"
-                        name="number_of_legs_type_id"
+                        name="number_of_legs_type.id"
                         subject={numberOfLegsTypeListSubject}
-                        toOption={(value) => value}
+                        toOption={(option) => option}
                     />
                 </Grid>
 
