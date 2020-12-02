@@ -124,8 +124,7 @@ export default function ProjectList(_: RouteComponentProps) {
 
     const { register } = useForm<IFormInput>();
     const { subject } = useProjectList();
-
-    const [currency, setCurrency] = React.useState('');
+    const [search, setSearchId] = React.useState('');
     const [lst, setLst] = React.useState([])
 
       React.useEffect(() => {
@@ -143,10 +142,12 @@ export default function ProjectList(_: RouteComponentProps) {
     const platformList = usePlatformList();
     const [platforms, setPlatforms] = React.useState<Platform[] | null>();
     const [copied, copyPlatforms] = React.useState<Platform[] | null>();
+    const [duplicate, duplicatePlatforms] = React.useState<Platform[] | null>();
 
     const handlePlatformList = (state: State<Platform[] | null>) => {
         setPlatforms(state.value);
         copyPlatforms(state.value);
+        duplicatePlatforms(state.value);
     };
 
     let projectId: number | undefined;
@@ -259,19 +260,17 @@ export default function ProjectList(_: RouteComponentProps) {
       }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrency(event.target.value);
-        if(!event.target.value){
-            setPlatforms(copied)
-        }
-
-        else{
-            copyPlatforms(platforms);
-            let values = copied?.filter((v : any) => v.project == event.target.value)
-            console.log('project 1 value = ', values)
-            setPlatforms(values);
-        }
+        setSearchId(event.target.value);
+        duplicatePlatforms(copied);
+        let values = copied?.filter((v : any) => v.project == event.target.value)
+        console.log('project 1 value = ', values)
+        setPlatforms(values);
+        console.log("copied ==", copied)
+        console.log("duplicate ==", duplicate)
+        console.log("original ==",platforms)
     };
 
+    
     return ( 
         <div>
             <Grid container spacing={2}>
@@ -312,7 +311,7 @@ export default function ProjectList(_: RouteComponentProps) {
                         <TextField
                             select
                             label="Select Project"
-                            value={currency}
+                            value={search}
                             onChange={handleChange}
                             variant="outlined"
                             style={{width : '30%' , backgroundColor: 'white'}}
@@ -377,8 +376,6 @@ export default function ProjectList(_: RouteComponentProps) {
                                 </TableHead>
                                 <TableBody>
                                 {platforms?.map((platform) => (
-
-                                    // console.log("DATATAT ===>" ,platform.manned);
                                     <StyledTableRow key={platform.id}>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             

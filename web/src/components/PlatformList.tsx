@@ -33,15 +33,11 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
         setPlatforms(values);
     };
 
-    // let projectId: number | undefined;
-
     const match = useMatch('/dashboard/project/:projectId/platforms');
 
     if (match) {
         projectId = parseInt((match as any).projectId);
     }
-
-    console.log("================", projectId);
 
     const fetch = React.useCallback(() => {
         if (projectId) {

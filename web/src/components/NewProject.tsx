@@ -7,6 +7,7 @@ import {  styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@materi
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import { KeyboardDatePicker } from '@material-ui/pickers';
+import { Redirect } from 'react-router-dom';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -14,13 +15,13 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 
 const formStyles = makeStyles({
   formDesign: {
-    width : '60%' , 
+    width : '55%' , 
     backgroundColor: 'white', 
     marginTop: "1.5%"
   },
 
   formDate: {
-    width: '35%',
+    width: '34%',
     backgroundColor: 'white',
   }
 });
@@ -44,11 +45,11 @@ export default function NewProject(this: any, _: RouteComponentProps) {
     status : false
   })
   const [startDate, setStartDate] = React.useState<Date | null>(
-    new Date('2014-08-18T21:11:54'),
+    new Date(),
   );
   
   const [endDate, setEndDate] = React.useState<Date | null>(
-    new Date('2014-08-18T21:11:54'),
+    new Date(),
   );
 
   const onSubmit = (data: IFormInput,e:any) => {  
@@ -96,21 +97,14 @@ export default function NewProject(this: any, _: RouteComponentProps) {
 
   const form = formStyles();
 
+  if(status.isSubmitted == true){
+    window.location.href='/dashboard/CreatePlatform/';
+  }
+
 return (
     <div className="Container" style={{textAlign : 'center'}}>
       <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" style={{display : 'inline-block'}}>
             <Box mb={8} style={{marginTop: '5%'}}>
-
-              {/* <Box display="flex" justifyContent="center" mb={2}>
-                <StyledAvatar><ProjectIcon/></StyledAvatar>
-              </Box>
-              
-              <Box display="flex" justifyContent="center" mb={2}>
-                <Typography component="h1" variant="h5" align="center">
-                    New Project
-                </Typography>
-              </Box> */}
-              
 
               <Grid container spacing={1}>
                 <Grid item xs={12}>
@@ -140,15 +134,14 @@ return (
                   />      
                 </Grid>
               
-                <Grid container justify="space-around" style={{margin : '0 15%'}}>
+                <Grid container justify="space-around" style={{margin : '0 17.5%'}}>
                   <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
+                    margin="normal"
+                    id="date-picker-dialog"
                     fullWidth
                     inputVariant="outlined"
-                    format="MM/dd/yyyy"
-                    margin="normal"
                     label="Start Date"
+                    format="MM/dd/yyyy"
                     name="startdate"
                     value={startDate}
                     onChange={handleStartDateChange}
@@ -159,14 +152,13 @@ return (
                   />
 
                   <KeyboardDatePicker
-                      disableToolbar
-                      variant="inline"
+                      margin="normal"
+                      id="date-picker-dialog"
                       fullWidth
                       inputVariant="outlined"
+                      label="Start Date"
                       format="MM/dd/yyyy"
-                      margin="normal"
-                      label="Completion Date"
-                      name="startdate"
+                      name="enddate"
                       value={endDate}
                       className={form.formDate}
                       onChange={handleEndDateChange}
@@ -197,7 +189,7 @@ return (
 
                 <Grid item xs={12}>
                   <Button
-                      style={{width: '60%' , marginTop: '1.5%'}}
+                      style={{width: '55%' , marginTop: '1.5%', padding: '.7rem'}}
                       type = "submit"
                       variant="contained"
                       size="large"

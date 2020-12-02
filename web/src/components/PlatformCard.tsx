@@ -16,7 +16,6 @@ import Filter1OutlinedIcon from '@material-ui/icons/Filter1Outlined';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from '@reach/router';
 import React from 'react';
-// import UpdateIcon from '@material-ui/icons/Update';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RelativeDate from './RelativeDate';
 import axios from "axios";
@@ -163,11 +162,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
             </List>
             <Box justifyContent="space-between" clone>
                 <CardActions>
-                {/* <StyledLink to={`/dashboard/UpdatePlatform/${platform.id}`}>
-                        <Button size= "small" title="Update" color="primary">
-                        <UpdateIcon />
-                        </Button>
-                </StyledLink>  */}
                 <StyledLink to={`/dashboard/platforms/`}>
                         <Button size= "small" title="Delete" color="primary"
                         onClick={() => deletePlatform(platform.id)} >

@@ -1,3 +1,4 @@
+import { CompassCalibrationOutlined } from '@material-ui/icons';
 import axios from 'axios';
 import React, { PropsWithChildren } from 'react';
 import Subject from '../modules/Subject';
@@ -16,6 +17,7 @@ class PlatformSubject extends Subject<Platform | null> {
     });
 
     update = this.createAsync(async (param: Platform) => {
+        console.log("parama == >" ,param)
         const { data } = await axios.patch<Platform>(
             `/api/v1/platforms/${param.id}/`,
             PlatformSchema.validateSync(param)
