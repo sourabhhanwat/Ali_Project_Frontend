@@ -130,8 +130,8 @@ export const PlatformSchema = yup
                 highest_astronomical_tide: DecimalLikeSchema.nullable(),
                 crest_height_factor: DecimalLikeSchema.nullable(),
             })
-            .noUnknown(),
-        deck_elevation_wave_in_deck_score: yup.number(),
+            .noUnknown().nullable(),
+        deck_elevation_wave_in_deck_score: yup.number().nullable(),
         additional_appurtenance: yup
             .object({
                 id: IntegerSchema,
