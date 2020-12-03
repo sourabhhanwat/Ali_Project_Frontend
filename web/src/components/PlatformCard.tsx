@@ -61,15 +61,12 @@ export function SkeletonPlatformCard() {
                     </ListItemAvatar>
                     <ListItemText
                         primary={
-                            <Box
-                                clone
-                                fontWeight={800}
-                                fontSize="body2.fontSize"
-                            >
+                            <Box clone fontWeight={800} fontSize="body2.fontSize">
                                 <Typography>
                                     <Skeleton variant="text" />
                                 </Typography>
                             </Box>
+                            
                         }
                     />
                 </ListItem>
@@ -98,7 +95,7 @@ export function SkeletonPlatformCard() {
 const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 export default function PlatformCard({ platform }: { platform: Platform }) {
-    
+
     const deletePlatform = (value : any) => {
 
         console.log(value);
@@ -126,7 +123,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
         });
     }, []);
 
-    console.log("diskinko")
+    console.log("date ma ==", platformData.name)
     
     return (
         <Card>
@@ -138,7 +135,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                 </Box>
                 <Typography variant="caption">
                     <RelativeDate date={platform.updated_at} />
-                    <p>{platform.description}</p>
+                    <p style={{fontSize : '14px'}}>{platform.description}</p>
                 </Typography>
             </CardContent>
             <Divider />
@@ -157,12 +154,33 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             </Box>
                         }
                     />
-                    </ListItem>
+                    <ListItemAvatar>
+                        <StyledAvatar level="veryHigh" style={{backgroundColor : 'white'}}>
+                            <Box  clone fontWeight={800}>
+                                <PDFDownloadLink
+                                    document={<PdfDocument data={platformData} />}
+                                    fileName={platformData.name}
+                                    >
+                                    <Button
+                                        type = "submit"  
+                                        variant="contained"
+                                        size="large"
+                                        color="primary"
+                                        title="Download Report"
+                                        style={{margin: 5, backgroundColor: 'unset', boxShadow: 'none'}}
+                                        >
+                                        <img style={{ width : '30px', height : '30px'}} src="https://img.icons8.com/color/100/000000/export-pdf.png"/>
+                                    </Button>
+                                </PDFDownloadLink>
+                            </Box>
+                        </StyledAvatar>
+                    </ListItemAvatar>
+                </ListItem>
                 
             </List>
             <Box justifyContent="space-between" clone>
                 <CardActions>
-                <StyledLink to={`/dashboard/platforms/`}>
+                <StyledLink to={`/dashboard/rbui/`}>
                         <Button size= "small" title="Delete" color="primary"
                             onClick={() => deletePlatform(platform.id)} >
                             <DeleteIcon />
@@ -176,23 +194,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                             </Button>
                         </Box>
                     </StyledLink>
-                        <Box  clone fontWeight={800}>
-                            <PDFDownloadLink
-                                document={<PdfDocument data={platformData} />}
-                                fileName="platform.pdf" 
-                                >
-                                <Button
-                                    type = "submit"  
-                                    variant="contained"
-                                    size="large"
-                                    color="primary"
-                                    title="Download Report"
-                                    style={{margin: 5, backgroundColor: 'unset', boxShadow: 'none'}}
-                                    >
-                                    <img style={{ width : '30px', height : '30px'}} src="https://img.icons8.com/color/100/000000/export-pdf.png"/>
-                                </Button>
-                                </PDFDownloadLink>
-                        </Box>
+                        
                 </CardActions>
             </Box>
         </Card>
