@@ -120,18 +120,18 @@ export const PlatformSchema = yup
         deck_load_score: yup.number(),
         deck_elevation_wave_in_deck: yup
             .object({
-                cellar_deck_height: DecimalLikeSchema.nullable(),
-                maximum_wave_height_10_years: DecimalLikeSchema.nullable(),
-                storm_surge_10_years: DecimalLikeSchema.nullable(),
-                maximum_wave_height_100_years: DecimalLikeSchema.nullable(),
-                storm_surge_100_years: DecimalLikeSchema.nullable(),
-                maximum_wave_height_10000_years: DecimalLikeSchema.nullable(),
-                storm_surge_10000_years: DecimalLikeSchema.nullable(),
-                highest_astronomical_tide: DecimalLikeSchema.nullable(),
-                crest_height_factor: DecimalLikeSchema.nullable(),
+                cellar_deck_height: DecimalLikeSchema,
+                maximum_wave_height_10_years: DecimalLikeSchema,
+                storm_surge_10_years: DecimalLikeSchema,
+                maximum_wave_height_100_years: DecimalLikeSchema,
+                storm_surge_100_years: DecimalLikeSchema,
+                maximum_wave_height_10000_years: DecimalLikeSchema,
+                storm_surge_10000_years: DecimalLikeSchema,
+                highest_astronomical_tide: DecimalLikeSchema,
+                crest_height_factor: DecimalLikeSchema,
             })
-            .noUnknown().nullable(),
-        deck_elevation_wave_in_deck_score: yup.number().nullable(),
+            .noUnknown(),
+        deck_elevation_wave_in_deck_score: yup.number(),
         additional_appurtenance: yup
             .object({
                 id: IntegerSchema,
@@ -162,8 +162,8 @@ export const PlatformSchema = yup
         
         platform_manned_status: yup
             .object({
-                id: IntegerSchema,
-                name: yup.string().trim(),
+                id: IntegerSchema.nullable(),
+                name: yup.string().trim().nullable(),
             })
             .noUnknown().nullable(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),

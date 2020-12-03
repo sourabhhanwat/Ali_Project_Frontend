@@ -233,10 +233,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     const platform_manned_status_id = watch('platform_manned_status_id');
 
-    
-    // console.log(platform_manned_status_id);
-
-
     let state = {
         labels: ['January', 'February', 'March',
                  'April', 'May'],

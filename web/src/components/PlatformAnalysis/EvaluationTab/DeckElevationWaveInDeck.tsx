@@ -53,7 +53,6 @@ export default function DeckElevationWaveInDeck() {
                             ]}
                             label="Highest Astronomical Tide (HAT)"
                             unit="m"
-                            nullable
                         />
                     </Grid>
 
@@ -69,7 +68,6 @@ export default function DeckElevationWaveInDeck() {
                             ]}
                             label="Crest Height Factor"
                             unit="m"
-                            nullable
                         />
                     </Grid>
 
@@ -102,7 +100,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                         <TableCell>
@@ -113,7 +110,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                     </TableRow>
@@ -127,7 +123,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                         <TableCell>
@@ -138,7 +133,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                     </TableRow>
@@ -152,7 +146,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                         <TableCell>
@@ -163,7 +156,6 @@ export default function DeckElevationWaveInDeck() {
                                                 ]}
                                                 label=""
                                                 size="small"
-                                                nullable
                                             />
                                         </TableCell>
                                     </TableRow>
