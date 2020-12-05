@@ -214,6 +214,66 @@ export const PlatformSchema = yup
                 name: yup.string(),
             })
             .noUnknown().nullable(),
+        
+        other_detail: yup
+        .object({
+            weld_monitoring: yup.bool(),
+            marine_growth_cleaning: yup.bool(),
+            debris_clearance: yup.bool(),
+            manode_confirmation: yup.bool(),
+            scour_repair: yup.bool(),
+            corrosion_survey: yup.bool(),
+            other: yup.bool(),
+
+        }).unknown(),
+        
+        scope_of_Survey: yup
+        .object({
+            above_water_visual_method: yup.string().nullable(),
+            above_water_visual_scope: yup.string().nullable(),
+            coating_method:yup.string().nullable(),
+            coating_scope:yup.string().nullable(),
+            underwater_cp_method:yup.string().nullable(),
+            underwater_cp_scope:yup.string().nullable(),
+            appurtenance_survey_method:yup.string().nullable(),
+            appurtenance_survey_scope:yup.string().nullable(),
+            deck_elevation_method:yup.string().nullable(),
+            deck_elevation_scope:yup.string().nullable(),
+            supplemental_method:yup.string().nullable(),
+            supplemental_scope:yup.string().nullable(),
+            general_visual_method:yup.string().nullable(),
+            general_visual_scope:yup.string().nullable(),
+            debris_method:yup.string().nullable(),
+            debris_scope:yup.string().nullable(),
+            marine_growth_method:yup.string().nullable(),
+            marine_growth_scope:yup.string().nullable(),
+            scour_depth_method:yup.string().nullable(),
+            scour_depth_scope:yup.string().nullable(),
+            anodes_method:yup.string().nullable(),
+            anodes_scope:yup.string().nullable(),
+            cathodic_method:yup.string().nullable(),
+            cathodic_scope:yup.string().nullable(),
+            risers_method:yup.string().nullable(),
+            risers_scope:yup.string().nullable(),
+            jtube_method:yup.string().nullable(),
+            jtube_scope:yup.string().nullable(),
+            caissons_method:yup.string().nullable(),
+            caissons_scope:yup.string().nullable(),
+            conductor_method:yup.string().nullable(),
+            conductor_scope:yup.string().nullable(),
+            visual_method:yup.string().nullable(),
+            visual_scope:yup.string().nullable(),
+            flooded_method:yup.string().nullable(),
+            flooded_scope:yup.string().nullable(),
+            weld_method:yup.string().nullable(),
+            weld_scope:yup.string().nullable(),
+            joint_ndt_method:yup.string().nullable(),
+            joint_ndt_scope:yup.string().nullable(),
+            wallut_method:yup.string().nullable(),
+            wallut_scope:yup.string().nullable(),
+        })
+        .noUnknown(),
+
         number_of_legs_type_id: yup.ref('number_of_legs_type.id'),
         updated_at: yup.date(),
         created_at: yup.date(),
@@ -247,13 +307,13 @@ export const PlatformSchema = yup
         level_1_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_2_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_3_selected_inspection_interval_for_next_inspection: IntegerSchema,
-        level_1_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-        level_2_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-        level_3_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-        level_1_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-        level_2_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-        level_3_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
-// (0?[1-9]|[12][0-9]|3[01])[\-](0?[1-9]|1[012])[\-]\d
+        level_1_last_inspection_date:yup.date().nullable(),
+        level_2_last_inspection_date:yup.date().nullable(),
+        level_3_last_inspection_date:yup.date().nullable(),
+        level_1_next_inspection_date:yup.date().nullable(),
+        level_2_next_inspection_date:yup.date().nullable(),
+        level_3_next_inspection_date:yup.date().nullable(),
+        // (0?[1-9]|[12][0-9]|3[01])[\-](0?[1-9]|1[012])[\-]\d
         next_10_years_inspection_plan: yup.array()
         .of(
           yup.object({
@@ -261,13 +321,6 @@ export const PlatformSchema = yup
             level: yup.string(),
           })
         ),
-        // next_10_years_inspection_plan: yup
-        // .object({
-        //     year: yup.array(yup.number()),
-        //     level:  yup.array(yup.string()),
-        // })
-        // .noUnknown(),
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         number_of_main_piles: IntegerSchema,
         number_of_skirt_piles: IntegerSchema,
         number_of_decks: IntegerSchema,
@@ -287,6 +340,7 @@ export const PlatformSchema = yup
         project: IntegerSchema
     })
     .noUnknown();
+    
 
 export const PlatformListSchema = yup.array(PlatformSchema);
 
@@ -306,8 +360,6 @@ class PlatformListSubject extends Subject<Platform[] | null> {
         const { data } = await axios.get<Platform[]>('/api/v1/platforms/', {
             params: param.filter,
             transformResponse(data) {
-                // console.log("DATABASE ===>")
-                // console.log(data)
                 return PlatformListSchema.validateSync(data);
             },
         });

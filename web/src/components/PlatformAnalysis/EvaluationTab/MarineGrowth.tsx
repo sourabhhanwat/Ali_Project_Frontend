@@ -2,8 +2,6 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import ExpansionRow from '../ExpansionRow';
-import Checkbox from '../../FormWidget/Checkbox';
-import TextField from '../../FormWidget/TextField';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -72,9 +70,7 @@ export default function MarineGrowth() {
     let id: any;
     id = watch('id');
 
-    const { register, handleSubmit, reset, errors  } = useForm<IFormInput>();
-
-    
+    const { register, handleSubmit } = useForm<IFormInput>();
 
     const onSubmit = (data: IFormInput,e:any) => {
       e.target.reset();

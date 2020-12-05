@@ -9,10 +9,6 @@ import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-}));
-
 interface IFormInput {
   name: String;
   des: String;
@@ -95,7 +91,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
 
     const form = formStyles();
     
-    if(status.isSubmitted == true){
+    if(status.isSubmitted === true){
       window.location.href='/project/:projectId/platforms';
     }
 

@@ -62,14 +62,14 @@ export function SignInForm() {
                 alignItems="center"
                 mb={8}
             >
-                <StyledImage src="/logo.jpg" />
-                <Typography component="p" align="center">
-                    One stop solution for Risk Analysis
+                <StyledImage style={{width: '130px'}} src="/logo.png" />
+                <Typography component="p" align="center" style={{fontWeight: 'bold', letterSpacing: '1.2px', fontSize: '1.5em',color: '#1f497d'}}>
+                    RBUI for Jackets
                 </Typography>
             </Box>
 
             <Box display="flex" justifyContent="center" mb={2}>
-                <StyledAvatar>
+                <StyledAvatar style={{backgroundColor: '#4c8af0'}}>
                     <LockOutlinedIcon />
                 </StyledAvatar>
             </Box>

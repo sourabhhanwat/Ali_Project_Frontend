@@ -98,8 +98,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
 
     const deletePlatform = (value : any) => {
 
-        console.log(value);
-
         axios.post('/api/v1/deleteplatform/', {
             platformId: value,
           })
@@ -122,14 +120,10 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
           setPlatform(data);
         });
     }, []);
-
-    console.log("date ma ==", platformData.name)
     
     return (
         <Card>
             <CardContent>
-                {/* <Box style={{paddingLeft: "45%"}}> */}
-                {/* </Box> */}
                 <Box fontWeight={800} clone>
                     <Typography variant="h5">{platform.name}</Typography>
                 </Box>
@@ -169,7 +163,8 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
                                         title="Download Report"
                                         style={{margin: 5, backgroundColor: 'unset', boxShadow: 'none'}}
                                         >
-                                        <img style={{ width : '30px', height : '30px'}} src="https://img.icons8.com/color/100/000000/export-pdf.png"/>
+                                        <img style={{ width : '30px', height : '30px'}} alt=""
+                                        src="https://img.icons8.com/color/100/000000/export-pdf.png"/>
                                     </Button>
                                 </PDFDownloadLink>
                             </Box>

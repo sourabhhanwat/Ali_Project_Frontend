@@ -8,9 +8,9 @@ import { useForm} from 'react-hook-form';
 import axios from "axios";
 import { KeyboardDatePicker } from '@material-ui/pickers';
 
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-}));
+// const StyledAvatar = styled(Avatar)(({ theme }) => ({
+//     backgroundColor: theme.palette.secondary.main,
+// }));
 
 const formStyles = makeStyles({
   formDesign: {
@@ -36,7 +36,7 @@ interface IFormInput {
 
 export default function NewProject(this: any, _: RouteComponentProps) {
 
-  const { register, handleSubmit, reset } = useForm<IFormInput>();
+  const { register, handleSubmit } = useForm<IFormInput>();
   const [lst, setLst] = React.useState([])
   const [user, setUserName] = React.useState('');
   const [status , setStatus] = React.useState({

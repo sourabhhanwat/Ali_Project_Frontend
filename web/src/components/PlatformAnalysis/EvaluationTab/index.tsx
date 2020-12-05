@@ -103,9 +103,9 @@ function createData2(a: string, b: string, c: string) {
 const rows_env = [
   createData2('E', ' ≥ 50,000','Event where structural failure is expected to cause more than 50,000 equivalent bbl oil leak'),
   createData2('D', ' ≥ 5,000 to < 50,000','Event where structural failure is expected to cause between 5,000 to 50,000 equivalent bbl oil leak'),
-  createData2('C', '>= 500 to < 5,000','Event where structural failure is expected to cause between 500 to 5,000 equivalent bbl oil leak'),
-  createData2('B','≥ 50 to < 500', 'Event where structural failure is expected to cause between 50 to 500 equivalent bbl oil leak'),
-  createData2('A', '< 50','Event where structural failure is expected to cause between 1 to 50 equivalent bbl oil leak'),
+  createData2('C', ' ≥ 500 to < 5,000','Event where structural failure is expected to cause between 500 to 5,000 equivalent bbl oil leak'),
+  createData2('B', ' ≥ 50 to < 500', 'Event where structural failure is expected to cause between 50 to 500 equivalent bbl oil leak'),
+  createData2('A', ' < 50','Event where structural failure is expected to cause between 1 to 50 equivalent bbl oil leak'),
 ];
 
 function createData3(a: string, b: string, c: string) {
@@ -115,10 +115,10 @@ function createData3(a: string, b: string, c: string) {
 
 const rows_eco = [
   createData3('E', ' ≥ 100','The consequence of failure represents very high cost'),
-  createData3('D', ' ≥ 75 - < 100','The consequence of failure represents very high cost'),
-  createData3('C', '>= 45 - < 75','The consequence of failure represents  medium cost'),
-  createData3('B','≥ 6 - < 45', 'The consequence of failure represents low cost'),
-  createData3('A', '< 6','The consequence of failure represents very low cost'),
+  createData3('D', ' ≥ 75 - < 100','The consequence of failure represents high cost'),
+  createData3('C', ' ≥ 45 - < 75','The consequence of failure represents  medium cost'),
+  createData3('B', ' ≥ 6 - < 45', 'The consequence of failure represents low cost'),
+  createData3('A', ' < 6','The consequence of failure represents very low cost'),
 ];
 
 function createData4(a: string, b: string, c: string) {
@@ -329,19 +329,15 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         'calculated_environmental_consequence'
     );
 
-    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  'Unknown' : calculated_environmental_consequence;
-
+    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  '0' : calculated_environmental_consequence + 'Barrels of Oil Equivalent (BOE)';
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
-
 
     let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
     
     const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
     let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    
-    
-    // Graph Calculation
 
     let graphMarking = lof_ranking + final_consequence_category;
 
@@ -499,7 +495,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
             <Box>
                 <Accordion defaultExpanded>
-                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                    <AccordionSummary style={{backgroundColor: "#02bfa6"}}>
                         <Typography style={{color: "White"}} variant="h6">Life-Safety Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -584,7 +580,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
                 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                    <AccordionSummary style={{backgroundColor: "#02bfa6"}}>
                         <Typography  style={{color: "White"}} variant="h6">Environmental Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -659,20 +655,25 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={6}>
-                                Calculated Environmental Consequence 
+                                <p>
+                                Calculated Environmental Consequence
+                                </p> 
                             </Grid>
 
                             <Grid item xs={6}>
-                                 <Typography variant="h5">
-                                    {calculated_environmental_consequence1}
+                                <Typography variant="h6" 
+                                style={{border: '1px solid blue'}}
+                                >
+                                    {calculated_environmental_consequence1} Barrels of Oil Equivalent (BOE)
                                 </Typography>
                                 {/* <TextField
                                     disabled
                                     label="Calculated Environmental Consequence"
                                     name={[
-                                        'calculated_environmental_consequence',
-                                    ]}
+                                        'calculated_environmental_consequence' ,
+                                    ]} 
                                     unit="Barrels of Oil Equivalent (BOE)"
+                                    
                                 /> */}
                             </Grid>
 
@@ -750,7 +751,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                    <AccordionSummary style={{backgroundColor: "#02bfa6"}}>
                         <Typography style={{color: "White"}} variant="h6">Economic Impact Consequence</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -847,8 +848,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={6}>
-                                <Typography variant="body1">
-                                    { calculated_economic_impact_consequence }
+                                <Typography variant="h5">
+                                    { calculated_economic_impact_consequence }US$ Million
                                 </Typography>
                             </Grid>
 
@@ -859,8 +860,8 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
 
                             <Grid item xs={6}>
-                                <Typography variant="body1">
-                                    { calculate_economic_impact_remaining_life_services }
+                                <Typography variant="h5">
+                                    { calculate_economic_impact_remaining_life_services }US$ Million
                                 </Typography>
                             </Grid>
 
@@ -951,7 +952,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                    <AccordionSummary style={{backgroundColor: "#02bfa6"}}>
                         <Typography style={{color: "White"}} variant="h6" >Final Consequence Level</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -1018,7 +1019,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <br />
 
                 <Accordion>
-                    <AccordionSummary style={{backgroundColor: "#68c1a6"}}>
+                    <AccordionSummary style={{backgroundColor: "#02bfa6"}}>
                         <Typography style={{color: "White"}} variant="h6" >Risk Evaluation</Typography>
                     </AccordionSummary>
                     <AccordionDetails>

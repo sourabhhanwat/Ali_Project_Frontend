@@ -7,7 +7,6 @@ import {
 import { DataTableCell } from "@david.kucsai/react-pdf-table/lib/DataTableCell";
 import { TableHeader } from "@david.kucsai/react-pdf-table/lib/TableHeader";
 import { Table, TableBody, TableCell } from "@david.kucsai/react-pdf-table";
-import { TableRow } from "@david.kucsai/react-pdf-table/lib/TableRow";
 // import { Table, TableCell, TableBody } from "@material-ui/core";
 // import { platform } from "os";
 

@@ -8,13 +8,13 @@ import { useForm} from 'react-hook-form';
 import axios from "axios";
 import { KeyboardDatePicker } from '@material-ui/pickers';
 
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-}));
+// const StyledAvatar = styled(Avatar)(({ theme }) => ({
+//     backgroundColor: theme.palette.secondary.main,
+// }));
 
-const tableStyles = {
-  padding: 'unset',
-};
+// const tableStyles = {
+//   padding: 'unset',
+// };
 
 const formStyles = makeStyles({
   formDesign: {
@@ -80,8 +80,6 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     );
    
     const onSubmit = (data: IFormInput,e:any) => {
-
-      console.log("I am sending data==>", data);
       
       axios.post('/api/v1/updateproject/', {
         Name: data.name,

@@ -7,40 +7,10 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '../../FormWidget/TextField';
-import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useFormContext } from 'react-hook-form';
-import { styled} from '@material-ui/core';
-
-
-
-const StyledImage = styled('img')(({ theme }) => ({
-    width: theme.spacing(60),
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    objectFit: 'contain',
-    textAlign: 'center',
-}));
-
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 12,
-    },
-  }))(TableCell);
-  
-  const StyledTableRow = withStyles((theme) => ({
-    root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-  }))(TableRow);
+import DatePicker from '../../FormWidget/DatePicker';
+import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 
 const graphStyles = makeStyles({
     table: {
@@ -114,12 +84,7 @@ const graphStyles = makeStyles({
   
 
 export default function StrategyTab({ hidden }: { hidden?: boolean }) {
-    var paragraphDesign = {
-        backgroundColor: '',
-        padding: '.8rem',
-        color: 'Black',
 
-    };
     const platformTypeListSubject = usePlatformTypeListContext();
 
     const graph = graphStyles();
@@ -129,10 +94,8 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
         'risk_ranking'
     );
 
-    console.log("I AM RISK ==>" ,risk_ranking);
-
     let red = (risk_ranking === 'H') ?  '#FFC000' : (risk_ranking === 'VH') ?  '#FF0000' : (risk_ranking === 'M') ?  '#FFFF00' : (risk_ranking === 'L') ?  '#92D050' : '#00B050';
-    let risk = (risk_ranking === 'H') ?  'High (H)' : (risk_ranking === 'VH') ?  'Very High (VH)' : (risk_ranking === 'M') ?  'Medium (M)' : (risk_ranking === 'L') ?  'Low (L)' : 'Very Low (VL)';
+    // let risk = (risk_ranking === 'H') ?  'High (H)' : (risk_ranking === 'VH') ?  'Very High (VH)' : (risk_ranking === 'M') ?  'Medium (M)' : (risk_ranking === 'L') ?  'Low (L)' : 'Very Low (VL)';
 
    
     const final_consequence_category = watch(
@@ -142,12 +105,9 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
     const lof_ranking = watch('lof_ranking');
  
     const risk_year = watch('risk_based_underwater_inspection_interval');
-    console.log("Ranking i am==>", lof_ranking, risk_year);
     
     let graphMarking :any;
     graphMarking= lof_ranking + final_consequence_category;
-    
-    console.log("GRAPH RANKING ==>" ,graphMarking)
 
     return(
         <Box hidden={hidden}>
@@ -171,10 +131,15 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <TextField
+                            <DatePicker
+                                label="RBUI Assessment Date"
+                                name={['level_1_last_inspection_date']}
+                                required
+                            />
+                            {/* <TextField
                                 name={['level_1_last_inspection_date']}
                                 label="YYYY-MM-DD"
-                            />
+                            /> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -182,11 +147,16 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <TextField
+                            <DatePicker
+                                label="RBUI Assessment Date"
+                                name={['level_2_last_inspection_date']}
+                                required
+                            />
+                            {/* <TextField
                                 name={['level_2_last_inspection_date']}
                                 label="YYYY-MM-DD"
                                 
-                            />
+                            /> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -194,10 +164,15 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <TextField
+                            <DatePicker
+                                label="RBUI Assessment Date"
+                                name={['level_3_last_inspection_date']}
+                                required
+                            />
+                            {/* <TextField
                                 name={['level_3_last_inspection_date']}
                                 label="YYYY-MM-DD"
-                            />
+                            /> */}
                         </Grid>
 
                         </Grid>
@@ -218,10 +193,9 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             <Typography style={{marginTop: '1rem', fontWeight: 'bold', fontSize: '1.2rem'}}>Inspection Interval Based on Risk Level</Typography>
 
 {/* ======================================================= */}
-            <Accordion>
-                    <AccordionDetails> 
-                        <Grid container spacing={1}>  
-                            <Grid item xs={12}></Grid>
+                    <Grid container item xs={12}>
+                        <Grid container item xs={6} spacing={1}>
+                            <Grid item xs={12}></Grid>  
                             <Grid item xs={6}>
                                     <p>
                                     Platform Risk Level
@@ -249,7 +223,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             <Grid item xs={12}></Grid>
                         </Grid>  
                          
-                        <Grid container spacing={1}>
+                        <Grid container item xs={6} spacing={1}>
                             <Grid item xs={12}>
                                 <div style={{marginTop: '3rem'}}>
                                 <table className={graph.table_head}>
@@ -313,20 +287,16 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                                 </div>
                             </Grid>
                         </Grid> 
-                     </AccordionDetails>
-                </Accordion>
-
+         
+                    </Grid>
 {/* ======================================================= */}
+                    
                     <Grid item xs={12}>
                             <p></p>
                             <Typography  variant="h6">Inspection Interval based on Exposure Category</Typography>
                             <p></p>
                     </Grid>
-            <Accordion> 
-                    <AccordionDetails>  
-                            
-                            {/* </AccordionSummary>
-                            <AccordionDetails> */}
+            
                             <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <p>Exposure Category Level</p> 
@@ -395,8 +365,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             </Grid> 
 
-                        </AccordionDetails>
-                </Accordion>
+
                             {/* ================================================================= */}
 {/* ================================================= */}
                            
@@ -405,8 +374,6 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                     <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
                     <p></p>
                 </Grid> 
-                    <Accordion>
-                        <AccordionDetails>
                             <Grid container spacing={3}>
                             <Grid item xs={12}>
                             </Grid> 
@@ -482,9 +449,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             />
                             </Grid>
 
-                            </Grid>
-                        </AccordionDetails>
-                </Accordion>    
+                            </Grid>  
             </Grid>
 
         </AccordionDetails>

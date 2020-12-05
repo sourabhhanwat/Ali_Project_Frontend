@@ -1,10 +1,8 @@
 import Grid from '@material-ui/core/Grid';
-import { styled, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@material-ui/core/styles';
 import { navigate, RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { SkeletonProjectCard } from './ProjectCard';
 import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,7 +19,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
-import { SkeletonPlatformCard } from './PlatformCard';
 import { useProjectList } from './ProjectListProvider';
 import { Box } from '@material-ui/core';
 import axios from "axios";
@@ -55,58 +52,6 @@ const StyledTableRow = withStyles((theme) => ({
       minWidth: 700,
     },
   });
-
-
-const StyledTypography = styled(Typography)({
-    textTransform: 'uppercase',
-    fontWeight: 800,
-});
-
-const SkeletonProjectCards = React.memo(() => (
-    <>
-        {[...Array(3).keys()].map((id) => (
-            <Grid key={id} item xs={12}>
-                <SkeletonProjectCard />
-            </Grid>
-        ))}
-    </>
-));
-
-const SkeletonPlatformCards = React.memo(() => (
-    <>
-        {[...Array(3).keys()].map((index) => (
-            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                <SkeletonPlatformCard />
-            </Grid>
-        ))}
-    </>
-));
-
-const options = {
-    title: 'Title',
-    message: 'Message',
-    // buttons: [
-    //   {
-    //     label: 'Yes',
-    //     onClick: () => alert('Click Yes')
-    //   },
-    //   {
-    //     label: 'No',
-    //     onClick: () => alert('Click No')
-    //   }
-    // ],
-    childrenElement: () => <div />,
-    // customUI: ({ onClose }) => <div>Custom UI</div>,
-    closeOnEscape: true,
-    closeOnClickOutside: true,
-    willUnmount: () => {},
-    afterClose: () => {},
-    onClickOutside: () => {},
-    onKeypressEscape: () => {}
-  };
-   
-//   confirmAlert(options);
-
 
 export default function CreatePlatform(_: RouteComponentProps) {
 
@@ -199,7 +144,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
     // };
 
     const submit = (value : any) => {
-        console.log(" I am inside ==", value)
         confirmAlert({
           title: 'Confirm to delete',
           message: 'Are you sure to do this.',
@@ -231,7 +175,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
         
       };
 
-    if(status.isdeleted == true){
+    if(status.isdeleted === true){
         window.location.href='/dashboard/CreatePlatform/';
     }
     
