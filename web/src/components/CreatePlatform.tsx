@@ -121,28 +121,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
         data.push(i+1)
     ))}
 
-    // {platforms?.map((platform) => (
-    //     pltname.push(platform.name)
-    //     ))}
-    // console.log(data)    
-
-    // const deleteProject = (value : any) => {
-
-    //     console.log(value);
-
-    //     axios.post('/api/v1/deleteproject/', {
-    //         projectId: value,
-    //       })
-    
-    //       .then(function (response) {
-    //         console.log(response);
-    //     })
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-      
-    // };
-
     const submit = (value : any) => {
         confirmAlert({
           title: 'Confirm to delete',
@@ -150,7 +128,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
           buttons: [
             {
               label: 'Yes',
-            //   onClick: () => deleteProject(projectId)
                 onClick: () => axios.post('/api/v1/deleteproject/', {
                     projectId: value,
                 })
@@ -167,13 +144,13 @@ export default function CreatePlatform(_: RouteComponentProps) {
             {
               label: 'No',
               onClick: () => setstatus({
-                isdeleted : true,
+                isdeleted : false,
             })
             }
           ],
         });
         
-      };
+    };
 
     if(status.isdeleted === true){
         window.location.href='/dashboard/CreatePlatform/';

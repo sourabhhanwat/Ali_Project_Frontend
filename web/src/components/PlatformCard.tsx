@@ -21,6 +21,7 @@ import RelativeDate from './RelativeDate';
 import axios from "axios";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { PdfDocument } from './PDFGeneration';
+import { confirmAlert } from 'react-confirm-alert'; 
 
 const StyledAvatar = styled(Avatar)(
     ({
@@ -96,24 +97,64 @@ const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 export default function PlatformCard({ platform }: { platform: Platform }) {
 
-    const deletePlatform = (value : any) => {
+    const [status, setstatus] = React.useState({
+        isdeleted: false,
+    })
 
-        axios.post('/api/v1/deleteplatform/', {
-            platformId: value,
-          })
+    // const deletePlatform = (value : any) => {
+
+    //     axios.post('/api/v1/deleteplatform/', {
+    //         platformId: value,
+    //       })
     
-          .then(function (response) {
-            console.log(response);
-        })
-          .catch(function (error) {
-            console.log(error);
-          });
+    //       .then(function (response) {
+    //         console.log(response);
+    //     })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       });
       
+    // };
+
+    const submit = (value : any) => {
+        console.log("func called")
+        confirmAlert({
+          title: 'Confirm to delete',
+          message: 'Are you sure to do this.',
+          buttons: [
+            {
+              label: 'Yes',
+                onClick: () => axios.post('/api/v1/deleteplatform/', {
+                    platformId: value,
+                })
+                .then(function (response) {
+                    console.log(response);
+                    setstatus({
+                        isdeleted : true,
+                    })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                }),
+            },
+            {
+              label: 'No',
+              onClick: () => setstatus({
+                isdeleted : false,
+            })
+            }
+          ],
+        });  
     };
+
+    if(status.isdeleted === true){
+        window.location.href='/dashboard/rbui/';
+    }
+
 
     const [platformData, setPlatform] = React.useState<any>([]);
 
-  React.useEffect(() => {
+    React.useEffect(() => {
       fetch(`/api/v1/platforms/${platform.id}`)
         .then(results => results.json())
         .then(data => {
@@ -175,12 +216,12 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
             </List>
             <Box justifyContent="space-between" clone>
                 <CardActions>
-                <StyledLink to={`/dashboard/rbui/`}>
+                
                         <Button size= "small" title="Delete" color="primary"
-                            onClick={() => deletePlatform(platform.id)} >
+                            onClick={() => submit(platform.id)} >
                             <DeleteIcon />
                         </Button>
-                </StyledLink>
+                
                     <StyledLink
                         to={`/dashboard/platforms/${platform.id}/analysis`}>
                         <Box  clone fontWeight={800}>

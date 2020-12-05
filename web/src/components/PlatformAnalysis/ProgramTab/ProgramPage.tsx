@@ -13,13 +13,7 @@ import DatePicker from '../../FormWidget/DatePicker';
 import { useFormContext } from 'react-hook-form';
 
 export default function ProgramPage() {
-    // var ButtonDesign = {
-
-    //     backgroundColor: 'light blue',
-    //     padding:    '15px 32px',
-    //     margin: '4px 2px',
-        
-    // };
+    
     var h3Design = {
         backgroundColor: 'light blue',
     };
@@ -27,6 +21,9 @@ export default function ProgramPage() {
     const platformTypeListSubject = usePlatformTypeListContext();
 
     const { watch } = useFormContext();
+
+    const last_underwater_inspection_date = watch('last_inspection.last_underwater_inspection_date');
+    console.log("Inspection date ==>" ,last_underwater_inspection_date )
     
     const content = React.useMemo(
         () => (
