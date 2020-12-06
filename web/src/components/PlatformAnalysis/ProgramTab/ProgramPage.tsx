@@ -18,7 +18,7 @@ export default function ProgramPage() {
         backgroundColor: 'light blue',
     };
 
-    // const platformTypeListSubject = usePlatformTypeListContext();
+    const platformTypeListSubject = usePlatformTypeListContext();
 
     const { watch } = useFormContext();
 
@@ -763,7 +763,7 @@ export default function ProgramPage() {
             </Grid>
   
         ),
-        []
+        [platformTypeListSubject]
     );
 
     return (
