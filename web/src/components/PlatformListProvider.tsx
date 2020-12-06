@@ -24,7 +24,6 @@ export const PlatformSchema = yup
         condition_score: IntegerSchema,
         loading_score: IntegerSchema,
         total_score: IntegerSchema,
-        // project:IntegerSchema,
         rsr_override_score: IntegerSchema,
         platform_vintage_score: yup.number(),
         access_type: yup.mixed<'M' | 'V'>().oneOf(['M', 'V']),
@@ -217,19 +216,19 @@ export const PlatformSchema = yup
         
         other_detail: yup
         .object({
-            weld_monitoring: yup.bool(),
-            marine_growth_cleaning: yup.bool(),
-            debris_clearance: yup.bool(),
-            manode_confirmation: yup.bool(),
-            scour_repair: yup.bool(),
-            corrosion_survey: yup.bool(),
-            other: yup.bool(),
+            weld_monitoring: yup.bool().nullable(),
+            marine_growth_cleaning: yup.bool().nullable(),
+            debris_clearance: yup.bool().nullable(),
+            manode_confirmation: yup.bool().nullable(),
+            scour_repair: yup.bool().nullable(),
+            corrosion_survey: yup.bool().nullable(),
+            other: yup.bool().nullable(),
 
-        }).unknown(),
+        }).unknown().nullable(),
         
         scope_of_Survey: yup
         .object({
-            above_water_visual_method: yup.string().nullable(),
+            above_water_visual_method: yup.string(),
             above_water_visual_scope: yup.string().nullable(),
             coating_method:yup.string().nullable(),
             coating_scope:yup.string().nullable(),

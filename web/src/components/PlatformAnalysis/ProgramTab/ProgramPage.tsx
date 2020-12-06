@@ -18,12 +18,13 @@ export default function ProgramPage() {
         backgroundColor: 'light blue',
     };
 
-    const platformTypeListSubject = usePlatformTypeListContext();
+    // const platformTypeListSubject = usePlatformTypeListContext();
 
     const { watch } = useFormContext();
 
-    const last_underwater_inspection_date = watch('last_inspection.last_underwater_inspection_date');
-    console.log("Inspection date ==>" ,last_underwater_inspection_date )
+    const scope_of_Survey = watch('scope_of_Survey.above_water_visual_method');
+    console.log("Inspection date ==>" ,scope_of_Survey )
+    // console.log("===", platformTypeListSubject)
     
     const content = React.useMemo(
         () => (
@@ -66,10 +67,10 @@ export default function ProgramPage() {
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Weld Monitoring"
                         name="other_detail.weld_monitoring"
-                    />
+                    /> */}
                 </Grid>
 {/* =================================================== */}
                 <Grid item xs={3} md={3}>
@@ -88,10 +89,10 @@ export default function ProgramPage() {
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Marine Growth Cleaning"
                         name="other_detail.marine_growth_cleaning"
-                    />
+                    /> */}
                 </Grid>
 {/* ================================================ */}
 
@@ -109,10 +110,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Debris Clearance"
                         name="other_detail.debris_clearance"
-                    />
+                    /> */}
                 </Grid>
 {/* =================================================== */}
                 <Grid item xs={3} md={3}>
@@ -137,10 +138,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Anode Confirmation"
                         name="other_detail.manode_confirmation"
-                    />
+                    /> */}
                 </Grid>
 {/* ================================================ */}
                 <Grid item xs={3} md={3}>
@@ -165,10 +166,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Scour Repair"
                         name="other_detail.scour_repair"
-                    />
+                    /> */}
                 </Grid>
 {/* ===================================== */}
                 <Grid item xs={3} md={3}>
@@ -193,10 +194,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Corrosion Survey"
                         name="other_detail.corrosion_survey"
-                    />
+                    /> */}
                 </Grid>
 {/* ===================================== */}
                 <Grid item xs={3} md={3}>
@@ -209,10 +210,10 @@ export default function ProgramPage() {
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    <Checkbox
+                    {/* <Checkbox
                         label="Other"
                         name="other_detail.other"
-                    />
+                    /> */}
                 </Grid>
 {/* ================================================ */}
                 <Grid item xs={3} md={3}>
@@ -762,7 +763,7 @@ export default function ProgramPage() {
             </Grid>
   
         ),
-        [platformTypeListSubject]
+        []
     );
 
     return (

@@ -148,8 +148,7 @@ export default function CreatePlatform(_: RouteComponentProps) {
             })
             }
           ],
-        });
-        
+        });  
     };
 
     if(status.isdeleted === true){
@@ -212,11 +211,8 @@ export default function CreatePlatform(_: RouteComponentProps) {
                                         </StyledLink> 
                                     
                                         <StyledLink to={`/dashboard/CreatePlatform/`}>
-                                                <Button size= "medium" color="primary"
-                                                    // onClick={() => deleteProject(project.id)}          
-                                                    onClick={() => submit(project.id)}
-                                                >
-                                                
+                                                <Button size= "medium" color="primary"        
+                                                    onClick={() => submit(project.id)}>
                                                 <DeleteIcon />
                                                 </Button>
                                         </StyledLink>

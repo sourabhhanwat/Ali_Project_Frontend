@@ -4,12 +4,12 @@ import ProgramPage from './ProgramPage';
 
 export default function ProgramTab({ hidden }: { hidden?: boolean }) {
     
-    var paragraphDesign = {
-        backgroundColor: '#68c1a8',
-        padding:    '.8rem',
-        color: 'Black',
+    // var paragraphDesign = {
+    //     backgroundColor: '#68c1a8',
+    //     padding:    '.8rem',
+    //     color: 'Black',
 
-    };
+    // };
 
     const content = React.useMemo(
         () => (
