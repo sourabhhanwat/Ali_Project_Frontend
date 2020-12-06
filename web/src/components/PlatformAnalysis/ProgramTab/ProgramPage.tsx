@@ -22,8 +22,8 @@ export default function ProgramPage() {
 
     const { watch } = useFormContext();
 
-    const scope_of_Survey = watch('scope_of_Survey.above_water_visual_method');
-    console.log("Inspection date ==>" ,scope_of_Survey )
+    const scope_of_survey = watch('scope_of_survey.above_water_visual_method');
+    console.log("Inspection date ==>" ,scope_of_survey )
     // console.log("===", platformTypeListSubject)
     
     const content = React.useMemo(
@@ -252,15 +252,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','above_water_visual_method']}
+                        name={['scope_of_survey','above_water_visual_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','above_water_visual_scope']}
+                        name={['scope_of_survey','above_water_visual_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -273,15 +275,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','coating_method']}
+                        name={['scope_of_survey','coating_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','coating_scope']}
+                        name={['scope_of_survey','coating_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -295,15 +299,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','underwater_cp_method']}
+                        name={['scope_of_survey','underwater_cp_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','underwater_cp_scope']}
+                        name={['scope_of_survey','underwater_cp_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -317,15 +323,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','appurtenance_survey_method']}
+                        name={['scope_of_survey','appurtenance_survey_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','appurtenance_survey_scope']}
+                        name={['scope_of_survey','appurtenance_survey_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -339,15 +347,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','deck_elevation_method']}
+                        name={['scope_of_survey','deck_elevation_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','deck_elevation_scope']}
+                        name={['scope_of_survey','deck_elevation_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -361,15 +371,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','supplemental_method']}
+                        name={['scope_of_survey','supplemental_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','supplemental_scope']}
+                        name={['scope_of_survey','supplemental_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -399,15 +411,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','general_visual_method']}
+                        name={['scope_of_survey','general_visual_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','general_visual_scope']}
+                        name={['scope_of_survey','general_visual_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -420,15 +434,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','debris_method']}
+                        name={['scope_of_survey','debris_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','debris_scope']}
+                        name={['scope_of_survey','debris_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -442,15 +458,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','marine_growth_method']}
+                        name={['scope_of_survey','marine_growth_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','marine_growth_scope']}
+                        name={['scope_of_survey','marine_growth_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -464,15 +482,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','scour_depth_method']}
+                        name={['scope_of_survey','scour_depth_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','scour_depth_scope']}
+                        name={['scope_of_survey','scour_depth_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -486,15 +506,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','anodes_method']}
+                        name={['scope_of_survey','anodes_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','anodes_scope']}
+                        name={['scope_of_survey','anodes_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -508,15 +530,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','cathodic_method']}
+                        name={['scope_of_survey','cathodic_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','cathodic_scope']}
+                        name={['scope_of_survey','cathodic_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -530,15 +554,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','risers_method']}
+                        name={['scope_of_survey','risers_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','risers_scope']}
+                        name={['scope_of_survey','risers_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -552,15 +578,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','jtube_method']}
+                        name={['scope_of_survey','jtube_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','jtube_scope']}
+                        name={['scope_of_survey','jtube_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -574,15 +602,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','caissons_method']}
+                        name={['scope_of_survey','caissons_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','caissons_scope']}
+                        name={['scope_of_survey','caissons_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -596,15 +626,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','conductor_method']}
+                        name={['scope_of_survey','conductor_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','conductor_scope']}
+                        name={['scope_of_survey','conductor_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -634,15 +666,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','visual_method']}
+                        name={['scope_of_survey','visual_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','visual_scope']}
+                        name={['scope_of_survey','visual_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -655,15 +689,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','flooded_method']}
+                        name={['scope_of_survey','flooded_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','flooded_scope']}
+                        name={['scope_of_survey','flooded_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -677,15 +713,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','weld_method']}
+                        name={['scope_of_survey','weld_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','weld_scope']}
+                        name={['scope_of_survey','weld_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -715,15 +753,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','joint_ndt_method']}
+                        name={['scope_of_survey','joint_ndt_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','joint_ndt_scope']}
+                        name={['scope_of_survey','joint_ndt_scope']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 
@@ -736,15 +776,17 @@ export default function ProgramPage() {
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','wallut_method']}
+                        name={['scope_of_survey','wallut_method']}
                         label="Method"
+                        nullable
                     />
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                     <TextField
-                        name={['scope_of_Survey','wallut_method']}
+                        name={['scope_of_survey','wallut_method']}
                         label="Scope"
+                        nullable
                     />
                 </Grid>
 

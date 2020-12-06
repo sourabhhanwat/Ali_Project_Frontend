@@ -226,9 +226,9 @@ export const PlatformSchema = yup
 
         }).unknown().nullable(),
         
-        scope_of_Survey: yup
+        scope_of_survey: yup
         .object({
-            above_water_visual_method: yup.string(),
+            above_water_visual_method: yup.string().nullable(),
             above_water_visual_scope: yup.string().nullable(),
             coating_method:yup.string().nullable(),
             coating_scope:yup.string().nullable(),
