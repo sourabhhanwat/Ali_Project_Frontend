@@ -72,52 +72,52 @@ const StyledTableCell = withStyles((theme) => ({
   });
 
 
-const StyledDivider = styled(Divider)(
-    ({
-        theme,
-        bgcolor,
-    }: {
-        theme: Theme;
-        bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
-    }) => ({
-        backgroundColor: bgcolor
-            ? theme.palette[bgcolor].main
-            : theme.palette.divider,
-        height: 4,
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        width: theme.spacing(4),
-        border: `1px solid ${
-            bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
-        }`,
-        borderRadius: theme.spacing(1),
-    })
-);
+// const StyledDivider = styled(Divider)(
+//     ({
+//         theme,
+//         bgcolor,
+//     }: {
+//         theme: Theme;
+//         bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
+//     }) => ({
+//         backgroundColor: bgcolor
+//             ? theme.palette[bgcolor].main
+//             : theme.palette.divider,
+//         height: 4,
+//         marginTop: theme.spacing(1),
+//         marginBottom: theme.spacing(1),
+//         width: theme.spacing(4),
+//         border: `1px solid ${
+//             bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
+//         }`,
+//         borderRadius: theme.spacing(1),
+//     })
+// );
 
-const StyledTypography = styled(Typography)({
-    textTransform: 'uppercase',
-    fontWeight: 800,
-});
+// const StyledTypography = styled(Typography)({
+//     textTransform: 'uppercase',
+//     fontWeight: 800,
+// });
 
-const SkeletonProjectCards = React.memo(() => (
-    <>
-        {[...Array(3).keys()].map((id) => (
-            <Grid key={id} item xs={12}>
-                <SkeletonProjectCard />
-            </Grid>
-        ))}
-    </>
-));
+// const SkeletonProjectCards = React.memo(() => (
+//     <>
+//         {[...Array(3).keys()].map((id) => (
+//             <Grid key={id} item xs={12}>
+//                 <SkeletonProjectCard />
+//             </Grid>
+//         ))}
+//     </>
+// ));
 
-const SkeletonPlatformCards = React.memo(() => (
-    <>
-        {[...Array(3).keys()].map((index) => (
-            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                <SkeletonPlatformCard />
-            </Grid>
-        ))}
-    </>
-));
+// const SkeletonPlatformCards = React.memo(() => (
+//     <>
+//         {[...Array(3).keys()].map((index) => (
+//             <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+//                 <SkeletonPlatformCard />
+//             </Grid>
+//         ))}
+//     </>
+// ));
 
 
 export default function ProjectList(_: RouteComponentProps) {
@@ -262,7 +262,7 @@ export default function ProjectList(_: RouteComponentProps) {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchId(event.target.value);
         duplicatePlatforms(copied);
-        let values = copied?.filter((v : any) => v.project == event.target.value)
+        let values = copied?.filter((v : any) => v.project === event.target.value)
         console.log('project 1 value = ', values)
         setPlatforms(values);
         console.log("copied ==", copied)
@@ -379,10 +379,10 @@ export default function ProjectList(_: RouteComponentProps) {
                                     <StyledTableRow key={platform.id}>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type == null ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.manned == false ? '-' : 'Yes'}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking == null ? '-' : platform.risk_ranking}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level == null ? '-' : platform.exposure_category_level}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type === null ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.manned === false ? '-' : 'Yes'}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking === null ? '-' : platform.risk_ranking}</StyledTableCell>
+                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level === null ? '-' : platform.exposure_category_level}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>

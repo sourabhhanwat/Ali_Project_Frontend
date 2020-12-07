@@ -17,15 +17,18 @@ export default function ProgramPage() {
     var h3Design = {
         backgroundColor: 'light blue',
     };
-
+    
     const platformTypeListSubject = usePlatformTypeListContext();
 
     const { watch } = useFormContext();
-
-    const scope_of_survey = watch('scope_of_survey.above_water_visual_method');
-    console.log("Inspection date ==>" ,scope_of_survey )
-    // console.log("===", platformTypeListSubject)
     
+    const risk_ranking = watch(
+        'risk_ranking'
+    );
+    
+    let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    
+
+
     const content = React.useMemo(
         () => (
             <Grid container spacing={4}>
@@ -67,10 +70,10 @@ export default function ProgramPage() {
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Weld Monitoring"
                         name="other_detail.weld_monitoring"
-                    /> */}
+                    />
                 </Grid>
 {/* =================================================== */}
                 <Grid item xs={3} md={3}>
@@ -78,21 +81,25 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        name={['risk_ranking']}
-                        label="Platform Risk Rankinge"
-                        disabled
-                    />
+                    <Typography style={{backgroundColor:red, color: "white", fontWeight:"bold",}} variant="h5">
+                        <TextField
+                            name={['risk_ranking']}
+                            label=""
+                            style={{textAlign : 'center'}}
+                            disabled
+                        />
+                    </Typography>
+                    
                 </Grid>
 
                 <Grid item xs={3} md={3}>
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Marine Growth Cleaning"
                         name="other_detail.marine_growth_cleaning"
-                    /> */}
+                    />
                 </Grid>
 {/* ================================================ */}
 
@@ -110,10 +117,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Debris Clearance"
                         name="other_detail.debris_clearance"
-                    /> */}
+                    />
                 </Grid>
 {/* =================================================== */}
                 <Grid item xs={3} md={3}>
@@ -138,10 +145,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Anode Confirmation"
                         name="other_detail.manode_confirmation"
-                    /> */}
+                    />
                 </Grid>
 {/* ================================================ */}
                 <Grid item xs={3} md={3}>
@@ -166,10 +173,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Scour Repair"
                         name="other_detail.scour_repair"
-                    /> */}
+                    />
                 </Grid>
 {/* ===================================== */}
                 <Grid item xs={3} md={3}>
@@ -194,10 +201,10 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Corrosion Survey"
                         name="other_detail.corrosion_survey"
-                    /> */}
+                    />
                 </Grid>
 {/* ===================================== */}
                 <Grid item xs={3} md={3}>
@@ -210,10 +217,10 @@ export default function ProgramPage() {
                 </Grid> 
 
                 <Grid item xs={3} md={3}>
-                    {/* <Checkbox
+                    <Checkbox
                         label="Other"
                         name="other_detail.other"
-                    /> */}
+                    />
                 </Grid>
 {/* ================================================ */}
                 <Grid item xs={3} md={3}>

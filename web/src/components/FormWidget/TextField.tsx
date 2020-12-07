@@ -19,6 +19,7 @@ export default function TextField({
     required,
     unit,
     size,
+    style,
 }: {
     name: string[];
     label: string;
@@ -29,6 +30,7 @@ export default function TextField({
     multiline?: boolean;
     nullable?: boolean;
     size?: 'small' | 'medium';
+    style?: any;
 }) {
     const { errors } = useFormContext();
 
@@ -63,6 +65,7 @@ export default function TextField({
                             rowsMax={4}
                             rows={4}
                             size={size}
+                            style={style}
                         />
                     }
                     name={inputName}

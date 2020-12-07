@@ -131,15 +131,15 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <DatePicker
+                            {/* <DatePicker
                                 label="RBUI Assessment Date"
                                 name={['level_1_last_inspection_date']}
                                 required
-                            />
-                            {/* <TextField
+                            /> */}
+                            <TextField
                                 name={['level_1_last_inspection_date']}
                                 label="YYYY-MM-DD"
-                            /> */}
+                            />
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -147,16 +147,16 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <DatePicker
+                            {/* <DatePicker
                                 label="RBUI Assessment Date"
                                 name={['level_2_last_inspection_date']}
                                 required
-                            />
-                            {/* <TextField
+                            /> */}
+                            <TextField
                                 name={['level_2_last_inspection_date']}
                                 label="YYYY-MM-DD"
                                 
-                            /> */}
+                            />
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -164,15 +164,15 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            <DatePicker
+                            {/* <DatePicker
                                 label="RBUI Assessment Date"
                                 name={['level_3_last_inspection_date']}
                                 required
-                            />
-                            {/* <TextField
+                            /> */}
+                            <TextField
                                 name={['level_3_last_inspection_date']}
                                 label="YYYY-MM-DD"
-                            /> */}
+                            />
                         </Grid>
 
                         </Grid>

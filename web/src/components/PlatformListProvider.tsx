@@ -216,15 +216,15 @@ export const PlatformSchema = yup
         
         other_detail: yup
         .object({
-            weld_monitoring: yup.bool().nullable(),
-            marine_growth_cleaning: yup.bool().nullable(),
-            debris_clearance: yup.bool().nullable(),
-            manode_confirmation: yup.bool().nullable(),
-            scour_repair: yup.bool().nullable(),
-            corrosion_survey: yup.bool().nullable(),
-            other: yup.bool().nullable(),
+            weld_monitoring: yup.bool(),
+            marine_growth_cleaning: yup.bool(),
+            debris_clearance: yup.bool(),
+            manode_confirmation: yup.bool(),
+            scour_repair: yup.bool(),
+            corrosion_survey: yup.bool(),
+            other: yup.bool(),
 
-        }).unknown().nullable(),
+        }).unknown(),
         
         scope_of_survey: yup
         .object({
@@ -306,12 +306,12 @@ export const PlatformSchema = yup
         level_1_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_2_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_3_selected_inspection_interval_for_next_inspection: IntegerSchema,
-        level_1_last_inspection_date:yup.date().nullable(),
-        level_2_last_inspection_date:yup.date().nullable(),
-        level_3_last_inspection_date:yup.date().nullable(),
-        level_1_next_inspection_date:yup.date().nullable(),
-        level_2_next_inspection_date:yup.date().nullable(),
-        level_3_next_inspection_date:yup.date().nullable(),
+        level_1_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_2_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_3_last_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_1_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_2_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
+        level_3_next_inspection_date:yup.string().nullable().matches(/^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])$/, 'Only allow YYYY-MM-DD Date Format').typeError('Only allow YYYY-MM-DD Date Format'),
         // (0?[1-9]|[12][0-9]|3[01])[\-](0?[1-9]|1[012])[\-]\d
         next_10_years_inspection_plan: yup.array()
         .of(
