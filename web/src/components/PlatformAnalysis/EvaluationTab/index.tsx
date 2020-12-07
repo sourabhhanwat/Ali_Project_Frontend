@@ -662,7 +662,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                                 <Typography variant="h6" style={{display: 'flex', border: '1px solid #d0d0d0', borderRadius: '5px', width: 'fit-content'}}>
-                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#cdcdf1'}}>{calculated_environmental_consequence1}</p> 
+                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#c2eade'}}>{calculated_environmental_consequence1}</p> 
                                     <p style={{margin: 'unset', padding: '1rem 0.5rem', float: 'left', color: '#989696'}}>Barrels of Oil Equivalent (BOE)</p>
                                 </Typography>
                                 {/* <TextField
@@ -847,7 +847,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                                 <Typography variant="h6" style={{display: 'flex', border: '1px solid #d0d0d0', borderRadius: '5px', width: 'fit-content'}}>
-                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#cdcdf1'}}>{calculated_economic_impact_consequence}</p> 
+                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#c2eade'}}>{calculated_economic_impact_consequence}</p> 
                                     <p style={{margin: 'unset', padding: '1rem 0.5rem', float: 'left', color: '#989696'}}>US$ Million</p>
                                 </Typography>
                             </Grid>
@@ -860,7 +860,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                                 <Typography variant="h6" style={{display: 'flex', border: '1px solid #d0d0d0', borderRadius: '5px', width: 'fit-content'}}>
-                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#cdcdf1'}}>{calculate_economic_impact_remaining_life_services}</p> 
+                                    <p style={{margin: 'unset', padding: '1rem 0.7rem', width: '15rem', backgroundColor: '#c2eade'}}>{calculate_economic_impact_remaining_life_services}</p> 
                                     <p style={{margin: 'unset', padding: '1rem 0.5rem', float: 'left', color: '#989696'}}>US$ Million</p>
                                 </Typography>
                             </Grid>

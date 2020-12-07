@@ -21,8 +21,9 @@ export default function StructuralDetailsFieldset() {
                             'daily_oil_production',
                         ]}
                         label="Daily Oil Production"
+
                         helperText="If there is no oil production, input value '0'"
-                        // unit="bbl"
+                        unit="bbl"
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -33,7 +34,7 @@ export default function StructuralDetailsFieldset() {
                         ]}
                         label="Daily Gas Production"
                         helperText="If there is no gas production, input value '0'"
-                        // unit="mscf"
+                        unit="mscf"
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
