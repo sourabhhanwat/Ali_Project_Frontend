@@ -64,7 +64,7 @@ export default function ExpansionRow({
                         )}
                     </IconButton>
                 </TableCell>
-                <TableCell classes={headClasses} align="left" scope="row">
+                <TableCell classes={headClasses} align="left" style={{fontWeight: 'bold'}} scope="row">
                     {title}
                 </TableCell>
                 <TableCell classes={headClasses}>

@@ -40,7 +40,7 @@ function createData(lof: string, score: string) {
 
 const rows = [
   createData('5', ' ≥ 680'),
-  createData('4', '>= 490 to < 680'),
+  createData('4', '≥ 490 to < 680'),
   createData('3','≥ 310 to < 490' ),
   createData('2', '≥ 120 < 310'),
   createData('1','< 120' ),

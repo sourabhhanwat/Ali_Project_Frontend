@@ -34,6 +34,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     const [status, setStatus] = React.useState({
       isSubmitted : false,
       status : false,
+      platformId: '',
     })
 
     const match = useMatch('/dashboard/projects/:projectId');
@@ -73,10 +74,11 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
         Project: project.id,
       })
       .then(function (response) {
-        console.log(response);
+        console.log("data ==",response);
         setStatus({
           isSubmitted : true,
           status : response.data.status,
+          platformId: response.data.platform_id,
         })
     })
       .catch(function (error) {
@@ -92,7 +94,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
     const form = formStyles();
     
     if(status.isSubmitted === true){
-      window.location.href='/project/:projectId/platforms';
+      window.location.href=`/dashboard/platforms/${status.platformId}/analysis`;
     }
 
   return (

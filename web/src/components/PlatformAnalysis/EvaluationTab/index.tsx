@@ -89,7 +89,7 @@ function createData1(cof: string, ilof: string, clof: string) {
 
 const rows = [
   createData('5', ' ≥ 680'),
-  createData('4', '>= 490 to < 680'),
+  createData('4', '≥ 490 to < 680'),
   createData('3','≥ 310 to < 490' ),
   createData('2', '≥ 120 < 310'),
   createData('1','< 120' ),
@@ -329,7 +329,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         'calculated_environmental_consequence'
     );
 
-    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  '0' : calculated_environmental_consequence + 'Barrels of Oil Equivalent (BOE)';
+    let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  '0' : calculated_environmental_consequence;
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
 
@@ -442,13 +442,14 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                 <Grid item xs={4}>
                 <Typography variant="h5" gutterBottom>
                     <p></p>
-                    <p>Likelihood of Failure Category</p>
+                    <p style={{margin: 'unset', padding: '.7rem'}}>Likelihood of Failure Category</p>
                 </Typography>
                 </Grid>
                 <Grid item xs={4}>
                     <Typography variant="h5" gutterBottom>
                         <p></p>
-                        {watch('lof_ranking')}
+                        <p style={{margin: 'unset', padding: '.7rem', width: '10rem', textAlign: 'center', backgroundColor: '#c2eade'}}>{watch('lof_ranking')}</p> 
+                        
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
@@ -525,7 +526,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                     Ranking
                                 </Typography>
                                 <Typography variant="h5">
-                                    {platformMannedStatus?.ranking ?? 'Unknown'}
+                                    <p style={{margin: 'unset', padding: '.7rem', width: '10rem', textAlign: 'center', backgroundColor: '#c2eade'}}>{platformMannedStatus?.ranking ?? 'Unknown'}</p>   
                                 </Typography>
                             </Grid>
                             <Grid item xs={4}>
@@ -966,7 +967,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography variant="h5">
-                                    {platformMannedStatus?.ranking ?? 'Unknown'}
+                                    <p style={{margin: 'unset', textAlign: 'center', padding: '0.5rem', width: '15rem', backgroundColor: '#c2eade'}}>{platformMannedStatus?.ranking ?? 'Unknown'}</p>
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -975,15 +976,11 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
+
                                 <Typography variant="h5">
-                                    {environmental_consequence_category}
+                                    <p style={{margin: 'unset', textAlign: 'center', padding: '0.5rem', width: '15rem', backgroundColor: '#c2eade'}}>{environmental_consequence_category}</p>
                                 </Typography>
-                                {/* <TextField
-                                    label="Environmental Consequence Category"
-                                    name={[
-                                        'environmental_consequence_category',
-                                    ]}
-                                /> */}
+                               
                             </Grid>
 
                             <Grid item xs={6}>
@@ -994,7 +991,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                             <Typography variant="h5">
-                                    {economic_consequence_category}
+                                <p style={{margin: 'unset', textAlign: 'center', padding: '0.5rem', width: '15rem', backgroundColor: '#c2eade'}}>{economic_consequence_category}</p>
                                 </Typography>
                             </Grid>
 
@@ -1007,7 +1004,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
                             <Grid item xs={6}>
                                 <Typography variant="h5">
-                                    {final_consequence_category}
+                                <p style={{margin: 'unset', textAlign: 'center', padding: '0.5rem', width: '15rem', backgroundColor: '#c2eade'}}>{final_consequence_category}</p>
                                 </Typography>
                             </Grid>
 

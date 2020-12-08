@@ -81,14 +81,14 @@ export default function ProgramPage() {
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Typography style={{backgroundColor:red, color: "white", fontWeight:"bold",}} variant="h5">
+                    {/* <Typography style={{backgroundColor:red, color: "white", fontWeight:"bold",}} variant="h5"> */}
                         <TextField
                             name={['risk_ranking']}
                             label=""
                             style={{textAlign : 'center'}}
                             disabled
                         />
-                    </Typography>
+                    {/* </Typography> */}
                     
                 </Grid>
 
