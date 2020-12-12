@@ -20,6 +20,7 @@ import { SkeletonPlatformCard } from './PlatformCard';
 import { MenuItem, TextField } from '@material-ui/core';
 import { useProjectList } from './ProjectListProvider';
 import { useForm } from "react-hook-form";
+import { Link } from '@reach/router';
 
 import axios from "axios";
 
@@ -72,53 +73,7 @@ const StyledTableCell = withStyles((theme) => ({
   });
 
 
-// const StyledDivider = styled(Divider)(
-//     ({
-//         theme,
-//         bgcolor,
-//     }: {
-//         theme: Theme;
-//         bgcolor?: 'veryHigh' | 'high' | 'medium' | 'low' | 'veryLow';
-//     }) => ({
-//         backgroundColor: bgcolor
-//             ? theme.palette[bgcolor].main
-//             : theme.palette.divider,
-//         height: 4,
-//         marginTop: theme.spacing(1),
-//         marginBottom: theme.spacing(1),
-//         width: theme.spacing(4),
-//         border: `1px solid ${
-//             bgcolor ? theme.palette[bgcolor].main : theme.palette.divider
-//         }`,
-//         borderRadius: theme.spacing(1),
-//     })
-// );
-
-// const StyledTypography = styled(Typography)({
-//     textTransform: 'uppercase',
-//     fontWeight: 800,
-// });
-
-// const SkeletonProjectCards = React.memo(() => (
-//     <>
-//         {[...Array(3).keys()].map((id) => (
-//             <Grid key={id} item xs={12}>
-//                 <SkeletonProjectCard />
-//             </Grid>
-//         ))}
-//     </>
-// ));
-
-// const SkeletonPlatformCards = React.memo(() => (
-//     <>
-//         {[...Array(3).keys()].map((index) => (
-//             <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-//                 <SkeletonPlatformCard />
-//             </Grid>
-//         ))}
-//     </>
-// ));
-
+const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 export default function ProjectList(_: RouteComponentProps) {
 
@@ -347,9 +302,9 @@ export default function ProjectList(_: RouteComponentProps) {
                                         <StyledTableCell colSpan={10} style={{minWidth: 120}} align="center">Recommended Inspection Plan for Next 10 years</StyledTableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <StyledTableCell style={{minWidth: 120}} ></StyledTableCell>
-                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
-                                        <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
+                                        <StyledTableCell></StyledTableCell>
+                                        <StyledTableCell align="center"></StyledTableCell>
+                                        <StyledTableCell align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
                                         <StyledTableCell style={{minWidth: 120}} align="center"></StyledTableCell>
@@ -377,21 +332,22 @@ export default function ProjectList(_: RouteComponentProps) {
                                 <TableBody>
                                 {platforms?.map((platform) => (
                                     <StyledTableRow key={platform.id}>
-                                    <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center" component="th" scope="row">{platform.name}</StyledTableCell>             
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.environmental_consequence.platform_type === null ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.manned === false ? '-' : 'Yes'}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.risk_ranking === null ? '-' : platform.risk_ranking}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.exposure_category_level === null ? '-' : platform.exposure_category_level}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
-                                    <StyledTableCell style={{minWidth: 120}} align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
+                                    <StyledLink to={`/dashboard/platforms/${platform.id}/analysis`} style={{textDecoration: 'underline',}}>
+                                    <StyledTableCell style={{color: 'blue'}} align="center" component="th" scope="row">{platform.name}</StyledTableCell> </StyledLink>        
+                                    <StyledTableCell align="center">{platform.environmental_consequence.platform_type === null || platform.environmental_consequence.platform_type.name == 'Any' ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.manned === false ? '-' : 'Yes'}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.risk_ranking === null ? '-' : platform.risk_ranking}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.exposure_category_level === null ? '-' : platform.exposure_category_level}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_1_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_2_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_3_selected_inspection_interval_for_next_inspection}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_1_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_2_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_3_last_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_1_next_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_2_next_inspection_date}</StyledTableCell>
+                                    <StyledTableCell align="center">{platform.level_3_next_inspection_date}</StyledTableCell>
                                     
                                     {platform.next_10_years_inspection_plan?.map((next) => (
                                         <StyledTableCell style={{minWidth: 130}} align="center">{next.level}</StyledTableCell>
