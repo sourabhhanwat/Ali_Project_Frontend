@@ -1,11 +1,8 @@
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { styled, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import { SkeletonProjectCard } from './ProjectCard';
 import {Pie} from 'react-chartjs-2';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -16,12 +13,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { usePlatformList } from './PlatformListProvider';
-import { SkeletonPlatformCard } from './PlatformCard';
 import { MenuItem, TextField } from '@material-ui/core';
 import { useProjectList } from './ProjectListProvider';
 import { useForm } from "react-hook-form";
 import { Link } from '@reach/router';
-
 import axios from "axios";
 
   
@@ -73,7 +68,7 @@ const StyledTableCell = withStyles((theme) => ({
   });
 
 
-const StyledLink = styled(Link)({ textDecoration: 'none' });
+const StyledLink = styled(Link)({ textDecoration: 'underline', padding : 'unset' });
 
 export default function ProjectList(_: RouteComponentProps) {
 
@@ -333,8 +328,13 @@ export default function ProjectList(_: RouteComponentProps) {
                                 {platforms?.map((platform) => (
                                     <StyledTableRow key={platform.id}>
                                     <StyledTableCell align="center" component="th" scope="row"> {id += 1}</StyledTableCell>
-                                    <StyledLink to={`/dashboard/platforms/${platform.id}/analysis`} style={{textDecoration: 'underline',}}>
-                                    <StyledTableCell style={{color: 'blue'}} align="center" component="th" scope="row">{platform.name}</StyledTableCell> </StyledLink>        
+                                    
+                                    <StyledTableCell align="center" component="th" scope="row">
+                                    <StyledLink to={`/dashboard/platforms/${platform.id}/analysis`}>
+                                        {platform.name}
+                                        </StyledLink> 
+                                        </StyledTableCell> 
+                                           
                                     <StyledTableCell align="center">{platform.environmental_consequence.platform_type === null || platform.environmental_consequence.platform_type.name == 'Any' ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
                                     <StyledTableCell align="center">{platform.manned === false ? '-' : 'Yes'}</StyledTableCell>
                                     <StyledTableCell align="center">{platform.risk_ranking === null ? '-' : platform.risk_ranking}</StyledTableCell>

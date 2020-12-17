@@ -101,21 +101,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
         isdeleted: false,
     })
 
-    // const deletePlatform = (value : any) => {
-
-    //     axios.post('/api/v1/deleteplatform/', {
-    //         platformId: value,
-    //       })
-    
-    //       .then(function (response) {
-    //         console.log(response);
-    //     })
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-      
-    // };
-
     const submit = (value : any) => {
         console.log("func called")
         confirmAlert({
@@ -151,14 +136,12 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
         window.location.href='/dashboard/rbui/';
     }
 
-
     const [platformData, setPlatform] = React.useState<any>([]);
 
     React.useEffect(() => {
-      fetch(`/api/v1/platforms/${platform.id}`)
-        .then(results => results.json())
+      axios.get(`/api/v1/platforms/${platform.id}`)
         .then(data => {
-          setPlatform(data);
+          setPlatform(data.data);
         });
     }, []);
     

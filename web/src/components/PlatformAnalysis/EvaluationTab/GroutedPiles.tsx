@@ -38,14 +38,14 @@ export default function GroutedPiles() {
                             Pile in Leg Installation?
                         </Typography>
                         <Typography variant="h5" gutterBottom>
-                            {leg_to_pile_annulus_grouted}
+                            {pile_in_leg_installation}
                         </Typography>
 
                         <Typography variant="subtitle2">
                             Leg to Pile Annulus Grouted?
                         </Typography>
                         <Typography variant="h5">
-                            {pile_in_leg_installation}
+                            {leg_to_pile_annulus_grouted}
                         </Typography>
                     </Grid>
                 </Grid>

@@ -173,7 +173,7 @@ export default function Layout({ children }: any) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" noWrap>
-                        Risk Based Underwater Inspection (RBUI) Study for Jackets
+                        RBUI - Offshore Jacket Structures
                     </Typography>
                 </Toolbar>
             </StyledAppBar>

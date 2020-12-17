@@ -93,23 +93,23 @@ export default function CreatePlatform(_: RouteComponentProps) {
 
     const StyledLink = styled(Link)({ textDecoration: 'none' });
 
-    const fetch = React.useCallback(() => {
-        if (projectId) {
-            platformList.subject.list({
-                filter: {
-                    project: projectId,
-                },
-            });
-        } else {
-            platformList.subject.list(undefined);
-        }
-    }, [projectId, platformList.subject]);
+    // const fetch = React.useCallback(() => {
+    //     if (projectId) {
+    //         platformList.subject.list({
+    //             filter: {
+    //                 project: projectId,
+    //             },
+    //         });
+    //     } else {
+    //         platformList.subject.list(undefined);
+    //     }
+    // }, [projectId, platformList.subject]);
 
-    React.useEffect(() => {
-        platformList.subject.attach(handlePlatformList);
-        fetch();
-        return () => platformList.subject.detach(handlePlatformList);
-    }, [fetch, platformList.subject]);
+    // React.useEffect(() => {
+    //     platformList.subject.attach(handlePlatformList);
+    //     fetch();
+    //     return () => platformList.subject.detach(handlePlatformList);
+    // }, [fetch, platformList.subject]);
 
     const classes = useStyles();
     

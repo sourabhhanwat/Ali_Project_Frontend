@@ -3,18 +3,12 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps, useMatch} from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import {styled, Avatar, makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
+import {makeStyles, Button, TextField, MenuItem} from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import { KeyboardDatePicker } from '@material-ui/pickers';
 
-// const StyledAvatar = styled(Avatar)(({ theme }) => ({
-//     backgroundColor: theme.palette.secondary.main,
-// }));
 
-// const tableStyles = {
-//   padding: 'unset',
-// };
 
 const formStyles = makeStyles({
   formDesign: {
@@ -57,10 +51,9 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     }
 
     React.useEffect(() => {
-      fetch(`/api/v1/projects/${projectId}`)
-        .then(results => results.json())
+      axios.get(`/api/v1/projects/${projectId}`)
         .then(data => {
-          updateProject(data);
+          updateProject(data.data);
         });
     }, []);
 
@@ -70,10 +63,8 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     console.log(dateValue)
 
     const [startDate, setStartDate] = React.useState<Date | null>(
-      project.start_date
+      new Date('2020-12-08T03:00:09.939000Z'),
     );
-
-
     
     const [endDate, setEndDate] = React.useState<Date | null>(
       new Date(),
@@ -144,19 +135,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                       <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                     }
                 
-                    <TextField
-                      id="outlined-multiline-static"
-                      label="Platfrom Name"
-                      multiline
-                      name="des"
-                      variant="outlined"
-                      defaultValue={project.name}
-                      className={form.formDesign}
-                      inputRef={register({ required: true,})}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />             
+                    <input type="text" value={project.name} />           
                   </Grid>
                 
                 
