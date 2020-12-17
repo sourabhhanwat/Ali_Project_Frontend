@@ -64,7 +64,7 @@ export function SignInForm() {
             >
                 <StyledImage style={{width: '130px'}} src="/logo.png" />
                 <Typography component="p" align="center" style={{fontWeight: 'bold', letterSpacing: '1.2px', fontSize: '1.5em',color: '#1f497d'}}>
-                    RBUI for Jackets
+                    RBUI - Offshore Jacket Structures
                 </Typography>
             </Box>
 
