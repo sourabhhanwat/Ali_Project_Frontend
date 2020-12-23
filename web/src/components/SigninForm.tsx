@@ -69,7 +69,7 @@ export function SignInForm() {
             </Box>
 
             <Box display="flex" justifyContent="center" mb={2}>
-                <StyledAvatar style={{backgroundColor: '#4c8af0'}}>
+                <StyledAvatar style={{backgroundColor: '#03184d'}}>
                     <LockOutlinedIcon />
                 </StyledAvatar>
             </Box>
@@ -133,6 +133,8 @@ export function SignInForm() {
                     fullWidth
                     variant="contained"
                     color="primary"
+
+                    style={{backgroundColor: '#03184d', padding : '.6rem', fontSize: '18px', fontWeight: 'bold'}}
                 >
                     {!isPending && 'Sign In'}
                     {isPending && <CircularProgress />}
