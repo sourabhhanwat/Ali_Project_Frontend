@@ -190,12 +190,12 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <p>
-                                    Risk Based Underwater Inspection Interval (Years)
+                                    Risk Based Inspection Interval (Years)
                                     </p>
                             </Grid>
                             <Grid item xs={6}>
                                      <TextField
-                                        label="Risk Based Underwater Inspection Interval (Years)"
+                                        label="Risk Based Inspection Interval (Years)"
                                         name={[
                                             'risk_based_underwater_inspection_interval',
                                         ]}
