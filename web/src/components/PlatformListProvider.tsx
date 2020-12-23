@@ -47,7 +47,7 @@ export const PlatformSchema = yup
         last_inspection: yup
             .object({
                 id: yup.number(),
-                last_underwater_inspection_date: yup.date().nullable(),
+                last_underwater_inspection_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
                 rbui_inspection_interval: yup.number().nullable(true).transform((v, o) => o === '' ? null : v),
             })
             .noUnknown().nullable(),
@@ -62,12 +62,12 @@ export const PlatformSchema = yup
             .object({
                 id: yup.number(),
                 platform_design_life: yup.number().positive(),
-                cp_design_life: yup.number().nullable(),
+                cp_design_life: yup.number().nullable().transform((v, o) => o === '' ? null : v),
                 original_anode_installation_date: yup.date(),
-                anode_retrofit_date: yup.date().nullable(),
-                anode_survey_inspection_date: yup.date().nullable(),
-                average_anode_depletion_from_survey: yup.number().nullable(),
-                average_anode_potential_from_survey: yup.number().nullable(),
+                anode_retrofit_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
+                anode_survey_inspection_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
+                average_anode_depletion_from_survey: yup.number().nullable().transform((v, o) => o === '' ? null : v),
+                average_anode_potential_from_survey: yup.number().nullable().transform((v, o) => o === '' ? null : v),
             })
             .noUnknown(),
         corrosion_score: yup.number(),
@@ -88,7 +88,7 @@ export const PlatformSchema = yup
             .object({
                 id: IntegerSchema,
                 design_scour_depth: DecimalLikeSchema,
-                measured_scour_depth_during_inspection: DecimalLikeSchema.nullable(),
+                measured_scour_depth_during_inspection: DecimalLikeSchema.nullable().transform((v, o) => o === '' ? null : v),
             })
             .noUnknown(),
         scour_score: yup.number(),
@@ -104,8 +104,8 @@ export const PlatformSchema = yup
         unprotected_appurtenances: yup
             .object({
                 id: IntegerSchema,
-                number_of_unprotected_gas_riser: IntegerSchema.nullable(),
-                number_of_unprotected_conductor: IntegerSchema.nullable(),
+                number_of_unprotected_gas_riser: IntegerSchema.nullable().transform((v, o) => o === '' ? null : v),
+                number_of_unprotected_conductor: IntegerSchema.nullable().transform((v, o) => o === '' ? null : v),
             })
             .noUnknown(),
         unprotected_appurtenances_score: yup.number(),
@@ -113,7 +113,7 @@ export const PlatformSchema = yup
             .object({
                 id: IntegerSchema,
                 original_topsides_design_load_known: yup.bool(),
-                increase_in_topsides_load: DecimalLikeSchema.nullable(),
+                increase_in_topsides_load: DecimalLikeSchema.nullable().transform((v, o) => o === '' ? null : v),
             })
             .noUnknown(),
         deck_load_score: yup.number(),
@@ -161,8 +161,8 @@ export const PlatformSchema = yup
         
         platform_manned_status: yup
             .object({
-                id: IntegerSchema.nullable(),
-                name: yup.string().trim().nullable(),
+                id: IntegerSchema.nullable().transform((v, o) => o === '' ? null : v),
+                name: yup.string().trim().nullable().transform((v, o) => o === '' ? null : v),
             })
             .noUnknown().nullable(),
         platform_manned_status_id: yup.ref('platform_manned_status.id'),
@@ -171,7 +171,7 @@ export const PlatformSchema = yup
         
         environmental_consequence: yup
             .object({
-                id: yup.number().nullable(),
+                id: yup.number().nullable().transform((v, o) => o === '' ? null : v),
                 platform_type: yup
                     .object({
                         id: IntegerSchema,
@@ -201,8 +201,8 @@ export const PlatformSchema = yup
 
         bracing_type: yup
         .object({
-            id: IntegerSchema.nullable(),
-            name: yup.string().trim().nullable(),
+            id: IntegerSchema.nullable().transform((v, o) => o === '' ? null : v),
+            name: yup.string().trim().nullable().transform((v, o) => o === '' ? null : v),
         })
         .noUnknown().nullable(),
         bracing_type_id: yup.ref('bracing_type.id'),
@@ -297,12 +297,12 @@ export const PlatformSchema = yup
         structure_replacement_decision: yup.string(),
         calculate_economic_impact_remaining_life_services:yup.string(),
         calculated_economic_impact_consequence:yup.string(),
-        final_consequence_category:yup.string().nullable(),
+        final_consequence_category:yup.string().nullable().transform((v, o) => o === '' ? null : v),
         economic_consequence_category:yup.string().matches(/^[A-E]1*$/, 'Only character A-E').typeError('Only character A-E'),
-        risk_ranking:yup.string().nullable(),
+        risk_ranking:yup.string().nullable().transform((v, o) => o === '' ? null : v),
         environmental_consequence_category:yup.string().matches(/^[A-E]1*$/, 'Only character A-E').typeError('Only character A-E'),
-        environmental_consequence_description: yup.string().nullable(),
-        economic_consequence_description: yup.string().nullable(),
+        environmental_consequence_description: yup.string().nullable().transform((v, o) => o === '' ? null : v),
+        economic_consequence_description: yup.string().nullable().transform((v, o) => o === '' ? null : v),
         level_1_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_2_selected_inspection_interval_for_next_inspection: IntegerSchema,
         level_3_selected_inspection_interval_for_next_inspection: IntegerSchema,
@@ -331,11 +331,11 @@ export const PlatformSchema = yup
         helideck: yup.bool(),
         boatlanding: yup.bool(),
         anode_grade: IntegerSchema,
-        design_date: yup.date().nullable(),
+        design_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
         platform_installation_date: yup.date(),
         rbui_assessment_date: yup.date(),
         selected_inspection_interval_for_next_inspection: IntegerSchema,
-        calculated_environmental_consequence: IntegerSchema.nullable(),
+        calculated_environmental_consequence: IntegerSchema.nullable().transform((v, o) => o === '' ? null : v),
         project: IntegerSchema
     })
     .noUnknown();
