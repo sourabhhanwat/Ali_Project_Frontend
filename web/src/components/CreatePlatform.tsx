@@ -7,9 +7,7 @@ import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
-
 import { Link } from '@reach/router';
-// -----------------------
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -73,15 +71,8 @@ export default function CreatePlatform(_: RouteComponentProps) {
         return () => subject.detach(handleProjectList);
     }, [subject]);
 
-    const platformList = usePlatformList();
-
     const [isPending, setIsPending] = React.useState<boolean>();
     const [platforms, setPlatforms] = React.useState<Platform[] | null>();
-
-    const handlePlatformList = (state: State<Platform[] | null>) => {
-        setIsPending(state.isPending);
-        setPlatforms(state.value);
-    };
 
     let projectId: number | undefined;
 
@@ -93,23 +84,6 @@ export default function CreatePlatform(_: RouteComponentProps) {
 
     const StyledLink = styled(Link)({ textDecoration: 'none' });
 
-    // const fetch = React.useCallback(() => {
-    //     if (projectId) {
-    //         platformList.subject.list({
-    //             filter: {
-    //                 project: projectId,
-    //             },
-    //         });
-    //     } else {
-    //         platformList.subject.list(undefined);
-    //     }
-    // }, [projectId, platformList.subject]);
-
-    // React.useEffect(() => {
-    //     platformList.subject.attach(handlePlatformList);
-    //     fetch();
-    //     return () => platformList.subject.detach(handlePlatformList);
-    // }, [fetch, platformList.subject]);
 
     const classes = useStyles();
     

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { RouteComponentProps, useMatch } from '@reach/router';
 import React from 'react';
 import '../modules/Subject';
-import {  styled, Avatar, Button, makeStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { useForm} from 'react-hook-form';
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';

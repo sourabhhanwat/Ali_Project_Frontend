@@ -56,7 +56,7 @@ export default function GeneralDetailsFieldset() {
 
                 <Grid item xs={12} md={6}>
                     <DatePicker
-                        label="RBUI Assessment Date"
+                        label="RBI Assessment Date"
                         name={['rbui_assessment_date']}
                         required
                     />

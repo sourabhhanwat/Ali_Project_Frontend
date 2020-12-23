@@ -44,7 +44,7 @@ function ResourceAvatar() {
     return (
         <Box clone display="block" mr={4} ml={1}>
             <Avatar>
-                <Match path="/dashboard/rbui">
+                <Match path="/dashboard/rbi">
                     {(props) => props.match && <ProjectIcon />}
                 </Match>
                 <Match path="/dashboard/newProject">
@@ -86,8 +86,8 @@ function ResourceTitle() {
                 <Match path="/dashboard/NewPlatform/:platformId">
                     {(props) => props.match && 'New Platform'}
                 </Match>
-                <Match path="/dashboard/rbui">
-                    {(props) => props.match && 'RBUI Dashboard'}
+                <Match path="/dashboard/rbi">
+                    {(props) => props.match && 'RBI Dashboard'}
                 </Match>
                 <Match path="/dashboard/CreatePlatform">
                     {(props) => props.match && 'Project List'}
@@ -127,9 +127,9 @@ function ResourceCaption() {
                         props.match && 'Users can create new platform.'
                     }
                 </Match>
-                <Match path="/dashboard/rbui">
+                <Match path="/dashboard/rbi">
                     {(props) =>
-                        props.match && 'RBUI Summary Dashboard'
+                        props.match && 'RBI Summary Dashboard'
                     }
                 </Match>
                 <Match path="/dashboard/CreatePlatform">
@@ -173,7 +173,7 @@ export default function Layout({ children }: any) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" noWrap>
-                        RBUI - Offshore Jacket Structures
+                        RBI - Offshore Jacket Structures
                     </Typography>
                 </Toolbar>
             </StyledAppBar>

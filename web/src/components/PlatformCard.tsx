@@ -133,7 +133,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
     };
 
     if(status.isdeleted === true){
-        window.location.href='/dashboard/rbui/';
+        window.location.href='/dashboard/rbi/';
     }
 
     const [platformData, setPlatform] = React.useState<any>([]);
@@ -199,7 +199,6 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
             </List>
             <Box justifyContent="space-between" clone>
                 <CardActions>
-                
                         <Button size= "small" title="Delete" color="primary"
                             onClick={() => submit(platform.id)} >
                             <DeleteIcon />

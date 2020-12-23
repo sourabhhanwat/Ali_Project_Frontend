@@ -105,12 +105,12 @@ export default function Drawer({ open }: { open: boolean }) {
                 <ListItem
                     button
                     onClick={() => navigate('/dashboard')}>
-                    <Tooltip title="RBUI Summary Dashboard">
+                    <Tooltip title="RBI Summary Dashboard">
                         <ListItemIcon>
                             <ProjectIcon />
                         </ListItemIcon>
                     </Tooltip>
-                    <ListItemText primary="RBUI Dashboard" />
+                    <ListItemText primary="RBI Dashboard" />
                 </ListItem>
 
                 <ListItem button onClick={() => navigate('/dashboard/CreatePlatform')}>

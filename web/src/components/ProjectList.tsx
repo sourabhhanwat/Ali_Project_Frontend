@@ -87,8 +87,6 @@ export default function ProjectList(_: RouteComponentProps) {
           });
       }, []);
 
-    let searchresult : any
-
     const platformList = usePlatformList();
     const [platforms, setPlatforms] = React.useState<Platform[] | null>();
     const [copied, copyPlatforms] = React.useState<Platform[] | null>();
@@ -335,7 +333,10 @@ export default function ProjectList(_: RouteComponentProps) {
                                         </StyledLink> 
                                         </StyledTableCell> 
                                            
-                                    <StyledTableCell align="center">{platform.environmental_consequence.platform_type === null || platform.environmental_consequence.platform_type.name == 'Any' ? '-' : platform.environmental_consequence.platform_type.name  }</StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        {platform.environmental_consequence.platform_type === null || 
+                                        platform.environmental_consequence.platform_type.name === 'Any' ? '-' : platform.environmental_consequence.platform_type.name  }
+                                    </StyledTableCell>
                                     <StyledTableCell align="center">{platform.manned === false ? '-' : 'Yes'}</StyledTableCell>
                                     <StyledTableCell align="center">{platform.risk_ranking === null ? '-' : platform.risk_ranking}</StyledTableCell>
                                     <StyledTableCell align="center">{platform.exposure_category_level === null ? '-' : platform.exposure_category_level}</StyledTableCell>

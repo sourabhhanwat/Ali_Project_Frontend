@@ -45,6 +45,13 @@ export default function StructuralDetailsFieldset() {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
+                    <Checkbox
+                        name="shallow_gas.shallow_gas_monitored"
+                        label="Shallow Gas Monitored?"
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
                     <Checkbox name="crane" label="Crane" />
                 </Grid>
 

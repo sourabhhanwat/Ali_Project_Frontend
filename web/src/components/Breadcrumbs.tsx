@@ -25,11 +25,11 @@ export default function CommonBreadcrumbs() {
                     )
                 }
             </Match>
-            <Match path="/dashboard/rbui">
+            <Match path="/dashboard/rbi">
                 {(props) =>
                     props.match && (
                         <Breadcrumbs separator=">">
-                            <Box>RBUI Dashboard</Box>
+                            <Box>RBI Dashboard</Box>
                         </Breadcrumbs>
                     )
                 }

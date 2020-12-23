@@ -27,8 +27,7 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
 
     const inspection_date = watch('last_inspection.last_underwater_inspection_date');
 
-    let date_value =  inspection_date ? moment(inspection_date).format("Do MMM YYYY") : 'Inspection Date'
-    console.log("Date ==", date_value)
+    let date_value =  inspection_date ? moment(inspection_date).format("D/MM/YYYY") : 'Inspection Date'
 
     let red = (risk_ranking === 'H') ?  '#FFC000' : (risk_ranking === 'VH') ?  '#FF0000' : (risk_ranking === 'M') ?  '#FFFF00' : (risk_ranking === 'L') ?  '#92D050' : '#00B050';
 
@@ -95,7 +94,7 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
 
                     <Grid item xs={3} md={3}>
                         <div style={{backgroundColor: red, height:"50px", borderRadius: '5px'}}>
-                            <Typography style={{color: "Black", fontWeight: 'bold', textAlign:"center" ,padding:"1rem"}}>{risk_ranking}</Typography>
+                            <Typography style={{color: "Black", fontWeight: 'bold', textAlign:"center", fontSize: "25px" ,padding:"0.4rem 1rem"}}>{risk_ranking}</Typography>
                         </div>
                     </Grid>
 

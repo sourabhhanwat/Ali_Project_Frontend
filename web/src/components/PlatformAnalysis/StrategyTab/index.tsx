@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '../../FormWidget/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFormContext } from 'react-hook-form';
-import DatePicker from '../../FormWidget/DatePicker';
 import { usePlatformTypeListContext } from '../../PlatformTypeListProvider';
 
 const graphStyles = makeStyles({
@@ -95,9 +94,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
     );
 
     let red = (risk_ranking === 'H') ?  '#FFC000' : (risk_ranking === 'VH') ?  '#FF0000' : (risk_ranking === 'M') ?  '#FFFF00' : (risk_ranking === 'L') ?  '#92D050' : '#00B050';
-    // let risk = (risk_ranking === 'H') ?  'High (H)' : (risk_ranking === 'VH') ?  'Very High (VH)' : (risk_ranking === 'M') ?  'Medium (M)' : (risk_ranking === 'L') ?  'Low (L)' : 'Very Low (VL)';
 
-   
     const final_consequence_category = watch(
         'final_consequence_category'
     );
@@ -131,11 +128,6 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            {/* <DatePicker
-                                label="RBUI Assessment Date"
-                                name={['level_1_last_inspection_date']}
-                                required
-                            /> */}
                             <TextField
                                 name={['level_1_last_inspection_date']}
                                 label="YYYY-MM-DD"
@@ -147,11 +139,6 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            {/* <DatePicker
-                                label="RBUI Assessment Date"
-                                name={['level_2_last_inspection_date']}
-                                required
-                            /> */}
                             <TextField
                                 name={['level_2_last_inspection_date']}
                                 label="YYYY-MM-DD"
@@ -164,11 +151,6 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                         </Grid> 
 
                         <Grid item xs={12} md={6}>
-                            {/* <DatePicker
-                                label="RBUI Assessment Date"
-                                name={['level_3_last_inspection_date']}
-                                required
-                            /> */}
                             <TextField
                                 name={['level_3_last_inspection_date']}
                                 label="YYYY-MM-DD"

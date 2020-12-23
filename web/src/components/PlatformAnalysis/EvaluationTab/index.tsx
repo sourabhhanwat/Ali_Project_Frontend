@@ -4,7 +4,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import '../../../modules/Subject';
 import Checkbox from '../../FormWidget/Checkbox';
@@ -40,25 +40,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'dropdown-select/dist/css/dropdown-select.css';
-import axios from "axios";
-import {styled} from '@material-ui/core';
+// import axios from "axios";
 
-enum CatEnum {
-    A = "A",
-    B = "B",
-    C = "C",
-    D = "D",
-    E = "E"
-  }
-
-
-  const StyledImage = styled('img')(({ theme }) => ({
-    width: theme.spacing(60),
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    objectFit: 'contain',
-    textAlign: 'center',
-}));
+// enum CatEnum {
+//     A = "A",
+//     B = "B",
+//     C = "C",
+//     D = "D",
+//     E = "E"
+//   }
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -82,9 +72,9 @@ function createData(lof: string, score: string) {
   return { lof, score };
 }
 
-function createData1(cof: string, ilof: string, clof: string) {
-    return { cof, ilof , clof};
-  }
+// function createData1(cof: string, ilof: string, clof: string) {
+//     return { cof, ilof , clof};
+//   }
 
 
 const rows = [
@@ -121,9 +111,9 @@ const rows_eco = [
   createData3('A', ' < 6','The consequence of failure represents very low cost'),
 ];
 
-function createData4(a: string, b: string, c: string) {
-    return { a, b , c};
-}
+// function createData4(a: string, b: string, c: string) {
+//     return { a, b , c};
+// }
 
 
 const rows_cof = [
@@ -211,17 +201,17 @@ const graphStyles = makeStyles({
 
 export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean }) {
 
-    const [lst, setLst] = React.useState([])    
+    // const [lst, setLst] = React.useState([])    
 
-    const onDrop = () => {
-        axios.get('/api/v1/category/')
-        .then(function (response) {
-          setLst(response.data.map((item: any) => item))
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      };
+    // const onDrop = () => {
+    //     axios.get('/api/v1/category/')
+    //     .then(function (response) {
+    //       setLst(response.data.map((item: any) => item))
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    //   };
 
     const { watch } = useFormContext();
 
@@ -284,13 +274,13 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
         [platform_manned_status_id, platformMannedStatusList]
     );
 
-    const daily_oil_production = watch(
-        'environmental_consequence.daily_oil_production'
-    );
+    // const daily_oil_production = watch(
+    //     'environmental_consequence.daily_oil_production'
+    // );
     
-    const environmental_consequence_description = watch(
-        'environmental_consequence_description'
-    );
+    // const environmental_consequence_description = watch(
+    //     'environmental_consequence_description'
+    // );
 
     const calculated_economic_impact_consequence = watch(
         'calculated_economic_impact_consequence'
@@ -317,9 +307,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
      
     const lof_ranking = watch('lof_ranking');
 
-    const risk_based_underwater_inspection_interval = watch(
-        'risk_based_underwater_inspection_interval'
-    );
+    // const risk_based_underwater_inspection_interval = watch(
+    //     'risk_based_underwater_inspection_interval'
+    // );
 
     const risk_ranking = watch(
         'risk_ranking'
@@ -333,9 +323,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
 
-    let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
+    // let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
     
-    const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
+    // const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
     let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    
 

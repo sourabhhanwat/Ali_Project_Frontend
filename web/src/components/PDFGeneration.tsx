@@ -74,7 +74,7 @@ export function PdfDocument(props : any) {
             <Text style={styles.header} fixed>
                        ~Created with react-pdf ~
             </Text><Text style={styles.title}>Project Title</Text>
-            <Text style={styles.author}>RBUI Assessment Summary Report for 
+            <Text style={styles.author}>RBI Assessment Summary Report for 
                 <Text style={styles.author}>{props.data.name}</Text>
             </Text>
             <Text style={styles.text}>Project Name:  
@@ -88,7 +88,7 @@ export function PdfDocument(props : any) {
             {/* <Text style={styles.text}>Number of Legs: {props.data.number_of_legs_type.name}</Text>
             <Text style={styles.text}>Design Life:  {props.data.corrosion.platform_design_life}</Text>
             <Text style={styles.text}>Last underwater Inspection: {props.data.last_inspection.last_underwater_inspection_date}</Text> */}
-            <Text style={styles.text}>RBUI Assessment date: {props.data.description}</Text>
+            <Text style={styles.text}>RBI Assessment date: {props.data.description}</Text>
             
             <Text style={styles.subtitle}>Likelihood of Failure</Text>
             

@@ -46,13 +46,11 @@ export default function GroutedPiles() {
 
                         <Grid item xs={12} md={6}>
                             <DatePicker
-                                name={[
-                                    'corrosion',
-                                    'original_anode_installation_date',
-                                ]}
-                                label="Original Anodes Installation Date"
-                                required
+                                name={['corrosion', 'anode_retrofit_date']}
+                                label="Anode Retrofit Date"
                             />
+
+                            
                         </Grid>
 
                         <Hidden smDown>
@@ -61,8 +59,12 @@ export default function GroutedPiles() {
 
                         <Grid item xs={12} md={6}>
                             <DatePicker
-                                name={['corrosion', 'anode_retrofit_date']}
-                                label="Anode Retrofit Date"
+                                name={[
+                                    'corrosion',
+                                    'original_anode_installation_date',
+                                ]}
+                                label="Original Anodes Installation Date"
+                                required
                             />
                         </Grid>
 

@@ -28,9 +28,8 @@ export default function StructuralDetailsFieldset() {
                 <Grid item xs={12} md={6}>
                     <TextField
                         name={['last_inspection', 'rbui_inspection_interval']}
-                        label="RBUI Inspection Interval"
+                        label="RBI Inspection Interval"
                         unit="years"
-                        nullable
                     />
                 </Grid>
 

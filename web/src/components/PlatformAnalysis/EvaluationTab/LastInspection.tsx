@@ -42,7 +42,7 @@ export default function LastInspection() {
                         </Typography>
 
                         <Typography variant="subtitle2">
-                            RBUI Assessment Date
+                            RBI Assessment Date
                         </Typography>
                         <Typography variant="h5" gutterBottom>
                             <IsoDate
@@ -53,7 +53,7 @@ export default function LastInspection() {
                         </Typography>
 
                         <Typography variant="subtitle2">
-                            RBUI Inspection Interval
+                            RBI Inspection Interval
                         </Typography>
                         <Typography variant="h5">
                             {rbui_inspection_interval}
