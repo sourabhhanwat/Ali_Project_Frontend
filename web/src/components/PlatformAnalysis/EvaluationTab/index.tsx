@@ -307,9 +307,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
      
     const lof_ranking = watch('lof_ranking');
 
-    // const risk_based_underwater_inspection_interval = watch(
-    //     'risk_based_underwater_inspection_interval'
-    // );
 
     const risk_ranking = watch(
         'risk_ranking'
@@ -322,10 +319,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
     let calculated_environmental_consequence1 = (calculated_environmental_consequence === null) ?  '0' : calculated_environmental_consequence;
 
     let structure_replacement_decision1 = (structure_replacement_decision === 'false') ?  'Do Not Replace' : ' Replace Structure';
-
-    // let environmental_consequence_description1 = (environmental_consequence_description === 'Unknown') ?  'environmental_consequence_description' : 'Blank';
-    
-    // const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
 
     let red = (risk_ranking === 'H') ?  'orange' : (risk_ranking === 'VH') ?  'red' : (risk_ranking === 'M') ?  'yellow' : (risk_ranking === 'L') ?  'yellowgreen' : 'green';    
 

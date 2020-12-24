@@ -63,7 +63,7 @@ export const PlatformSchema = yup
                 id: yup.number(),
                 platform_design_life: yup.number().positive(),
                 cp_design_life: yup.number().nullable().transform((v, o) => o === '' ? null : v),
-                original_anode_installation_date: yup.date(),
+                original_anode_installation_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
                 anode_retrofit_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
                 anode_survey_inspection_date: yup.date().nullable().transform((v, o) => o === '' ? null : v),
                 average_anode_depletion_from_survey: yup.number().nullable().transform((v, o) => o === '' ? null : v),

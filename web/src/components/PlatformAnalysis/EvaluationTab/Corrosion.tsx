@@ -33,6 +33,7 @@ export default function GroutedPiles() {
 
                         <Grid item xs={12} md={6}>
                             <TextField
+                                nullable
                                 name={['corrosion', 'cp_design_life']}
                                 label="CP Design Life"
                                 unit="years"
@@ -48,9 +49,7 @@ export default function GroutedPiles() {
                             <DatePicker
                                 name={['corrosion', 'anode_retrofit_date']}
                                 label="Anode Retrofit Date"
-                            />
-
-                            
+                            />   
                         </Grid>
 
                         <Hidden smDown>
@@ -65,6 +64,7 @@ export default function GroutedPiles() {
                                 ]}
                                 label="Original Anodes Installation Date"
                                 required
+                                disabled={anode_retrofit_date}
                             />
                         </Grid>
 
