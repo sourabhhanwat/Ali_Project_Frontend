@@ -79,7 +79,7 @@ export default function GroutedPiles() {
                                     'anode_survey_inspection_date',
                                 ]}
                                 label="Anode Survey/Inspection Date"
-                                disabled={!anode_retrofit_date}
+                                // disabled={!anode_retrofit_date}
                                 required
                             />
                         </Grid>
@@ -96,7 +96,7 @@ export default function GroutedPiles() {
                                 ]}
                                 label="Average Anode Depletion From Survey"
                                 unit="%"
-                                disabled={!anode_retrofit_date}
+                                // disabled={!anode_retrofit_date}
                             />
                         </Grid>
 
@@ -112,7 +112,7 @@ export default function GroutedPiles() {
                                 ]}
                                 label="Average Anode Potential From Survey"
                                 unit="mV"
-                                disabled={!anode_retrofit_date}
+                                // disabled={!anode_retrofit_date}
                             />
                         </Grid>
 
