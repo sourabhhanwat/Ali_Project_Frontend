@@ -1,5 +1,6 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import { styled } from '@material-ui/core/styles';
 import React from 'react';
 import ExpansionRow from '../ExpansionRow';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -11,9 +12,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useForm, useFormContext } from 'react-hook-form';
+import { Link } from '@reach/router';
 import axios from "axios";
 import { Button } from '@material-ui/core';
+import { confirmAlert } from 'react-confirm-alert'; 
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -25,6 +29,8 @@ const StyledTableCell = withStyles((theme) => ({
     fontSize: 14,
   },
 }))(TableCell);
+
+const StyledLink = styled(Link)({ textDecoration: 'none' });
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
@@ -71,6 +77,9 @@ export default function MarineGrowth() {
     id = watch('id');
 
     const { register, handleSubmit } = useForm<IFormInput>();
+    const [status, setstatus] = React.useState({
+      isdeleted: false,
+    })
 
     const onSubmit = (data: IFormInput,e:any) => {
       e.target.reset();
@@ -95,7 +104,38 @@ export default function MarineGrowth() {
     enumerableKeys = watch('marine_growths');
     let elv = [];
     elv = watch('marine_growth_each_elevation');
-    console.log(elv);
+    console.log("elev",enumerableKeys);
+
+    const submit = (value : any) => {
+      console.log("marine id: ",value)
+      confirmAlert({
+        title: 'Confirm to delete',
+        message: 'Are you sure to do this.',
+        buttons: [
+          {
+            label: 'Yes',
+              onClick: () => axios.post('/api/v1/deletemarinegrowth/', {
+                  marineGrowthId: value,
+              })
+              .then(function (response) {
+                  console.log(response);
+                  setstatus({
+                      isdeleted : true,
+                  })
+              })
+              .catch(function (error) {
+                  console.log(error);
+              }),
+          },
+          {
+            label: 'No',
+            onClick: () => setstatus({
+              isdeleted : false,
+          })
+          }
+        ],
+      });  
+  };
   
     return (
         <ExpansionRow
@@ -185,10 +225,6 @@ export default function MarineGrowth() {
                                         Submit
                                     </Button>
                                 </Box>
-                            
-                            {/* <input 
-                            style={{ width : "300px" , height: "40px", margin:"20px",backgroundColor: 'lightGreen', fontStyle: "inherit"}} 
-                            type="submit" value = "Add" />  */}
                         </Grid>
                     </Grid>
                     </form>
@@ -205,12 +241,14 @@ export default function MarineGrowth() {
                                     <StyledTableCell colSpan={2} align="center" style={{minWidth: 50}} >Depths (m)</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 10}} align="center">Inspected Thickness (mm)</StyledTableCell>
                                     <StyledTableCell  style={{minWidth: 10}} align="center">Allowable Design Thickness (mm)</StyledTableCell>
+                                    <StyledTableCell></StyledTableCell>
                                     </TableRow>
                                 <TableRow>
                                     <StyledTableCell style={{minWidth: 25}} align="center">From EL</StyledTableCell>
                                     <StyledTableCell style={{minWidth: 25}} align="center">To EL</StyledTableCell>
                                     <StyledTableCell  style={{minWidth: 10}} align="center"></StyledTableCell>
                                     <StyledTableCell style={{minWidth: 10}} align="center"></StyledTableCell>
+                                    <StyledTableCell></StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -220,6 +258,14 @@ export default function MarineGrowth() {
                                 <StyledTableCell style={{minWidth: 25}} align="center">{list.marine_growth_depths_to_el}</StyledTableCell>             
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_inspected_thickness}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_design_thickness}</StyledTableCell>
+                                <StyledTableCell style={{padding: ".6rem"}}>
+                                   
+                                          <Button size= "medium" color="primary"        
+                                              onClick={() => submit(list.id)}
+                                              >
+                                          <DeleteIcon />
+                                          </Button>
+                                    </StyledTableCell>
                                </StyledTableRow>
                              ))}
                             </TableBody>

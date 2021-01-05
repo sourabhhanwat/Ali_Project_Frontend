@@ -53,11 +53,6 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
                         <div style={{border: '1px solid #d0d0d0', borderRadius: '5px'}}>
                             <Typography style={{padding: '1rem 0.5rem', color: '#989696'}}>{platform_name}</Typography>
                         </div>
-                        {/* <TextField
-                            name={['name']}
-                            label="Platform Name"
-                            disabled
-                        /> */}
                     </Grid>
                     
                     <Grid item xs={3} md={3}>
