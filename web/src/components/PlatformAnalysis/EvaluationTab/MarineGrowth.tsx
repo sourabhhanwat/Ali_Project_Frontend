@@ -108,34 +108,16 @@ export default function MarineGrowth() {
 
     const submit = (value : any) => {
       console.log("marine id: ",value)
-      confirmAlert({
-        title: 'Confirm to delete',
-        message: 'Are you sure to do this.',
-        buttons: [
-          {
-            label: 'Yes',
-              onClick: () => axios.post('/api/v1/deletemarinegrowth/', {
-                  marineGrowthId: value,
-              })
-              .then(function (response) {
-                  console.log(response);
-                  setstatus({
-                      isdeleted : true,
-                  })
-              })
-              .catch(function (error) {
-                  console.log(error);
-              }),
-          },
-          {
-            label: 'No',
-            onClick: () => setstatus({
-              isdeleted : false,
-          })
-          }
-        ],
-      });  
-  };
+      axios.post('/api/v1/deletemarinegrowth/', {
+                    marineGrowthId: value,
+                })
+                .then(function (response) {
+                    console.log(response);
+                    setstatus({
+                        isdeleted : true,
+                    })
+                })
+    };
   
     return (
         <ExpansionRow
@@ -259,12 +241,12 @@ export default function MarineGrowth() {
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_inspected_thickness}</StyledTableCell>
                                 <StyledTableCell style={{minWidth: 10}} align="center">{list.marine_growth_design_thickness}</StyledTableCell>
                                 <StyledTableCell style={{padding: ".6rem"}}>
-                                   
+                                  {/* <StyledLink to={`/dashboard/platforms/117/analysis?type=evaluation`}> */}
                                           <Button size= "medium" color="primary"        
-                                              onClick={() => submit(list.id)}
-                                              >
+                                              onClick={() => submit(list.id)}>
                                           <DeleteIcon />
                                           </Button>
+                                    {/* </StyledLink> */}
                                     </StyledTableCell>
                                </StyledTableRow>
                              ))}
