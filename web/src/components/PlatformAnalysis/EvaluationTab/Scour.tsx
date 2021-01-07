@@ -15,7 +15,7 @@ export default function Scour() {
     if (measured_scour_depth_during_inspection) {
         measured_scour_depth_during_inspection = `${measured_scour_depth_during_inspection} m`;
     } else {
-        measured_scour_depth_during_inspection = 'None';
+        measured_scour_depth_during_inspection = 'Unknown';
     }
 
     return (

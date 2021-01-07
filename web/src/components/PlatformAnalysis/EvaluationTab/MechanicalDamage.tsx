@@ -13,7 +13,7 @@ export default function MechanicalDamage() {
     );
 
     if (!number_of_damaged_members) {
-        number_of_damaged_members = 'None';
+        number_of_damaged_members = 'Unknown';
     }
 
     return (

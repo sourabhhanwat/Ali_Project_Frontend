@@ -17,8 +17,6 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { Link } from '@reach/router';
 import axios from "axios";
 import { Button } from '@material-ui/core';
-import { confirmAlert } from 'react-confirm-alert'; 
-
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -52,13 +50,11 @@ const rows = [
   createData('1','< 120' ),
 ];
 
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
 });
-
 
 interface IFormInput {
     marine_growth_design_thickness: String;
@@ -116,7 +112,34 @@ export default function MarineGrowth() {
                     setstatus({
                         isdeleted : true,
                     })
-                })
+                  })
+      // confirmAlert({
+      //   title: 'Confirm to delete',
+      //   message: 'Are you sure to do this.',
+      //   buttons: [
+      //     {
+      //       label: 'Yes',
+      //         onClick: () => axios.post('/api/v1/deletemarinegrowth/', {
+      //             marineGrowthId: value,
+      //         })
+      //         .then(function (response) {
+      //             console.log(response);
+      //             setstatus({
+      //                 isdeleted : true,
+      //             })
+      //         })
+      //         .catch(function (error) {
+      //             console.log(error);
+      //         }),
+      //     },
+      //     {
+      //       label: 'No',
+      //       onClick: () => setstatus({
+      //         isdeleted : false,
+      //     })
+      //     }
+      //   ],
+      // });  
     };
   
     return (
@@ -210,10 +233,8 @@ export default function MarineGrowth() {
                         </Grid>
                     </Grid>
                     </form>
-
-<br></br>
-<br></br>
-
+            <br></br>
+            <br></br>
             <Grid item container spacing={1}>
                     <Grid item xs={8}>
                     <TableContainer component={Paper}>
