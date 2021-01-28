@@ -11,13 +11,13 @@ import ExpansionRow from '../ExpansionRow';
 export default function FloodedMember() {
     const { watch } = useFormContext();
 
-    let number_of_flooded_members_in_last_inspection = watch(
+    let flooded_last_inspection = watch(
         'flooded_member.number_of_flooded_members_in_last_inspection'
     );
 
-    if (number_of_flooded_members_in_last_inspection === null) {
-        number_of_flooded_members_in_last_inspection = 'None';
-    }
+    // if (number_of_flooded_members_in_last_inspection === null) {
+    //     number_of_flooded_members_in_last_inspection = 'None';
+    // }
 
     return (
         <ExpansionRow
@@ -33,7 +33,7 @@ export default function FloodedMember() {
                             Number of Flooded Members in Last Inspection
                         </Typography>
                         <Typography variant="h5" gutterBottom>
-                            {number_of_flooded_members_in_last_inspection}
+                            {flooded_last_inspection == 0 ? 0 : flooded_last_inspection == null ? 'Unknown' : flooded_last_inspection }
                         </Typography>
                     </Grid>
 
@@ -44,6 +44,7 @@ export default function FloodedMember() {
                                 'flooded_members_last_inspection_date',
                             ]}
                             label="Flooded Member Last Inspection Date"
+                            helperText="If not known keep blank"
                         />
                     </Grid>
 
@@ -73,7 +74,7 @@ export default function FloodedMember() {
                                 'number_of_previous_inspection_flooded_members',
                             ]}
                             label="Number of Previous Inspection Flooded Members"
-                            nullable
+                            helperText="If not known enter. '0'"
                         />
                     </Grid>
 

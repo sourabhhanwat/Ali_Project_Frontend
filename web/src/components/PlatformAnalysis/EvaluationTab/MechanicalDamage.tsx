@@ -12,10 +12,6 @@ export default function MechanicalDamage() {
         'mechanical_damage.number_of_damaged_members'
     );
 
-    if (!number_of_damaged_members) {
-        number_of_damaged_members = 'Unknown';
-    }
-
     return (
         <ExpansionRow
             title="Mechanical Damage"
@@ -30,7 +26,7 @@ export default function MechanicalDamage() {
                             Number of Damaged Members
                         </Typography>
                         <Typography variant="h5">
-                            {number_of_damaged_members}
+                            {number_of_damaged_members == 0 ? 0 : number_of_damaged_members == null ? 'unknown' : number_of_damaged_members }
                         </Typography>
                     </Grid>
                 </Grid>

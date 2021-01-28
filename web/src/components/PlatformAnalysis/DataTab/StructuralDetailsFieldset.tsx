@@ -93,7 +93,7 @@ export default function StructuralDetailsFieldset() {
                     <TextField
                         name={[
                             'additional_appurtenance',
-                            'number_of_design_risers',
+                            'number_of_additional_risers',
                         ]}
                         label="Number of Additional Risers"
                     />

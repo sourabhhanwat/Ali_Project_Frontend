@@ -29,12 +29,14 @@ export default function DatePicker({
     name,
     label,
     required,
+    nullable,
     disabled,
     helperText,
 }: {
     name: string[];
     label: string;
     required?: boolean;
+    nullable?: boolean;
     disabled?: boolean;
     helperText?: string;
 }) {
@@ -69,7 +71,7 @@ export default function DatePicker({
                     onChange={([date]) => date}
                 />
             </Box>
-            {!required && (
+            {nullable && (
                 <FormHelperText>If not known keep blank</FormHelperText>
             )}
             {error?.message && (

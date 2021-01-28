@@ -8,21 +8,21 @@ import ExpansionRow from '../ExpansionRow';
 export default function UnprotectedAppurtenances() {
     const { watch } = useFormContext();
 
-    let number_of_unprotected_gas_riser = watch(
+    let unprotected_gas_riser = watch(
         'unprotected_appurtenances.number_of_unprotected_gas_riser'
     );
 
-    if (number_of_unprotected_gas_riser == null) {
-        number_of_unprotected_gas_riser = 'None';
-    }
+    // if (number_of_unprotected_gas_riser == null) {
+    //     number_of_unprotected_gas_riser = 'None';
+    // }
 
-    let number_of_unprotected_conductor = watch(
+    let unprotected_conductor = watch(
         'unprotected_appurtenances.number_of_unprotected_conductor'
     );
 
-    if (number_of_unprotected_conductor == null) {
-        number_of_unprotected_conductor = 'None';
-    }
+    // if (number_of_unprotected_conductor == null) {
+    //     number_of_unprotected_conductor = 'None';
+    // }
 
     return (
         <ExpansionRow
@@ -37,14 +37,14 @@ export default function UnprotectedAppurtenances() {
                             Number of Unprotected Gas Riser
                         </Typography>
                         <Typography variant="h5" gutterBottom>
-                            {number_of_unprotected_gas_riser}
+                            {unprotected_gas_riser == 0 ? 0 : unprotected_gas_riser == null ? 'Unknown' : unprotected_gas_riser }
                         </Typography>
 
                         <Typography variant="subtitle2">
                             Number of Unprotected Conductor
                         </Typography>
                         <Typography variant="h5">
-                            {number_of_unprotected_conductor}
+                            {unprotected_conductor == 0 ? 0 : unprotected_conductor == null ? 'Unknown' : unprotected_conductor }
                         </Typography>
                     </Grid>
                 </Grid>

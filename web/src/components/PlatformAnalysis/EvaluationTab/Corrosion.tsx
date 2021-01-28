@@ -49,6 +49,7 @@ export default function GroutedPiles() {
                             <DatePicker
                                 name={['corrosion', 'anode_retrofit_date']}
                                 label="Anode Retrofit Date"
+                                helperText="If not known keep blank"
                             />   
                         </Grid>
 

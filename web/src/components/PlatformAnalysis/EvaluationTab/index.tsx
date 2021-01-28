@@ -588,7 +588,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
                             <Grid item xs={6}>
                                 <p>
-                                Estimated Fraction of Oil Production Loss Due to LeakageFixed Cost for Spill Clean-up (Includes, mobilization of clean-up personnel, regulatory costs, etc.)
+                                Fixed Cost for Spill Clean-up (Includes, mobilization of clean-up personnel, regulatory costs, etc.)
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
@@ -599,13 +599,12 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         'fixed_cost_for_spill_cleanup',
                                     ]}
                                     unit="$"
-                                    helperText="Includes, mobilization of clean-up personnel, regulatory costs, etc"
                                 />
                             </Grid>
 
                             <Grid item xs={6}>
                                 <p>
-                                Variable Cost for Spill Clean-up (based on the size of spill volume)</p>
+                                Variable Cost for Spill Clean-up (Based on the size of spill volume)</p>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -616,7 +615,6 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         'variable_cost_for_spill_cleanup',
                                     ]}
                                     unit="$/bbl"
-                                    helperText="Based on the size of spill volume"
                                 />
                             </Grid>
 

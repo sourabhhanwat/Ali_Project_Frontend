@@ -171,9 +171,9 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Grid container spacing={2}>
-
-                            <Typography style={{marginTop: '1rem', fontWeight: 'bold', fontSize: '1.2rem'}}>Inspection Interval Based on Risk Level</Typography>
-
+                        <Grid item xs={12}>
+                            <Typography style={{marginTop: '1rem', fontWeight: 'bold', fontSize: '1.2rem'}}> Inspection Interval Based on Risk Level</Typography>
+                        </Grid>
 {/* ======================================================= */}
                     <Grid container item xs={12}>
                         <Grid container item xs={6} spacing={1}>
@@ -275,13 +275,14 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                     
                     <Grid item xs={12}>
                             <p></p>
-                            <Typography  variant="h6">Inspection Interval based on Exposure Category</Typography>
+                            <Typography  variant="h6">Inspection Interval Based on Exposure Category(API RP 2SIM).</Typography>
                             <p></p>
-                    </Grid>
+                    
             
                             <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <p>Exposure Category Level</p> 
+                                
                             </Grid> 
 
                             <Grid item xs={12} md={6}>
@@ -289,11 +290,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                                     name={['exposure_category_level']}
                                     label="Level"
                                     disabled
-                                    nullable
                                 />
-                                {/* <Typography variant="subtitle2">
-                                {'exposure_category_level'}                                
-                                </Typography> */}
                             </Grid>
 
                             <Grid item xs={12} md={6}>
@@ -347,7 +344,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             </Grid> 
 
-
+                            </Grid>
                             {/* ================================================================= */}
 {/* ================================================= */}
                            
@@ -355,7 +352,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                     <p></p>
                     <Typography  variant="h6">Selected Next Inspection Interval and Inspection Date</Typography>
                     <p></p>
-                </Grid> 
+                
                             <Grid container spacing={3}>
                             <Grid item xs={12}>
                             </Grid> 
@@ -432,6 +429,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
 
                             </Grid>  
+                            </Grid> 
             </Grid>
 
         </AccordionDetails>

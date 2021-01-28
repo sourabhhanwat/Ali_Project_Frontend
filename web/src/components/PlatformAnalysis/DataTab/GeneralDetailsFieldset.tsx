@@ -90,7 +90,7 @@ export default function GeneralDetailsFieldset() {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <DatePicker label="Designed Date" name={['design_date']} />
+                    <DatePicker label="Designed Date" name={['design_date']} helperText="If not known keep blank"/>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
@@ -114,6 +114,7 @@ export default function GeneralDetailsFieldset() {
                         name={['fatigue_load', 'water_depth']}
                         label="Water Depth"
                         unit="m"
+                        helperText = "Mandatory field"
                     />
                 </Grid>
 

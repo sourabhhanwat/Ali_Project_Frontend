@@ -21,11 +21,11 @@ export default function DeckElevationWaveInDeck() {
         'deck_elevation_wave_in_deck.cellar_deck_height'
     );
 
-    if (cellar_deck_height === null) {
-        cellar_deck_height = 'None';
-    } else {
-        cellar_deck_height = `${cellar_deck_height} m`;
-    }
+    // if (cellar_deck_height === null) {
+    //     cellar_deck_height = 'None';
+    // } else {
+    //     cellar_deck_height = `${cellar_deck_height} m`;
+    // }
 
     return (
         <ExpansionRow
@@ -41,7 +41,7 @@ export default function DeckElevationWaveInDeck() {
                             Cellar Deck Height
                         </Typography>
                         <Typography variant="h5">
-                            {cellar_deck_height}
+                            {cellar_deck_height == 0 ? 0 : cellar_deck_height == null ? 'Unknown' : cellar_deck_height }
                         </Typography>
                     </Grid>
 

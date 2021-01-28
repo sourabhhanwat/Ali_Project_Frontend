@@ -22,6 +22,7 @@ export default function StructuralDetailsFieldset() {
                             'last_inspection',
                             'last_underwater_inspection_date',
                         ]}
+                        helperText = "If not known keep blank"
                     />
                 </Grid>
 
@@ -48,7 +49,6 @@ export default function StructuralDetailsFieldset() {
                             'measured_scour_depth_during_inspection',
                         ]}
                         label="Measured Scour Depth"
-                        // unit="m"
                         nullable
                     />
                 </Grid>
