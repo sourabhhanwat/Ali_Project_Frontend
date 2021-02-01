@@ -62,7 +62,7 @@ export function SignInForm() {
                 alignItems="center"
                 mb={8}
             >
-                <StyledImage style={{width: '130px'}} src="/logo.jpg" />
+                <StyledImage style={{width: '170px'}} src="/logo.jpg" />
                 <Typography component="p" align="center" style={{fontWeight: 'bold', letterSpacing: '1.2px', fontSize: '1.5em',color: '#1f497d'}}>
                     RBI - Offshore Jacket Structures
                 </Typography>
