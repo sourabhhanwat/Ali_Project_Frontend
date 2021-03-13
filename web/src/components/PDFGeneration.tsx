@@ -127,8 +127,67 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Likelihood of Failure Category </Text>
             
             <Text style={styles.subtitle}>Consequence of Failure</Text>
+            {/* <Text style={styles.subtitle}>{props.data.platform_manned_status.ranking}</Text> */}
+            <Text style={styles.text}>Economic Consequence : {props.data.economic_consequence_category}</Text>
+            <Text style={styles.text}>Environmental Consequence : {props.data.environmental_consequence_category}</Text>
+            <Text style={styles.text}>Final Consequence Category : {props.data.final_consequence_category}</Text>
 
-            <Table
+            {/* Inspection History */}
+            <Text style={styles.subtitle}>Inspection History</Text>
+            <Text style={styles.subtitle}>Type of Survey Level                Date of Last Inspection</Text>
+            <Text style={styles.text}>Level I : {props.data.level_1_next_inspection_date}</Text>
+            <Text style={styles.text}>Level II : {props.data.level_2_next_inspection_date}</Text>
+            <Text style={styles.text}>Level III : {props.data.level_3_next_inspection_date}</Text>
+
+            {/* API RP 2SIM Life Safety Category  */}
+            <Text style={styles.subtitle}>API RP 2SIM Life Safety Category and Survey Level Recommended Inspection Interval in Years</Text>
+            <Text style={styles.text}>Exposure Category as per API RP2SIM : {props.data.exposure_category_level}</Text>
+            <Text style={styles.subtitle}>Type of Survey Level        Inspection Interval (Years)</Text>
+            <Text style={styles.text}>Level I : {props.data.exposure_category_level_1}</Text>
+            <Text style={styles.text}>Level II : {props.data.exposure_category_level_2}</Text>
+            <Text style={styles.text}>Level III : {props.data.exposure_category_level_3}</Text>
+
+            {/* Selected Next Inspection Interval and Inspection Date */}
+            {/* <Text style={styles.subtitle}>Selected Next Inspection Interval and Inspection Date</Text>
+            <Text style={styles.subtitle}>Type of Survey Level Next Selected Inspection    Interval (Years) Next         Inspection Date</Text>
+            <Text style={styles.text}>Level I : {props.data.next_10_years_inspection_plan}</Text>
+            <Text style={styles.text}>Level II : {props.data.next_10_years_inspection_plan}</Text>
+            <Text style={styles.text}>Level III : {props.data.next_10_years_inspection_plan}</Text> */}
+
+            {/* Survey Details */}
+            {/* <Text style={styles.subtitle}>Survey Details</Text> */}
+            <Text style={styles.text}>Above-water Visual : {props.data.scope_of_survey ? props.data.scope_of_survey.above_water_visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.above_water_visual_scope : '-'}</Text>
+            <Text style={styles.text}>Coating Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.coating_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_scope : '-'} </Text>
+            <Text style={styles.text}>Underwater CP Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_scope : '-'}</Text>
+            <Text style={styles.text}>Appurtenance and Personnel Safety Devices Surveys : {props.data.scope_of_survey ? props.data.scope_of_survey.appurtenance_survey_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.appurtenance_survey_scope : '-'}</Text>
+            <Text style={styles.text}>Deck Elevation Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_scope : '-'}</Text>
+            <Text style={styles.text}>Supplemental Surveys (NDT, material sampling, wall thickness measurements, etc) : {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_scope : '-'}</Text>
+
+            
+            {/* API Level II Survey -Underwater Inspection */}
+            <Text style={styles.text}>General Visual (Dents, Cracks, Abrasions, Bows, Severed, Holes, Gouges, Missing, Other) : {props.data.scope_of_survey ? props.data.scope_of_survey.general_visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.general_visual_scope : '-'}</Text>
+            <Text style={styles.text}>Debris : {props.data.scope_of_survey ? props.data.scope_of_survey.debris_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.debris_scope : '-'}</Text>
+            <Text style={styles.text}>Marine growth Thickness : {props.data.scope_of_survey ? props.data.scope_of_survey.marine_growth_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.marine_growth_scope : '-'}</Text>
+            <Text style={styles.text}>Scour Depth : {props.data.scope_of_survey ? props.data.scope_of_survey.scour_depth_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.scour_depth_scope : '-'}</Text>
+            <Text style={styles.text}>Anodes : {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_scope : '-'}</Text>
+            <Text style={styles.text}>Cathodic potential : {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_scope : '-'}</Text>
+            <Text style={styles.text}>Risers : {props.data.scope_of_survey ? props.data.scope_of_survey.risers_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.risers_scope : '-'}</Text>
+            <Text style={styles.text}>J-Tube : {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_scope : '-'}</Text>
+            <Text style={styles.text}>Caissons : {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_scope : '-'}</Text>
+            <Text style={styles.text}>Conductor : {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_scope : '-'}</Text>
+
+            {/* pending */}
+            <Text style={styles.text}>Visual Corrosion Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.visual_scope : '-'}</Text>
+            <Text style={styles.text}>Flooded member detection or member close visual inspection : {props.data.scope_of_survey ? props.data.scope_of_survey.flooded_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.flooded_scope : '-'}</Text>
+            <Text style={styles.text}>Weld/joint close visual inspection : {props.data.scope_of_survey ? props.data.scope_of_survey.weld_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.weld_scope : '-'}</Text>
+
+            {/* API Level IV Survey -Underwater Inspection */}
+            
+            
+            <Text style={styles.text}>Weld/joint NDT : {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
+            <Text style={styles.text}>Wall UT : {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
+
+            {/* <Table
                 data={[
                     {firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000"}
                 ]}
@@ -152,7 +211,7 @@ export function PdfDocument(props : any) {
                     <DataTableCell weighting={0.3} getContent={(r) => ''}/>
                     <DataTableCell weighting={0.3} getContent={(r) => ''}/>
                 </TableBody>
-            </Table>
+            </Table> */}
             
            </>
                      

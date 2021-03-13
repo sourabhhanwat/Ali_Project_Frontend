@@ -135,7 +135,20 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                       <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                     }
                 
-                    <input type="text" value={project.name} />           
+                    <TextField
+                      id="outlined-helperText"
+                      label="Project Name"
+                      multiline
+                      rows={1}
+                      name="des"
+                      variant="outlined"
+                      defaultValue={project.name}
+                      className={form.formDesign}
+                      inputRef={register({ required: true,})}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />          
                   </Grid>
                 
                 
