@@ -446,7 +446,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    }>
+                    }position = 'top center'>
                         <div >    
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
@@ -666,11 +666,11 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                              </Grid>
                             
                             <Grid item xs={4}>
-                                <Popup trigger={
-                                        <IconButton color="secondary" aria-label="add an alarm">
-                                            <Info />
-                                        </IconButton>
-                                    }>
+                            <Popup  trigger={      
+                            <IconButton color="secondary" aria-label="add an alarm">
+                                <Info />
+                            </IconButton>
+                            } position = 'top center' >
                                     <div >    
                                         <TableContainer component={Paper}>
                                             <Table className={classes.table} aria-label="customized table">
@@ -871,7 +871,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    }>
+                    }position = 'top center'>
                         <div >    
 
                             <TableContainer component={Paper}>
@@ -941,7 +941,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <Grid container spacing={2}>
                               <Grid item xs={12} md={12}>
                              </Grid>
-                        <Grid item xs={6}>
+                            <Grid item xs={6}>
                                 <p>
                                 Life-Safety Consequence Category
                                 </p>
@@ -957,11 +957,9 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                 </p>
                             </Grid>
                             <Grid item xs={6}>
-
                                 <Typography variant="h5">
                                     <p style={{margin: 'unset', textAlign: 'center', padding: '0.5rem', width: '15rem', backgroundColor: '#c2eade'}}>{environmental_consequence_category}</p>
                                 </Typography>
-                               
                             </Grid>
 
                             <Grid item xs={6}>
@@ -1040,6 +1038,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography style={{backgroundColor:red, textAlign:"center", color: "white", fontWeight:"bold", padding: "8px"}} variant="h5">
+                                    
                                     {risk_ranking}
                                 </Typography>
                             </Grid>

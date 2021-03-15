@@ -16,7 +16,7 @@ const graphStyles = makeStyles({
         border: '1.6px solid white',
         fontSize: 26,
         textAlign: 'center',
-        color: 'black',
+        color: 'white',
         fontWeight: 'bold',
     },
 
@@ -93,7 +93,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
         'risk_ranking'
     );
 
-    let red = (risk_ranking === 'H') ?  '#FFC000' : (risk_ranking === 'VH') ?  '#FF0000' : (risk_ranking === 'M') ?  '#FFFF00' : (risk_ranking === 'L') ?  '#92D050' : '#00B050';
+    let red = (risk_ranking === 'H') ?  '#FFC000' : (risk_ranking === 'VH') ?  '#FF0000' : (risk_ranking === 'M') ?  '#FFFF00' : (risk_ranking === 'L') ?  '#92D050' : '#539204';
 
     const final_consequence_category = watch(
         'final_consequence_category'
@@ -185,7 +185,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <div style={{backgroundColor: red, height:"50px"}}>
-                                        <Typography style={{color: "Black",textAlign:"center" ,padding:"1rem"}}>{risk_ranking}</Typography>
+                                        <Typography style={{color: "white",fontWeight:"bold",fontSize:"1.5rem",textAlign:"center" ,padding:".5rem"}}>{risk_ranking}</Typography>
                                     </div>
                             </Grid>
                             <Grid item xs={6}>

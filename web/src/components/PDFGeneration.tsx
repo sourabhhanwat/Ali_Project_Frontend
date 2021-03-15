@@ -77,57 +77,50 @@ export function PdfDocument(props : any) {
             <Text style={styles.author}>RBI Assessment Summary Report for 
                 <Text style={styles.author}>{props.data.name}</Text>
             </Text>
-            <Text style={styles.text}>Project Name:  
-          
-            </Text>
+            {/* <Text style={styles.text}>Project Name:  {props.data}</Text> */}
             <Text style={styles.text}>platform Name:  {props.data.name}</Text>
             <Text style={styles.text}>Description: {props.data.description}</Text>
-            {/* <Text style={styles.text}>Platform Type:  </Text> */}
+            <Text style={styles.text}>Platform Type: </Text>
             <Text style={styles.text}>Field Name:  {props.data.field_name}</Text>
             <Text style={styles.text}>Installation Date: {props.data.platform_installation_date}</Text>
-            {/* <Text style={styles.text}>Number of Legs: {props.data.number_of_legs_type.name}</Text>
-            <Text style={styles.text}>Design Life:  {props.data.corrosion.platform_design_life}</Text>
-            <Text style={styles.text}>Last underwater Inspection: {props.data.last_inspection.last_underwater_inspection_date}</Text> */}
-            <Text style={styles.text}>RBI Assessment date: {props.data.description}</Text>
+            
+            <Text style={styles.text}>Number of Legs: {props.data.number_of_legs_type ? props.data.number_of_legs_type.name : '-'}</Text>
+            <Text style={styles.text}>Design Life:  {props.data.corrosion ? props.data.corrosion.platform_design_life : '-'}</Text>
+            <Text style={styles.text}>Last underwater Inspection: {props.data.last_inspection ? props.data.last_inspection.last_underwater_inspection_date : '-'}</Text>
+
+            <Text style={styles.text}>RBI Assessment date: {props.data.rbui_assessment_date}</Text>
+            <Text style={styles.text}>RSR: {props.data.reserve_strength_ratio_score ? props.data.reserve_strength_ratio_score.reserve_strength_ratio : '-' }</Text>
+            <Text style={styles.text}>RSR Override Applicable: {props.data.reserve_strength_ratio_score ? props.data.reserve_strength_ratio_score.rsr_override : '-' }</Text>
             
             <Text style={styles.subtitle}>Likelihood of Failure</Text>
             
             <Text style={styles.text}>Robustness Score {props.data.robustness_score}</Text>
             <Text style={styles.text}>Platform Vintage: {props.data.platform_vintage_score}</Text>
-            <Text style={styles.text}>Brace/Legs
+            <Text style={styles.text}>Brace/Legs : {props.data.platform_legs_and_bracing_score}</Text>
+            <Text style={styles.text}>Grouted Pile: {props.data.leg_pile_grouting_score}</Text>
+            <Text style={styles.text}>Shallow Gas: {props.data.shallow_gas_score}</Text>
             
-            </Text>
-            <Text style={styles.text}>Grouted Piles
-            </Text>
-            <Text style={styles.text}>Shallow Gas Loop {props.data.shallow_gas_score}</Text>
-            
-            <Text style={styles.text}>Condition Score</Text>
-            <Text style={styles.text}>Last Inspection: 
-            </Text>
+            <Text style={styles.text}>Condition Score: {props.data.condition_score}</Text>
+            <Text style={styles.text}>Last Inspection: {props.data.last_inspection_score}</Text>
             <Text style={styles.text}>Mechanical Damage: {props.data.mechanical_damage_score}</Text>
             <Text style={styles.text}>Corrosion: {props.data.corrosion_score}</Text>
             <Text style={styles.text}>Marine Growth: {props.data.marine_growths_score}</Text>
             <Text style={styles.text}>Scour: {props.data.scour_score}</Text>
             <Text style={styles.text}>Flooded Member: {props.data.flooded_member_score}</Text>
-            <Text style={styles.text}>Unprotected Appurtenances: 
-             
-            </Text>
+            <Text style={styles.text}>Unprotected Appurtenances: {props.data.unprotected_appurtenances_score}</Text>
             
             <Text style={styles.text}>Loading Score: {props.data.loading_score}</Text>
-            <Text style={styles.text}>Deck Load: 
-            </Text>
-            <Text style={styles.text}>Deck Elevation - Wave in Deck </Text>
-            <Text style={styles.text}>Additional Appurtenances: 
-            </Text>
-            <Text style={styles.text}>Fatigue Load: 
-            </Text>
+            <Text style={styles.text}>Deck Load: {props.data.deck_load_score}</Text>
+            <Text style={styles.text}>Deck Elevation - Wave in Deck: {props.data.deck_elevation_wave_in_deck_score}</Text>
+            <Text style={styles.text}>Additional Appurtenances: {props.data.additional_appurtenance_score}</Text>
+            <Text style={styles.text}>Fatigue Load: {props.data.fatigue_load_score}</Text>
             
             <Text style={styles.text}>RSR Override Score: {props.data.rsr_override_score}</Text>
             <Text style={styles.text}>Total Score: {props.data.total_score}</Text>
-            <Text style={styles.text}>Likelihood of Failure Category </Text>
+            <Text style={styles.text}>Likelihood of Failure Category: {props.data.lof_ranking}</Text>
             
             <Text style={styles.subtitle}>Consequence of Failure</Text>
-            {/* <Text style={styles.subtitle}>{props.data.platform_manned_status.ranking}</Text> */}
+            <Text style={styles.subtitle}>Life Safety Consequence: {props.data.platform_manned_status? props.data.platform_manned_status.ranking : ''}</Text>
             <Text style={styles.text}>Economic Consequence : {props.data.economic_consequence_category}</Text>
             <Text style={styles.text}>Environmental Consequence : {props.data.environmental_consequence_category}</Text>
             <Text style={styles.text}>Final Consequence Category : {props.data.final_consequence_category}</Text>
