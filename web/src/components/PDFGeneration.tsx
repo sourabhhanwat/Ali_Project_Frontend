@@ -128,9 +128,9 @@ export function PdfDocument(props : any) {
             {/* Inspection History */}
             <Text style={styles.subtitle}>Inspection History</Text>
             <Text style={styles.subtitle}>Type of Survey Level                Date of Last Inspection</Text>
-            <Text style={styles.text}>Level I : {props.data.level_1_next_inspection_date}</Text>
-            <Text style={styles.text}>Level II : {props.data.level_2_next_inspection_date}</Text>
-            <Text style={styles.text}>Level III : {props.data.level_3_next_inspection_date}</Text>
+            <Text style={styles.text}>Level I : {props.data.level_1_last_inspection_date}</Text>
+            <Text style={styles.text}>Level II : {props.data.level_2_last_inspection_date}</Text>
+            <Text style={styles.text}>Level III : {props.data.level_3_last_inspection_date}</Text>
 
             {/* API RP 2SIM Life Safety Category  */}
             <Text style={styles.subtitle}>API RP 2SIM Life Safety Category and Survey Level Recommended Inspection Interval in Years</Text>
