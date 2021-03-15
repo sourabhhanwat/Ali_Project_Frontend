@@ -125,6 +125,9 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Environmental Consequence : {props.data.environmental_consequence_category}</Text>
             <Text style={styles.text}>Final Consequence Category : {props.data.final_consequence_category}</Text>
 
+            <Text style={styles.text}>Platform Risk Level: {props.data.risk_ranking}</Text>
+            <Text style={styles.text}>Risk Based Inspection Interval(Years): {props.data.risk_based_underwater_inspection_interval}</Text>
+
             {/* Inspection History */}
             <Text style={styles.subtitle}>Inspection History</Text>
             <Text style={styles.subtitle}>Type of Survey Level                Date of Last Inspection</Text>
@@ -141,14 +144,15 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Level III : {props.data.exposure_category_level_3}</Text>
 
             {/* Selected Next Inspection Interval and Inspection Date */}
-            {/* <Text style={styles.subtitle}>Selected Next Inspection Interval and Inspection Date</Text>
+            <Text style={styles.subtitle}>Selected Next Inspection Interval and Inspection Date</Text>
             <Text style={styles.subtitle}>Type of Survey Level Next Selected Inspection    Interval (Years) Next         Inspection Date</Text>
-            <Text style={styles.text}>Level I : {props.data.next_10_years_inspection_plan}</Text>
-            <Text style={styles.text}>Level II : {props.data.next_10_years_inspection_plan}</Text>
-            <Text style={styles.text}>Level III : {props.data.next_10_years_inspection_plan}</Text> */}
+            {/* <Text style={styles.text}>Level I : {props.data.level_1_selected_inspection_interval_for_next_inspection} {props.data.level_1_next_inspection_date}</Text> */}
+            {/* <Text style={styles.text}>Level II : {props.data.level_2_selected_inspection_interval_for_next_inspection}       {props.data.level_2_next_inspection_date}</Text>
+            <Text style={styles.text}>Level III : {props.data.level_3_selected_inspection_interval_for_next_inspection}      {props.data.level_3_next_inspection_date}</Text> */}
 
             {/* Survey Details */}
-            {/* <Text style={styles.subtitle}>Survey Details</Text> */}
+            <Text style={styles.subtitle}>Survey Details</Text>
+            <Text style={styles.subtitle}>API Level I Survey - Routine Above-water Inspection             Method                     Scope of Survey</Text>
             <Text style={styles.text}>Above-water Visual : {props.data.scope_of_survey ? props.data.scope_of_survey.above_water_visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.above_water_visual_scope : '-'}</Text>
             <Text style={styles.text}>Coating Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.coating_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_scope : '-'} </Text>
             <Text style={styles.text}>Underwater CP Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_scope : '-'}</Text>
@@ -156,7 +160,7 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Deck Elevation Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_scope : '-'}</Text>
             <Text style={styles.text}>Supplemental Surveys (NDT, material sampling, wall thickness measurements, etc) : {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_scope : '-'}</Text>
 
-            
+            <Text style={styles.subtitle}>API Level II Survey -Underwater Inspection             Method                     Scope of Survey</Text>
             {/* API Level II Survey -Underwater Inspection */}
             <Text style={styles.text}>General Visual (Dents, Cracks, Abrasions, Bows, Severed, Holes, Gouges, Missing, Other) : {props.data.scope_of_survey ? props.data.scope_of_survey.general_visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.general_visual_scope : '-'}</Text>
             <Text style={styles.text}>Debris : {props.data.scope_of_survey ? props.data.scope_of_survey.debris_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.debris_scope : '-'}</Text>
@@ -169,6 +173,7 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Caissons : {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_scope : '-'}</Text>
             <Text style={styles.text}>Conductor : {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_scope : '-'}</Text>
 
+            <Text style={styles.subtitle}>API Level III Survey -Underwater Inspection             Method                     Scope of Survey</Text>
             {/* pending */}
             <Text style={styles.text}>Visual Corrosion Survey : {props.data.scope_of_survey ? props.data.scope_of_survey.visual_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.visual_scope : '-'}</Text>
             <Text style={styles.text}>Flooded member detection or member close visual inspection : {props.data.scope_of_survey ? props.data.scope_of_survey.flooded_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.flooded_scope : '-'}</Text>
@@ -176,10 +181,18 @@ export function PdfDocument(props : any) {
 
             {/* API Level IV Survey -Underwater Inspection */}
             
-            
+            <Text style={styles.subtitle}>API Level IV Survey -Underwater Inspection             Method                     Scope of Survey</Text>
             <Text style={styles.text}>Weld/joint NDT : {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
             <Text style={styles.text}>Wall UT : {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'} {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
 
+            <Text style={styles.subtitle}>Other Details</Text>
+            <Text style={styles.text}>Weld Monitoring : {props.data.other_detail ? props.data.other_detail.weld_monitoring : '-'}</Text>
+            <Text style={styles.text}>Marine Growth Cleaning: {props.data.other_detail ? props.data.other_detail.marine_growth_cleaning : '-'} </Text>
+            <Text style={styles.text}>Debris Clearance: {props.data.other_detail ? props.data.other_detail.debris_clearance : '-'}</Text>
+            <Text style={styles.text}>Anode Confirmation: {props.data.other_detail ? props.data.other_detail.manode_confirmation : '-'} </Text>
+            <Text style={styles.text}>Scour Repair: {props.data.other_detail ? props.data.other_detail.scour_repair : '-'} </Text>
+            <Text style={styles.text}>Corrosion Survey: {props.data.other_detail ? props.data.other_detail.corrosion_survey : '-'}</Text>
+            <Text style={styles.text}>others: {props.data.other_detail ? props.data.other_detail.other : '-'} </Text>
             {/* <Table
                 data={[
                     {firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000"}
