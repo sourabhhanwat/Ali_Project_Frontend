@@ -37,7 +37,6 @@ export default function GroutedPiles() {
                                 name={['corrosion', 'cp_design_life']}
                                 label="CP Design Life"
                                 unit="years"
-                                disabled={!anode_retrofit_date}
                             />
                         </Grid>
 

@@ -185,7 +185,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                             </Grid>
                             <Grid item xs={6}>
                                 <div style={{backgroundColor: red, height:"50px"}}>
-                                        <Typography style={{color: "Black",textAlign:"center" ,padding:"1rem"}}>{risk_ranking}</Typography>
+                                        <Typography style={{color: "white",textAlign:"center", fontSize: "21px", fontWeight: "bold", padding:".5rem"}}>{risk_ranking}</Typography>
                                     </div>
                             </Grid>
                             <Grid item xs={6}>
@@ -275,7 +275,7 @@ export default function StrategyTab({ hidden }: { hidden?: boolean }) {
                     
                     <Grid item xs={12}>
                             <p></p>
-                            <Typography  variant="h6">Inspection Interval Based on Exposure Category(API RP 2SIM).</Typography>
+                            <Typography  variant="h6">Inspection Interval Based on Exposure Category (API RP 2SIM)</Typography>
                             <p></p>
                     
             

@@ -116,7 +116,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
                     inputRef={register({ required: true, maxLength: 100 })}/>
                 </Grid>
             
-                <Grid item xs={12} style={{marginTop: "2%"}}>
+                <Grid item xs={12} style={{marginTop: "0%"}}>
                   <TextField
                     id="outlined-multiline-static"
                     label="Platform Description"
@@ -151,7 +151,7 @@ export default function NewPlatform(this: any, {projectId,}: RouteComponentProps
                 <Grid item xs={12}>
                   <TextField id="outlined-basic" 
                     style={{ width : "80%", backgroundColor: 'white', height: "40px"}} 
-                    label="Platform Name" 
+                    label="Project Name" 
                     variant="outlined" 
                     name="res"
                     value={project.name}

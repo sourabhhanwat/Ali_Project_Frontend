@@ -89,7 +89,7 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
 
                     <Grid item xs={3} md={3}>
                         <div style={{backgroundColor: red, height:"50px", borderRadius: '5px'}}>
-                            <Typography style={{color: "Black", fontWeight: 'bold', textAlign:"center", fontSize: "25px" ,padding:"0.4rem 1rem"}}>{risk_ranking}</Typography>
+                            <Typography style={{color: "white", fontWeight: 'bold', textAlign:"center", fontSize: "21px" ,padding:"0.5rem 1rem"}}>{risk_ranking}</Typography>
                         </div>
                     </Grid>
 

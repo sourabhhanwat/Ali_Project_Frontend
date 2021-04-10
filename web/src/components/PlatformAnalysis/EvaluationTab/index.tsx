@@ -446,7 +446,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    }>
+                    } position= 'top center'>
                         <div >    
                             <TableContainer component={Paper}>
                                  <Table className={classes.table} aria-label="customized table">
@@ -670,7 +670,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                                         <IconButton color="secondary" aria-label="add an alarm">
                                             <Info />
                                         </IconButton>
-                                    }>
+                                    } position= 'top center'>
                                     <div >    
                                         <TableContainer component={Paper}>
                                             <Table className={classes.table} aria-label="customized table">
@@ -871,7 +871,7 @@ export default function EvaluationTab(this: any, { hidden }: { hidden?: boolean 
                         <IconButton color="secondary" aria-label="add an alarm">
                         <Info />
                         </IconButton>
-                    }>
+                    } position= 'top center'>
                         <div >    
 
                             <TableContainer component={Paper}>

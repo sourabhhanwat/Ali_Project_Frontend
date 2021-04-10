@@ -59,25 +59,22 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
 
     console.log("update project==>", project.users ? project.users[0].username : '')
 
-    let dateValue = project.start_date
-    console.log(dateValue)
+    // let dateValue = project.start_date
+    // console.log(dateValue)
 
-    const [startDate, setStartDate] = React.useState<Date | null>(
-      new Date('2020-12-08T03:00:09.939000Z'),
-    );
+    const [startDate, setStartDate] = React.useState<Date | null>();
+    console.log("I am start date =",startDate)
     
-    const [endDate, setEndDate] = React.useState<Date | null>(
-      new Date(),
-    );
+    const [endDate, setEndDate] = React.useState<Date | null>();
    
     const onSubmit = (data: IFormInput,e:any) => {
-      
+      console.log("I have new ",data)
       axios.post('/api/v1/updateproject/', {
         Name: data.name,
         Description: data.des,
-        StartDate: data.startdate,
-        Responsible: data.res,
-        EndDate: data.enddate,
+        StartDate: startDate,
+        Responsible: user,
+        EndDate: endDate,
         projectId : projectId,
       })
 
@@ -111,6 +108,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     };
   
     const handleStartDateChange = (date: Date | null) => {
+      console.log("I am date =",date)
       setStartDate(date);
     };
   
@@ -120,9 +118,9 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
 
     const form = formStyles();
 
-    if(status.isSubmitted == true){
-      window.location.href='/dashboard/CreatePlatform/';
-    }
+    // if(status.isSubmitted == true){
+    //   window.location.href='/dashboard/CreatePlatform/';
+    // }
 
   return (
     <div className="Container" style={{textAlign : 'center'}}>
@@ -134,8 +132,20 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                       <p style={{ color : "green"}}>Project Saved Successfully!!.</p>:
                       <p style={{ color : "red"}}>Project Not Saved!!.</p> : null
                     }
-                
-                    <input type="text" value={project.name} />           
+                    <TextField
+                      id="outlined-helperText"
+                      label="Project Name"
+                      multiline
+                      rows={1}
+                      name="name"
+                      variant="outlined"
+                      defaultValue={project.name}
+                      className={form.formDesign}
+                      inputRef={register({ required: true,})}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />        
                   </Grid>
                 
                 
@@ -179,9 +189,10 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                           id="date-picker-dialog"
                           fullWidth
                           inputVariant="outlined"
-                          label="Start Date"
+                          label="End Date"
                           format="MM/dd/yyyy"
                           name="enddate"
+                          defaultValue={project.end_date}
                           value={endDate}
                           className={form.formDate}
                           onChange={handleEndDateChange}
@@ -207,6 +218,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                               {list.username}
                             </MenuItem>
                           ))}
+                          
                         </TextField>
                       </Grid>
                                 

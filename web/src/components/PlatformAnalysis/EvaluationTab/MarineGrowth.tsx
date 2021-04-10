@@ -17,6 +17,7 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { Link } from '@reach/router';
 import axios from "axios";
 import { Button } from '@material-ui/core';
+import { confirmAlert } from 'react-confirm-alert'; 
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -102,6 +103,11 @@ export default function MarineGrowth() {
     elv = watch('marine_growth_each_elevation');
     console.log("elev",enumerableKeys);
 
+    
+    
+
+
+
     const submit = (value : any) => {
       console.log("marine id: ",value)
       axios.post('/api/v1/deletemarinegrowth/', {
@@ -141,7 +147,11 @@ export default function MarineGrowth() {
       //   ],
       // });  
     };
-  
+    
+     if(status.isdeleted === true){
+        window.location.href=(`/dashboard/platforms/${id}/analysis?type=evaluation`);
+    }
+
     return (
         <ExpansionRow
             title="Marine Growth"
@@ -155,10 +165,11 @@ export default function MarineGrowth() {
                         <Grid item xs={12}>
                                 <Typography variant="body1">
                                 </Typography>
-                                <Typography variant="subtitle2">
-                                    Marine Growth Inspection Performed and Elevations of Inspection Marine Growth are Known?
+                                <Typography variant="subtitle1">
+                                <b>Note:</b> If Marine Growth inspection is not performed and data are not available for Marine Growth thickness, keep the below fields blank.
                                 </Typography>
                         </Grid>
+                        <Grid item xs={12}></Grid>
                         <Grid item xs={12} md={6}>
                             <p>Marine Growth Depths From EL </p>
                         </Grid>
@@ -168,12 +179,10 @@ export default function MarineGrowth() {
                                 label="insert From EL"
                                 unit="m"
                             /> */}
-                            <input 
-                            style={{ width : "400px" , height: "53px"}} 
-                            placeholder="Example: 54" 
-                            name="marine_growth_depths_from_el" 
-                            ref={register({ required: true })}  />
-
+                            <span className="marine-growth">
+                            <input style={{ width : "42%", border:"unset"}} name="marine_growth_depths_from_el" ref={register({ required: true })}  />
+                            <span style={{color: "rgba(0, 0, 0, 0.54)", fontSize: "1rem"}}>m</span>
+                            </span>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -182,12 +191,14 @@ export default function MarineGrowth() {
 
                         <Grid item xs={12} md={6}>
                             {/* <TextField
-                                name={['marine_growth_depths_to_el']}
+                                name={['marine_growths','marine_growth_depths_to_el']}
                                 label="insert TO EL"
                                 unit="m"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="Example: 20" name="marine_growth_depths_to_el" ref={register({ required: true })}  />
-
+                            <span className="marine-growth">
+                              <input style={{ width : "42%", border:"unset"}} name="marine_growth_depths_to_el" ref={register({ required: true })} />
+                              <span style={{color: "rgba(0, 0, 0, 0.54)", fontSize: "1rem"}}>m</span>
+                            </span>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -200,8 +211,10 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Inspected Thickness"
                                 unit="mm"
                             /> */}
-                            <input style={{ width : "400px" , height: "53px"}} placeholder="Example: 20" name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
-
+                            <span className="marine-growth">
+                              <input style={{ width : "40.5%", border: "unset"}} name="marine_growth_inspected_thickness" ref={register({ required: true })}  />
+                              <span style={{color: "rgba(0, 0, 0, 0.54)", fontSize: "1rem"}}>mm</span>
+                            </span>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -214,7 +227,10 @@ export default function MarineGrowth() {
                                 label="insert Marine Growth Allowable Design Thick"
                                 unit="mm"
                             /> */}
-                            <input style={{width : "400px" , height: "53px"}} placeholder=" Example: 20" name="marine_growth_design_thickness" ref={register({ required: true })}  />
+                            <span className="marine-growth">
+                              <input style={{ width : "40.5%", border: "unset"}} name="marine_growth_design_thickness" ref={register({ required: true })}/>
+                              <span style={{color: "rgba(0, 0, 0, 0.54)", fontSize: "1rem"}}>mm</span>
+                            </span>
                         </Grid>
                         <Grid item xs={6} md={6}></Grid>
 

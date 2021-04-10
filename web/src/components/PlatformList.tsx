@@ -88,7 +88,10 @@ export default function PlatformsList(this: any, {projectId}: RouteComponentProp
             <Grid container spacing={3}>
                 {platforms?.map((platform) => (
                     <Grid key={platform.id} item xs={12} sm={6} md={4} lg={3}>
-                        <PlatformCard platform={platform} />
+                        {
+                            (platforms && platforms.length) ?
+                            <PlatformCard platform={platform} /> : null
+                        }
                     </Grid>
                 ))}
                 {isPending && <SkeletonPlatformCards />}

@@ -132,9 +132,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
         });  
     };
 
-    if(status.isdeleted === true){
-        window.location.href='/dashboard/rbi/';
-    }
+    
 
     const [platformData, setPlatform] = React.useState<any>([]);
 
@@ -144,6 +142,13 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
           setPlatform(data.data);
         });
     }, []);
+
+    var projectId = platformData ? platformData.project : ''
+    console.log("I am projectId =",projectId)
+
+    if(status.isdeleted === true){
+        window.location.href=(`/dashboard/project/${projectId}/platforms`);
+    }
     
     return (
         <Card>

@@ -75,10 +75,10 @@ export const PlatformSchema = yup
             yup
                 .object({
                     id:yup.number(),
-                    marine_growth_depths_from_el: yup.string(),
-                    marine_growth_depths_to_el: yup.string(),
-                    marine_growth_inspected_thickness: yup.string(),
-                    marine_growth_design_thickness: yup.string(),
+                    marine_growth_depths_from_el: yup.string().nullable(),
+                    marine_growth_depths_to_el: yup.string().nullable(),
+                    marine_growth_inspected_thickness: yup.string().nullable(),
+                    marine_growth_design_thickness: yup.string().nullable(),
                 })
                 .noUnknown()
         ),
