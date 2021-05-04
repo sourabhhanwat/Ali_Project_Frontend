@@ -103,49 +103,44 @@ export default function MarineGrowth() {
     elv = watch('marine_growth_each_elevation');
     console.log("elev",enumerableKeys);
 
-    
-    
-
-
-
     const submit = (value : any) => {
       console.log("marine id: ",value)
-      axios.post('/api/v1/deletemarinegrowth/', {
-                    marineGrowthId: value,
-                })
-                .then(function (response) {
-                    console.log(response);
-                    setstatus({
-                        isdeleted : true,
-                    })
-                  })
-      // confirmAlert({
-      //   title: 'Confirm to delete',
-      //   message: 'Are you sure to do this.',
-      //   buttons: [
-      //     {
-      //       label: 'Yes',
-      //         onClick: () => axios.post('/api/v1/deletemarinegrowth/', {
-      //             marineGrowthId: value,
-      //         })
-      //         .then(function (response) {
-      //             console.log(response);
-      //             setstatus({
-      //                 isdeleted : true,
+      // axios.post('/api/v1/deletemarinegrowth/', {
+      //               marineGrowthId: value,
+      //           })
+      //           .then(function (response) {
+      //               console.log(response);
+      //               setstatus({
+      //                   isdeleted : true,
+      //               })
       //             })
-      //         })
-      //         .catch(function (error) {
-      //             console.log(error);
-      //         }),
-      //     },
-      //     {
-      //       label: 'No',
-      //       onClick: () => setstatus({
-      //         isdeleted : false,
-      //     })
-      //     }
-      //   ],
-      // });  
+      confirmAlert({
+        title: 'Confirm to delete',
+        message: 'Are you sure to do this.',
+        buttons: [
+          {
+            label: 'Yes',
+              onClick: () => axios.post('/api/v1/deletemarinegrowth/', {
+                  marineGrowthId: value,
+              })
+              .then(function (response) {
+                  console.log(response);
+                  setstatus({
+                      isdeleted : true,
+                  })
+              })
+              .catch(function (error) {
+                  console.log(error);
+              }),
+          },
+          {
+            label: 'No',
+            onClick: () => setstatus({
+              isdeleted : false,
+          })
+          }
+        ],
+      });  
     };
     
      if(status.isdeleted === true){

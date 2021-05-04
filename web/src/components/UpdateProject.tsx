@@ -49,21 +49,31 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     if (match) {
         projectId = parseInt((match as any).projectId);
     }
-
+    
     React.useEffect(() => {
       axios.get(`/api/v1/projects/${projectId}`)
-        .then(data => {
+        .then(data => { 
           updateProject(data.data);
         });
     }, []);
 
     console.log("update project==>", project.users ? project.users[0].username : '')
+    
+    // console.log(project)
+    const startdate = project.start_date ? project.start_date : ''
+    console.log("Projects =====>",startdate)
+    const edited_startdate = startdate.slice(0, -1)
 
+    console.log("Edited date ===>",edited_startdate)
     // let dateValue = project.start_date
     // console.log(dateValue)
 
-    const [startDate, setStartDate] = React.useState<Date | null>();
-    console.log("I am start date =",startDate)
+    setTimeout(() => {
+      
+    }, 3000);
+    const [startDate, setStartDate] = React.useState<Date | null>(
+      // new Date(edited_startdate)
+    );
     
     const [endDate, setEndDate] = React.useState<Date | null>();
    
@@ -117,10 +127,9 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
     };
 
     const form = formStyles();
-
-    // if(status.isSubmitted == true){
-    //   window.location.href='/dashboard/CreatePlatform/';
-    // }
+    if(status.isSubmitted == true){
+      window.location.href='/dashboard/CreatePlatform/';
+    }
 
   return (
     <div className="Container" style={{textAlign : 'center'}}>
@@ -166,6 +175,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                     />      
                   </Grid>
                   
+                  
                   <Grid container justify="space-around" style={{margin : '0 26.1%'}}>
                       <KeyboardDatePicker
                         margin="normal"
@@ -192,7 +202,7 @@ export default function NewProject(this: any, {projectId,}: RouteComponentProps<
                           label="End Date"
                           format="MM/dd/yyyy"
                           name="enddate"
-                          defaultValue={project.end_date}
+                          defaultValue="2017-08-09"
                           value={endDate}
                           className={form.formDate}
                           onChange={handleEndDateChange}
