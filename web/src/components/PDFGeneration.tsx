@@ -73,28 +73,6 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props : any) {
 
-  // console.log("I am projects===>",props.data.project)
-
-  // const projectId = ''
-
-  // setTimeout(() => {
-  // const projectId = props.data? props.data.project : ''
-  // }, 3000);
-  
-  // const [setproject, setLst] = React.useState<any>([]);
-  
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     axios.get(`/api/v1/projects/${projectId}`)
-  //     .then(data => {
-  //       setLst(data.data)
-  //     });
-  //   }, 5000);
-    
-  // }, []);
-
-  // console.log("dat =====>",setproject)
-
   return (
     <Document>
       <Page style={styles.body}>
@@ -102,12 +80,12 @@ export function PdfDocument(props : any) {
        {props.data
           ? 
           <> 
-            <Text style={styles.title}></Text>
+            <Text style={styles.title}>{props.data.project_name}</Text>
             <Text style={styles.author}>RBI Assessment Summary Report for {props.data.name}</Text>
-            <Text style={styles.text}>Project Name:</Text>
+            <Text style={styles.text}>Project Name:                                                        {props.data.project_name}</Text>
             <Text style={styles.text}>Platform Name:                                                      {props.data.name}</Text>
             <Text style={styles.text}>Description:                                                            {props.data.description}</Text>
-            <Text style={styles.text}>Platform Type:</Text>
+            <Text style={styles.text}>Platform Type:                                                        {props.data.environmental_consequence ? props.data.environmental_consequence.platform_type ? props.data.environmental_consequence.platform_type.name : props.data.environmental_consequence.platform_type.name : ""  }</Text>
             <Text style={styles.text}>Field Name:                                                            {props.data.field_name}</Text>
             <Text style={styles.text}>Installation Date:                                                    {props.data.platform_installation_date}</Text>
             <Text style={styles.text}>Number of Legs:                                                     {props.data.number_of_legs_type?props.data.number_of_legs_type.name:''}</Text>
@@ -187,7 +165,7 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Underwater CP Survey:                                                   {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_method : '-'}                 {props.data.scope_of_survey ? props.data.scope_of_survey.underwater_cp_scope : '-'}</Text>
             <Text style={styles.text}>Appurtenance and Personnel Safety Devices Surveys:   {props.data.scope_of_survey ? props.data.scope_of_survey.appurtenance_survey_method : '-'}                 {props.data.scope_of_survey ? props.data.scope_of_survey.appurtenance_survey_scope : '-'}</Text>
             <Text style={styles.text}>Deck Elevation Survey:                                                   {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_method : '-'}                     {props.data.scope_of_survey ? props.data.scope_of_survey.deck_elevation_scope : '-'}</Text>
-            <Text style={styles.text}>Supplemental Surveys (NDT, material, etc):                     {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_method : '-'}                     {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_scope : '-'}</Text>
+            <Text style={styles.text}>Supplemental Surveys (NDT, material, etc):                     {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_method : '-'}                  {props.data.scope_of_survey ? props.data.scope_of_survey.supplemental_scope : '-'}</Text>
 
             
             {/* API Level II Survey -Underwater Inspection */}
@@ -195,12 +173,12 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}>Debris:                                                                               {props.data.scope_of_survey ? props.data.scope_of_survey.debris_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.debris_scope : '-'}</Text>
             <Text style={styles.text}>Marine growth Thickness:                                                 {props.data.scope_of_survey ? props.data.scope_of_survey.marine_growth_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.marine_growth_scope : '-'}</Text>
             <Text style={styles.text}>Scour Depth:                                                                      {props.data.scope_of_survey ? props.data.scope_of_survey.scour_depth_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.scour_depth_scope : '-'}</Text>
-            <Text style={styles.text}>Anodes:                                                                              {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_scope : '-'}</Text>
-            <Text style={styles.text}>Cathodic potential:                                                             {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_scope : '-'}</Text>
-            <Text style={styles.text}>Risers:                                                                                {props.data.scope_of_survey ? props.data.scope_of_survey.risers_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.risers_scope : '-'}</Text>
-            <Text style={styles.text}>J-Tube:                                                                               {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_scope : '-'}</Text>
-            <Text style={styles.text}>Caissons:                                                                            {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_scope : '-'}</Text>
-            <Text style={styles.text}>Conductor:                                                                         {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_scope : '-'}</Text>
+            <Text style={styles.text}>Anodes:                                                                              {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_method : '-'}               {props.data.scope_of_survey ? props.data.scope_of_survey.anodes_scope : '-'}</Text>
+            <Text style={styles.text}>Cathodic potential:                                                             {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_method : '-'}               {props.data.scope_of_survey ? props.data.scope_of_survey.cathodic_scope : '-'}</Text>
+            <Text style={styles.text}>Risers:                                                                                {props.data.scope_of_survey ? props.data.scope_of_survey.risers_method : '-'}              {props.data.scope_of_survey ? props.data.scope_of_survey.risers_scope : '-'}</Text>
+            <Text style={styles.text}>J-Tube:                                                                               {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_method : '-'}               {props.data.scope_of_survey ? props.data.scope_of_survey.jtube_scope : '-'}</Text>
+            <Text style={styles.text}>Caissons:                                                                            {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_method : '-'}               {props.data.scope_of_survey ? props.data.scope_of_survey.caissons_scope : '-'}</Text>
+            <Text style={styles.text}>Conductor:                                                                         {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_method : '-'}               {props.data.scope_of_survey ? props.data.scope_of_survey.conductor_scope : '-'}</Text>
 
             {/* pending */}
             <Text style={styles.text}>Visual Corrosion Survey:                                                   {props.data.scope_of_survey ? props.data.scope_of_survey.visual_method : '-'}                 {props.data.scope_of_survey ? props.data.scope_of_survey.visual_scope : '-'}</Text>
@@ -210,8 +188,8 @@ export function PdfDocument(props : any) {
             {/* API Level IV Survey -Underwater Inspection */}
             
             
-            <Text style={styles.text}>Weld/joint NDT:                                                                 {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_method : '-'}                  {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
-            <Text style={styles.text}>Wall UT:                                                                             {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'}            {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
+            <Text style={styles.text}>Weld/joint NDT:                                                                 {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_method : '-'}                {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
+            <Text style={styles.text}>Wall UT:                                                                             {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'}         {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
 
             {/* <Table
                 data={[

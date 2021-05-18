@@ -21,7 +21,9 @@ import RelativeDate from './RelativeDate';
 import axios from "axios";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { PdfDocument } from './PDFGeneration';
-import { confirmAlert } from 'react-confirm-alert'; 
+import { confirmAlert } from 'react-confirm-alert';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 const StyledAvatar = styled(Avatar)(
     ({
@@ -139,9 +141,13 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
     React.useEffect(() => {
       axios.get(`/api/v1/platforms/${platform.id}`)
         .then(data => {
+          data.data.rbui_assessment_date = moment(data.data.rbui_assessment_date).format('DD/MM/YYYY');
+          data.data.platform_installation_date = moment(data.data.platform_installation_date).format('DD/MM/YYYY');
           setPlatform(data.data);
         });
     }, []);
+
+    console.log("PLatform data ==", platformData)
 
     var projectId = platformData ? platformData.project : ''
     console.log("I am projectId =",projectId)
