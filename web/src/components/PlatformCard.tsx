@@ -142,6 +142,7 @@ export default function PlatformCard({ platform }: { platform: Platform }) {
       axios.get(`/api/v1/platforms/${platform.id}`)
         .then(data => {
           data.data.rbui_assessment_date = moment(data.data.rbui_assessment_date).format('DD/MM/YYYY');
+          data.data.last_inspection.last_underwater_inspection_date = moment(data.data.last_inspection.last_underwater_inspection_date).format('DD/MM/YYYY');
           data.data.platform_installation_date = moment(data.data.platform_installation_date).format('DD/MM/YYYY');
           setPlatform(data.data);
         });
