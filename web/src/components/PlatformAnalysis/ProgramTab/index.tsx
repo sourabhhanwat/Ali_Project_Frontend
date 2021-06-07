@@ -751,7 +751,7 @@ export default function ProgramTab({ hidden }: { hidden?: boolean }) {
 
                     <Grid item xs={3} md={3}>
                         <TextField
-                            name={['scope_of_survey','wallut_method']}
+                            name={['scope_of_survey','wallut_scope']}
                             label="Scope"
                         />
                     </Grid>

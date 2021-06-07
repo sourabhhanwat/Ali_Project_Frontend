@@ -193,7 +193,7 @@ export function PdfDocument(props : any) {
             <Text style={styles.text}></Text>
             <Text style={styles.text}>API Level IV Survey - Underwater Inspection             Method       Scope of Survey    </Text>
             <Text style={styles.text}>Weld/joint NDT:                                                            {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_method : '-'}                   {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
-            <Text style={styles.text}>Wall UT:                                                                        {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'}            {props.data.scope_of_survey ? props.data.scope_of_survey.joint_ndt_scope : '-'}</Text>
+            <Text style={styles.text}>Wall UT:                                                                        {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_method : '-'}            {props.data.scope_of_survey ? props.data.scope_of_survey.wallut_scope : '-'}</Text>
 
             {/* <Table
                 data={[
